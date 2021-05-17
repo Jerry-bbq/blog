@@ -1,5 +1,6 @@
 # 分享
 
+- [移动端适配](./flexible.md)
 - [Vue](./vue.md)
 - [JavaScript](./javascript.md)
 - [CSS](./css.md)
