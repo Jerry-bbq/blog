@@ -1,6 +1,9 @@
 # 分享
 
 - [从零实现一个工具函数库](tooljs.md)
+- 开发工具
+  - [NPM的镜像管理](./node-registry-manage.md)
+  - [Node版本管理](./node-version-manager.md)
 - [移动端适配](./flexible.md)
 - [Vue](./vue.md)
   - AntDesignVue自定义图片文件上组件

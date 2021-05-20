@@ -707,3 +707,10 @@ yarn add conventional-changelog-cli -D
 ```bash
 npx conventional-changelog -p angular -i CHANGELOG.md -s -r 0
 ```
+
+## 发布
+
+```bash
+npm login
+npm publish
+```
