@@ -6,35 +6,29 @@ sidebar: auto
 
 ## 功能点
 
-- [X] rollup打包
+- [x] rollup打包
 - [x] 单元测试
 - [x] 规范代码提交
 - [x] 更新日志
 
 ## Rollup
 
-Rollup 是一个 JavaScript 模块打包器，可以将小块代码编译成大块复杂的代码，例如 library 或应用程序。具有`Tree-shaking`的功能,[Tree-shaking的问题](https://zhuanlan.zhihu.com/p/32554436)
+`Rollup` 是一个 `JavaScript` 模块打包器，可以将小块代码编译成大块复杂的代码，例如 library 或应用程序。具有`Tree-shaking`的功能,[Tree-shaking的问题](https://zhuanlan.zhihu.com/p/32554436)
 
-### 使用方式
+### 命令行接口和可选配置文件
 
-#### 第一种方式
-
-命令行接口(command line interface)配合可选配置文件(optional configuration file)来调用
+命令行接口(`command line interface`) + 可选配置文件(`optional configuration file`)来调用
 
 全局安装
 
 ```bash
 npm install --global rollup
-```
-
-查看版本
-
-```bash
+# 查看版本
 rollup -v                  
 # rollup v2.47.0
 ```
 
-打包如下代码：
+打包如下的示例代码：
 
 ```js
 let a = 2
@@ -44,20 +38,20 @@ const result = add(1, 2)
 console.log(a, result)
 ```
 
-##### 通过命令行
+#### 命令行
 
-需要指定`入口文件`,`打包文件`,`格式`：
+需要指定`入口文件`,`打包输出的文件名`,`格式`：
 
 ```bash
 rollup index.js --file bundle.js --format cjs
 ```
 
-##### 通过命令行+配置文件的形式
+#### 命令行+配置文件的形式
 
-默认使用`rollup.config.js`,需要在项目的根目录下创建该文件：
+第一步：默认使用`rollup.config.js`,因此需要在项目的根目录下创建该文件：
 
 ```js
-// 配置文件
+// rollup.config.js
 export default {
     input: 'index.js', // 必须
     output: {
@@ -67,18 +61,20 @@ export default {
 }
 ```
 
+第二步：打包
+
 ```bash
-rollup -c 
-# 或者 
 rollup --config
+# 或者简写
+rollup -c 
 ```
 
 执行指定的配置文件`my.config.js`：
 
 ```bash
-rollup -c my.config.js
-# 或者 
 rollup --config my.config.js
+# 或者 
+rollup -c my.config.js
 ```
 
 以上方式每次都需要重新进行打包，比较繁琐，因此采用 监听文件变化`-w`或者`--watch`执行命令:
@@ -95,11 +91,9 @@ rollup --watch --config my.config.js
 
 > `-w` 必须在 `-c`前面使用
 
-#### 第二种方式
+### JavaScript API
 
-##### JavaScript API
-
-安装`rollup`:
+在项目中安装`rollup`:
 
 ```bash
 yarn add rollup -D
@@ -142,15 +136,15 @@ node rollup.js
 
 ### buble
 
-打包如上代码发现，使用ES6写法写的代码并没有被转为ES5，因此需要做一个转换。
+打包如上示例代码发现，使用ES6写法写的代码并没有被转为ES5，因此需要`babel`。
 
-安装插件
+安装
 
 ```bash
 yarn add @rollup/plugin-buble -D
 ```
 
-配置配件
+配置
 
 ```js
 const bubel = require('@rollup/plugin-buble')
@@ -406,9 +400,60 @@ export default {
 - module：定义 npm 包的 ESM 规范的入口文件，browser 环境和 node 环境均可使用
 - unpkg： cdn（umd格式）
 
+```js
+// rollup.config.js
+import bubel from '@rollup/plugin-buble'
+import { nodeResolve } from '@rollup/plugin-node-resolve'
+import commonjs from '@rollup/plugin-commonjs'
+
+const pkg = require('./package.json')
+
+const banner = `
+/** 
+ * ${pkg.name} v${pkg.version}
+ * (c) 2020-${new Date().getFullYear()} ${pkg.author}
+ * Released under the MIT License.
+ */`
+
+export default {
+  input: 'src/index.js',
+  output: [
+    {
+      file: 'bundle/cjs.js',
+      format: 'cjs',
+      banner,
+      name: pkg.name,
+    },
+    {
+      file: 'bundle/esm.js',
+      format: 'esm',
+      banner,
+      name: pkg.name,
+    },
+    {
+      file: 'bundle/umd.js',
+      format: 'umd',
+      banner,
+      name: pkg.name,
+    },
+  ],
+  plugins: [
+    nodeResolve({
+      // 将自定义选项传递给解析插件
+      customResolveOptions: {
+        moduleDirectories: ['node_modules'],
+      },
+    }),
+    commonjs(),
+    bubel(),
+  ],
+  external: ['lodash'],
+}
+```
+
 ## 单元测试
 
-### 安装jest
+### jest
 
 ```bash
 yarn add jest -D
@@ -452,7 +497,7 @@ yarn test
 
 [git-guide](https://zj-git-guide.readthedocs.io/zh_CN/latest/?badge=latest)
 
-### 安装 commitizen
+### commitizen
 
 ```bash
 yarn add commitizen -D
