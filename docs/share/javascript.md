@@ -1,3 +1,7 @@
+---
+sidebar: auto
+---
+
 # JavaScript
 
 ## 根据图片url，下载图片

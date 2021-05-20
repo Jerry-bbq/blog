@@ -1,36 +1,42 @@
+---
+sidebar: auto
+---
+
 # 二进制流文件下载
 
 ## 业务场景
 
 在业务开发过程中，经常会遇到文件下载的场景，通常有两种方式，一种是接口返回下载的地址，另一种是接口返回`二进制`文件流，目前我们业务当中，使用的是`文件流`的形式，前端通过`Blob`来实现`excel`文件的下载
 
-
 ## 技术实现
 
 1. axios请求接口
 
 **get方式：**
+
 ```js
 export function exportExcel(params) {
   const url = '/export'  
   return axios.get(url, { params, responseType: "blob" })
 }
 ```
- 
+
 **post方式：**
+
 ```js
 export function exportExcel(params) {
   const url = '/export'  
   return axios.post(url, param, { responseType: "blob" })
 }
 ```
+
 ::: tip 说明
 1. `responseType: "blob"`的作用是：设置服务器返回的数据类型，将流文件转化为二进制数据的`Blob 对象`
 2. 必须设置，否则下载的文件打不开
 :::
 
 2. 处理返回的**二进制文件流**，并下载
-  
+
 ```js
 // 接口请求
 async caseListExport() {
@@ -71,6 +77,7 @@ downFile(result, name) {
     }
 },
 ```
+
 ## 遇到的坑
 
 由于项目用到了`mockjs`，mockjs初始化的时候，拦截响应设置了`responseType: ''`,导致下载的文件无法打开，最简单的方法就是注释掉`mockjs`

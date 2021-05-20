@@ -1,3 +1,7 @@
+---
+sidebar: auto
+---
+
 # 使用hexo搭建个人博客
 
 记录使用hexo + GithubPages搭建自己的博客的过程

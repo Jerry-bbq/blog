@@ -1,3 +1,7 @@
+---
+sidebar: auto
+---
+
 # Vue
 
 ## AntDesignVue自定义图片文件上组件

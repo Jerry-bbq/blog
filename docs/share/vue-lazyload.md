@@ -1,3 +1,7 @@
+---
+sidebar: auto
+---
+
 # vue-lazyload源码阅读
 
 ## 为什么要读源码

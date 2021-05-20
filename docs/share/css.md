@@ -1,3 +1,7 @@
+---
+sidebar: auto
+---
+
 # CSS
 
 ## 控制div内的元素自动换行
