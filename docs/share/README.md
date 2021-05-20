@@ -1,6 +1,6 @@
 # 分享
 
-- [从零实现一个工具函数库](tooljs.md)
+- [从零实现一个工具函数库](./tool-library.md)
 - 开发工具
   - [NPM的镜像管理](./dev-tools/node-registry-manage.md)
   - [Node版本管理](./dev-tools/node-version-manager.md)
