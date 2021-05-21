@@ -731,6 +731,8 @@ npm login
 npm publish
 # 撤回发布的某个版本
 npm unpublish lgr-tools@2.0.1
+# 撤销所发布的包
+npm unpublish utils-library --force
 ```
 
 > 注意：
