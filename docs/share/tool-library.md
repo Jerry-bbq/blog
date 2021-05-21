@@ -308,7 +308,7 @@ yarn add @rollup/plugin-commonjs @rollup/plugin-node-resolve -D
 
 ```js
 import bubel from '@rollup/plugin-buble'
-import { nodeResolve } from '@rollup/plugin-node-resolve'
+import resolve from '@rollup/plugin-node-resolve'
 import commonjs from '@rollup/plugin-commonjs'
 
 export default {
@@ -318,7 +318,7 @@ export default {
     format: 'iife',
     name: 'myLibrary',
   },
-  plugins: [bubel(), nodeResolve(), commonjs()]
+  plugins: [bubel(), resolve(), commonjs()]
 }
 ```
 
@@ -339,7 +339,7 @@ yarn add rollup-plugin-node-polyfills -D
 ```js
 import bubel from '@rollup/plugin-buble'
 import nodePolyfills from 'rollup-plugin-node-polyfills'
-import { nodeResolve } from '@rollup/plugin-node-resolve'
+import resolve from '@rollup/plugin-node-resolve'
 import commonjs from '@rollup/plugin-commonjs'
 
 export default {
@@ -349,7 +349,7 @@ export default {
     format: 'iife',
     name: 'myLibrary',
   },
-  plugins: [bubel(), nodePolyfills(), nodeResolve({ preferBuiltins: false }), commonjs()],
+  plugins: [bubel(), nodePolyfills(), resolve(), commonjs()],
 }
 ```
 
@@ -403,7 +403,7 @@ export default {
 ```js
 // rollup.config.js
 import bubel from '@rollup/plugin-buble'
-import { nodeResolve } from '@rollup/plugin-node-resolve'
+import resolve from '@rollup/plugin-node-resolve'
 import commonjs from '@rollup/plugin-commonjs'
 
 const pkg = require('./package.json')
@@ -438,7 +438,7 @@ export default {
     },
   ],
   plugins: [
-    nodeResolve({
+    resolve({
       // 将自定义选项传递给解析插件
       customResolveOptions: {
         moduleDirectories: ['node_modules'],
@@ -447,8 +447,20 @@ export default {
     commonjs(),
     bubel(),
   ],
-  external: ['lodash'],
 }
+```
+
+## 引入第三方包
+
+```bash
+yarn add dayjs -S
+```
+
+```js
+// dayjs.js
+import day from 'dayjs'
+
+export const dayjs = day
 ```
 
 ## 单元测试
@@ -710,7 +722,17 @@ npx conventional-changelog -p angular -i CHANGELOG.md -s -r 0
 
 ## 发布
 
+登录[npmjs官网](https://www.npmjs.com/)注册账号
+
 ```bash
+# 登录
 npm login
+# 发布
 npm publish
+# 撤回发布的某个版本
+npm unpublish lgr-tools@2.0.1
 ```
+
+> 注意：
+> 1. 使用淘宝源`cnpm`是无法登录`npmjs`的
+> 2. 发布的包名不可与`npmjs`上已经存在的包重名，否则会提示没有权限的问题
