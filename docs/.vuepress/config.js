@@ -67,7 +67,7 @@ module.exports = {
       },
       {
         text: '工具函数',
-        link: 'https://github.com/luguanrui/utils-library',
+        link: 'https://gitee.com/luguanrui/lgr-tools?_from=gitee_search',
       },
       {
         text: 'GitHub',
