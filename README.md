@@ -1,11 +1,17 @@
-## run
+## run dev
 
 ```bash
-yarn start
+yarn dev
 ```
 
 ## build
 
 ```bash
 yarn build
+```
+
+## commit
+
+```bash
+yarn commit
 ```
