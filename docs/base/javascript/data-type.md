@@ -37,7 +37,7 @@ JavaScript数据类型大体上有两种(细分有8种)
 typeof 'hello world'    // 'string'
 typeof 10               // 'number'
 typeof true             // 'boolean'
-typeof undefined         // 'undefined'
+typeof undefined        // 'undefined'
 typeof Symbol()         // 'symbol'
 typeof 123n             // 'bigint'
 typeof null             // 'object' 无法判定是否为 null
@@ -86,7 +86,7 @@ typeof /\d/             // 'object'
 
 :::
 
-### 第三种：Object.prototype.toString()
+### 第三种：Object.prototype.toString
 
 ```js
 Object.prototype.toString.call("hello world") === "[object String]"
@@ -109,10 +109,15 @@ function Person(){}
 Object.prototype.toString.call(new Person) === "[object Object]"
 ```
 
-### 终极解决方案
+### 第四种：最终解决方案
 
 ```js
-const dataType =  operand => typeof operand !== 'object' ? typeof operand : Object.prototype.toString.call(operand).slice(8,-1).toLowerCase()
+const dataType =  operand => {
+    const type = typeof operand
+    const toString = Object.prototype.toString
+    const object = toString.call(operand).slice(8,-1).toLowerCase()
+    return type !== 'object' ? type : object
+}
 ```
 
 测试：
@@ -121,7 +126,7 @@ const dataType =  operand => typeof operand !== 'object' ? typeof operand : Obje
 dataType("hello world")       // "string"
 dataType(10)                  // "number"
 dataType(true)                // "boolean"
-dataType(undefined)            // "undefined"
+dataType(undefined)           // "undefined"
 dataType(null)                // "null"
 dataType(123n)                // "bigint"
 dataType({})                  // "object"
