@@ -1,7 +1,7 @@
 const dayjs = require('dayjs')
 
 module.exports = {
-  title: 'Blog',
+  title: 'LGR个人博客',
   base: '/',
   dest: 'dist',
   head: [['link', { rel: 'icon', href: '/logo.png' }]],
@@ -15,7 +15,7 @@ module.exports = {
         link: '/',
       },
       {
-        text: '基础',
+        text: '重学前端',
         link: '/base/',
       },
       {
@@ -83,7 +83,7 @@ module.exports = {
   plugins: [
     '@vuepress/medium-zoom', // 图片缩放
     '@vuepress/back-to-top', // 页面滚动到顶部
-    'vuepress-plugin-nprogress', // 进度条
+    '@vuepress/nprogress', // 进度条
     [
       '@vuepress/last-updated',
       {
@@ -95,7 +95,7 @@ module.exports = {
     // 复制代码
     [
       'one-click-copy', {
-        copyMessage: '复制成功'
+        copyMessage: '代码片段复制成功'
       }
     ]
   ],
