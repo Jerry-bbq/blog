@@ -20,7 +20,7 @@ JavaScript数据类型大体上有两种(细分有8种)
 
 ![数据类型存储图解](./images/buit-in-types.jpg)
 
-::: tip
+::: danger
 
 - 可以看出，数据类型指的是**变量值**的类型，不是变量的类型
 - 对于JS这种"弱类型"语言来说， 无法给变量限定类型，因为变量的类型是可变的
@@ -29,37 +29,62 @@ JavaScript数据类型大体上有两种(细分有8种)
 
 ## 检测
 
-### 第一种：typeof
+### 第一种：typeof运算符
+
+`typeof`是通过检测**类型标签**来检测数据类型，返回数据类型
 
 ```js
 typeof 'hello world'    // 'string'
-typeof true             // 'boolean'
 typeof 10               // 'number'
+typeof true             // 'boolean'
 typeof undefined         // 'undefined'
 typeof Symbol()         // 'symbol'
-typeof 123n       // 'bigint'
+typeof 123n             // 'bigint'
 typeof null             // 'object' 无法判定是否为 null
 
 typeof {}               // 'object'
 typeof []               // 'object'
 typeof (()=>{})         // 'function'
+typeof new Date         // 'object'
+typeof /\d/             // 'object'
 ```
 
-可以看出，使用`typeof`无法判断出所有的数据类型，还可以使用`instanceof`来判断：
+::: tip 总结
 
-### 第二种：instanceof
+1. 可以看出，除了`null`以外，其他的原始数据类型都可以用`typeof`检测出来；
+
+2. 为什么`typeof null === 'object'`？
+
+因为 JavaScript 中的值是由一个**类型标签（type tag）和实际数据值**表示的，对象的类型标签是0，而`null`代表是空指针，它的类型标签也是0，而`typeof`是通过检测类型标签来返回类型的，因此返回`'object'`[参考](https://2ality.com/2013/10/typeof-null.html)
+
+3. `typeof`无法检测引用类型,还可以使用`instanceof`来判断
+
+:::
+
+### 第二种：instanceof运算符
+
+`instanceof`是比较一个对象是否为某一个构造函数的实例，返回`Boolean`值。注意：`instanceof`只能用于对象，不适用原始类型的值
 
 ```js
 [] instanceof Array             // true
 ({}) instanceof Object          // true
 (()=>{}) instanceof Function    // true
+(new Date) instanceof Date      // true
+/\d/ instanceof RegExp          // true
 
 // 但是
 [] instanceof Object            // true
 (()=>{}) instanceof Object      // true
+(new Date) instanceof Object    // true
+/\d/ instanceof Object          // true
 ```
 
-可以看出，`instanceof`有的时候也无法精准的判断数据类型,因此可以使用`Object.prototype.toString()`来判断
+::: tip 总结
+
+1. instanceof是通过原型链查找，可以参考另外一篇文章[原型和原型链](./prototype-chain.md)
+2. 可以看出，`instanceof`无法精准的判断数据类型,可以使用`Object.prototype.toString()`来判断
+
+:::
 
 ### 第三种：Object.prototype.toString()
 
@@ -87,7 +112,7 @@ Object.prototype.toString.call(new Person) === "[object Object]"
 ### 终极解决方案
 
 ```js
-const dataType =  data => typeof data !== 'object' ? typeof data : Object.prototype.toString.call(data).slice(8,-1).toLowerCase()
+const dataType =  operand => typeof operand !== 'object' ? typeof operand : Object.prototype.toString.call(operand).slice(8,-1).toLowerCase()
 ```
 
 测试：
