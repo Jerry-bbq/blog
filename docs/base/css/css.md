@@ -1,3 +1,7 @@
+---
+sidebar: auto
+---
+
 # css3相关
 
 ## BFC及其工作原理

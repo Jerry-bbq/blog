@@ -1,7 +1,7 @@
 ---
 home: true
 heroImage: /logo.png
-heroText: LGR个人博客
+heroText: Blog
 tagline: Welcome to my blog
 actionText: LET'S GO →
 actionLink: /base/html

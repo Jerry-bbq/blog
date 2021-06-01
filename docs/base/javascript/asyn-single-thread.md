@@ -1,4 +1,10 @@
-# 事件循环机制
+---
+sidebar: auto
+---
+
+# 异步和单线程
+
+## 事件循环机制
 
 [浏览器是多进程的](https://www.infoq.cn/article/CS9-WZQlNR5h05HHDo1b)，每个tab页都相当于是一个浏览器的进程（进程（process）是cpu资源分配的最小单位，线程（thread）是cpu调度的最小单位，线程是建立在进程的基础上的一次程序运行单位，一个进程中可以有多个线程）
 

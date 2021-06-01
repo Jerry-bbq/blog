@@ -1,7 +1,7 @@
 const dayjs = require('dayjs')
 
 module.exports = {
-  title: 'LGR个人博客',
+  title: 'Blog',
   base: '/',
   dest: 'dist',
   head: [['link', { rel: 'icon', href: '/logo.png' }]],
@@ -75,7 +75,7 @@ module.exports = {
       },
     ],
     sidebar: {
-      '/base/': [['', '目录'], 'html', 'css', 'scope', 'dom', 'prototype-chain', 'communications', 'http', 'safe', 'algorithm', 'event-loop', 'page-performance', 'error', 'change-this', 'debounce-throttle', 'array', 'object', 'string', 'es6'],
+      '/base/': [],
       '/share/': [],
       '/frame/vue/v2/': [['', '目录'], 'reactive', 'render', 'extend'],
     },

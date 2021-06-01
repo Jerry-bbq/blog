@@ -1,30 +1,8 @@
+---
+sidebar: auto
+---
+
 # 作用域和闭包
-
-## 内置类型
-
-JS内置类型大体上有两种（细分有`7种`）：
-
-类型 | 数据类型 | 存储
----|---|---
-原始类型（又叫基本类型） | `string`、`number`、<br>`boolean`、`null`、<br>`undefined`、`symbol`（ES6新增）| 栈(stack)
-引用类型 | `object` | 堆(heap)
-
-JS数据类型存储图解：
-
-![](./images/buit-in-types.jpg)
-
-- 其实类型指的是值的类型，不是变量的类型
-- 对于 JS 这种动态类型的语言来说， 我们无法给变量限定类型，变量的类型是可变的
-
-比如：
-
-```js
-var a = 1;
-typeof a; // "number"
-
-a = {};
-typeof a; // "object"
-```
 
 ## 作用域
 

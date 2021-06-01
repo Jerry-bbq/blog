@@ -1,17 +1,35 @@
+---
+sidebar: auto
+---
+
 # 目录
 
-- [html5相关](./html.md)
-- [css相关](./css.md)
-- [作用域和闭包](./scope.md)
-- [DOM事件](./dom.md)
-- [原型链](./prototype-chain.md)
-- [通信类](./communications.md)
-- [HTTP](./http.md)
-- [安全类](./safe.md)
-- [算法类](./algorithm.md)
-- [js运行机制](./js-run.md)
-- [页面性能](./page-performance.md)
-- [错误监控](./error.md)
-- [改变this执行](./change-this.md)
-- [防抖和节流](./debounce-throttle.md)
-- [es6](./es6.md)
+## HTML
+
+- [HTML](./html/html.md)
+
+## CSS
+
+- [CSS](./css/css.md)
+
+## JavaScript
+
+- [数据类型](./javascript/data-type.md)
+
+JS三座大山：
+
+- [作用域和闭包](./javascript/scope.md)
+- [原型和原型链](./javascript/prototype-chain.md)
+- [异步和单线程](./javascript/asyn-single-thread.md)
+
+进阶：
+
+- [DOM事件](./javascript/dom.md)
+- [通信类](./javascript/communications.md)
+- [HTTP](./javascript/http.md)
+- [安全类](./javascript/safe.md)
+- [算法类](./javascript/algorithm.md)
+- [页面性能](./javascript/page-performance.md)
+- [错误监控](./javascript/error.md)
+- [防抖和节流](./javascript/debounce-throttle.md)
+- [es6](./javascript/es6.md)

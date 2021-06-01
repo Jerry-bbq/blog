@@ -1,3 +1,7 @@
+---
+sidebar: auto
+---
+
 # 对象
 
 ## 自定义new和instanceof工具函数

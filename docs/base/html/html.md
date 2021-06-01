@@ -1,3 +1,7 @@
+---
+sidebar: auto
+---
+
 # html5相关
 
 ## 浏览器中输入url回车发生了什么
@@ -13,7 +17,7 @@
 
 以webkit渲染的为例:
 
-![webkit渲染过程](../public/webkit-painting.png)
+![webkit渲染过程](./images/webkit-painting.png)
 
 ### 1.解析HTML生成DOM树
 

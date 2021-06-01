@@ -1,3 +1,7 @@
+---
+sidebar: auto
+---
+
 # DOM事件
 
 ## DOM事件
@@ -16,7 +20,7 @@ DOM事件的级别:
 
 捕获以及冒泡事件流如下图：
 
-<img src="../public/event-line.jpeg" width="300"/>
+<img src="./images/event-line.jpeg" width="300"/>
 
 - 三个阶段：**捕获（Capturing）->目标阶段（Target）->冒泡（Bubbling）**
 - 比说点击鼠标左键的事情是如何传递到页面上的：点击事件通过捕获到达目标元素，再从目标元素上传到window对象

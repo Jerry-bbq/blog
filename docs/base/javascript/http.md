@@ -1,3 +1,7 @@
+---
+sidebar: auto
+---
+
 # HTTP
 
 ## HTTP协议的主要特点
@@ -140,7 +144,7 @@ TCP是传输层协议，使用三次握手协议建立连接
 
 TCP三次握手的过程：
 
-<img src="../public/tcp-connect.png" width="400"/>
+<img src="./images/tcp-connect.png" width="400"/>
 
 - 客户端发送`syn（syn=j）包`给服务器端，进入`SYN_SEND状态`，等待服务器的确认
 - 服务器收到syn包，必须确认客户的syn（ack=j+1），同时自己也发送一个SYN包（syn=k），即`SYN+ACK包`，此时服务器进入`SYN_RECV状态`
@@ -150,7 +154,7 @@ TCP三次握手的过程：
 
 连接终止需要四次挥手：
 
-<img src="../public/tcp-close.png" width="400"/>
+<img src="./images/tcp-close.png" width="400"/>
 
 - 客户端A发送一个`FIN`，用来关闭客户A到服务器B的数据传送
 - 服务器B收到这个FIN，它发回一个`ACK`，确认序号为收到的序号加1（报文段5）。和SYN一样，一个FIN将占用一个序号。
