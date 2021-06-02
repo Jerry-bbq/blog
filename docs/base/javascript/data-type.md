@@ -55,15 +55,13 @@ typeof /\d/             // 'object'
 
 2. 为什么`typeof null === 'object'`？
 
-因为 JavaScript 中的值是由一个**类型标签（type tag）和实际数据值**表示的，对象的类型标签是0，而`null`代表是空指针，它的类型标签也是0，而`typeof`是通过检测类型标签来返回类型的，因此返回`'object'`[参考](https://2ality.com/2013/10/typeof-null.html)
-
-3. `typeof`无法检测引用类型,还可以使用`instanceof`来判断
+因为 JavaScript 中的值是由一个**类型标签（type tag）和实际数据值**表示的，对象的类型标签是0，而`null`代表是空指针，它的类型标签也是0，因此返回`'object'`[参考](https://2ality.com/2013/10/typeof-null.html)
 
 :::
 
 ### 第二种：instanceof运算符
 
-`instanceof`检测构造函数的 `prototype` 属性是否出现在某个实例对象的原型链上，返回`Boolean`值。注意：`instanceof`只能用于对象，不适用原始类型的值
+`instanceof`检测构造函数的 `prototype` 属性是否出现在某个实例对象的原型链上，返回`Boolean`值。注意：`instanceof`只能用于引用类型，不适用原始类型的值
 
 ```js
 [] instanceof Array             // true
