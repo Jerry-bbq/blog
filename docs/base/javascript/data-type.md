@@ -82,11 +82,31 @@ typeof /\d/             // 'object'
 ::: tip 总结
 
 1. instanceof是通过原型链查找，可以参考另外一篇文章[原型和原型链](./prototype-chain.md)
-2. 可以看出，`instanceof`无法精准的判断数据类型,可以使用`Object.prototype.toString()`来判断
+2. 可以看出，`instanceof`无法精准的判断数据类型,可以使用`Object.prototype.toString.call()`来判断
 
 :::
 
 ### 第三种：Object.prototype.toString
+
+- JS所有的对象都是`Object`类型的实例，它们都会从`Object.prototype`继承属性和方法,其中就包括`toString()`方法；因此，每个对象都有`toString()`方法
+- 返回一个表示该对象的字符串，默认格式是`"[object type]"`,其中`type`是对象的类型
+- 但是，不同的类型可能对`toString()`进行了重写，如下案例
+- 因此，只能通过`Object.prototype.toString()`来调用`Object`的`toString`方法
+- 但是上述的方案，`this`始终都是指向`Object`,因此需要改变`this`指向
+- 最终，`Object.prototype.toString.call()`或`Object.prototype.toString.apply()`
+
+```js
+Object.prototype.toString()             // "[object Object]"
+
+// 重写了toString()方法
+([1,2,3]).toString()                    // "1,2,3"
+(10).toString()                         // "10"
+(true).toString()                       // "true"
+(Symbol()).toString()                   // "Symbol()"
+(123n).toString()                       // "123"
+```
+
+测试`Object.prototype.toString.call()`：
 
 ```js
 Object.prototype.toString.call("hello world") === "[object String]"
