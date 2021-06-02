@@ -4,7 +4,142 @@ sidebar: auto
 
 # 原型和原型链
 
-## 原型对象
+JavaScript是面向对象编程（Object-oriented programming ，OOP）的语言，OOP的基本思想是在程序里，我们通过使用对象去构建现实世界的模型，把原本很难（或不可）能被使用的功能，简单化并提供出来，以供访问。
+
+## 创建对象的几种方法
+
+### 字面量方法
+
+```js
+// {}
+var o1 = { name: 'o1' }
+```
+
+### 构造函数
+
+```js
+var M = function(name){ this.name = name }
+var o3 = new M('o3')
+
+// new Object()
+var o2 = new Object({ name: 'o2' })
+```
+
+### Object.create()
+
+```js
+// Object.create(),创建一个对象并继承原型对象
+var p = {name: 'p'}
+var o4 = Object.create(p)
+// o4.__proto__ === p
+```
+
+::: tip 提示
+
+Object.create(null) 创建的对象是一个空对象，在该对象上没有继承 `Object.prototype` 原型链上的属性或者方法
+
+:::
+
+## 构造函数constructor
+
+### 定义
+
+构造函数（constructor）也称之为构造器，功能类似对象模板，一个构造器可以生成任意多个实例，实例对象具有相同的属性和方法，但是不相等
+
+在 JavaScript 中，构造器其实就是一个普通的函数。当使用 new 操作符 来作用这个函数时，它就可以被称为构造函数
+
+### 特点
+
+- 首字母大写
+- 函数体内部使用`this`关键字,代表所要生成的对象实例
+- 生成对象时，必须使用`new`命令
+
+## 原型prototype
+
+JavaScript每个对象拥有一个原型对象，对象以其原型为模板、从原型继承方法和属性。
+
+每个函数都有一个特殊的属性叫作原型（prototype）,案例如下：
+
+```js
+function doSomething(){}
+console.log( doSomething.prototype );
+```
+
+可以看到`doSomething` 函数有一个默认的原型属性：
+
+```bash
+{
+    constructor: ƒ doSomething(),
+    __proto__: {
+        constructor: ƒ Object(),
+        hasOwnProperty: ƒ hasOwnProperty(),
+        isPrototypeOf: ƒ isPrototypeOf(),
+        propertyIsEnumerable: ƒ propertyIsEnumerable(),
+        toLocaleString: ƒ toLocaleString(),
+        toString: ƒ toString(),
+        valueOf: ƒ valueOf()
+    }
+}
+```
+
+现在，添加一些属性到 `doSomething` 的原型上面
+
+```js
+function doSomething(){}
+doSomething.prototype.foo = "bar";
+console.log( doSomething.prototype );
+```
+
+结果如下：
+
+```bash
+{
+    foo: "bar",
+    constructor: ƒ doSomething(),
+    __proto__: {
+        constructor: ƒ Object(),
+        hasOwnProperty: ƒ hasOwnProperty(),
+        isPrototypeOf: ƒ isPrototypeOf(),
+        propertyIsEnumerable: ƒ propertyIsEnumerable(),
+        toLocaleString: ƒ toLocaleString(),
+        toString: ƒ toString(),
+        valueOf: ƒ valueOf()
+    }
+}
+```
+
+使用`new`关键字创建一个`doSomething`的实例：
+
+```js
+function doSomething(){}
+doSomething.prototype.foo = "bar"; // add a property onto the prototype
+var doSomeInstancing = new doSomething();
+doSomeInstancing.prop = "some value"; // add a property onto the object
+console.log( doSomeInstancing );
+```
+
+结果如下：
+
+```bash
+{
+    prop: "some value",
+    __proto__: {
+        foo: "bar",
+        constructor: ƒ doSomething(),
+        __proto__: {
+            constructor: ƒ Object(),
+            hasOwnProperty: ƒ hasOwnProperty(),
+            isPrototypeOf: ƒ isPrototypeOf(),
+            propertyIsEnumerable: ƒ propertyIsEnumerable(),
+            toLocaleString: ƒ toLocaleString(),
+            toString: ƒ toString(),
+            valueOf: ƒ valueOf()
+        }
+    }
+}
+```
+
+可以看到，doSomeInstancing 的 `__proto__` 属性就是`doSomething.prototype`,即`doSomeInstancing.__proto__ === doSomething.prototype`
 
 原型对象 | 说明 | 值
 ---|---|---
@@ -18,71 +153,33 @@ sidebar: auto
 - `__proto__`是一个内部属性，不建议对其进行直接操作
 :::
 
-## 构造函数
+## 原型对象
 
-在 JavaScript 中，构造器其实就是一个普通的函数。当使用 new 操作符 来作用这个函数时，它就可以被称为构造函数
+原型对象是一个内部对象，应当使用 `__proto__`访问,`prototype` 属性包含（指向）一个对象，你在这个对象中定义需要被继承的成员
+
+constructor 属性
+每个实例对象都从原型中继承了一个constructor属性，该属性指向了用于构造此实例对象的构造函数
 
 ## 原型链
 
-原型链：
+### 定义
+
+在JavaScript中，每个对象拥有一个**原型对象**，对象以其原型为模板、从原型继承方法和属性。原型对象也可能拥有原型，并从中继承方法和属性，一层一层、以此类推。这种关系常被称为原型链。它解释了为何一个对象会拥有定义在其他对象中的属性和方法
+
+### 查找过程
 
 - 当访问一个对象的某个属性时，会先在这个对象本身属性上查找
-- 如果没有找到，则会去它的`__proto__`隐式原型上查找，即它的构造函数的`prototype`
-- 如果还没有找到就会再在`构造函数的prototype的__proto__`中查找
-- 这样一层一层向上查找就会形成一个链式结构，我们称为原型链
+- 如果没有找到，则会去该对象的`__proto__`（隐式原型）上查找，即它的构造函数的`prototype`
+- 如果还没有找到就会再在`__proto__`的`__proto__`中查找,最终会查到`Object.prototype`上
+- 如果没有找到会返回`undefined`
 
-## 创建对象有几种方法
-
-### 字面量方法
-
-```js
-// {}
-var o1 = {name: 'o1'}
-// new Object()
-var o2 = new Object({name: 'o2'}) // 也可以理解为通过构造函数来创建对象
-```
-
-### 构造函数
-
-```js
-var M = function(name){this.name = name}
-var o3 = new M('o3')
-```
-
-### Object.create()
-
-```js
-// Object.create(),创建一个对象并继承原型对象
-var p = {name: 'p'}
-var o4 = Object.create(p)
-// o4.__proto__ === p
-```
-
-::: tip
-
-Object.create(null) 创建的对象是一个空对象，在该对象上没有继承 Object.prototype 原型链上的属性或者方法
-
-:::
-
-## 原型、构造函数、实例、原型链的关系
+### 图解
 
 ![constructor](./images/constructor.png)
 
-说明：
+## instanceof运算符
 
-1. **构造函数** 的 **原型对象prototype** 的 **构造函数constructor** 等于 **构造函数**
-
-```js
-Object.prototype.constructor === Object
-```
-
-2. **构造函数** 的 **原型对象prototype** 等于 **构造函数实例** 的 `__proto__`
-
-```js
-Object.prototype === new Object().__proto__
-```
-
-## instanceof的原理
+原理：检测构造函数的 `prototype` 属性是否出现在某个实例对象的原型链上
 
 ```js
 function Car(make, model, year) {
@@ -97,22 +194,13 @@ console.log(auto instanceof Car);
 console.log(auto instanceof Object);
 ```
 
-::: tip
-
-- 判断实例的隐式原型对象`__proto__`和构造函数的显示原型对象`prototype`是否是同一个引用
-- 或者 判断实例的`隐式函数`与构造函数的`显式函数`是否是同一引用
-
-:::
-
 图解：
 
-![](./images/instanceof-auto.png)
-![](./images/instanceof-car.png)
-![](./images/instanceof-object.png)
+![auto](./images/instanceof-auto.png)
+![car](./images/instanceof-car.png)
+![object](./images/instanceof-object.png)
 
 ## new运算符
-
-问题：理解创建一个对象如何关联上一个实例对象？
 
 原理：
 
@@ -145,68 +233,34 @@ M.prototype.walk = function(console.log('walk')) // 在M的原型上增加一个
 o6.walk()
 ```
 
-## 类与实例
-
-面向对象类OOP：面向对象程序设计(Object Oriented Programming)
-
-1. 类的声明
-
-```js
-// es5 构造函数
-function Animal() {
-    this.name = 'name'
-}
-// es6 class
-class Animal2 {
-    constructor() {
-        this.name = ''
-    }
-}
-```
-
-::: warning
-
-- class 只是语法糖，本质还是函数
-- `Animal2 instanceof Function // 返回 true`
-
-:::
-
-2. 生成实例（通过类实例化生成对象）
-
-```js
-new Animal()
-new Animal2()
-```
-
-## 类与继承
-
-如何实现继承：
-
-当试图得到一个对象的某个属性时，如果这个对象本身没有这个属性，那么会去它的`__proto__`(即构造函数的prototype)中去找（通过`原型链`实现继承）
-
-## 继承的几种方式
+## 继承
 
 ### 1. 借助构造函数实现继承
 
-方法：子类构造函数中执行父类构造函数（` Parent.call(this) `）
-
-缺点：继承不了父类构造函数原型对象`（Parent.prototype）`上的属性和方法
+子类构造函数中执行父类构造函数（` Parent.call(this) `）
 
 ```js
 function Parent() {
-    this.name = 'Parent1'
+    this.name = 'Parent'
 }
-// 缺点：继承不了父类`原型对象（Parent.prototype）`上的属性和方法
 Parent.prototype.say = function() {}
+
 function Child() {
-    // 关键点
     Parent.call(this) // 或者使用apply，this 指向 Child
     this.type = 'Child'
 }
 
-// 实例化Child
-console.log(new Child)
+var child = new Child()
+
+// 测试
+console.log(child)
 ```
+
+::: danger 缺点
+
+继承不了父类构造函数原型对象`Parent.prototype`上的属性和方法
+
+:::
 
 ### 2. 借助原型链实现继承
 
@@ -216,21 +270,19 @@ console.log(new Child)
 
 作用：弥补通过构造函数继承的缺点（继承不了父类构造函数原型对象`（Parent.prototype）`上的属性和方法）
 
-缺点：如果实例化两个子类构造函数，其中一个子类构造函数的原型上的方法和属性改变，另一个实例也会相应改变
-
 ```js
 function Parent() {
-    this.name = 'Parent2'
+    this.name = 'Parent'
     this.play = [1,2,3]
 }
 function Child() {
-    this.type = 'Child2'
+    this.type = 'Child'
 }
-// 关键点
+
 Child.prototype = new Parent()
 
-// 实例化Child1
-console.log(new Child)
+// 测试
+console.log(new Child())
 // 缺点：改变s1原型对象上的属性和方法会影响到s2对象，
 // 原因是s1和s2的__proto__的指向相同（s1.__proto__ === s2.__proto__）
 var s1 = new Child()
@@ -240,6 +292,12 @@ s1.play.push(4)
 console.log(s1.play,s2.play)
 ```
 
+::: danger 缺点
+
+如果实例化两个子类构造函数，其中一个子类构造函数的原型上的方法和属性改变，另一个实例也会相应改变
+
+:::
+
 ### 3. 组合方式,组合构造函数和原型链两种方式
 
 方法：
@@ -247,26 +305,30 @@ console.log(s1.play,s2.play)
 - 在子类构造函数中执行父类构造函数，
 - 然后将父类的构造函数的实例 赋值给 子类的原型对象
 
-缺点：父类构造函数执行了两次
-
 ```js
 function Parent() {
-    this.name = 'Parent3'
+    this.name = 'Parent'
     this.play = [1,2,3]
 }
 function Child() {
-    // 关键点
     Parent.call(this)
-    this.type = 'Child3'
+    this.type = 'Child'
 }
-// 关键点
+
 Child.prototype = new Parent()
 
-var s3 = new Child()
-var s4 = new Child()
-s3.play.push(4)
-console.log(s3.play,s4.play)
+// 测试
+var s1 = new Child()
+var s2 = new Child()
+s1.play.push(4)
+console.log(s1.play,s2.play)
 ```
+
+::: danger 缺点
+
+父类构造函数执行了两次
+
+:::
 
 ### 4. 优化方式1: 通过父类的prototype
 
@@ -275,27 +337,31 @@ console.log(s3.play,s4.play)
 - 子类构造函数中执行父类构造函数，
 - 然后将父类构造函数的原型对象赋值给子类构造函数的原型对对象
 
-缺点：区分不了一个对象是子类的实例化还是父类的实例化
-
 ```js
 function Parent() {
-    this.name = 'Parent4'
+    this.name = 'Parent'
     this.play = [1,2,3]
 }
 function Child() {
-    // 关键点
     Parent.call(this)
-    this.type = 'Child4'
+    this.type = 'Child'
 }
-// 关键点
+
 Child.prototype = Parent.prototype
 
-var s5 = new Child()
-var s6 = new Child()
-console.log(s5, s6)
-console.log(s5 instanceof Child) // true
-console.log(s5 instanceof Parent) // true
+// 测试
+var s1 = new Child()
+var s2 = new Child()
+console.log(s1, s2)
+console.log(s1 instanceof Child) // true
+console.log(s2 instanceof Parent) // true
 ```
+
+::: danger 缺点
+
+区分不了一个对象是子类的实例化还是父类的实例化
+
+:::
 
 ### 5. 优化方式2：通过Object.create()
 
@@ -307,21 +373,20 @@ console.log(s5 instanceof Parent) // true
 
 ```js
 function Parent()
-    this.name = 'Parent5'
+    this.name = 'Parent'
     this.play = [1,2,3]
 }
 function Child() {
-    // 关键点
     Parent.call(this)
-    this.type = 'Child5'
+    this.type = 'Child'
 }
-// 关键点
 Child.prototype = Object.create(Parent.prototype)
 Child.prototype.constructor = Child
 
-var s7 = new Child()
-console.log(s7 instanceof Child, s7 instanceof Parent)
-console.log(s5.constructor)
+// 测试
+var s = new Child()
+console.log(s instanceof Child, s instanceof Parent)
+console.log(s.constructor)
 ```
 
 ### 6. 使用es6的extends
@@ -347,34 +412,16 @@ child.getValue() // 1
 child instanceof Parent // true
 ```
 
-拓展：
-
-**Object.prototype.toString**方法
-
-数据类型 | 判断 | 结果
----|---|---
-String | Object.prototype.toString.call("jerry") | [object String]
-Number | Object.prototype.toString.call(12) | [object Number]
-Boolean | Object.prototype.toString.call(true) | [object Boolean]
-undefined | Object.prototype.toString.call(undefined) | [object Undefined]
-null | Object.prototype.toString.call(null) | [object Null]
-Object | Object.prototype.toString.call({name: "jerry"}) | [object Object]
-Function | Object.prototype.toString.call(function(){}) | [object Function]
-Array | Object.prototype.toString.call([]) | [object Array]
-Date | Object.prototype.toString.call(new Date) | [object Date]
-RegExp | Object.prototype.toString.call(/\d/) | [object RegExp]
-构造函数 | function Person(){};<br>Object.prototype.toString.call(new Person) | [object Object]
-
 ## 改变函数对象中的this指向
 
-## 箭头函数与普通函数的区别
+### 箭头函数与普通函数的区别
 
 - 箭头函数语法上更简洁
 - 箭头函数没有自己的this，它里面的this继承函数所处的上下文中的this（使用call，apply,bind并不会改变箭头函数的this指向）
-- 箭头函数中的没有`arguments`（类数组），只能基于`...arg`获取传的参数集合(数组)
+- 箭头函数中没有`arguments`（类数组），只能基于`...arg`获取传的参数集合(数组)
 - 箭头函数不能被new执行，因为箭头函数没有`this`，也没有`prototype`
 
-## call/apply/bind
+### call/apply/bind
 
 使用案例：
 
@@ -414,7 +461,7 @@ call | 执行 | 指向第一个参数 | call(obj, param1,param1...)
 apply | 执行 | 指向第一个参数 | apply(obj, [param1,param1...])
 bind | 返回一个新的函数 <br>（新函数内部会调用原来的函数） | 指向第一个参数 | bind(obj, param1,param1...)
 
-::: warning
+::: warning 提示
 
 如果 obj 为 `undefined` 或 `null`，`this` 指向 `Window`对象
 
@@ -432,6 +479,7 @@ bind | 返回一个新的函数 <br>（新函数内部会调用原来的函数�
 3. 删除obj上的这个临时方法属性
 
 call():
+
 ```js
 Function.prototype.call = function(obj, ...args) {
   // console.log('call()')
@@ -455,6 +503,7 @@ Function.prototype.call = function(obj, ...args) {
 ```
 
 apply():
+
 ```js
 Function.prototype.apply = function(obj, args) {
   // 处理obj是undefined或者null的情况
@@ -488,15 +537,18 @@ Function.prototype.bind = function(obj, ...args) {
 }
 ```
 
-## 其他自定义实现方式
-### call
+### 其他自定义实现方式
+
+#### call
 
 调用方法：
+
 ```js
 func.call(thisArg, arg1, arg2, ...)
 ```
 
 手写实现：
+
 ```js
 Function.prototype._call = function(context) {
     // 赋值作用域参数,如果没有则默认为window对象
@@ -514,14 +566,16 @@ Function.prototype._call = function(context) {
 }
 ```
 
-### apply
+#### apply
 
 调用方法：
+
 ```js
 func.apply(thisArg, [argsArray])
 ```
 
 手写实现：
+
 ```js
 Function.prototype._apply = function (context) {
     // 赋值作用域参数,如果没有则默认为window对象
@@ -544,14 +598,16 @@ Function.prototype._apply = function (context) {
 }
 ```
 
-### bind
+#### bind
 
 调用方法：
+
 ```js
 func.bind(thisArg[, arg1[, arg2[, ...]]])
 ```
 
 手写实现：
+
 ```js
 Function.prototype._bind = function(context) {
     // 保存原有函数

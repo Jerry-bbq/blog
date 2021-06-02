@@ -63,7 +63,7 @@ typeof /\d/             // 'object'
 
 ### 第二种：instanceof运算符
 
-`instanceof`是比较一个对象是否为某一个构造函数的实例，返回`Boolean`值。注意：`instanceof`只能用于对象，不适用原始类型的值
+`instanceof`检测构造函数的 `prototype` 属性是否出现在某个实例对象的原型链上，返回`Boolean`值。注意：`instanceof`只能用于对象，不适用原始类型的值
 
 ```js
 [] instanceof Array             // true
