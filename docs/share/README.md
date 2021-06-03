@@ -5,6 +5,7 @@
   - [NPM的镜像管理](./dev-tools/node-registry-manage.md)
   - [Node版本管理](./dev-tools/node-version-manager.md)
 - 服务器相关
+  - [Docker](./server/docker.md)
   - [nginx](./server/nginx.md)
   - [禅道](./server/zentao.md)
 - [移动端适配](./flexible.md)
