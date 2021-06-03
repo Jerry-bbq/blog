@@ -17,13 +17,12 @@ JS三座大山：
 进阶：
 
 - [DOM事件](./javascript/dom.md)
-- [通信类](./javascript/communications.md)
+- [通信](./javascript/communications.md)
 - [HTTP](./javascript/http.md)
-- [安全类](./javascript/safe.md)
-- [算法类](./javascript/algorithm.md)
+- [安全](./javascript/safe.md)
+- [算法](./javascript/algorithm.md)
 - [页面性能](./javascript/page-performance.md)
 - [错误监控](./javascript/error.md)
-- [防抖和节流](./javascript/debounce-throttle.md)
 - [es6](./javascript/es6.md)
 - [手写代码](./javascript/write-code.md)
 
