@@ -25,6 +25,7 @@ JS三座大山：
 - [错误监控](./javascript/error.md)
 - [防抖和节流](./javascript/debounce-throttle.md)
 - [es6](./javascript/es6.md)
+- [手写代码](./javascript/write-code.md)
 
 ## HTML
 

@@ -193,7 +193,6 @@ for (var [key, val] of map.entries()) {
 - set
 - has
 
-
 ## Promise
 
 三种状态
@@ -208,6 +207,10 @@ rejected | 失败状态
 
 - reject后的东西，一定会进入then中的第二个回调，如果then中没有写第二个回调，则进入catch
 - resolve的东西，一定会进入then的第一个回调，肯定不会进入catch
+
+### 原理图
+
+[promise](./images/promise.png)
 
 ### 手写promise
 

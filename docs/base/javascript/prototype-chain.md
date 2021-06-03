@@ -200,6 +200,28 @@ console.log(auto instanceof Object);
 ![car](./images/instanceof-car.png)
 ![object](./images/instanceof-object.png)
 
+### 实现一个instanceof
+
+```js
+const instanceOf = (left, right) => {
+    let proto = left.__proto__
+    let prototype = right.prototype
+    while (true) {
+        if (proto === null) {
+            return false
+        }
+        if (proto === prototype) {
+            return true
+        }
+        proto = proto.__proto__
+    }
+}
+
+// 测试
+instanceOf([], Array)   // true
+instanceOf([], Object)  // true
+```
+
 ## new运算符
 
 原理：

@@ -1,7 +1,9 @@
-## run dev
+# Blog
+
+## run
 
 ```bash
-yarn dev
+yarn serve
 ```
 
 ## build
