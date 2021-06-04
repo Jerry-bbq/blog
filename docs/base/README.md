@@ -24,7 +24,7 @@ JS三座大山：
 - [页面性能](./javascript/page-performance.md)
 - [错误监控](./javascript/error.md)
 - [es6](./javascript/es6.md)
-- [手写代码](./javascript/write-code.md)
+- [coding](./javascript/coding.md)
 
 ## HTML
 

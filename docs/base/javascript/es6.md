@@ -210,7 +210,7 @@ rejected | 失败状态
 
 ### 原理图
 
-[promise](./images/promise.png)
+![promise](./images/promise.png)
 
 ### 手写promise
 
