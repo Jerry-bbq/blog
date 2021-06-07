@@ -28,6 +28,16 @@ sidebar: auto
 
 <<< @/docs/base/javascript/code-snippet/bind.js
 
+## 手写防抖和节流
+
+### 防抖
+
+<<< @/docs/base/javascript/code-snippet/debounce.js
+
+### 节流
+
+<<< @/docs/base/javascript/code-snippet/throttle.js
+
 ## 实现一个JSON.parse
 
 ## 实现一个JSON.stringify
@@ -218,42 +228,6 @@ Promise.prototype.then = function(onFulfilled, onRejected) {
     }
 };
 
-```
-
-## 手写防抖和节流
-
-### 防抖
-
-```js
-// 防抖动函数
-function debounce(fn,wait=50,immediate) {
-    let timer;
-    return function() {
-        if(immediate) {
-            fn.apply(this,arguments)
-        }
-        if(timer) clearTimeout(timer)
-        timer = setTimeout(()=> {
-            fn.apply(this,arguments)
-        },wait)
-    }
-}
-
-```
-
-### 节流
-
-```js
-function throttle(fn, wait) {
-	let prev = new Date();
-	return function() { 
-	    const args = arguments;
-		const now = new Date();
-		if (now - prev > wait) {
-			fn.apply(this, args);
-			prev = new Date();
-	}
-}
 ```
 
 ## 手写JS深拷贝
