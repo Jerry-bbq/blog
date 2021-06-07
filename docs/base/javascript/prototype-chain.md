@@ -257,7 +257,11 @@ console.dir(Object)
 
 ## instanceof运算符
 
-原理：检测构造函数的 `prototype` 属性是否出现在某个实例对象的原型链上
+### 原理
+
+检测构造函数的 `prototype` 属性是否出现在某个实例对象的原型链上
+
+### 案例
 
 ```js
 function Car(make, model, year) {
@@ -272,7 +276,7 @@ console.log(auto instanceof Car);
 console.log(auto instanceof Object);
 ```
 
-### 实现一个instanceof
+### 实现
 
 ```js
 const instanceOf = (left, right) => {
@@ -297,24 +301,26 @@ instanceOf([], Object)  // true
 
 ## new运算符
 
-原理：
+创建对象的实例
 
-1. 创建一个新对象（空对象），继承构造函数的原型对象（foo.prototype）
-2. 构造函数foo被执行。执行的时候，相应的传参会被传入，同时上下文（this）会指定为这个新的实例。new foo等同于new foo()，只能用于在不传任何参数的情况
-3. 如果构造函数返回一个“对象”，那么这个对象会取代整个new出来的结果。如果构造函数没有返回对象，那么new出来的结果为步骤1创建的对象
+### 原理
 
-问题：如何模拟new运算符？
+1. 创建一个空对象(`{}`)，将`{}`的`__proto__`指向`fn.prototype`（继承构造函数的原型对象）
+2. 执行构造函数，绑定`this`指向新创建的对象（新创建的对象作为`this`的上下文）
+3. 如果构造函数的执行结果是一个对象，则返回这个结果，否则，返回创建的对象
+
+### 实现
 
 ```js
-var new2 = function(func) { // 参数构造函数
+const new2 = function(fn,...arg) {
     // 第一步：创建一个新对象，继承构造函数的原型对象
     // 即创建对象o，继承构造函数的原型对象：o.__proto__ === func.prototype
-    var o = Object.create(func.prototype)
+    const o = Object.create(fn.prototype)
     // 第二步：执行构造函数，转移this到o对象上
-    var k = func.call(o)
+    const res = fn.call(o,arg)
     // 判断构造函数执行的结果是不是对象类型
-    if (typeof k === 'object'){
-        return k
+    if (typeof res === 'object'){
+        return res
     } else {
         return o
     }
@@ -330,17 +336,22 @@ o6.walk()
 
 ## 继承
 
-### 1. 借助构造函数实现继承
+复制父类的方法和属性来重写子类的原型对象
+
+### 1. 借助构造函数实现继承(call)
 
 子类构造函数中执行父类构造函数（` Parent.call(this) `）
 
 ```js
+// 父类
 function Parent() {
     this.name = 'Parent'
 }
 Parent.prototype.say = function() {}
 
+// 子类
 function Child() {
+    // 调用父类，父类函数执行，绑定this
     Parent.call(this) // 或者使用apply，this 指向 Child
     this.type = 'Child'
 }
@@ -353,7 +364,8 @@ console.log(child)
 
 ::: danger 缺点
 
-继承不了父类构造函数原型对象`Parent.prototype`上的属性和方法
+1. 只能继承父类通过`this`声明的属性/方法。不能继承父类`prototype`上的属性/方法
+2. 父类方法无法复用。每次实例化子类，都要执行父类函数。重新声明父类所定义的方法，无法复用
 
 :::
 
@@ -366,14 +378,17 @@ console.log(child)
 作用：弥补通过构造函数继承的缺点（继承不了父类构造函数原型对象`（Parent.prototype）`上的属性和方法）
 
 ```js
+// 父类
 function Parent() {
     this.name = 'Parent'
     this.play = [1,2,3]
 }
+
+// 子类
 function Child() {
     this.type = 'Child'
 }
-
+// 子类函数原型指向构造函数的实例
 Child.prototype = new Parent()
 
 // 测试
@@ -389,22 +404,27 @@ console.log(s1.play,s2.play)
 
 ::: danger 缺点
 
-如果实例化两个子类构造函数，其中一个子类构造函数的原型上的方法和属性改变，另一个实例也会相应改变
+1. 如果实例化两个子类构造函数，其中一个子类构造函数的原型上的方法和属性改变，另一个实例也会相应改变
+2. 创建子类实例时，无法向父类构造函数传参
 
 :::
 
-### 3. 组合方式,组合构造函数和原型链两种方式
+### 3. 组合方式
+
+通过原型链继承来将this、prototype上的属性和方法继承制子类的原型对象上。使用借用构造函数来继承父类通过this声明的属性和方法在之子类的实例属性上
 
 方法：
 
-- 在子类构造函数中执行父类构造函数，
+- 在子类构造函数中执行父类构造函数
 - 然后将父类的构造函数的实例 赋值给 子类的原型对象
 
 ```js
+// 父类
 function Parent() {
     this.name = 'Parent'
     this.play = [1,2,3]
 }
+// 子类
 function Child() {
     Parent.call(this)
     this.type = 'Child'
@@ -421,7 +441,9 @@ console.log(s1.play,s2.play)
 
 ::: danger 缺点
 
-父类构造函数执行了两次
+1. 父类构造函数执行了两次,造成一定的性能问题
+2. 因调用两次父类，导出父类通过this声明的属性和方法被生成两份的问题
+3. 原型链上下文丢失，子类和父类通过prototype声明的属性和方法都存在与子类prototype上
 
 :::
 
@@ -429,14 +451,16 @@ console.log(s1.play,s2.play)
 
 方法：
 
-- 子类构造函数中执行父类构造函数，
-- 然后将父类构造函数的原型对象赋值给子类构造函数的原型对对象
+- 子类构造函数中执行父类构造函数
+- 然后将父类构造函数的原型对象赋值给子类构造函数的原型对象
 
 ```js
+// 父类
 function Parent() {
     this.name = 'Parent'
     this.play = [1,2,3]
 }
+// 子类
 function Child() {
     Parent.call(this)
     this.type = 'Child'
@@ -467,10 +491,12 @@ console.log(s2 instanceof Parent) // true
 - 最后将子类构造函数赋值给子类构造函数的原型对象的constructor
 
 ```js
+// 父类
 function Parent()
     this.name = 'Parent'
     this.play = [1,2,3]
 }
+// 子类
 function Child() {
     Parent.call(this)
     this.type = 'Child'
@@ -487,6 +513,7 @@ console.log(s.constructor)
 ### 6. 使用es6的extends
 
 ```js
+// 父类
 class Parent {
     constructor(value) {
         this.val = value
@@ -495,6 +522,7 @@ class Parent {
         console.log(this.val)
     }
 }
+// 子类
 class Child extends Parent {
     constructor(value) {
         super(value) // Parent.call(this, value)
@@ -507,21 +535,10 @@ child.getValue() // 1
 child instanceof Parent // true
 ```
 
-## 改变函数对象中的this指向
-
-### 箭头函数与普通函数的区别
-
-- 箭头函数语法上更简洁
-- 箭头函数没有自己的this，它里面的this继承函数所处的上下文中的this（使用call，apply,bind并不会改变箭头函数的this指向）
-- 箭头函数中没有`arguments`（类数组），只能基于`...arg`获取传的参数集合(数组)
-- 箭头函数不能被new执行，因为箭头函数没有`this`，也没有`prototype`
-
-### call/apply/bind
-
-使用案例：
+## 改变this指向
 
 ```js
-// 定义函数
+// demo
 function fn(a,b) {
     this.xxx = 3
     console.log(a, b, this)
@@ -548,7 +565,7 @@ fn.bind(obj, 5, 6)(3,4)      // 5,6, obj
 
 ```
 
-### 区别
+### call/apply/bind区别
 
 api | 函数是否执行 | this指向 | 参数
 ---|---|---|---
@@ -562,36 +579,30 @@ bind | 返回一个新的函数 <br>（新函数内部会调用原来的函数�
 
 :::
 
-### 应用
+### 自定义call和apply
 
-- call/bind：根据伪数组生成真数组
-- bind：react中组件的自定义方法 / vue中的事件回调函数内部
-
-### 自定义call、apply
+实现思路：
 
 1. 给obj添加一个临时方法，方法名任意，值为当前函数
 2. 通过obj调用这个临时方法，并将接收的参数传入
 3. 删除obj上的这个临时方法属性
+4. 返回方法的执行结果
 
 call():
 
 ```js
-Function.prototype.call = function(obj, ...args) {
-  // console.log('call()')
-  // 执行函数
-  // this(...args)
-
+Function.prototype._call = function(obj, ...args) {
   // 处理obj是undefined或者null的情况
-  if (obj===undefined || obj===null) {
+  if (obj  === undefined || obj === null) {
     obj = window
   }
 
   // 给obj添加一个方法: tempFn: this
-  obj.tempFn = this
+  obj.fn = this
   // 调用obj的tempFn方法, 传入rags参数, 得到返回值
-  const result = obj.tempFn(...args)
+  const result = obj.fn(...args)
   // 删除obj上的temFn
-  delete obj.tempFn
+  delete obj.fn
   // 返回方法的返回值
   return result
 }
@@ -600,18 +611,18 @@ Function.prototype.call = function(obj, ...args) {
 apply():
 
 ```js
-Function.prototype.apply = function(obj, args) {
+Function.prototype._apply = function(obj, argsArr) {
   // 处理obj是undefined或者null的情况
-  if (obj===undefined || obj===null) {
+  if (obj === undefined || obj === null) {
     obj = window
   }
 
   // 给obj添加一个方法: tempFn: this
-  obj.tempFn = this
-  // 调用obj的tempFn方法, 传入rags参数, 得到返回值
-  const result = obj.tempFn(...args)
+  obj.fn = this
+  // 调用obj的tempFn方法, 传入参数, 得到返回值
+  const result = obj.fn(...argsArr)
   // 删除obj上的temFn
-  delete obj.tempFn
+  delete obj.fn
   // 返回方法的返回值
   return result
 }
@@ -619,11 +630,13 @@ Function.prototype.apply = function(obj, args) {
 
 ### 自定义bind
 
+实现思路：
+
 1. 返回一个新函数
-2. 在新函数内部通过原函数对象的call方法来执行原函数，指定this为obj，指定参数为bind调用的参数和后面新函数调用的参数
+2. 在新函数内部通过原函数对象的`call`方法来执行原函数，指定`this`为`obj`，指定参数为bind调用的参数和后面新函数调用的参数
 
 ```js
-Function.prototype.bind = function(obj, ...args) {
+Function.prototype._bind = function(obj, ...args) {
   // 返回一个新函数
   return (...args2) => {
     // 调用原来函数, 指定this为obj, 参数列表由args和args2依次组成
