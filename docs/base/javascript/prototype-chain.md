@@ -36,7 +36,7 @@ var o4 = Object.create(p)
 
 ::: tip 提示
 
-Object.create(null) 创建的对象是一个空对象，在该对象上没有继承 `Object.prototype` 原型链上的属性或者方法
+Object.create(null) 创建的对象是一个空对象，在该对象上没有继承原型链上的属性或者方法
 
 :::
 
@@ -54,7 +54,7 @@ Object.create(null) 创建的对象是一个空对象，在该对象上没有继
 - 函数体内部使用`this`关键字,代表所要生成的对象实例
 - 生成对象时，必须使用`new`命令
 
-## 原型prototype
+## 原型
 
 JavaScript每个对象拥有一个原型对象，对象以其原型为模板、从原型继承方法和属性。
 
@@ -71,13 +71,19 @@ console.log( doSomething.prototype );
 {
     constructor: ƒ doSomething(),
     __proto__: {
-        constructor: ƒ Object(),
-        hasOwnProperty: ƒ hasOwnProperty(),
-        isPrototypeOf: ƒ isPrototypeOf(),
-        propertyIsEnumerable: ƒ propertyIsEnumerable(),
-        toLocaleString: ƒ toLocaleString(),
-        toString: ƒ toString(),
+        constructor: ƒ Object()
+        hasOwnProperty: ƒ hasOwnProperty()
+        isPrototypeOf: ƒ isPrototypeOf()
+        propertyIsEnumerable: ƒ propertyIsEnumerable()
+        toLocaleString: ƒ toLocaleString()
+        toString: ƒ toString()
         valueOf: ƒ valueOf()
+        __defineGetter__: ƒ __defineGetter__()
+        __defineSetter__: ƒ __defineSetter__()
+        __lookupGetter__: ƒ __lookupGetter__()
+        __lookupSetter__: ƒ __lookupSetter__()
+        get __proto__: ƒ __proto__()
+        set __proto__: ƒ __proto__()
     }
 }
 ```
@@ -97,13 +103,19 @@ console.log( doSomething.prototype );
     foo: "bar",
     constructor: ƒ doSomething(),
     __proto__: {
-        constructor: ƒ Object(),
-        hasOwnProperty: ƒ hasOwnProperty(),
-        isPrototypeOf: ƒ isPrototypeOf(),
-        propertyIsEnumerable: ƒ propertyIsEnumerable(),
-        toLocaleString: ƒ toLocaleString(),
-        toString: ƒ toString(),
+        constructor: ƒ Object()
+        hasOwnProperty: ƒ hasOwnProperty()
+        isPrototypeOf: ƒ isPrototypeOf()
+        propertyIsEnumerable: ƒ propertyIsEnumerable()
+        toLocaleString: ƒ toLocaleString()
+        toString: ƒ toString()
         valueOf: ƒ valueOf()
+        __defineGetter__: ƒ __defineGetter__()
+        __defineSetter__: ƒ __defineSetter__()
+        __lookupGetter__: ƒ __lookupGetter__()
+        __lookupSetter__: ƒ __lookupSetter__()
+        get __proto__: ƒ __proto__()
+        set __proto__: ƒ __proto__()
     }
 }
 ```
@@ -127,38 +139,104 @@ console.log( doSomeInstancing );
         foo: "bar",
         constructor: ƒ doSomething(),
         __proto__: {
-            constructor: ƒ Object(),
-            hasOwnProperty: ƒ hasOwnProperty(),
-            isPrototypeOf: ƒ isPrototypeOf(),
-            propertyIsEnumerable: ƒ propertyIsEnumerable(),
-            toLocaleString: ƒ toLocaleString(),
-            toString: ƒ toString(),
+            constructor: ƒ Object()
+            hasOwnProperty: ƒ hasOwnProperty()
+            isPrototypeOf: ƒ isPrototypeOf()
+            propertyIsEnumerable: ƒ propertyIsEnumerable()
+            toLocaleString: ƒ toLocaleString()
+            toString: ƒ toString()
             valueOf: ƒ valueOf()
-        }
+            __defineGetter__: ƒ __defineGetter__()
+            __defineSetter__: ƒ __defineSetter__()
+            __lookupGetter__: ƒ __lookupGetter__()
+            __lookupSetter__: ƒ __lookupSetter__()
+            get __proto__: ƒ __proto__()
+            set __proto__: ƒ __proto__()
+                    }
     }
 }
 ```
 
-可以看到，doSomeInstancing 的 `__proto__` 属性就是`doSomething.prototype`,即`doSomeInstancing.__proto__ === doSomething.prototype`
+可以看到，`doSomeInstancing`实例的 `__proto__` 属性就是`doSomething`函数的`prototype`,即`doSomeInstancing.__proto__ === doSomething.prototype`。
+
+- 当访问`doSomeInstancing`的一个属性的时候，浏览器首先查找`doSomeInstancing`是否有这个属性
+- 如果没有，浏览器就会在`doSomeInstancing`的`__proto__`中查找这个属性
+- 如果也没有找到，则继续在`doSomeInstancing`的`__proto__`的`__proto__`上查找，所有函数的原型属性的 `__proto__` 就是 `window.Object.prototype`
+- 最后，原型链上的所有的`__proto__`都找完了也没找到该属性，这个属性返回`undefined`
 
 原型对象 | 说明 | 值
 ---|---|---
 显式原型对象`prototype` | 所有**函数**都有一个`prototype`属性 | 对象
-隐式原型对象`__proto__` | 所有**引用类型**都有一个私有属性`__proto__` | 对象
+隐式原型对象`__proto__` | 所有**实例**都有一个私有属性`__proto__` | 对象
 
-::: tip
+::: tip 提示
 
-- 所有**引用类型**的`__proto__`属性指向它**构造函数**的原型对象（`prototype`）
+- 所有**实例**的`__proto__`属性指向它**构造函数**的原型对象（`prototype`）
 - 根据定义，`null` 没有原型，并作为这个原型链中的最后一个环节
 - `__proto__`是一个内部属性，不建议对其进行直接操作
 :::
 
 ## 原型对象
 
-原型对象是一个内部对象，应当使用 `__proto__`访问,`prototype` 属性包含（指向）一个对象，你在这个对象中定义需要被继承的成员
+继承成员被定义的地方，被称作为原型对象`prototype`
 
-constructor 属性
-每个实例对象都从原型中继承了一个constructor属性，该属性指向了用于构造此实例对象的构造函数
+比如，`Object`的`hasOwnProperty`、`toString`,`valueOf`都是可以继承的方法，但是`Object.create()`、`Object.keys()`、`Object.values()`,则不能被继承
+
+```js
+// 继承的属性和方法
+console.log(Object.prototype)
+
+{
+    constructor: ƒ Object()
+    hasOwnProperty: ƒ hasOwnProperty()
+    isPrototypeOf: ƒ isPrototypeOf()
+    propertyIsEnumerable: ƒ propertyIsEnumerable()
+    toLocaleString: ƒ toLocaleString()
+    toString: ƒ toString()
+    valueOf: ƒ valueOf()
+    __defineGetter__: ƒ __defineGetter__()
+    __defineSetter__: ƒ __defineSetter__()
+    __lookupGetter__: ƒ __lookupGetter__()
+    __lookupSetter__: ƒ __lookupSetter__()
+    get __proto__: ƒ __proto__()
+    set __proto__: ƒ __proto__()
+}
+```
+
+```js
+// 不能被继承的属性和方法
+console.dir(Object)
+
+{
+    arguments: (...)
+    assign: ƒ assign()
+    caller: (...)
+    create: ƒ create()
+    defineProperties: ƒ defineProperties()
+    defineProperty: ƒ defineProperty()
+    entries: ƒ entries()
+    freeze: ƒ freeze()
+    fromEntries: ƒ fromEntries()
+    getOwnPropertyDescriptor: ƒ getOwnPropertyDescriptor()
+    getOwnPropertyDescriptors: ƒ getOwnPropertyDescriptors()
+    getOwnPropertyNames: ƒ getOwnPropertyNames()
+    getOwnPropertySymbols: ƒ getOwnPropertySymbols()
+    getPrototypeOf: ƒ getPrototypeOf()
+    is: ƒ is()
+    isExtensible: ƒ isExtensible()
+    isFrozen: ƒ isFrozen()
+    isSealed: ƒ isSealed()
+    keys: ƒ keys()
+    length: 1
+    name: "Object"
+    preventExtensions: ƒ preventExtensions()
+    prototype: {constructor: ƒ, __defineGetter__: ƒ, __defineSetter__: ƒ, hasOwnProperty: ƒ, __lookupGetter__: ƒ, …}
+    seal: ƒ seal()
+    setPrototypeOf: ƒ setPrototypeOf()
+    values: ƒ values()
+    __proto__: ƒ ()
+}
+```
 
 ## 原型链
 
@@ -169,7 +247,7 @@ constructor 属性
 ### 查找过程
 
 - 当访问一个对象的某个属性时，会先在这个对象本身属性上查找
-- 如果没有找到，则会去该对象的`__proto__`（隐式原型）上查找，即它的构造函数的`prototype`
+- 如果没有找到，则会去该对象的`__proto__`上查找
 - 如果还没有找到就会再在`__proto__`的`__proto__`中查找,最终会查到`Object.prototype`上
 - 如果没有找到会返回`undefined`
 
@@ -194,12 +272,6 @@ console.log(auto instanceof Car);
 console.log(auto instanceof Object);
 ```
 
-图解：
-
-![auto](./images/instanceof-auto.png)
-![car](./images/instanceof-car.png)
-![object](./images/instanceof-object.png)
-
 ### 实现一个instanceof
 
 ```js
@@ -213,6 +285,7 @@ const instanceOf = (left, right) => {
         if (proto === prototype) {
             return true
         }
+        // 原型链
         proto = proto.__proto__
     }
 }

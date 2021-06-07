@@ -4,7 +4,7 @@ heroImage: /logo.png
 heroText: Blog
 tagline: Welcome to my blog
 actionText: LET'S GO →
-actionLink: /base/html
+actionLink: /base/
 # features:
 # - title: 躺平篇
 #   details: 基础知识是前端人必须掌握牢的东西，打牢巩固基础知识点是非常重要的
