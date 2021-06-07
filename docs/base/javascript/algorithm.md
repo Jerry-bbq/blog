@@ -10,7 +10,7 @@ sidebar: auto
 现在要求实现一个 convert 方法
 把原始 list 转换成树形结构，parentId 为多少就挂载在该 id 的属性 children 数组下，结构如下：
 
-```json
+```js
 let list =[
     {id:1,name:'部门A',parentId:0},
     {id:2,name:'部门B',parentId:0},
@@ -26,7 +26,7 @@ const result = convert(list, ...);
 
 转换后的结果如下：
 
-```json
+```js
 let result = [
     {
       id: 1,
@@ -171,14 +171,14 @@ const deepClone = obj => {
 const arr = [1,1,'true','true',true,true,15,15,false,false, undefined,undefined, null,null, NaN, NaN,'NaN', 0, 0, 'a', 'a',{},{}]
 ```
 
-- Set
+### Set
 
 ```js
 const unique = arr => [...new Set(arr)]
-
 // 或者
 const unique = arr => Array.from(new Set(arr))
 
+// 测试
 unique(arr)
 // [1, "true", true, 15, false, undefined, null, NaN, "NaN", 0, "a", {}, {}]
 ```
@@ -187,7 +187,144 @@ unique(arr)
 {}无法去重
 :::
 
-- 双层for循环+splice
+### indexOf
+
+```js
+const unique = arr => {
+    let res = []
+    for (let i=0;i<arr.length;i++) {
+        if (res.indexOf(arr[i]) === -1) {
+            res.push(arr[i])
+        }
+    }
+    return res
+}
+
+// 测试
+unique(arr)
+// [1, "true", true, 15, false, undefined, null, NaN, NaN, "NaN", 0, "a", {}, {}]
+```
+
+::: warning 问题
+
+1. NaN无法去重
+2. {}无法去重
+
+:::
+
+### Map
+
+```js
+const unique = arr => {
+    let res = []
+    let map = new Map()
+    for (let i=0;i<arr.length;i++) {
+        if (!map.has(arr[i])) {
+            map.set(arr[i], true)
+            res.push(arr[i])
+        }
+    }
+    return res
+}
+```
+
+::: warning 问题
+
+{} 无法去重
+
+:::
+
+### includes
+
+```js
+const unique = arr => {
+    let res = []
+    for (let i=0;i<arr.length;i++) {
+        if (res.includes(arr[i])) {
+            res.push(arr[i])
+        }
+    }
+    return res
+}
+
+unique(arr)
+// [1, "true", true, 15, false, undefined, null, NaN, "NaN", 0, "a", {…}, {…}]
+```
+
+::: warning 问题
+
+{}无法去重
+:::
+
+### reduce+includes
+
+```js
+const unique = arr => {
+    return arr.reduce((prev, next)=> {
+        return prev.includes(next) ? prev : [...prev,next]
+    }, [])
+}
+
+unique(arr)
+// [1, "true", true, 15, false, undefined, null, NaN, "NaN", 0, "a", {}, {}]
+```
+
+::: warning 问题
+
+{}无法去重
+:::
+
+### 作为对象处理
+
+将数组中的值设为对象属性，遇到重复的则删除当前重复的，并将下标减一
+
+```js
+const unique = arr => {
+    let res = []
+    let obj = {}
+    for (let i=0;i<arr.length;i++) {
+        if (obj[arr[i]]) {
+            arr.splice(i,1);
+            i--;
+            continue;
+        }
+        obj[arr[i]] = arr[i]
+        res.push(arr[i])
+    }
+    return res
+}
+```
+
+::: warning 问题
+
+{}无法去重
+
+:::
+
+### 排序对比
+
+排序后对比相邻数，若相等，则删除其中一个
+
+```js
+const unique = arr => {
+    let res = arr.sort((a,b) => a-b)
+    for (let i=0;i<res.length;i++) {
+        if (res[i] === res[i+1]) {
+            res.splice(i+1,1)
+        }
+    }
+    return res
+}
+```
+
+::: warning 问题
+
+1. NaN无法去重
+2. {}无法去重
+
+:::
+
+### 双层for循环+splice
 
 ```js
 const unique = (arr) => {
@@ -212,63 +349,10 @@ unique(arr)
 2. NaN无法去重
 3. 0都会去掉
 4. {}无法去重
+
 :::
 
-- indexOf
-
-```js
-const unique = (arr) => {
-    if (!Array.isArray(arr)) {
-    console.log("type error!");
-    return;
-    }
-    var array = [];
-    for (var i = 0; i < arr.length; i++) {
-    if (array.indexOf(arr[i]) === -1) {
-        array.push(arr[i]);
-    }
-    }
-    return array;
-};
-
-unique(arr)
-// [1, "true", true, 15, false, undefined, null, NaN, NaN, "NaN", 0, "a", {}, {}]
-```
-
-::: warning 问题
-
-1. NaN无法去重
-2. {}无法去重
-:::
-
-- includes
-
-```js
-const unique = (arr) => {
-    if (!Array.isArray(arr)) {
-    console.log("type error!");
-    return;
-    }
-    var array = [];
-    for (var i = 0; i < arr.length; i++) {
-    if (!array.includes(arr[i])) {
-        //includes 检测数组是否有某个值
-        array.push(arr[i]);
-    }
-    }
-    return array;
-};
-
-unique(arr)
-// [1, "true", true, 15, false, undefined, null, NaN, "NaN", 0, "a", {…}, {…}]
-```
-
-::: warning 问题
-
-1. {}无法去重
-:::
-
-- hasOwnProperty
+### hasOwnProperty
 
 ```js
 const unique = (arr) => {
@@ -287,13 +371,13 @@ unique(arr)
 全部去重
 :::
 
-- filter
+### filter
 
 ```js
 const unique = (arr) => {
     return arr.filter(function(item, index, arr) {
-    //当前元素，在原始数组中的第一个索引==当前索引值，否则返回当前元素
-    return arr.indexOf(item, 0) === index;
+      //当前元素，在原始数组中的第一个索引==当前索引值，否则返回当前元素
+      return arr.indexOf(item, 0) === index;
     });
 };
 unique(arr)
@@ -304,23 +388,6 @@ unique(arr)
 
 1. NaN会全部删除掉
 2. {}无法去重
-:::
-
-- reduce+includes
-
-```js
-const unique = arr =>
-    arr.reduce(
-    (prev, cur) => (prev.includes(cur) ? prev : [...prev, cur]),
-    []
-    );
-unique(arr)
-// [1, "true", true, 15, false, undefined, null, NaN, "NaN", 0, "a", {}, {}]
-```
-
-::: warning 问题
-
-1. {}无法去重
 :::
 
 ## 实现36进制转换
