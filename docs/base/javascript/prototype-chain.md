@@ -278,26 +278,7 @@ console.log(auto instanceof Object);
 
 ### 实现
 
-```js
-const instanceOf = (left, right) => {
-    let proto = left.__proto__
-    let prototype = right.prototype
-    while (true) {
-        if (proto === null) {
-            return false
-        }
-        if (proto === prototype) {
-            return true
-        }
-        // 原型链
-        proto = proto.__proto__
-    }
-}
-
-// 测试
-instanceOf([], Array)   // true
-instanceOf([], Object)  // true
-```
+<<< @/docs/base/javascript/code-snippet/instanceof.js
 
 ## new运算符
 
@@ -311,28 +292,7 @@ instanceOf([], Object)  // true
 
 ### 实现
 
-```js
-const new2 = function(fn,...arg) {
-    // 第一步：创建一个新对象，继承构造函数的原型对象
-    // 即创建对象o，继承构造函数的原型对象：o.__proto__ === func.prototype
-    const o = Object.create(fn.prototype)
-    // 第二步：执行构造函数，转移this到o对象上
-    const res = fn.call(o,arg)
-    // 判断构造函数执行的结果是不是对象类型
-    if (typeof res === 'object'){
-        return res
-    } else {
-        return o
-    }
-}
-// 验证
-var o6 = new2(M)
-o6 instanceof M // 判断o6是不是M构造函数的实例
-o6 instanceof Object 
-o6.__proto__.construtor === M // o6的原型对象是否等于M
-M.prototype.walk = function(console.log('walk')) // 在M的原型上增加一个方法walk
-o6.walk()
-```
+<<< @/docs/base/javascript/code-snippet/new.js
 
 ## 继承
 
@@ -590,43 +550,11 @@ bind | 返回一个新的函数 <br>（新函数内部会调用原来的函数�
 
 call():
 
-```js
-Function.prototype._call = function(obj, ...args) {
-  // 处理obj是undefined或者null的情况
-  if (obj  === undefined || obj === null) {
-    obj = window
-  }
-
-  // 给obj添加一个方法: tempFn: this
-  obj.fn = this
-  // 调用obj的tempFn方法, 传入rags参数, 得到返回值
-  const result = obj.fn(...args)
-  // 删除obj上的temFn
-  delete obj.fn
-  // 返回方法的返回值
-  return result
-}
-```
+<<< @/docs/base/javascript/code-snippet/call.js
 
 apply():
 
-```js
-Function.prototype._apply = function(obj, argsArr) {
-  // 处理obj是undefined或者null的情况
-  if (obj === undefined || obj === null) {
-    obj = window
-  }
-
-  // 给obj添加一个方法: tempFn: this
-  obj.fn = this
-  // 调用obj的tempFn方法, 传入参数, 得到返回值
-  const result = obj.fn(...argsArr)
-  // 删除obj上的temFn
-  delete obj.fn
-  // 返回方法的返回值
-  return result
-}
-```
+<<< @/docs/base/javascript/code-snippet/apply.js
 
 ### 自定义bind
 
@@ -635,101 +563,4 @@ Function.prototype._apply = function(obj, argsArr) {
 1. 返回一个新函数
 2. 在新函数内部通过原函数对象的`call`方法来执行原函数，指定`this`为`obj`，指定参数为bind调用的参数和后面新函数调用的参数
 
-```js
-Function.prototype._bind = function(obj, ...args) {
-  // 返回一个新函数
-  return (...args2) => {
-    // 调用原来函数, 指定this为obj, 参数列表由args和args2依次组成
-    return this.call(obj, ...args, ...args2)
-  }
-}
-```
-
-### 其他自定义实现方式
-
-#### call
-
-调用方法：
-
-```js
-func.call(thisArg, arg1, arg2, ...)
-```
-
-手写实现：
-
-```js
-Function.prototype._call = function(context) {
-    // 赋值作用域参数,如果没有则默认为window对象
-    context = context || window
-    // 绑定当前调用函数
-    context.fn = this
-    // 获取传入的参数，args是一个数组
-    const args = [...arguments].slice(1)
-    // 执行当前调用函数，并传入参数（数组解构）
-    const result = context.fn(...args)
-    // 删除函数
-    delete context.fn 
-    // 返回执行函数
-    return result
-}
-```
-
-#### apply
-
-调用方法：
-
-```js
-func.apply(thisArg, [argsArray])
-```
-
-手写实现：
-
-```js
-Function.prototype._apply = function (context) {
-    // 赋值作用域参数,如果没有则默认为window对象
-    context = context || window
-    // 绑定当前调用函数
-    context.fn = this
-    let result
-    // 如果有参数，则传入参数
-    if (arguments[1]){
-        // 数组解构
-        result = context.fn(...arguments[1])
-    }else {
-    // 如果没有参数，则直接执行当前的调用函数
-        result = context.fn()
-    }
-    // 删除函数
-    delete context.fn
-    // 返回执行函数
-    return result
-}
-```
-
-#### bind
-
-调用方法：
-
-```js
-func.bind(thisArg[, arg1[, arg2[, ...]]])
-```
-
-手写实现：
-
-```js
-Function.prototype._bind = function(context) {
-    // 保存原有函数
-    const _this = this
-    // 获取参数
-    const args = [...arguments].slice(1)
-    // 返回一个函数
-    return function F() {
-        if (this instanceof F){
-        // new方式调用
-            return new _this(...args, ...arguments)
-        }
-        // 直接调用
-        return _this.apply(context, args.concat(...arguments))
-    }
-}
-```
+<<< @/docs/base/javascript/code-snippet/bind.js

@@ -6,93 +6,31 @@ sidebar: auto
 
 [参考](https://juejin.cn/post/6844903809206976520#heading-16)
 
-## 实现一个new操作符
+## 实现new操作符
 
-```js
-var new2 = function(func) { // 参数构造函数
-    // 第一步：创建一个新对象，继承构造函数的原型对象
-    // 即创建对象o，继承构造函数的原型对象：o.__proto__ === func.prototype
-    var o = Object.create(func.prototype)
-    // 第二步：执行构造函数，转移this到o对象上
-    var k = func.call(o)
-    // 判断构造函数执行的结果是不是对象类型
-    if (typeof k === 'object'){
-        return k
-    } else {
-        return o
-    }
-}
-```
+<<< @/docs/base/javascript/code-snippet/new.js
+
+## 实现instanceOf
+
+<<< @/docs/base/javascript/code-snippet/instanceof.js
+
+## 实现call/apply/bind
+
+### call
+
+<<< @/docs/base/javascript/code-snippet/call.js
+
+### apply
+
+<<< @/docs/base/javascript/code-snippet/apply.js
+
+### bind
+
+<<< @/docs/base/javascript/code-snippet/bind.js
 
 ## 实现一个JSON.parse
 
 ## 实现一个JSON.stringify
-
-## 实现一个call或apply
-
-### call
-
-```js
-Function.prototype.call = function(obj, ...args) {
-  // console.log('call()')
-  // 执行函数
-  // this(...args)
-
-  // 处理obj是undefined或者null的情况
-  if (obj===undefined || obj===null) {
-    obj = window
-  }
-
-  // 给obj添加一个方法: tempFn: this
-  obj.tempFn = this
-  // 调用obj的tempFn方法, 传入rags参数, 得到返回值
-  const result = obj.tempFn(...args)
-  // 删除obj上的temFn
-  delete obj.tempFn
-  // 返回方法的返回值
-  return result
-}
-```
-
-### apply
-
-```js
-Function.prototype.apply = function(obj, args) {
-  // 处理obj是undefined或者null的情况
-  if (obj===undefined || obj===null) {
-    obj = window
-  }
-
-  // 给obj添加一个方法: tempFn: this
-  obj.tempFn = this
-  // 调用obj的tempFn方法, 传入rags参数, 得到返回值
-  const result = obj.tempFn(...args)
-  // 删除obj上的temFn
-  delete obj.tempFn
-  // 返回方法的返回值
-  return result
-}
-```
-
-## 实现一个Function.bind
-
-```js
-Function.prototype._bind = function(context) {
-    // 保存原有函数
-    const _this = this
-    // 获取参数
-    const args = [...arguments].slice(1)
-    // 返回一个函数
-    return function F() {
-        if (this instanceof F){
-        // new方式调用
-            return new _this(...args, ...arguments)
-        }
-        // 直接调用
-        return _this.apply(context, args.concat(...arguments))
-    }
-}
-```
 
 ## 实现一个继承
 
@@ -343,28 +281,6 @@ function deepCopy(obj){
     }
     return result;
 }
-```
-
-## 实现一个instanceOf
-
-```js
-const instanceOf = (left, right) => {
-    let proto = left.__proto__
-    let prototype = right.prototype
-    while (true) {
-        if (proto === null) {
-            return false
-        }
-        if (proto === prototype) {
-            return true
-        }
-        proto = proto.__proto__
-    }
-}
-
-// 测试
-instanceOf([], Array)   // true
-instanceOf([], Object)  // true
 ```
 
 ## 数组去重
