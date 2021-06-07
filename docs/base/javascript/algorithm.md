@@ -67,6 +67,27 @@ let result = [
 ];
 ```
 
+实现：
+
+```js
+function convert(list, parentId = 0) {
+  var itemArr = []
+  for (var i = 0; i < list.length; i++) {
+    var node = list[i]
+    if (node.parentId === parentId) {
+      var newNode = {
+        ...node,
+        name: node.name,
+        id: node.id,
+        children: convert(list, node.id),
+      }
+      itemArr.push(newNode)
+    }
+  }
+  return itemArr
+}
+```
+
 ## 排序
 
 ### 选择排序
