@@ -7,23 +7,16 @@ sidebar: auto
 ## 算法与数据结构
 
 [参考](http://www.conardli.top/docs/dataStructure/%E4%BA%8C%E5%8F%89%E6%A0%91/%E4%BA%8C%E5%8F%89%E6%A0%91.html)
+
 [算法参考](https://github.com/trekhleb/javascript-algorithms/blob/master/README.zh-CN.md)
 
 - [数据结构](./javascript/algorithm/data-structure.md)
-  - [链表](./javascript/algorithm/linked-list.md)
-  - [二叉树](./javascript/algorithm/binary-tree.md)
-  - 哈希表
-  - 堆
 - [时间复杂度和空间复杂度](./javascript/algorithm/complexity.md)
 - 算法
   - [二分查找](./javascript/algorithm/binary-search.md)
   - [排序](./javascript/algorithm/sort.md)
   - [递归](./javascript/algorithm/recursion.md)
   - [深度优先搜索和广度优先搜索](./javascript/algorithm/dfs-bfs.md)
-
-- [将数组转化为树形结构](./javascript/algorithm/array-to-tree.md)
-- [浅拷贝与深拷贝](./javascript/algorithm/clone.md)
-- [数组去重](./javascript/algorithm/unique.md)
 
 ## JavaScript
 
