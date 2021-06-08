@@ -14,3 +14,4 @@ Function.prototype._apply = function(obj, argsArr) {
   // 返回方法的返回值
   return result
 }
+
