@@ -9,7 +9,7 @@ sidebar: auto
 [参考](http://www.conardli.top/docs/dataStructure/%E4%BA%8C%E5%8F%89%E6%A0%91/%E4%BA%8C%E5%8F%89%E6%A0%91.html)
 
 [算法参考](https://github.com/trekhleb/javascript-algorithms/blob/master/README.zh-CN.md)
-
+- [学习JavaScript数据结构与算法（第3版）](./javascript/learning-javascript-data-structures-and-algorithms/README.md)
 - [数据结构](./javascript/algorithm/data-structure.md)
 - [时间复杂度和空间复杂度](./javascript/algorithm/complexity.md)
 - 算法
