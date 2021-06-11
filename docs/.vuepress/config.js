@@ -80,6 +80,9 @@ module.exports = {
       '/frame/vue/v2/': [['', '目录'], 'reactive', 'render', 'extend'],
     },
   },
+  markdown: {
+    lineNumbers: true
+  },
   plugins: [
     '@vuepress/medium-zoom', // 图片缩放
     '@vuepress/back-to-top', // 页面滚动到顶部
