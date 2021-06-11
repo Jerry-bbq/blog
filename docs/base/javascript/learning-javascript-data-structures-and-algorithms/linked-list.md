@@ -221,7 +221,7 @@ getElementAt(index) {
 - 校验`index`是否合法,如果不合法返回`undefined`
 - 结束循环时， node 元素 将是 index 位置元素的引用
 
-重构remove方法
+重构`removeAt`方法
 
 ```js
 removeAt(index) {
