@@ -212,6 +212,16 @@ removeAt(index) {
 - 第一种在链表的起点添加一个元素
 - 第二种在链表中间或尾部添加一个元素
 
+在链表的起点添加一个元素图解:
+
+![insert-first](./images/insert-first.png)
+
+在链表中间或尾部添加一个元素图解:
+
+![insert-last](./images/insert-last.png)
+
+![insert-any](./images/insert-any.png)
+
 ```js
 insert(element, index) {
   if (index >= 0 && index <= this.count) {
@@ -236,11 +246,46 @@ insert(element, index) {
 说明
 
 - 校验`index`是否合法,如果不合法返回`false`
-
+- 在链表的起点添加一个元素：
+  - 把 `node.next` 的值设为 `current`
+  - 把 `head` 的引用改为 `node`
+- 在链表中间或尾部添加一个元素：
+  - 迭代链表，找到目标位置
+  - 把新元素和当前元素链接起来
+  - 改变 previous 和 current 之间的链接
+  - 让 previous.next 指向 node，取代 current
 
 ### 返回一个元素的位置
 
+indexOf 方法接收一个元素的值，如果在链表中找到了它，就返回元素的位置，否则返回-1。
+
+```js
+indexOf(element) {
+  let current = this.head
+  for (let i = 0; i < this.count && current != null; i++) {
+    if (this.equalsFn(element, current.element)) {
+      return i
+    }
+    current = current.next
+  }
+  return -1
+}
+```
+
+说明：
+
+- 使用一个变量`current`来帮助我们循环访问链表
+- 然后迭代元素，直到链表长度为止，为了确保不会发生运行时错误，可以验证一下 current 变量是否为 null 或 undefined
+- 每次迭代时，将验证 current 节点的元素和目标元素是否相等
+
 ### 移除元素
+
+```js
+remove(element) {
+  const index = this.indexOf(element)
+  return this.removeAt(index)
+}
+```
 
 ### size,isEmpty,getHead
 
@@ -270,6 +315,123 @@ toString() {
     current = current.next
   }
   return objString
+}
+```
+
+### 最终代码
+
+```js
+// 相等
+function defaultEquals(a, b) {
+  return a === b
+}
+// 要添加到链表中的项
+class Node {
+  constructor(element) {
+    this.element = element
+    this.next = undefined
+  }
+}
+class LinkedList {
+  constructor(equalsFn = defaultEquals) {
+    this.count = 0
+    this.head = undefined
+    this.equalsFn = equalsFn
+  }
+  push(element) {
+    const node = new Node(element)
+    let current
+    if (this.head == null) {
+      this.head = node
+    } else {
+      current = this.head
+      while (current.next != null) {
+        current = current.next
+      }
+      current.next = node
+    }
+    this.count++
+  }
+  removeAt(index) {
+    if (index >= 0 && index < this.count) {
+      let current = this.head
+      if (index === 0) {
+        this.head = current.next
+      } else {
+        const previous = this.getElementAt(index - 1)
+        current = previous.next
+        previous.next = current.next
+      }
+      this.count--
+      return current.element
+    }
+    return undefined
+  }
+  getElementAt(index) {
+    if (index >= 0 && index <= this.count) {
+      let node = this.head
+      for (let i = 0; i < index && node != null; i++) {
+        node = node.next
+      }
+      return node
+    }
+    return undefined
+  }
+  insert(element, index) {
+    if (index >= 0 && index <= this.count) {
+      const node = new Node(element)
+      if (index === 0) {
+        const current = this.head
+        node.next = current
+        this.head = node
+      } else {
+        const previous = this.getElementAt(index - 1)
+        const current = previous.next
+        node.next = current
+        previous.next = node
+      }
+      this.count++
+      return true
+    }
+    return false
+  }
+  indexOf(element) {
+    let current = this.head
+    for (let i = 0; i < this.count && current != null; i++) {
+      if (this.equalsFn(element, current.element)) {
+        return i
+      }
+      current = current.next
+    }
+    return -1
+  }
+
+  remove(element) {
+    const index = this.indexOf(element)
+    return this.removeAt(index)
+  }
+
+  size() {
+    return this.count
+  }
+  isEmpty() {
+    return this.size() === 0
+  }
+  getHead() {
+    return this.head
+  }
+  toString() {
+    if (this.head == null) {
+      return ''
+    }
+    let objString = `${this.head.element}`
+    let current = this.head.next
+    for (let i = 1; i < this.size() && current != null; i++) {
+      objString = `${objString},${current.element}`
+      current = current.next
+    }
+    return objString
+  }
 }
 ```
 
