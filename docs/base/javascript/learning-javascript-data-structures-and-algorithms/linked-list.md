@@ -2,34 +2,32 @@
 sidebar: auto
 ---
 
-# 链表
+# 链表数据结构
 
 ## 定义
 
-数组的缺点:(在大多数语言中)数组的大小是固定的，从数组的起点或中间插入或移 除项的成本很高，因为需要移动元素。
+::: danger 数组的缺点
 
-链表存储`有序的元素集合`，但不同于数组，链表中的元素在内存中并`不是连续放置`的。每个元素由一个存储元素本身的`节点`和一个指向下一个元素的`引用`(也称指针或链接)组成。下图展 示了一个链表的结构。
+数组的大小是固定的，从数组的起点或中间插入或移 除项的成本很高，因为需要移动元素
+
+:::
+
+- 链表存储`有序的元素集合`，但不同于数组，链表中的元素在内存中并`不是连续放置`的
+- 链表的每个元素都由`元素的值`和指向下一个元素的`指针`组成
+
+下图展示了一个链表的结构：
 
 ![linked-list](./images/linked-list.png)
 
-- 相对于传统的数组，链表的一个好处在于，添加或移除元素的时候不需要移动其他元素。
-- 然而，链表需要使用`指针`（head），因此实现链表时需要额外注意
-- 在数组中，我们可以直接访问任何位置 的任何元素，而要想访问链表中间的一个元素，则需要从起点(表头)开始迭代链表直到找到所 需的元素。
+与数组对比：
 
-链表中的元素组成表示：
+- 相对于传统的数组，链表的一个好处在于，添加或移除元素的时候不需要移动其他元素
+- 链表需要使用`指针`,其实就是存储`下一个链表元素`
+- 在数组中，我们可以直接访问任何位置的任何元素，而要想**访问链表中间的一个元素，则需要从起点(表头)开始迭代链表直到找到所需的元素**。
 
-```js
-class Node {
-  constructor(element) {
-    this.element = element
-    this.next = undefined
-  }
-}
-```
+实现的链表的数据结构如下：
 
-- 链表元素的值`element`
-- 指向链表中下一个元素的指针`next`
-- 当一个 Node 实例被创建时，它的 `next` 指针总是 `undefined`
+![linked-list-show](./images/linked-list-show.png)
 
 ## 方法
 
@@ -45,53 +43,100 @@ class Node {
 
 ## 实现
 
+链表中的元素组成表示：
+
+```js
+class Node {
+  constructor(element) {
+    this.element = element
+    this.next = undefined
+  }
+}
+```
+
+::: tip 说明
+
+- `element`：链表元素的值
+- `next`：指向链表中下一个元素的指针
+- 当一个 Node 实例被创建时，它的 `next` 指针总是 `undefined`
+
+:::
+
 ```js
 function defaultEquals(a, b) {
   return a === b
 }
 class LinkedList {
   constructor(equalsFn = defaultEquals) {
-    // 元素数量
     this.count = 0
-    // 将第一个元素的引用保存下来
     this.head = undefined
-    // 比较链表中的元素是否相等
     this.equalsFn = equalsFn
   }
 }
 ```
 
+::: tip 说明
+
+- `count`：链表中元素的数量
+- `head`：保存第一个元素的引用
+- `equalsFn`：比较两个JavaScript对象或值是否相等的自定义函数，如果没有传入自定义函数，则默认使用`defaultEquals`函数
+
+:::
+
 ### 向链表尾部添加一个新元素
+
+两个场景：
+
+- 链表为空，添加的是第一个元素
+- 链表不为空，向其追加元素
+
+链表为空：
+
+![null-push](./images/null-push.png)
+
+链表不为空：
+
+![not-null-push](./images/not-null-push.png)
 
 ```js
 push(element) {
   const node = new Node(element)
-  let current
+
   if (this.head == null) {
     this.head = node
   } else {
-    current = this.head
-    while (current.next != null) {
+    let current = this.head
+    while (current.next != null) {  // {5}
       current = current.next
     }
-    current.next = node
+    current.next = node             // {6}
   }
   this.count++
 }
 ```
 
-说明：
-
-- 向链表尾部添加元素有两个场景，一是空链表，添加第一个元素；二是链表不为空，追加元素
-- `this.head == null` 和 `(this.head === undefined || head === null)`等价
-- `current.next != null` 和 `(current.next !== undefined && current.next !== null)`等价
-
 步骤：
 
-1. 传入`element`，创建元素`node`
-2. 如果是空链表，也就是添加第一个元素，让`head` 元素指向 `node` 元素。
-3. 否则，循环链表找到最后一个元素，利用当前元素的不为`null`的条件查找到最后一个元素，将当前元素的指针`next`指向下一个链表节点
+1. 传入值`element`，创建`node`元素
+2. 链表为空
+   1. 指针`head` 指向 `node` 元素。下一个元素自动为`undefined`,因为创建`node`元素的时候，`next`为`undefined`
+3. 链表不为空
+   1. 定义`current`表示当前元素的指针`head`，循环链表（循环终止条件为`current.next == null`）查找到最后一个元素，同样是赋值给`current`,跳出循环
+   2. 将当前元素`current`的指针`next`指向下一个链表节点
 4. 最后，递增链表的长度
+
+说明：
+
+```js
+this.head == null 
+// 等价于下列表达式
+(this.head === undefined || head === null)
+
+
+current.next != null 
+// 等价于下列表达式
+(current.next !== undefined && current.next !== null)
+```
 
 测试：
 
@@ -100,18 +145,6 @@ const list = new LinkedList();
 list.push(15);
 list.push(10);
 ```
-
-向空链表中添加第一个元素过程的图解：
-
-![null-push](./images/null-push.png)
-
-向非空链表中追加元素过程的图解：
-
-![not-null-push](./images/not-null-push.png)
-
-结果：
-
-![push-result](./images/push-result.png)
 
 ### 从链表中移除元素
 
@@ -123,6 +156,14 @@ list.push(10);
 - 第一种是移除第一个元素
 - 第二种是移除第一个元素之外的其他元素
 
+删除第一个元素的图解：
+
+![remove-first](./images/remove-first.png)
+
+删除任意位置元素的图解：
+
+![remove-any](./images/remove-any.png)
+
 ```js
 removeAt(index) {
   if (index >= 0 && index < this.count) {
@@ -133,10 +174,10 @@ removeAt(index) {
     } else {
       let previous
       for (let i = 0; i < index; i++) {
-        previous = current
-        current = current.next
+        previous = current           // {6}
+        current = current.next       // {7}
       }
-      previous.next = current.next
+      previous.next = current.next   // {8}
     }
     this.count--
     return current.element
@@ -147,23 +188,18 @@ removeAt(index) {
 
 说明：
 
-- index:移除的元素的位置，应该是从0开始,且小于链表元素个数的
+- index:移除的元素的位置，应该是从0开始,且小于链表元素个数
+- 返回移出的元素的值，如果index无效，则返回`undefined`
 
 步骤：
 
 1. 校验`index`是否有效，无效返回`undefined`
-2. 移除第一个元素，就是让指针`head`指向第二个元素
-3. 移除第一个元素之外的其他元素，迭代链表的节点，直到找到当前元素的位置，拿到当前元素的引用`current`,和前一个元素的引用`previous`
-4. 将 `previous.next` 和 `current.next` 链接起来
-5. 最后，递减链表的长度
-
-删除第一个元素的图解：
-
-![remove-first](./images/remove-first.png)
-
-删除任意位置元素的图解：
-
-![remove-any](./images/remove-any.png)
+2. 移除第一个元素
+   1. 就是让指针`head`指向第二个元素
+3. 移除第一个元素之外的其他元素
+   1. 迭代链表的节点，找到目标元素`current`，目前元素的前一个元素`previous`和后一个元素`current.next`
+   2. 将目标元素的的前一个元素的指针指向目标元素的后一个元素
+4. 最后，递减链表的长度，返回要删除的元素的值
 
 ### 循环迭代链表直到目标位置
 
@@ -321,17 +357,17 @@ toString() {
 ### 最终代码
 
 ```js
-// 相等
 function defaultEquals(a, b) {
   return a === b
 }
-// 要添加到链表中的项
+// 链表元素
 class Node {
   constructor(element) {
     this.element = element
     this.next = undefined
   }
 }
+// 链表类
 class LinkedList {
   constructor(equalsFn = defaultEquals) {
     this.count = 0
@@ -340,11 +376,11 @@ class LinkedList {
   }
   push(element) {
     const node = new Node(element)
-    let current
+
     if (this.head == null) {
       this.head = node
     } else {
-      current = this.head
+      let current = this.head
       while (current.next != null) {
         current = current.next
       }
