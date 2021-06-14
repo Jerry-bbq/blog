@@ -11,62 +11,62 @@ module.exports = {
     sidebarDepth: 3, // 1
     nav: [
       {
-        text: '首页',
+        text: 'Home',
         link: '/',
       },
       {
-        text: '重学前端',
+        text: 'FE',
         link: '/base/',
       },
       {
-        text: '框架',
+        text: 'Framework',
         items: [
           {
             text: 'Vue',
             items: [
-              { text: 'v3', link: '/frame/vue/v3/' },
-              { text: 'v2', link: '/frame/vue/v2/' },
-              { text: 'Vuex', link: '/frame/vue/vuex/' },
-              { text: 'VueRouter', link: '/frame/vue/vue-router/' },
+              { text: 'v3', link: '/framework/vue/v3/' },
+              { text: 'v2', link: '/framework/vue/v2/' },
+              { text: 'Vuex', link: '/framework/vue/vuex/' },
+              { text: 'VueRouter', link: '/framework/vue/vue-router/' },
             ],
           },
           {
             text: 'React',
             items: [
-              { text: 'React', link: '/frame/react/react/' },
-              { text: 'ReactRouter', link: '/frame/react/react-router/' },
-              { text: 'Redux', link: '/frame/react/redux/' },
+              { text: 'React', link: '/framework/react/react/' },
+              { text: 'ReactRouter', link: '/framework/react/react-router/' },
+              { text: 'Redux', link: '/framework/react/redux/' },
             ],
           },
         ],
       },
       {
-        text: '打包工具',
+        text: 'Bundler',
         items: [
           {
             text: 'Webpack',
-            link: '/bundle-tool/webpack/',
+            link: '/bundler/webpack/',
             items: [
               {
                 text: 'v2',
-                link: '/bundle-tool/webpack/v2',
+                link: '/bundler/webpack/v2',
               },
               {
                 text: 'v4',
-                link: '/bundle-tool/webpack/v4',
+                link: '/bundler/webpack/v4',
               },
             ],
           },
-          { text: 'Rollup', link: '/bundle-tool/rollup/' },
-          { text: 'Gulp', link: '/bundle-tool/gulp/' },
+          { text: 'Rollup', link: '/bundler/rollup/' },
+          { text: 'Gulp', link: '/bundler/gulp/' },
         ],
       },
       {
-        text: '分享',
+        text: 'Share',
         link: '/share/',
       },
       {
-        text: '工具函数',
+        text: 'lgr-tools',
         link: 'https://gitee.com/luguanrui/lgr-tools?_from=gitee_search',
       },
       {
@@ -75,18 +75,18 @@ module.exports = {
       },
     ],
     sidebar: {
-      '/base/': [],
-      '/share/': [],
-      '/frame/vue/v2/': [['', '目录'], 'reactive', 'render', 'extend'],
+      // '/base/': [],
+      // '/share/': [],
+      '/framework/vue/v2/': [['', '目录'], 'reactive', 'render', 'extend'],
     },
   },
   markdown: {
-    lineNumbers: true
+    lineNumbers: true,
   },
   plugins: [
-    '@vuepress/medium-zoom', // 图片缩放
-    '@vuepress/back-to-top', // 页面滚动到顶部
-    '@vuepress/nprogress', // 进度条
+    '@vuepress/medium-zoom', 
+    '@vuepress/back-to-top',
+    '@vuepress/nprogress',
     [
       '@vuepress/last-updated',
       {
@@ -97,9 +97,10 @@ module.exports = {
     ],
     // 复制代码
     [
-      'one-click-copy', {
-        copyMessage: '代码片段复制成功'
-      }
-    ]
+      'one-click-copy',
+      {
+        copyMessage: '代码片段复制成功',
+      },
+    ],
   ],
 }

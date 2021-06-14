@@ -4,7 +4,7 @@ sidebar: auto
 
 # 目录
 
-## 算法与数据结构
+## 数据结构与算法
 
 [参考](http://www.conardli.top/docs/dataStructure/%E4%BA%8C%E5%8F%89%E6%A0%91/%E4%BA%8C%E5%8F%89%E6%A0%91.html)
 
