@@ -1,9 +1,8 @@
-const map = new Map();
-map.set('Gandalf', 'gandalf@email.com');
-map.set('John', 'johnsnow@email.com');
-map.set('Tyrion', 'tyrion@email.com');
-console.log(map.has('Gandalf')); // true
-console.log(map.size); // 3
-console.log(map.keys()); // 输出{"Gandalf", "John", "Tyrion"}
-console.log(map.values()); // 输出{"gandalf@email.com", "johnsnow@email.com","tyrion@email.com"}
-console.log(map.get('Tyrion')); // tyrion@email.com
+function fibonacciMemoization(n) {
+  const memo = [0, 1]
+  const fibonacci = n => {
+    if (memo[n] != null) return memo[n]
+    return (memo[n] = fibonacci(n - 1, memo) + fibonacci(n - 2, memo))
+  }
+  return fibonacci
+}

@@ -11,3 +11,5 @@
   - [使用链表模拟栈](./stack-linked-list.md)
 - [集合](./set.md)
 - [字典和散列表](./dictionary.md)
+- [递归](./recursive.md)
+- [树](./tree.md)
