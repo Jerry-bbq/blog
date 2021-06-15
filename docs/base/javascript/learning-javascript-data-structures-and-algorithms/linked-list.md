@@ -470,5 +470,3 @@ class LinkedList {
   }
 }
 ```
-
-## 双向链表
