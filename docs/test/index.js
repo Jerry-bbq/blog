@@ -1,8 +1,64 @@
-function fibonacciMemoization(n) {
-  const memo = [0, 1]
-  const fibonacci = n => {
-    if (memo[n] != null) return memo[n]
-    return (memo[n] = fibonacci(n - 1, memo) + fibonacci(n - 2, memo))
-  }
-  return fibonacci
+const Compare = {
+  LESS_THAN: -1,
+  BIGGER_THAN: 1,
 }
+function defaultCompare(a, b) {
+  if (a === b) {
+    return 0
+  }
+  return a < b ? Compare.LESS_THAN : Compare.BIGGER_THAN
+}
+class Node {
+  constructor(key) {
+    this.key = key //  节点值
+    this.left = null // 左侧子节点引用
+    this.right = null // 右侧子节点引用
+  }
+}
+class BinarySearchTree {
+  constructor(compareFn = defaultCompare) {
+    this.compareFn = compareFn // 用来比较节点值
+    this.root = null // Node 类型的根节点
+  }
+  insert(key) {
+    if (this.root == null) {
+      this.root = new Node(key)
+    } else {
+      this.insertNode(this.root, key)
+    }
+  }
+  insertNode(node, key) {
+    if (this.compareFn(key, node.key) === Compare.LESS_THAN) {
+      if (node.left == null) {
+        node.left = new Node(key)
+      } else {
+        this.insertNode(node.left, key)
+      }
+    } else {
+      if (node.right == null) {
+        node.right = new Node(key)
+      } else {
+        this.insertNode(node.right, key)
+      }
+    }
+  }
+}
+
+const tree = new BinarySearchTree()
+
+tree.insert(11);
+tree.insert(7);
+tree.insert(15);
+tree.insert(5);
+tree.insert(3);
+tree.insert(9);
+tree.insert(8);
+tree.insert(10);
+tree.insert(13);
+tree.insert(12);
+tree.insert(14);
+tree.insert(20);
+tree.insert(18);
+tree.insert(25);
+
+console.log(tree)

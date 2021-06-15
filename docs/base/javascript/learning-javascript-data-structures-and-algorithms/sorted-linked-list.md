@@ -52,4 +52,3 @@ getIndexNextSortedElement(element) {
   return i
 }
 ```
-
