@@ -6,13 +6,30 @@ sidebar: auto
 
 ## 数据结构与算法
 
-[参考](http://www.conardli.top/docs/dataStructure/%E4%BA%8C%E5%8F%89%E6%A0%91/%E4%BA%8C%E5%8F%89%E6%A0%91.html)
+- 学习JavaScript数据结构与算法（第3版）
+  - [数组](./data-structures-and-algorithms/array.md)
+  - [栈](./data-structures-and-algorithms/stack.md)
+  - [队列和双端队列](./data-structures-and-algorithms/queue.md)
+  - 链表
+    - [链表数据结构](./data-structures-and-algorithms/linked-list.md)
+    - [双向链表](./data-structures-and-algorithms/doubly-linked-list.md)
+    - [循环链表](./data-structures-and-algorithms/circular-linked-list.md)
+    - [有序链表](./data-structures-and-algorithms/sorted-linked-list.md)
+    - [使用链表模拟栈](./data-structures-and-algorithms/stack-linked-list.md)
+  - [集合](./data-structures-and-algorithms/set.md)
+  - [字典和散列表](./data-structures-and-algorithms/dictionary.md)
+  - [递归](./data-structures-and-algorithms/recursive.md)
+  - [树](./data-structures-and-algorithms/tree.md)
+  - [二叉堆和堆排序](./data-structures-and-algorithms/minHeap.md)
+  - [图](./data-structures-and-algorithms/graph.md)
+  - [排序和搜索算法]()
+  - [算法设计与技巧]()
+  - [算法复杂度]()
 
-[算法参考](https://github.com/trekhleb/javascript-algorithms/blob/master/README.zh-CN.md)
-- [学习JavaScript数据结构与算法（第3版）](./javascript/learning-javascript-data-structures-and-algorithms/README.md)
-- [数据结构](./javascript/algorithm/data-structure.md)
+其他
+
 - [时间复杂度和空间复杂度](./javascript/algorithm/complexity.md)
-- 算法
+- 算法案例
   - [二分查找](./javascript/algorithm/binary-search.md)
   - [排序](./javascript/algorithm/sort.md)
   - [递归](./javascript/algorithm/recursion.md)
