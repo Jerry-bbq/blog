@@ -1,159 +1,187 @@
-const Compare = {
-  LESS_THAN: -1,
-  BIGGER_THAN: 1,
+function defaultEquals(a, b) {
+  return a === b
 }
-function defaultCompare(a, b) {
-  if (a === b) {
-    return 0
-  }
-  return a < b ? Compare.LESS_THAN : Compare.BIGGER_THAN
-}
+// 链表元素
 class Node {
-  constructor(key) {
-    this.key = key //  节点值
-    this.left = null // 左侧子节点引用
-    this.right = null // 右侧子节点引用
+  constructor(element) {
+    this.element = element
+    this.next = undefined
   }
 }
-class BinarySearchTree {
-  constructor(compareFn = defaultCompare) {
-    this.compareFn = compareFn // 用来比较节点值
-    this.root = null // Node 类型的根节点
+// 链表类
+class LinkedList {
+  constructor(equalsFn = defaultEquals) {
+    this.count = 0
+    this.head = undefined
+    this.equalsFn = equalsFn
   }
-  insert(key) {
-    if (this.root == null) {
-      this.root = new Node(key)
+  push(element) {
+    const node = new Node(element)
+
+    if (this.head == null) {
+      this.head = node
     } else {
-      this.insertNode(this.root, key)
-    }
-  }
-  insertNode(node, key) {
-    if (this.compareFn(key, node.key) === Compare.LESS_THAN) {
-      if (node.left == null) {
-        node.left = new Node(key)
-      } else {
-        this.insertNode(node.left, key)
+      let current = this.head
+      while (current.next != null) {
+        current = current.next
       }
-    } else {
-      if (node.right == null) {
-        node.right = new Node(key)
+      current.next = node
+    }
+    this.count++
+  }
+  removeAt(index) {
+    if (index >= 0 && index < this.count) {
+      let current = this.head
+      if (index === 0) {
+        this.head = current.next
       } else {
-        this.insertNode(node.right, key)
+        const previous = this.getElementAt(index - 1)
+        current = previous.next
+        previous.next = current.next
       }
+      this.count--
+      return current.element
     }
+    return undefined
   }
-  inOrderTraverse(callback) {
-    this.inOrderTraverseNode(this.root, callback)
-  }
-  inOrderTraverseNode(node, callback) {
-    if (node != null) {
-      this.inOrderTraverseNode(node.left, callback)
-      callback(node.key)
-      this.inOrderTraverseNode(node.right, callback)
+  getElementAt(index) {
+    if (index >= 0 && index <= this.count) {
+      let node = this.head
+      for (let i = 0; i < index && node != null; i++) {
+        node = node.next
+      }
+      return node
     }
+    return undefined
   }
-
-  preOrderTraverse(callback) {
-    this.preOrderTraverseNode(this.root, callback)
-  }
-  preOrderTraverseNode(node, callback) {
-    if (node != null) {
-      callback(node.key)
-      this.preOrderTraverseNode(node.left, callback)
-      this.preOrderTraverseNode(node.right, callback)
-    }
-  }
-
-  postOrderTraverse(callback) {
-    this.postOrderTraverseNode(this.root, callback)
-  }
-  postOrderTraverseNode(node, callback) {
-    if (node != null) {
-      this.postOrderTraverseNode(node.left, callback)
-      this.postOrderTraverseNode(node.right, callback)
-      callback(node.key)
-    }
-  }
-
-  min() {
-    return this.minNode(this.root)
-  }
-  minNode(node) {
-    let current = node
-    while (current != null && current.left != null) {
-      current = current.left
-    }
-    return current
-  }
-
-  max() {
-    return this.maxNode(this.root)
-  }
-  maxNode(node) {
-    let current = node
-    while (current != null && current.right != null) {
-      current = current.right
-    }
-    return current
-  }
-
-  search(key) {
-    return this.searchNode(this.root, key)
-  }
-  searchNode(node, key) {
-    if (node == null) {
-      return false
-    }
-    if (this.compareFn(key, node.key) === Compare.LESS_THAN) {
-      return this.searchNode(node.left, key)
-    } else if (this.compareFn(key, node.key) === Compare.BIGGER_THAN) {
-      return this.searchNode(node.right, key)
-    } else {
+  insert(element, index) {
+    if (index >= 0 && index <= this.count) {
+      const node = new Node(element)
+      if (index === 0) {
+        const current = this.head
+        node.next = current
+        this.head = node
+      } else {
+        const previous = this.getElementAt(index - 1)
+        const current = previous.next
+        node.next = current
+        previous.next = node
+      }
+      this.count++
       return true
     }
+    return false
+  }
+  indexOf(element) {
+    let current = this.head
+    for (let i = 0; i < this.count && current != null; i++) {
+      if (this.equalsFn(element, current.element)) {
+        return i
+      }
+      current = current.next
+    }
+    return -1
   }
 
-  remove(key) {
-    this.root = this.removeNode(this.root, key)
+  remove(element) {
+    const index = this.indexOf(element)
+    return this.removeAt(index)
   }
-  removeNode(node, key) {
-    if (node == null) {
-      return null
+
+  size() {
+    return this.count
+  }
+  isEmpty() {
+    return this.size() === 0
+  }
+  getHead() {
+    return this.head
+  }
+  toString() {
+    if (this.head == null) {
+      return ''
     }
-    if (this.compareFn(key, node.key) === Compare.LESS_THAN) {
-      node.left = this.removeNode(node.left, key)
-      return node
-    } else if (this.compareFn(key, node.key) === Compare.BIGGER_THAN) {
-      node.right = this.removeNode(node.right, key)
-      return node
-    } else {
-      // 键等于 node.key
-      // 第一种情况
-      if (node.left == null && node.right == null) {
-        node = null
-        return node
-      }
-      // 第二种情况
-      if (node.left == null) {
-        node = node.right
-        return node
-      } else if (node.right == null) {
-        node = node.left
-        return node
-      }
-      // 第三种情况
-      const aux = this.minNode(node.right)
-      node.key = aux.key
-      node.right = this.removeNode(node.right, aux.key)
-      return node
+    let objString = `${this.head.element}`
+    let current = this.head.next
+    for (let i = 1; i < this.size() && current != null; i++) {
+      objString = `${objString},${current.element}`
+      current = current.next
     }
+    return objString
+  }
+}
+class DoublyNode extends Node {
+  constructor(element, next, prev) {
+    super(element, next)
+    this.prev = prev
+  }
+}
+class DoublyLinkedList extends LinkedList {
+  constructor(equalsFn = defaultEquals) {
+    super(equalsFn)
+    this.tail = undefined
+  }
+  insert(element, index) {
+    if (index >= 0 && index <= this.count) {
+      const node = new DoublyNode(element)
+      let current = this.head
+      if (index === 0) {
+        if (this.head == null) {
+          this.head = node
+          this.tail = node
+        } else {
+          node.next = this.head
+          current.prev = node
+          this.head = NodeFilter
+        }
+      } else if (index === this.count) {
+        current = this.tail
+        current.next = node
+        node.prev = current
+        this.tail = node
+      } else {
+        const previous = this.getElementAt(index - 1)
+        current = previous.next
+        node.next = current
+        previous.next = node
+        current.prev = node
+        node.prev = previous
+      }
+      this.count++
+      return true
+    }
+    return false
+  }
+  removeAt(index) {
+    if (index >= 0 && index < this.count) {
+      let current = this.head
+      if (index === 0) {
+        this.head = current.next
+        if (this.count === 1) {
+          this.tail = undefined
+        } else {
+          this.head.prev = undefined
+        }
+      } else if (index === this.count - 1) {
+        current = this.tail
+        this.tail = current.prev
+        this.tail.next = undefined
+      } else {
+        current = this.getElementAt(index)
+        const previous = current.prev
+        previous.next = current.next
+        current.next.prev = previous
+      }
+      this.count--
+      return current.element
+    }
+    return undefined
   }
 }
 
-class RedBlackTree extends BinarySearchTree {
-  constructor(compareFn = defaultCompare) {
-    super(compareFn)
-    this.compareFn = compareFn
-    this.root = null
-  }
-}
+const doublyLinkedList = new DoublyLinkedList()
+doublyLinkedList.insert(1, 0)
+doublyLinkedList.insert(2, 1)
+doublyLinkedList.insert(3, 2)
+doublyLinkedList.insert(4, 3)
+console.log(doublyLinkedList)

@@ -10,6 +10,8 @@ sidebar: auto
 
 ## 实现
 
+### 链表类
+
 ```js
 const Compare = {
   LESS_THAN: -1,
@@ -29,7 +31,7 @@ class SortedLinkedList extends LinkedList {
 }
 ```
 
-### 有序插入元素
+### 插入元素
 
 ```js
 insert(element, index = 0) {

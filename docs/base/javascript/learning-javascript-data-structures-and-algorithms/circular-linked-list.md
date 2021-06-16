@@ -6,15 +6,18 @@ sidebar: auto
 
 ## 定义
 
-**循环链表**可以像链表一样只有单向引用，也可以像双向链表一样有双向引用。循环链表和链表之间唯一的区别在于，最后一个元素指向下一个元素的指针（ tail.next）不是引用undefined，而是指向第一个元素（`head`）
+- **循环链表**可以像链表一样只有单向引用，也可以像双向链表一样有双向引用。
+- 循环链表和链表之间唯一的区别在于，最后一个元素指向下一个元素的指针（`tail.next`）不是引用`undefined`，而是指向第一个元素（`head`）
 
-![circular-linked-list](./images/circular-linked-list.png)
+![circular-linked-list](./images/linked-list/circular-linked-list.png)
 
-**双向循环链表**有指向 head 元素的 tail.next 和指向 tail 元素的 head.prev。
+**双向循环链表**有指向`head`元素的`tail.next`和指向`tail`元素的`head.prev`
 
-![doubly-circular-linked-list.png](./images/doubly-circular-linked-list.png)
+![doubly-circular-linked-list.png](./images/linked-list/doubly-circular-linked-list.png)
 
 ## 实现
+
+### 链表类
 
 ```js
 class CircularLinkedList extends LinkedList {
@@ -24,7 +27,17 @@ class CircularLinkedList extends LinkedList {
 }
 ```
 
-### 在任意位置插入新元素
+::: tip 提示
+
+循环链表不需要任何额外的属性
+
+:::
+
+### 插入元素
+
+![circular-linked-list-insert1](./images/linked-list/circular-linked-list-insert1.png)
+
+![circular-linked-list-insert2](./images/linked-list/circular-linked-list-insert2.png)
 
 ```js
 insert(element, index) {
@@ -53,7 +66,16 @@ insert(element, index) {
 }
 ```
 
-### 从任意位置移除元素
+::: tip 提示
+
+- 循环链表中插入元素的逻辑和向普通链表中插入元素的逻辑是一样的
+- 不同之处在于将循环链表尾部节点的`next`引用指向`头部节点`
+
+:::
+
+### 移除元素
+
+![circular-linked-list-removeAt](./images/linked-list/circular-linked-list-removeAt.png)
 
 ```js
 removeAt(index) {

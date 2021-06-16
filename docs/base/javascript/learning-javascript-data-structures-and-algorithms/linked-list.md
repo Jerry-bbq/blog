@@ -17,7 +17,7 @@ sidebar: auto
 
 下图展示了一个链表的结构：
 
-![linked-list](./images/linked-list.png)
+![linked-list](./images/linked-list/linked-list.png)
 
 与数组对比：
 
@@ -25,25 +25,27 @@ sidebar: auto
 - 链表需要使用`指针`,其实就是存储`下一个链表元素`
 - 在数组中，我们可以直接访问任何位置的任何元素，而要想**访问链表中间的一个元素，则需要从起点(表头)开始迭代链表直到找到所需的元素**。
 
-实现的链表的数据结构如下：
+数据结构如下：
 
-![linked-list-show](./images/linked-list-show.png)
+![linked-list-show](./images/linked-list/linked-list-show.png)
 
 ## 方法
 
-- push(element):向链表尾部添加一个新元素。
-- insert(element, position):向链表的特定位置插入一个新元素。
-- getElementAt(index):返回链表中特定位置的元素。如果链表中不存在这样的元素，则返回 undefined。
-- remove(element):从链表中移除一个元素。
-- indexOf(element):返回元素在链表中的索引。如果链表中没有该元素则返回-1。
-- removeAt(position):从链表的特定位置移除一个元素。
-- isEmpty():如果链表中不包含任何元素，返回 true，如果链表长度大于 0 则返回 false。
-- size():返回链表包含的元素个数，与数组的 length 属性类似。
-- toString():返回表示整个链表的字符串。由于列表项使用了 Node 类，就需要重写继承自 JavaScript 对象默认的 toString 方法，让其只输出元素的值。
+方法 | 说明 | 是否返回
+---|---|---
+push(element) | 向链表尾部添加一个新元素 | false
+insert(element, position) | 向链表的特定位置插入一个新元素 | false
+getElementAt(index) | 返回特定位置的元素。不存在，则返回 undefined | true
+remove(element) | 从链表中移除一个元素 | true
+indexOf(element) | 返回元素的索引。如果链表中没有该元素则返回-1 | true
+removeAt(position) | 从链表的特定位置移除一个元素 | true
+isEmpty() | 不包含任何元素，返回 true；否则返回 false | true
+size() | 返回链表包含的元素个数，与数组的 length 属性类似 | true
+toString() | 返回表示整个链表的字符串。只输出元素的值 | true
 
 ## 实现
 
-链表中的元素组成表示：
+### 链表的元素组成
 
 ```js
 class Node {
@@ -57,10 +59,12 @@ class Node {
 ::: tip 说明
 
 - `element`：链表元素的值
-- `next`：指向链表中下一个元素的指针
+- `next`：指向链表中下一个元素的指针（包括下一个元素的值和指针）
 - 当一个 Node 实例被创建时，它的 `next` 指针总是 `undefined`
 
 :::
+
+### 定义链表类
 
 ```js
 function defaultEquals(a, b) {
@@ -83,7 +87,7 @@ class LinkedList {
 
 :::
 
-### 向链表尾部添加一个新元素
+### 添加元素
 
 两个场景：
 
@@ -92,24 +96,25 @@ class LinkedList {
 
 链表为空：
 
-![null-push](./images/null-push.png)
+![null-push](./images/linked-list/null-push.png)
 
 链表不为空：
 
-![not-null-push](./images/not-null-push.png)
+![not-null-push](./images/linked-list/not-null-push.png)
 
 ```js
 push(element) {
+  // 链表元素
   const node = new Node(element)
 
   if (this.head == null) {
     this.head = node
   } else {
     let current = this.head
-    while (current.next != null) {  // {5}
+    while (current.next != null) {
       current = current.next
     }
-    current.next = node             // {6}
+    current.next = node
   }
   this.count++
 }
@@ -132,7 +137,6 @@ this.head == null
 // 等价于下列表达式
 (this.head === undefined || head === null)
 
-
 current.next != null 
 // 等价于下列表达式
 (current.next !== undefined && current.next !== null)
@@ -146,7 +150,7 @@ list.push(15);
 list.push(10);
 ```
 
-### 从链表中移除元素
+### 移除特定位置元素
 
 - 从特定位置移除一个元素（ removeAt ）
 - 根据元素的值移除元素( remove )
@@ -158,11 +162,11 @@ list.push(10);
 
 删除第一个元素的图解：
 
-![remove-first](./images/remove-first.png)
+![remove-first](./images/linked-list/remove-first.png)
 
 删除任意位置元素的图解：
 
-![remove-any](./images/remove-any.png)
+![remove-any](./images/linked-list/remove-any.png)
 
 ```js
 removeAt(index) {
@@ -174,10 +178,10 @@ removeAt(index) {
     } else {
       let previous
       for (let i = 0; i < index; i++) {
-        previous = current           // {6}
-        current = current.next       // {7}
+        previous = current        
+        current = current.next     
       }
-      previous.next = current.next   // {8}
+      previous.next = current.next
     }
     this.count--
     return current.element
@@ -197,7 +201,7 @@ removeAt(index) {
 2. 移除第一个元素
    1. 就是让指针`head`指向第二个元素
 3. 移除第一个元素之外的其他元素
-   1. 迭代链表的节点，找到目标元素`current`，目前元素的前一个元素`previous`和后一个元素`current.next`
+   1. 迭代链表的节点，找到目标元素`current`，当前元素的前一个元素`previous`和后一个元素`current.next`
    2. 将目标元素的的前一个元素的指针指向目标元素的后一个元素
 4. 最后，递减链表的长度，返回要删除的元素的值
 
@@ -241,7 +245,7 @@ removeAt(index) {
 }
 ```
 
-### 在任意位置插入元素
+### 插入元素
 
 两种场景：
 
@@ -250,13 +254,13 @@ removeAt(index) {
 
 在链表的起点添加一个元素图解:
 
-![insert-first](./images/insert-first.png)
+![insert-first](./images/linked-list/insert-first.png)
 
 在链表中间或尾部添加一个元素图解:
 
-![insert-last](./images/insert-last.png)
+![insert-last](./images/linked-list/insert-last.png)
 
-![insert-any](./images/insert-any.png)
+![insert-any](./images/linked-list/insert-any.png)
 
 ```js
 insert(element, index) {
@@ -291,7 +295,7 @@ insert(element, index) {
   - 改变 previous 和 current 之间的链接
   - 让 previous.next 指向 node，取代 current
 
-### 返回一个元素的位置
+### 查找元素的位置
 
 indexOf 方法接收一个元素的值，如果在链表中找到了它，就返回元素的位置，否则返回-1。
 
@@ -314,7 +318,7 @@ indexOf(element) {
 - 然后迭代元素，直到链表长度为止，为了确保不会发生运行时错误，可以验证一下 current 变量是否为 null 或 undefined
 - 每次迭代时，将验证 current 节点的元素和目标元素是否相等
 
-### 移除元素
+### 移除特定的元素
 
 ```js
 remove(element) {
@@ -334,7 +338,7 @@ isEmpty() {
 }
 getHead() {
   return this.head
-  }
+}
 ```
 
 ### toString
