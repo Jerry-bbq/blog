@@ -22,9 +22,9 @@ sidebar: auto
   - [树](./data-structures-and-algorithms/tree.md)
   - [二叉堆和堆排序](./data-structures-and-algorithms/minHeap.md)
   - [图](./data-structures-and-algorithms/graph.md)
-  - [排序和搜索算法]()
-  - [算法设计与技巧]()
-  - [算法复杂度]()
+  - [排序和搜索算法](./data-structures-and-algorithms/sort-and-search.md)
+  - [算法设计与技巧](./data-structures-and-algorithms/algorithm-skill.md)
+  - [算法复杂度](./data-structures-and-algorithms/algorithm-complexity.md)
 
 其他
 
