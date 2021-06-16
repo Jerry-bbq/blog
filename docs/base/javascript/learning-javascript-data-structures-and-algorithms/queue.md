@@ -6,59 +6,58 @@ sidebar: auto
 
 ## 定义
 
-队列是遵循`先进先出`(FIFO，也称为先来先服务)原则的一组有序的项。队列在尾部添加新
-元素，并从顶部移除元素。最新添加的元素必须排在队列的末尾。
+队列是遵循`先进先出`(FIFO，也称为先来先服务)原则的一组有序的项。队列在尾部添加新元素，并从顶部移除元素。最新添加的元素必须排在队列的末尾。
 
 ## 方法
 
-- enqueue(element(s)):向队列尾部添加一个(或多个)新的项。
-- dequeue():移除队列的第一项(即排在队列最前面的项)并返回被移除的元素。
-- peek():返回队列中第一个元素——最先被添加，也将是最先被移除的元素。队列不做任何变动(不移除元素，只返回元素信息——与 Stack 类的 peek 方法非常类似)。该方 0 法在其他语言中也可以叫作 front 方法。
-- isEmpty():如果队列中不包含任何元素，返回 true，否则返回 false。
-- size():返回队列包含的元素个数，与数组的 length 属性类似。
+方法 | 说明 | 是否有返回
+---|---|---
+enqueue(element(s)) | 向队列尾部添加一个(或多个)新的项 | false
+clear | 清空队列 | false
+dequeue() | 移除队列的第一项(即排在队列最前面的项)并返回被移除的元素 | true
+peek() | 返回队列中第一个元素——最先被添加，队列不做任何变动 | true
+isEmpty() | 如果队列中不包含任何元素，返回 true，否则返回 false | true
+size() | 返回队列包含的元素个数，与数组的 length 属性类似 | true
 
 ## 使用对象实现
 
-可以使用数组,但是，为了写出一个在获取元素时更高效的数据结构，使用一个对象来存储元素
+可以使用数组，但是，为了写出一个在获取元素时更高效的数据结构，使用一个对象来存储元素
 
 ```js
 class Queue {
   constructor() {
-    this.count = 0
-    this.lowestCount = 0
+    this.count = 0 // 记录队列的大小
+    this.lowestCount = 0 // 记录队列的前端
     this.items = {}
   }
-  // 向队列添加元素,新的项只能添加到队列末尾
+  // 从`队列末尾`添加元素
   enqueue(element) {
     this.items[this.count] = element
     this.count++
   }
-  // 从队列移除元素,最先添加的项也是最先被移除的
+  // 从`队列头部`移除元素
   dequeue() {
     if (this.isEmpty()) {
       return undefined
     }
     const result = this.items[this.lowestCount]
     delete this.items[this.lowestCount]
+    // 更新队列头部
     this.lowestCount++
     return result
   }
-  // 查看队列头元素
   peek() {
     if (this.isEmpty()) {
       return undefined
     }
     return this.items[this.lowestCount]
   }
-  // 检查队列是否为空并获取它的长度
   isEmpty() {
-    // 计算 count 和 lowestCount 之间的差值
     return this.count - this.lowestCount === 0
   }
   size() {
     return this.count - this.lowestCount
   }
-  // 清空队列
   clear() {
     this.items = {}
     this.count = 0
@@ -77,6 +76,8 @@ class Queue {
 }
 ```
 
+测试：
+
 ```js
 const queue = new Queue(); 
 console.log(queue.isEmpty()); // 输出true
@@ -86,7 +87,7 @@ console.log(queue.toString()); // John,Jack
 queue.enqueue('Camila');
 ```
 
-图解：
+下图描绘了对队列的操作和当前的状态：
 
 ![enqueue](./images/enqueue.png)
 
@@ -95,15 +96,15 @@ queue.dequeue(); // 移除John
 queue.dequeue(); // 移除Jack
 ```
 
-图解：
+下图描绘了对队列的操作和当前的状态：
 
 ![dequeue](./images/dequeue.png)
 
 ## 双端队列数据结构
 
-双端队列(deque，或称 double-ended queue)是一种允许我们同时从前端和后端添加和移除元素的特殊队列。
+**双端队列**(deque，或称 double-ended queue)是一种允许我们同时从前端和后端添加和移除元素的特殊队列。
 
-由于双端队列同时遵守了`先进先出`和`后进先出`原则，可以说它是把`队列`和`栈`相结合的一种数据结构。
+由于双端队列同时遵守了**先进先出**和**后进先出**原则，可以说它是把`队列`和`栈`相结合的一种数据结构。
 
 ### 方法
 
@@ -186,15 +187,13 @@ class Deque {
     return this.items[this.count - 1]
   }
 
-  // 检查队列是否为空并获取它的长度
+  // 以下方法同普通队列相同
   isEmpty() {
-    // 计算 count 和 lowestCount 之间的差值
     return this.count - this.lowestCount === 0
   }
   size() {
     return this.count - this.lowestCount
   }
-  // 清空队列
   clear() {
     this.items = {}
     this.count = 0
@@ -217,22 +216,22 @@ class Deque {
 
 ```js
 const deque = new Deque();
-console.log(deque.isEmpty()); // 输出true
+console.log(deque.isEmpty());                   // 输出true
 deque.addBack('John'); 0 deque.addBack('Jack');
-console.log(deque.toString()); // John, Jack
+console.log(deque.toString());                  // John, Jack
 deque.addBack('Camila');
-console.log(deque.toString()); // John, Jack, Camila
-console.log(deque.size()); // 输出3
-console.log(deque.isEmpty()); // 输出false
-deque.removeFront(); // 移除John
-console.log(deque.toString()); // Jack, Camila
-deque.removeBack(); // Camila 决定离开
-console.log(deque.toString()); // Jack
-deque.addFront('John'); // John 回来询问一些信息
-console.log(deque.toString()); // John, Jack
+console.log(deque.toString());                  // John, Jack, Camila
+console.log(deque.size());                      // 输出3
+console.log(deque.isEmpty());                   // 输出false
+deque.removeFront();                            // 移除John
+console.log(deque.toString());                  // Jack, Camila
+deque.removeBack();                             // Camila 决定离开
+console.log(deque.toString());                  // Jack
+deque.addFront('John');                         // John 回来询问一些信息
+console.log(deque.toString());                  // John, Jack
 ```
 
-## 使用队列和双端队列来解决问题
+## 应用
 
 ### 击鼓传花游戏
 
