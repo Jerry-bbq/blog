@@ -10,7 +10,13 @@ sidebar: auto
 
 在字典中，存储的是`[键，值]对`，其中键名是用来查询特定元素的。字典和集合很相似，集合以`[值，值]`的形式存储元素，字典则是以`[键，值]`的形式来存储元素。字典也称作**映射**、 **符号表**或**关联数组**。
 
-### 创建字典类
+数据结构：
+
+![dictionary-show](./images/dictionary-show.png)
+
+### 工具函数
+
+将key转化为字符串
 
 ```js
 function defaultToString(item) {
@@ -23,6 +29,16 @@ function defaultToString(item) {
   }
   return item.toString()
 }
+```
+
+- 将`null`转化为`'NULL'`字符串
+- 将`undefined`转化为`'UNDEFINED'`字符串
+- 字符串默认输出
+- 其他的都调用`toString()`转化为字符串
+
+### 创建字典类Dictionary
+
+```js
 class Dictionary {
   constructor(toStrFn = defaultToString) {
     this.toStrFn = toStrFn
@@ -34,22 +50,23 @@ class Dictionary {
 - 理想情况下，将字符串作为`键名`
 - 将`[键，值]`对保存为`table[key] = {key, value}`
 
-方法：
+### 方法
 
-- set(key,value)：向字典中添加新元素。如果 key 已经存在，那么已存在的 value 会
-被新的值覆盖。
-- remove(key)：通过使用键值作为参数来从字典中移除键值对应的数据值。
-- hasKey(key)：如果某个键值存在于该字典中，返回 true，否则返回 false。
-- get(key)：通过以键值作为参数查找特定的数值并返回。
-- clear()：删除该字典中的所有值。
-- size()：返回字典所包含值的数量。与数组的 length 属性类似。
-- isEmpty()：在 size 等于零的时候返回 true，否则返回 false。
-- keys()：将字典所包含的所有键名以数组形式返回。
-- values()：将字典所包含的所有数值以数组形式返回。
-- keyValues()：将字典中所有[键，值]对返回。
-- forEach(callbackFn)：迭代字典中所有的键值对。 callbackFn 有两个参数： key 和value。该方法可以在回调函数返回 false 时被中止（和 Array 类中的 every 方法相似）。
+方法 | 说明 | 是否返回
+---|---|---
+set(key,value) | 添加新元素。若key已存在，则覆盖value | true
+remove(key) | 通过key来移出 | true
+hasKey(key) | 查询key是否已存在 | true
+get(key) | 通过key查找value | true
+clear() | 清空字典 | false
+size() | 返回字典所包含值的数量 | true
+isEmpty() | 查询字典是否为空 | true
+keys() | 将字典所包含的所有`键名`以`数组`形式返回 | true
+values() | 将字典所包含的所有`数值`以`数组`形式返回 | true
+keyValues() | 将字典中所有`[键，值]对`返回 | true
+forEach(callbackFn) | 迭代字典中所有的键值对。 callbackFn 有两个参数： key 和value。该方法可以在回调函数返回 false 时被中止（和 Array 类中的 every 方法相似）。 | true
 
-### 检测一个键是否存在于字典中
+### 查询key是否已存在
 
 ```js
 hasKey(key) {
@@ -57,7 +74,9 @@ hasKey(key) {
 }
 ```
 
-### 在字典和 ValuePair 类中设置键和值
+### 添加元素
+
+定义字典元素值类`ValuePair`,保存原始的`key`和`value`
 
 ```js
 class ValuePair {
@@ -69,6 +88,11 @@ class ValuePair {
     return `[#${this.key}: ${this.value}]`
   }
 }
+```
+
+添加新的值，或是更新已有的值
+
+```js
 // 添加新的值，或是更新已有的值
 set(key, value) {
   if (key != null && value != null) {
@@ -80,7 +104,7 @@ set(key, value) {
 }
 ```
 
-### 从字典中移除一个值
+### 删除元素
 
 ```js
 remove(key) {
@@ -92,7 +116,7 @@ remove(key) {
 }
 ```
 
-### 从字典中检索一个值
+### 根据key查找value
 
 查找一个特定的 key，并检索它的 value
 
@@ -103,15 +127,27 @@ get(key) {
 }
 ```
 
-### keys、 values 和 valuePairs 方法
+### 查询所有的key和value
 
 ```js
-// 数组形式返回字典中的所有 valuePair 对象
+// 查询所有的key
+keys() {
+  return this.keyValues().map(valuePair => valuePair.key)
+}
+// 查询所有的value
+values() {
+  return this.keyValues().map(valuePair => valuePair.value)
+}
+
 keyValues() {
   return Object.values(this.table)
 }
-// 或者
-keyValues2() {
+```
+
+`keyValues()`的ES5实现：
+
+```js
+keyValues() {
   const valuePairs = []
   for (const k in this.table) {
     if (this.hasKey(k)) {
@@ -120,23 +156,18 @@ keyValues2() {
   }
   return valuePairs
 }
+```
 
-// 用于识别值的所有（原始）键名
+`keys()`的ES5实现：
+
+```js
 keys() {
-  return this.keyValues().map(valuePair => valuePair.key)
-}
-// 或者
-keys2() {
   const keys = []
   const valuePairs = this.keyValues()
   for (let i = 0; i < valuePairs.length; i++) {
     keys.push(valuePairs[i].key)
   }
   return keys
-}
-
-values() {
-  return this.keyValues().map(valuePair => valuePair.value)
 }
 ```
 
@@ -154,7 +185,7 @@ forEach(callbackFn) {
 }
 ```
 
-### clear、 size、 isEmpty 和 toString 方法
+### 其他方法
 
 ```js
 size() {
@@ -179,7 +210,7 @@ toString() {
 }
 ```
 
-### 使用
+### 最终实现
 
 ```js
 function defaultToString(item) {
@@ -228,31 +259,14 @@ class Dictionary {
     const valuePair = this.table[this.toStrFn(key)]
     return valuePair == null ? undefined : valuePair.value
   }
-  keyValues() {
-    return Object.values(this.table)
-  }
-  keyValues2() {
-    const valuePairs = []
-    for (const k in this.table) {
-      if (this.hasKey(k)) {
-        valuePairs.push(this.table[k])
-      }
-    }
-    return valuePairs
-  }
   keys() {
     return this.keyValues().map(valuePair => valuePair.key)
   }
-  keys2() {
-    const keys = []
-    const valuePairs = this.keyValues()
-    for (let i = 0; i < valuePairs.length; i++) {
-      keys.push(valuePairs[i].key)
-    }
-    return keys
-  }
   values() {
     return this.keyValues().map(valuePair => valuePair.value)
+  }
+  keyValues() {
+    return Object.values(this.table)
   }
   forEach(callbackFn) {
     const valuePairs = this.keyValues()
@@ -318,30 +332,13 @@ dictionary.forEach((k, v) => {
 - 如果要在数据结构中获得一个值（使用 get 方法），需要迭代整个数据结构来找到它。如果使用散列函数，就知道值的具体位置，因此能够快速检索到该值
 - 列函数的作用是给定一个键值，然后返回值在表中的地址
 
-### 创建散列表
+数据结构：
+
+![hash-table-show.](./images/hash-table-show.png)
+
+### 创建散列类HashTable
 
 ```js
-function defaultToString(item) {
-  if (item === null) {
-    return 'NULL'
-  } else if (item === undefined) {
-    return 'UNDEFINED'
-  } else if (typeof item === 'string' || item instanceof String) {
-    return `${item}`
-  }
-  return item.toString()
-}
-
-class ValuePair {
-  constructor(key, value) {
-    this.key = key
-    this.value = value
-  }
-  toString() {
-    return `[#${this.key}: ${this.value}]`
-  }
-}
-
 class HashTable {
   constructor(toStrFn = defaultToString) {
     this.toStrFn = toStrFn
@@ -350,15 +347,21 @@ class HashTable {
 }
 ```
 
-方法：
+### 方法
 
-- put(key,value)：向散列表增加一个新的项（也能更新散列表）。
-- remove(key)：根据键值从散列表中移除值。
-- get(key)：返回根据键值检索到的特定的值
+方法 | 说明 | 是否返回
+---|---|---
+put(key,value) | 向散列表增加一个新的项（也能更新散列表） | true
+remove(key) | 根据键值从散列表中移除值 | true
+get(key) | 返回根据键值检索到的特定的 | true
 
 ### 创建散列函数
 
 ```js
+hashCode(key) {
+  return this.loseloseHashCode(key)
+}
+
 loseloseHashCode(key) {
   if (typeof key === 'number') {
     return key
@@ -370,12 +373,21 @@ loseloseHashCode(key) {
   }
   return hash % 37
 }
-hashCode(key) {
-  return this.loseloseHashCode(key)
-}
 ```
 
-### 将键和值加入散列表
+loseloseHashCode：
+
+- key如果是`number`类型，直接返回key
+- 返回：根据组成 key 的每个字符的 ASCII 码值的和得到一个数
+
+::: danger 提示
+
+- 为了得到比较小的数值，我们会使用 hash 值和一个任意数做除法的余数（ %）
+- 这可以规避操作数超过数值变量最大表示范围的风险。
+
+:::
+
+### 添加元素
 
 ```js
 put(key, value) {
@@ -388,7 +400,7 @@ put(key, value) {
 }
 ```
 
-### 从散列表中获取一个值
+### 根据key获取value
 
 ```js
 get(key) {
@@ -397,7 +409,7 @@ get(key) {
 }
 ```
 
-### 从散列表中移除一个值
+### 移除元素
 
 ```js
 remove(key) {
@@ -411,7 +423,7 @@ remove(key) {
 }
 ```
 
-### 使用
+### 最终实现
 
 ```js
 function defaultToString(item) {
@@ -438,21 +450,6 @@ class HashTable {
     this.toStrFn = toStrFn
     this.table = {}
   }
-  loseloseHashCode(key) {
-    if (typeof key === 'number') {
-      return key
-    }
-    const tableKey = this.toStrFn(key)
-    let hash = 0
-    for (let i = 0; i < tableKey.length; i++) {
-      hash += tableKey.charCodeAt(i)
-    }
-    return hash % 37
-  }
-  hashCode(key) {
-    return this.loseloseHashCode(key)
-  }
-
   put(key, value) {
     if (key != null && value != null) {
       const position = this.hashCode(key)
@@ -474,6 +471,20 @@ class HashTable {
     }
     return false
   }
+  loseloseHashCode(key) {
+    if (typeof key === 'number') {
+      return key
+    }
+    const tableKey = this.toStrFn(key)
+    let hash = 0
+    for (let i = 0; i < tableKey.length; i++) {
+      hash += tableKey.charCodeAt(i)
+    }
+    return hash % 37
+  }
+  hashCode(key) {
+    return this.loseloseHashCode(key)
+  }
 }
 ```
 
@@ -494,6 +505,104 @@ hash.remove('Gandalf');
 console.log(hash.get('Gandalf'));
 ```
 
+## 处理散列表中的冲突
+
+有时候，一些键会有相同的散列值。不同的值在散列表中对应相同位置的时候，我们称其为冲突
+
+有三种方法来处理分离链接、线性探查和双散列法
+
+### 分离链接
+
+分离链接法包括为散列表的每一个位置创建一个链表并将元素存储在里面。它是解决冲突的最简单的方法，但是在 HashTable 实例之外还需要额外的存储空间
+
+创建HashTableSeparateChaining类：
+
+```js
+class HashTableSeparateChaining {
+  constructor(toStrFn = defaultToString) {
+    this.toStrFn = toStrFn
+    this.table = {}
+  }
+}
+```
+
+put方法：
+
+```js
+put(key, value) {
+  if (key != null && value != null) {
+    const position = this.hashCode(key)
+    if (this.table[position] == null) {
+      this.table[position] = new LinkedList()
+    }
+    this.table[position].push(new ValuePair(key, value))
+    return true
+  }
+  return false
+}
+```
+
+get方法：
+
+```js
+get(key) {
+  const position = this.hashCode(key)
+  const linkedList = this.table[position]
+  if (linkedList != null && !linkedList.isEmpty()) {
+    let current = linkedList.getHead()
+    while (current != null) {
+      if (current.element.key === key) {
+        return current.element.value
+      }
+      current = current.next
+    }
+  }
+  return undefined
+}
+```
+
+remove方法：
+
+```js
+remove(key) {
+  const position = this.hashCode(key)
+  const linkedList = this.table[position]
+  if (linkedList != null && !linkedList.isEmpty()) {
+    let current = linkedList.getHead()
+    while (current != null) {
+      if (current.element.key === key) {
+        linkedList.remove(current.element)
+        if (linkedList.isEmpty()) {
+          delete this.table[position]
+        }
+        return true
+      }
+      current = current.next
+    }
+  }
+  return false
+}
+```
+
+### 线性探查
+
+## 创建更好的散列函数
+
+lose lose 散列函数并不是一个表现良好的散列函数，因为它会产生太多的冲突。
+
+一个表现良好的散列函数是由几个方面构成的：插入和检索元素的时间（即性能），以及较低的冲突可能性。
+
+```js
+djb2HashCode(key) {
+  const tableKey = this.toStrFn(key); 
+  let hash = 5381;
+  for (let i = 0; i < tableKey.length; i++) { 
+    hash = (hash * 33) + tableKey.charCodeAt(i);
+  }
+  return hash % 1013;
+}
+```
+
 ## 原生Map类
 
 ```js
@@ -501,11 +610,16 @@ const map = new Map();
 map.set('Gandalf', 'gandalf@email.com');
 map.set('John', 'johnsnow@email.com');
 map.set('Tyrion', 'tyrion@email.com');
-console.log(map.has('Gandalf')); // true
-console.log(map.size); // 3
-console.log(map.keys()); // 输出{"Gandalf", "John", "Tyrion"}
-console.log(map.values()); // 输出{"gandalf@email.com", "johnsnow@email.com","tyrion@email.com"}
-console.log(map.get('Tyrion')); // tyrion@email.com
+console.log(map.has('Gandalf')); 
+// true
+console.log(map.size); 
+// 3
+console.log(map.keys()); 
+// 输出{"Gandalf", "John", "Tyrion"}
+console.log(map.values()); 
+// 输出{"gandalf@email.com", "johnsnow@email.com","tyrion@email.com"}
+console.log(map.get('Tyrion')); 
+// tyrion@email.com
 map.delete('John')
 ```
 
@@ -521,3 +635,26 @@ map.delete('John')
 
 - WeakSet 或 WeakMap 类没有 entries、 keys 和 values 等方法；
 - 只能用对象作为键。
+
+创建和使用这两个类主要是为了性能。 WeakSet 和 WeakMap 是弱化的（用对象作为键），没有强引用的键。这使得 JavaScript 的垃圾回收器可以从中清除整个入口。
+
+另一个优点是，必须用键才可以取出值。这些类没有 entries、 keys 和 values 等迭代器160 第 8 章 字典和散列表方法， 因此，除非你知道键，否则没有办法取出值
+
+```js
+const map = new WeakMap();
+const ob1 = { name: 'Gandalf' }; // {1}
+const ob2 = { name: 'John' };
+const ob3 = { name: 'Tyrion' };
+map.set(ob1, 'gandalf@email.com'); // {2}
+map.set(ob2, 'johnsnow@email.com');
+map.set(ob3, 'tyrion@email.com');
+console.log(map.has(ob1)); // true {3}
+console.log(map.get(ob3)); // tyrion@email.com {4}
+map.delete(ob2); // {5}
+```
+
+WeakMap 类也可以用 set 方法（行{2}），但不能使用数、字符串、布尔值等基本数据类型，需要将名字转换为对象（行{1}）。
+
+搜索（行{3}）、读取（行{4}）和删除值（行{5}），也要传入作为键的对象。
+
+同样的逻辑也适用于 WeakSet 类。

@@ -14,7 +14,7 @@ sidebar: auto
 
 方法 | 说明 | 是否返回
 ---|---|---
-add(element) | 向集合添加一个新元素 | false
+add(element) | 向集合添加一个新元素 | true
 delete(element) | 从集合移除一个元素 | true
 has(element) | 如果元素在集合中，返回 true，否则返回 false | true
 clear() | 移除集合中的所有元素 | false
@@ -69,7 +69,7 @@ add(element) {
 - 添加成功返回`true`,否则返回`false`
 - 添加元素`element`时，将它同时作为键和值保存，有利于查找
 
-### 删除元素
+### 删除元素和清空集合
 
 ```js
 delete(element) {
@@ -115,13 +115,15 @@ sizeLegacy() {
 
 ### 获取所有属性值
 
+第一种：
+
 ```js
 values() {
   return Object.values(this.items)
 }
 ```
 
-或者
+第二种：
 
 ```js
 valuesLegacy() {
@@ -135,7 +137,7 @@ valuesLegacy() {
 }
 ```
 
-### 最终代码
+### 最终实现
 
 ```js
 class Set {
@@ -165,26 +167,8 @@ class Set {
   size() {
     return Object.keys(this.items).length
   }
-  sizeLegacy() {
-    let count = 0
-    for (let key in this.items) {
-      if (this.items.hasOwnProperty(key)) {
-        count++
-      }
-    }
-    return count
-  }
   values() {
     return Object.values(this.items)
-  }
-  valuesLegacy() {
-    let values = []
-    for (let key in this.items) {
-      if (this.items.hasOwnProperty(key)) {
-        values.push(key)
-      }
-    }
-    return values
   }
 }
 ```
@@ -209,14 +193,9 @@ console.log(set.values()) // 输出[]
 
 ## 集合运算
 
-- 并集：对于给定的两个集合，返回一个包含两个集合中所有元素的新集合。
-- 交集：对于给定的两个集合，返回一个包含两个集合中共有元素的新集合。
-- 差集：对于给定的两个集合，返回一个包含所有存在于第一个集合且不存在于第二个集合的元素的新集合。
-- 子集：验证一个给定集合是否是另一集合的子集。
-
 ### 并集
 
-元素存在于 A 中，或 x 存在于 B 中
+![union](./images/union.png)
 
 计算两个集合的并集：
 
@@ -252,7 +231,7 @@ console.log(unionAB.values())
 
 ### 交集
 
-元素存在于 A 中，且 x 存在于 B 中
+![intersection](./images/intersection.png)
 
 计算两个集合的交集：
 
@@ -323,7 +302,7 @@ intersection(otherSet) {
 
 ### 差集
 
-元素存在于 A 中，且 x 不存在于 B 中
+![difference](./images/difference.png)
 
 - 创建新的`集合C`
 - 遍历`集合A`的属性值数组，判断`集合B`中是否存在该属性
@@ -358,9 +337,9 @@ console.log(differenceAB.values());
 // 返回 [1]
 ```
 
-### 子级
+### 子集
 
-集合 A 中的每一个元素，也需要存在于集合 B 中
+![isSubsetOf](./images/isSubsetOf.png)
 
 ```js
 isSubsetOf(otherSet) {
@@ -404,9 +383,6 @@ class Set {
   constructor() {
     this.items = {}
   }
-  has(element) {
-    return element in this.items
-  }
   add(element) {
     if (!this.has(element)) {
       this.items[element] = element
@@ -421,32 +397,17 @@ class Set {
     }
     return false
   }
+  has(element) {
+    return element in this.items
+  }
   clear() {
     this.items = {}
   }
   size() {
     return Object.keys(this.items).length
   }
-  sizeLegacy() {
-    let count = 0
-    for (let key in this.items) {
-      if (this.items.hasOwnProperty(key)) {
-        count++
-      }
-    }
-    return count
-  }
   values() {
     return Object.values(this.items)
-  }
-  valuesLegacy() {
-    let values = []
-    for (let key in this.items) {
-      if (this.items.hasOwnProperty(key)) {
-        values.push(key)
-      }
-    }
-    return values
   }
   union(otherSet) {
     const unionSet = new Set()
@@ -454,7 +415,6 @@ class Set {
     otherSet.values().forEach(val => unionSet.add(val))
     return unionSet
   }
-
   intersection(otherSet) {
     const intersectionSet = new Set()
     const values = this.values()
@@ -511,23 +471,31 @@ console.log(set.size)
 console.log(set.delete(1))
 ```
 
-- set.values()返回一个`Iterator`,而不是数组
+::: tip 提示
+
+- `set.values()`返回一个`Iterator`,而不是数组
 - 提供一个`size`属性，而不是方法
 - 提供`delete()`方法
-- `clear`方法会重置set数据结构
+- `clear`方法会重置`set`数据结构
 
-### 模拟set运算
+:::
+
+由于原生的Set类并没有提供交集，并集，差集，子集的运算，可以自行实现
+
+### 并集
 
 ```js
-// 并集
 const union = (setA, setB) => {
   const unionAb = new Set()
   setA.forEach(value => unionAb.add(value))
   setB.forEach(value => unionAb.add(value))
   return unionAb
 }
+```
 
-// 交集
+### 交集
+
+```js
 const intersection = (setA, setB) => {
   const intersectionSet = new Set()
   setA.forEach(value => {
@@ -537,8 +505,11 @@ const intersection = (setA, setB) => {
   })
   return intersectionSet
 }
+```
 
-// 差集
+### 差集
+
+```js
 const difference = (setA, setB) => {
   const differenceSet = new Set()
   setA.forEach(value => {
@@ -550,7 +521,7 @@ const difference = (setA, setB) => {
 }
 ```
 
-使用扩展运算符实现
+### 扩展运算符实现Set类的运算
 
 ```js
 // 并集

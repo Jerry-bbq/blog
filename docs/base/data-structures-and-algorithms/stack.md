@@ -93,16 +93,11 @@ class Stack {
     this.items[this.count] = element
     this.count++
   }
-  isEmpty() {
-    return this.count === 0
-  }
-  size() {
-    return this.count
-  }
   pop() {
     if (this.isEmpty()) {
       return undefined
     }
+    // 删除栈顶
     this.count--
     const result = this.items[this.count]
     delete this.items[this.count]
@@ -113,6 +108,12 @@ class Stack {
       return undefined
     }
     return this.items[this.count - 1]
+  }
+  isEmpty() {
+    return this.count === 0
+  }
+  size() {
+    return this.count
   }
   clear() {
     this.count = 0

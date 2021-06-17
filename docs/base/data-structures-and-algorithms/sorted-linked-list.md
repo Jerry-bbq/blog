@@ -10,7 +10,7 @@ sidebar: auto
 
 ## 实现
 
-### 链表类
+### 工具函数
 
 ```js
 const Compare = {
@@ -23,6 +23,14 @@ function defaultCompare(a, b) {
   }
   return a < b ? Compare.LESS_THAN : Compare.BIGGER_THAN
 }
+```
+
+- 如果元素有相同的引用，它就返回 0
+- 如果第一个元素小于第二个元素，它就返回-1，反之则返回 1
+
+### 链表类
+
+```js
 class SortedLinkedList extends LinkedList {
   constructor(equalsFn = defaultEquals, compareFn = defaultCompare) {
     super(equalsFn)

@@ -40,9 +40,9 @@ class Queue {
     if (this.isEmpty()) {
       return undefined
     }
+    // 删除队列前端
     const result = this.items[this.lowestCount]
     delete this.items[this.lowestCount]
-    // 更新队列头部
     this.lowestCount++
     return result
   }

@@ -1,22 +1,10 @@
-function binarySearchRecursive(array, value, low, high, compareFn = defaultCompare) {
-  if (low <= high) {
-    const mid = Math.floor((low + high) / 2)
-    const element = array[mid]
-    if (compareFn(element, value) === Compare.LESS_THAN) {
-      // {1}
-      return binarySearchRecursive(array, value, mid + 1, high, compareFn)
-    } else if (compareFn(element, value) === Compare.BIGGER_THAN) {
-      // {2}
-      return binarySearchRecursive(array, value, low, mid - 1, compareFn)
-    } else {
-      return mid // {3}
-    }
-  }
-  return DOES_NOT_EXIST // {4}
-}
-function binarySearch(array, value, compareFn = defaultCompare) {
-  const sortedArray = quickSort(array)
-  const low = 0
-  const high = sortedArray.length - 1
-  return binarySearchRecursive(array, value, low, high, compareFn)
-}
+const map = new WeakMap();
+const ob1 = { name: 'Gandalf' }; // {1}
+const ob2 = { name: 'John' };
+const ob3 = { name: 'Tyrion' };
+map.set(ob1, 'gandalf@email.com'); // {2}
+map.set(ob2, 'johnsnow@email.com');
+map.set(ob3, 'tyrion@email.com');
+console.log(map.has(ob1)); // true {3}
+console.log(map.get(ob3)); // tyrion@email.com {4}
+map.delete(ob2); // {5}
