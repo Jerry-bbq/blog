@@ -18,9 +18,9 @@ sidebar: auto
 
 **二叉树**中的节点最多只能有两个子节点：一个是左侧子节点，另一个是右侧子节点
 
-**二叉搜索树**（ BST）是二叉树的一种，但是只允许在`左侧节点`存储（比父节点）`小`的值，在`右侧节点`存储（比父节点）`大`的值。上图展示了一棵二叉搜索树
+**二叉搜索树**（BST）是二叉树的一种，但是只允许在`左侧节点`存储（比父节点）`小`的值，在`右侧节点`存储（比父节点）`大`的值。上图展示了一棵二叉搜索树
 
-### 创建 BinarySearchTree 类
+## 创建二叉搜索树类
 
 二叉搜索树的数据结构组织图：
 
@@ -30,7 +30,7 @@ sidebar: auto
 - 两个指针，一个指向左侧子节点，另一个指针指向右侧子节点
 - 在这里，将节点称为`键`，`键`是树相关的术语中对节点的称呼
 
-创建 Node 类来表示二叉搜索树中的每个节点
+### 创建节点类Node
 
 ```js
 class Node {
@@ -42,7 +42,7 @@ class Node {
 }
 ```
 
-创建二叉搜索树`BinarySearchTree`类：
+### 工具函数
 
 ```js
 const Compare = {
@@ -55,7 +55,11 @@ function defaultCompare(a, b) {
   }
   return a < b ? Compare.LESS_THAN : Compare.BIGGER_THAN
 }
+```
 
+### 创建BinarySearchTree类
+
+```js
 class BinarySearchTree {
   constructor(compareFn = defaultCompare) {
     this.compareFn = compareFn  // 用来比较节点值
@@ -65,18 +69,20 @@ class BinarySearchTree {
 
 ```
 
-方法：
+## 方法
 
-- insert(key)：向树中插入一个新的键。
-- search(key)：在树中查找一个键。如果节点存在，则返回 true；如果不存在，则返回false。
-- inOrderTraverse()：通过中序遍历方式遍历所有节点。
-- preOrderTraverse()：通过先序遍历方式遍历所有节点。
-- postOrderTraverse()：通过后序遍历方式遍历所有节点。
-- min()：返回树中最小的值/键。
-- max()：返回树中最大的值/键。
-- remove(key)：从树中移除某个键。
+方法 | 说明 | 是否返回
+---|---|---
+insert(key) | 向树中插入一个新的键 | false
+search(key) | 在树中查找一个键，是否存在 | true
+inOrderTraverse() | 通过`中序遍历`方式遍历所有节点 | false
+preOrderTraverse() | 通过`先序遍历`方式遍历所有节点 | false
+postOrderTraverse() | 通过`后序遍历`方式遍历所有节点 | false
+min() | 返回树中最小的值/键 | true
+max() | 返回树中最大的值/键 | true
+remove(key) | 从树中移除某个键 | true
 
-### 向二叉搜索树中插入一个键
+## 向二叉搜索树中插入一个键
 
 步骤：
 
@@ -115,13 +121,35 @@ insertNode(node, key) {
 }
 ```
 
+测试：
+
+```js
+const tree = new BinarySearchTree()
+tree.insert(11)
+tree.insert(7)
+tree.insert(15)
+tree.insert(5)
+tree.insert(3)
+tree.insert(9)
+tree.insert(8)
+tree.insert(10)
+tree.insert(13)
+tree.insert(12)
+tree.insert(14)
+tree.insert(20)
+tree.insert(18)
+tree.insert(25)
+
+console.log(tree)
+```
+
 ## 树的遍历
 
 访问树的所有节点有三种方式：**中序**、**先序**和**后序**
 
 ### 中序遍历
 
-中序遍历是一种以上行顺序访问 BST 所有节点的遍历方式，也就是以从最小到最大的顺序访问所有节点。中序遍历的一种应用就是对树进行排序操作
+中序遍历是一种以上行顺序访问 BST 所有节点的遍历方式，也就是以**从最小到最大的顺序访问所有节点**。中序遍历的一种应用就是对树进行**排序操作**
 
 ```js
 inOrderTraverse(callback) {
@@ -139,7 +167,7 @@ inOrderTraverseNode(node, callback) {
 - callback：定义我们对遍历到的每个节点进行的操作
 - 检查以参数形式传入的节点是否为 null——这就是停止递归继续执行的判断条件，即递归算法的基线条件
 
-测试
+测试：
 
 ```js
 const printNode = (value) => console.log(value); 
@@ -153,7 +181,7 @@ tree.inOrderTraverse(printNode);
 
 ### 先序遍历
 
-先序遍历是以优先于后代节点的顺序访问每个节点的。先序遍历的一种应用是打印一个结构化的文档
+先序遍历是以**优先于后代节点的顺序**访问每个节点的。先序遍历的一种应用是打印一个结构化的文档
 
 ```js
 preOrderTraverse(callback) {
@@ -184,7 +212,7 @@ tree.preOrderTraverse(printNode);
 
 ### 后序遍历
 
-后序遍历则是先访问节点的后代节点，再访问节点本身。后序遍历的一种应用是计算一个目录及其子目录中所有文件所占空间的大小
+后序遍历则是**先访问节点的后代节点，再访问节点本身**。后序遍历的一种应用是计算一个目录及其子目录中所有文件所占空间的大小
 
 ```js
 postOrderTraverse(callback) {
@@ -215,7 +243,15 @@ tree.postOrderTraverse(printNode);
 
 ![tree](./images/tree/postOrderTraverse.png)
 
-## 搜索树中的值
+### 总结
+
+中序、先序、后序遍历函数的唯一区别就是`callback`函数的在递归左侧和右侧树的位置：
+
+- 中序：`callback`在中间位置
+- 先序：`callback`在前面位置
+- 后序：`callback`在后面位置
+
+## 树的搜索
 
 在树中，有三种经常执行的搜索类型：
 
@@ -322,7 +358,7 @@ removeNode(node, key) {
 }
 ```
 
-## 二叉搜索树最终实现
+## 最终实现
 
 ```js
 const Compare = {
@@ -480,13 +516,35 @@ class BinarySearchTree {
 
 ## 自平衡树
 
-BST 存在一个问题：取决于你添加的节点数，树的一条边可能会非常深；也就是说，树的一条分支会有很多层，而其他的分支却只有几层。这会在需要在某条边上添加、移除和搜索某个节点时引起一些性能问题。为了解决这个问题，有一种树叫作 Adelson-Velskii-Landi 树（ AVL 树）。 AVL 树是一种自平衡二叉搜索树，意思是任何一个节点左右两侧子树的高度之差最多为 1
+BST 存在一个问题：取决于你添加的节点数，树的一条边可能会非常深；也就是说，树的一条分支会有很多层，而其他的分支却只有几层。这会在需要在某条边上添加、移除和搜索某个节点时引起一些性能问题。为了解决这个问题，有一种树叫作 Adelson-Velskii-Landi 树（ AVL 树）。 AVL 树是一种自平衡二叉搜索树，意思是**任何一个节点左右两侧子树的高度之差最多为 1**
 
-### AVL树
+## AVL树
 
 AVL树是一种自平衡树。添加或移除节点时， AVL树会尝试保持自平衡。任意一个节点（不论深度）的左子树和右子树高度最多相差 1。添加或移除节点时， AVL树会尽可能尝试转换为完全树
 
-### 红黑树
+### 创建AVL类
+
+```js
+class AVLTree extends BinarySearchTree {
+  constructor(compareFn = defaultCompare) {
+    super(compareFn)
+    this.compareFn = compareFn
+    this.root = null
+  }
+}
+```
+
+在 `AVL` 树中插入或移除节点和 `BST` 完全相同。然而， AVL 树的不同之处在于我们需要检验它的**平衡因子**，如果有需要，会将其逻辑应用于树的自平衡
+
+### 节点的高度
+
+### 平衡因子
+
+在 AVL 树中，需要对每个节点计算右子树高度（hr）和左子树高度（hl）之间的差值，该值（ hr－ hl）应为 0、 1 或-1。如果结果不是这三个值之一，则需要平衡该 AVL 树。这就是平衡因子的概念
+
+
+
+## 红黑树
 
 和 AVL 树一样， 红黑树也是一个自平衡二叉搜索树。我们学习了对 AVL 书插入和移除节点可能会造成旋转，所以我们需要一个包含多次插入和删除的自平衡树，红黑树是比较好的。如果插入和删除频率较低（我们更需要多次进行搜索操作），那么 AVL 树比红黑树更好。
 
