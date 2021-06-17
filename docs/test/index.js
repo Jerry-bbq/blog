@@ -1,11 +1,22 @@
-function bubbleSort(array, compareFn = defaultCompare) {
-  const { length } = array
-  for (let i = 0; i < length; i++) {
-    for (let j = 0; j < length - 1; j++) {
-      if (compareFn(array[j], array[j + 1]) === Compare.BIGGER_THAN) {
-        swap(array, j, j + 1)
-      }
+function binarySearchRecursive(array, value, low, high, compareFn = defaultCompare) {
+  if (low <= high) {
+    const mid = Math.floor((low + high) / 2)
+    const element = array[mid]
+    if (compareFn(element, value) === Compare.LESS_THAN) {
+      // {1}
+      return binarySearchRecursive(array, value, mid + 1, high, compareFn)
+    } else if (compareFn(element, value) === Compare.BIGGER_THAN) {
+      // {2}
+      return binarySearchRecursive(array, value, low, mid - 1, compareFn)
+    } else {
+      return mid // {3}
     }
   }
-  return array
+  return DOES_NOT_EXIST // {4}
+}
+function binarySearch(array, value, compareFn = defaultCompare) {
+  const sortedArray = quickSort(array)
+  const low = 0
+  const high = sortedArray.length - 1
+  return binarySearchRecursive(array, value, low, high, compareFn)
 }
