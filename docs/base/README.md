@@ -30,6 +30,8 @@ sidebar: auto
   - [算法设计与技巧](./data-structures-and-algorithms/algorithm-skill.md)
   - [算法复杂度](./data-structures-and-algorithms/algorithm-complexity.md)
 
+[数据结构与算法源码](https://github.com/loiane/javascript-datastructures-algorithms)
+
 其他
 
 - [时间复杂度和空间复杂度](./javascript/algorithm/complexity.md)
