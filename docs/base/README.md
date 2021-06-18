@@ -21,7 +21,9 @@ sidebar: auto
   - [递归](./data-structures-and-algorithms/recursive.md)
   - 树
     - [二叉树和二叉搜索树](./data-structures-and-algorithms/bst.md)
-    - [自平衡树](./data-structures-and-algorithms/bt.md)
+    - 自平衡树
+      - [AVL树](./data-structures-and-algorithms/avl-tree.md)
+      - [红黑树](./data-structures-and-algorithms/red-black-tree.md)
   - [二叉堆和堆排序](./data-structures-and-algorithms/minHeap.md)
   - [图](./data-structures-and-algorithms/graph.md)
   - [排序和搜索算法](./data-structures-and-algorithms/sort-and-search.md)

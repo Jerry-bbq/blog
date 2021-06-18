@@ -149,63 +149,85 @@ class BinarySearchTree {
     }
   }
 }
-
-const tree = new BinarySearchTree()
-tree.insert(11)
-tree.insert(7)
-tree.insert(15)
-tree.insert(5)
-tree.insert(3)
-tree.insert(9)
-tree.insert(8)
-tree.insert(10)
-tree.insert(13)
-tree.insert(12)
-tree.insert(14)
-tree.insert(20)
-tree.insert(18)
-tree.insert(25)
-
-tree.insert(6)
-
-console.log(tree)
-
-const printNode = value => console.log(value)
-tree.inOrderTraverse(printNode)
-// 3 5 6 7 8 9 10 11 12 13 14 15 18 20 25
-
-const BalanceFactor = {
-  UNBALANCED_RIGHT: 1,
-  SLIGHTLY_UNBALANCED_RIGHT: 2,
-  BALANCED: 3,
-  SLIGHTLY_UNBALANCED_LEFT: 4,
-  UNBALANCED_LEFT: 5,
+const Colors = {
+  RED: 'RED',
+  BLACK: 'BLACK',
 }
-class AVLTree extends BinarySearchTree {
+class RedBlackNode extends Node {
+  constructor(key) {
+    super(key)
+    this.key = key
+    this.color = Colors.RED
+    this.parent = null
+  }
+  isRed() {
+    return this.color === Colors.RED
+  }
+}
+class RedBlackTree extends BinarySearchTree {
   constructor(compareFn = defaultCompare) {
     super(compareFn)
     this.compareFn = compareFn
     this.root = null
   }
-  getNodeHeight(node) {
-    if (node == null) {
-      return -1
+  insertNode(node, key) {
+    if (this.compareFn(key, node.key) === Compare.LESS_THAN) {
+      if (node.left == null) {
+        node.left = new RedBlackNode(key)
+        node.left.parent = node
+        return node.left
+      } else {
+        return this.insertNode(node.left, key)
+      }
+    } else if (node.right == null) {
+      node.right = new RedBlackNode(key)
+      node.right.parent = node
+      return node.right
+    } else {
+      return this.insertNode(node.right, key)
     }
-    return Math.max(this.getNodeHeight(node.left), this.getNodeHeight(node.right)) + 1
   }
-  getBalanceFactor(node) {
-    const heightDifference = this.getNodeHeight(node.left) - this.getNodeHeight(node.right)
-    switch (heightDifference) {
-      case -2:
-        return BalanceFactor.UNBALANCED_RIGHT
-      case -1:
-        return BalanceFactor.SLIGHTLY_UNBALANCED_RIGHT
-      case 1:
-        return BalanceFactor.SLIGHTLY_UNBALANCED_LEFT
-      case 2:
-        return BalanceFactor.UNBALANCED_LEFT
-      default:
-        return BalanceFactor.BALANCED
+  fixTreeProperties(node) {
+    while (
+      node &&
+      node.parent &&
+      node.parent.color.isRed() && // {1}
+      node.color !== Colors.BLACK
+    ) {
+      // {2}
+      let parent = node.parent // {3}
+      const grandParent = parent.parent // {4}
+      // 情形 A：父节点是左侧子节点
+      if (grandParent && grandParent.left === parent) {
+        // {5}
+        const uncle = grandParent.right // {6}10.6 自平衡树 197
+        // 情形 1A：叔节点也是红色——只需要重新填色
+        if (uncle && uncle.color === Colors.RED) {
+          // {7}
+          grandParent.color = Colors.RED
+          parent.color = Colors.BLACK
+          uncle.color = Colors.BLACK
+          node = grandParent // {8}
+        } else {
+          // 情形 2A：节点是右侧子节点——左旋转
+          // 情形 3A：节点是左侧子节点——右旋转
+        }
+      } else {
+        // 情形 B：父节点是右侧子节点
+        const uncle = grandParent.left // {9}
+        // 情形 1B：叔节点是红色——只需要重新填色
+        if (uncle && uncle.color === Colors.RED) {
+          // {10}
+          grandParent.color = Colors.RED
+          parent.color = Colors.BLACK
+          uncle.color = Colors.BLACK
+          node = grandParent
+        } else {
+          // 情形 2B：节点是左侧子节点——右旋转
+          // 情形 3B：节点是右侧子节点——左旋转
+        }
+      }
     }
+    this.root.color = Colors.BLACK // {11}
   }
 }
