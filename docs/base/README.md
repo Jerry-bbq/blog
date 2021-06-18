@@ -6,31 +6,7 @@ sidebar: auto
 
 ## 数据结构与算法
 
-- 学习JavaScript数据结构与算法（第3版）
-  - [数组](./data-structures-and-algorithms/array.md)
-  - [栈](./data-structures-and-algorithms/stack.md)
-  - [队列和双端队列](./data-structures-and-algorithms/queue.md)
-  - 链表
-    - [链表数据结构](./data-structures-and-algorithms/linked-list.md)
-    - [双向链表](./data-structures-and-algorithms/doubly-linked-list.md)
-    - [循环链表](./data-structures-and-algorithms/circular-linked-list.md)
-    - [有序链表](./data-structures-and-algorithms/sorted-linked-list.md)
-    - [使用链表模拟栈](./data-structures-and-algorithms/stack-linked-list.md)
-  - [集合](./data-structures-and-algorithms/set.md)
-  - [字典和散列表](./data-structures-and-algorithms/dictionary.md)
-  - [递归](./data-structures-and-algorithms/recursive.md)
-  - 树
-    - [二叉树和二叉搜索树](./data-structures-and-algorithms/bst.md)
-    - 自平衡树
-      - [AVL树](./data-structures-and-algorithms/avl-tree.md)
-      - [红黑树](./data-structures-and-algorithms/red-black-tree.md)
-  - [二叉堆和堆排序](./data-structures-and-algorithms/minHeap.md)
-  - [图](./data-structures-and-algorithms/graph.md)
-  - [排序和搜索算法](./data-structures-and-algorithms/sort-and-search.md)
-  - [算法设计与技巧](./data-structures-and-algorithms/algorithm-skill.md)
-  - [算法复杂度](./data-structures-and-algorithms/algorithm-complexity.md)
-
-[数据结构与算法源码](https://github.com/loiane/javascript-datastructures-algorithms)
+- [学习JavaScript数据结构与算法（第3版）](./data-structures-and-algorithms)
 
 其他
 
