@@ -18,9 +18,9 @@ sidebar: auto
 
 **二叉树**中的节点最多只能有两个子节点：一个是左侧子节点，另一个是右侧子节点
 
-**二叉搜索树**（ BST）是二叉树的一种，但是只允许在`左侧节点`存储（比父节点）`小`的值，在`右侧节点`存储（比父节点）`大`的值。上图展示了一棵二叉搜索树
+**二叉搜索树**（`BST`）是二叉树的一种，但是只允许在`左侧节点`存储（比父节点）`小`的值，在`右侧节点`存储（比父节点）`大`的值。上图展示了一棵二叉搜索树
 
-### 创建 BinarySearchTree 类
+## 创建二叉搜索树类
 
 二叉搜索树的数据结构组织图：
 
@@ -30,7 +30,7 @@ sidebar: auto
 - 两个指针，一个指向左侧子节点，另一个指针指向右侧子节点
 - 在这里，将节点称为`键`，`键`是树相关的术语中对节点的称呼
 
-创建 Node 类来表示二叉搜索树中的每个节点
+### 创建节点类Node
 
 ```js
 class Node {
@@ -42,7 +42,7 @@ class Node {
 }
 ```
 
-创建二叉搜索树`BinarySearchTree`类：
+### 工具函数
 
 ```js
 const Compare = {
@@ -55,7 +55,11 @@ function defaultCompare(a, b) {
   }
   return a < b ? Compare.LESS_THAN : Compare.BIGGER_THAN
 }
+```
 
+### 创建BinarySearchTree类
+
+```js
 class BinarySearchTree {
   constructor(compareFn = defaultCompare) {
     this.compareFn = compareFn  // 用来比较节点值
@@ -65,18 +69,20 @@ class BinarySearchTree {
 
 ```
 
-方法：
+## 方法
 
-- insert(key)：向树中插入一个新的键。
-- search(key)：在树中查找一个键。如果节点存在，则返回 true；如果不存在，则返回false。
-- inOrderTraverse()：通过中序遍历方式遍历所有节点。
-- preOrderTraverse()：通过先序遍历方式遍历所有节点。
-- postOrderTraverse()：通过后序遍历方式遍历所有节点。
-- min()：返回树中最小的值/键。
-- max()：返回树中最大的值/键。
-- remove(key)：从树中移除某个键。
+方法 | 说明 | 是否返回
+---|---|---
+insert(key) | 向树中插入一个新的键 | false
+search(key) | 在树中查找一个键，是否存在 | true
+inOrderTraverse() | 通过`中序遍历`方式遍历所有节点 | false
+preOrderTraverse() | 通过`先序遍历`方式遍历所有节点 | false
+postOrderTraverse() | 通过`后序遍历`方式遍历所有节点 | false
+min() | 返回树中最小的值/键 | true
+max() | 返回树中最大的值/键 | true
+remove(key) | 从树中移除某个键 | true
 
-### 向二叉搜索树中插入一个键
+## 向二叉搜索树中插入一个键
 
 步骤：
 
@@ -115,13 +121,35 @@ insertNode(node, key) {
 }
 ```
 
+测试：
+
+```js
+const tree = new BinarySearchTree()
+tree.insert(11)
+tree.insert(7)
+tree.insert(15)
+tree.insert(5)
+tree.insert(3)
+tree.insert(9)
+tree.insert(8)
+tree.insert(10)
+tree.insert(13)
+tree.insert(12)
+tree.insert(14)
+tree.insert(20)
+tree.insert(18)
+tree.insert(25)
+
+console.log(tree)
+```
+
 ## 树的遍历
 
 访问树的所有节点有三种方式：**中序**、**先序**和**后序**
 
 ### 中序遍历
 
-中序遍历是一种以上行顺序访问 BST 所有节点的遍历方式，也就是以从最小到最大的顺序访问所有节点。中序遍历的一种应用就是对树进行排序操作
+中序遍历是一种以上行顺序访问 BST 所有节点的遍历方式，也就是以**从最小到最大的顺序访问所有节点**。中序遍历的一种应用就是对树进行**排序操作**
 
 ```js
 inOrderTraverse(callback) {
@@ -139,7 +167,7 @@ inOrderTraverseNode(node, callback) {
 - callback：定义我们对遍历到的每个节点进行的操作
 - 检查以参数形式传入的节点是否为 null——这就是停止递归继续执行的判断条件，即递归算法的基线条件
 
-测试
+测试：
 
 ```js
 const printNode = (value) => console.log(value); 
@@ -153,7 +181,7 @@ tree.inOrderTraverse(printNode);
 
 ### 先序遍历
 
-先序遍历是以优先于后代节点的顺序访问每个节点的。先序遍历的一种应用是打印一个结构化的文档
+先序遍历是以**优先于后代节点的顺序**访问每个节点的。先序遍历的一种应用是打印一个结构化的文档
 
 ```js
 preOrderTraverse(callback) {
@@ -184,7 +212,7 @@ tree.preOrderTraverse(printNode);
 
 ### 后序遍历
 
-后序遍历则是先访问节点的后代节点，再访问节点本身。后序遍历的一种应用是计算一个目录及其子目录中所有文件所占空间的大小
+后序遍历则是**先访问节点的后代节点，再访问节点本身**。后序遍历的一种应用是计算一个目录及其子目录中所有文件所占空间的大小
 
 ```js
 postOrderTraverse(callback) {
@@ -215,7 +243,15 @@ tree.postOrderTraverse(printNode);
 
 ![tree](./images/tree/postOrderTraverse.png)
 
-## 搜索树中的值
+### 总结
+
+中序、先序、后序遍历函数的唯一区别就是`callback`函数的在递归左侧和右侧树的位置：
+
+- 中序：`callback`在中间位置
+- 先序：`callback`在前面位置
+- 后序：`callback`在后面位置
+
+## 树的搜索
 
 在树中，有三种经常执行的搜索类型：
 
@@ -284,6 +320,22 @@ searchNode(node, key) {
 
 ### 移除一个节点
 
+步骤：
+
+- 键不存在于树中，返回`null`
+- 如果要找的键比当前节点的值小，就沿着树的左边找到下一个节点
+- 如果要找的键比当前节点的值大，就沿着树的右边找到下一个节点
+- 找到了要找的键即：键等于`node.key`
+  - 第一种情况：该节点是一个没有左侧或右侧子节点的叶节点
+    - 给这个节点赋予 null 值来移除它
+  - 第二种情况：移除有一个左侧子节点或右侧子节点的节点
+    - 跳过这个节点，直接将父节点指向它的指针指向子节点
+  - 第三种情况：移除有两个子节点的节点
+    - 当找到了要移除的节点后，需要找到它右边子树中最小的节点
+    - 用它右侧子树中最小节点的键去更新这个节点的值
+    - 继续把右侧子树中的最小节点移除
+    - 向它的父节点返回更新后节点的引用
+
 ```js
 remove(key) {
   this.root = this.removeNode(this.root, key)
@@ -299,7 +351,6 @@ removeNode(node, key) {
     node.right = this.removeNode(node.right, key)
     return node
   } else {
-    // 键等于 node.key
     // 第一种情况
     if (node.left == null && node.right == null) {
       node = null
@@ -322,7 +373,9 @@ removeNode(node, key) {
 }
 ```
 
-## 二叉搜索树最终实现
+- root 被赋值为 removeNode 方法的返回值
+
+## 最终实现
 
 ```js
 const Compare = {
@@ -454,13 +507,10 @@ class BinarySearchTree {
       node.right = this.removeNode(node.right, key)
       return node
     } else {
-      // 键等于 node.key
-      // 第一种情况
       if (node.left == null && node.right == null) {
         node = null
         return node
       }
-      // 第二种情况
       if (node.left == null) {
         node = node.right
         return node
@@ -468,43 +518,11 @@ class BinarySearchTree {
         node = node.left
         return node
       }
-      // 第三种情况
       const aux = this.minNode(node.right)
       node.key = aux.key
       node.right = this.removeNode(node.right, aux.key)
       return node
     }
-  }
-}
-```
-
-## 自平衡树
-
-BST 存在一个问题：取决于你添加的节点数，树的一条边可能会非常深；也就是说，树的一条分支会有很多层，而其他的分支却只有几层。这会在需要在某条边上添加、移除和搜索某个节点时引起一些性能问题。为了解决这个问题，有一种树叫作 Adelson-Velskii-Landi 树（ AVL 树）。 AVL 树是一种自平衡二叉搜索树，意思是任何一个节点左右两侧子树的高度之差最多为 1
-
-### AVL树
-
-AVL树是一种自平衡树。添加或移除节点时， AVL树会尝试保持自平衡。任意一个节点（不论深度）的左子树和右子树高度最多相差 1。添加或移除节点时， AVL树会尽可能尝试转换为完全树
-
-### 红黑树
-
-和 AVL 树一样， 红黑树也是一个自平衡二叉搜索树。我们学习了对 AVL 书插入和移除节点可能会造成旋转，所以我们需要一个包含多次插入和删除的自平衡树，红黑树是比较好的。如果插入和删除频率较低（我们更需要多次进行搜索操作），那么 AVL 树比红黑树更好。
-
-在红黑树中，每个节点都遵循以下规则：
-
-- 顾名思义，每个节点不是红的就是黑的；
-- 树的根节点是黑的；
-- 所有叶节点都是黑的（用 NULL 引用表示的节点）；
-- 如果一个节点是红的，那么它的两个子节点都是黑的；
-- 不能有两个相邻的红节点，一个红节点不能有红的父节点或子节点；
-- 从给定的节点到它的后代节点（ NULL 叶节点）的所有路径包含相同数量的黑色节点。
-
-```js
-class RedBlackTree extends BinarySearchTree {
-  constructor(compareFn = defaultCompare) {
-    super(compareFn)
-    this.compareFn = compareFn
-    this.root = null
   }
 }
 ```
