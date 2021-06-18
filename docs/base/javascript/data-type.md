@@ -20,9 +20,9 @@ JavaScript数据类型大体上有两种(细分有8种)
 
 ![数据类型存储图解](./images/buit-in-types.jpg)
 
-::: danger
+::: danger 提示
 
-- 可以看出，数据类型指的是**变量值**的类型，不是变量的类型
+- 可以看出，数据类型指的是 **变量值** 的类型，不是变量的类型
 - 对于JS这种"弱类型"语言来说， 无法给变量限定类型，因为变量的类型是可变的
 
 :::
@@ -31,7 +31,7 @@ JavaScript数据类型大体上有两种(细分有8种)
 
 ### 第一种：typeof运算符
 
-`typeof`是通过检测**类型标签**来检测数据类型，返回数据类型
+`typeof`是通过检测 **类型标签（type tag）** 来检测数据类型，返回数据类型字符串
 
 ```js
 typeof 'hello world'    // 'string'
@@ -52,16 +52,19 @@ typeof /\d/             // 'object'
 ::: tip 总结
 
 1. 可以看出，除了`null`以外，其他的原始数据类型都可以用`typeof`检测出来；
-
 2. 为什么`typeof null === 'object'`？
 
-因为 JavaScript 中的值是由一个**类型标签（type tag）和实际数据值**表示的，对象的类型标签是0，而`null`代表是空指针，它的类型标签也是0，因此返回`'object'`[参考](https://2ality.com/2013/10/typeof-null.html)
+因为 JavaScript 中的值是由一个 **类型标签（type tag）** 和 **实际数据值** 表示的，对象的类型标签是0，而`null`代表是空指针，它的类型标签也是0，因此返回`'object'`
+
+[参考文档](https://2ality.com/2013/10/typeof-null.html)
 
 :::
 
 ### 第二种：instanceof运算符
 
-`instanceof`检测构造函数的 `prototype` 属性是否出现在某个实例对象的原型链上，返回`Boolean`值。注意：`instanceof`只能用于引用类型，不适用原始类型的值
+`instanceof`检测构造函数的 `prototype` 属性是否出现在某个实例对象的原型链上，返回`Boolean`值。
+
+注意：`instanceof`只能用于引用类型，不适用原始类型的值
 
 ```js
 [] instanceof Array             // true
@@ -86,7 +89,7 @@ typeof /\d/             // 'object'
 
 ### 第三种：Object.prototype.toString
 
-- JS所有的对象都是`Object`类型的实例，它们都会从`Object.prototype`继承属性和方法,其中就包括`toString()`方法；因此，每个对象都有`toString()`方法
+- JS所有的对象都是`Object`类型的实例，它们都会从`Object.prototype`上继承属性和方法,其中就包括`toString()`方法；因此，每个对象都有`toString()`方法
 - 返回一个表示该对象的字符串，默认格式是`"[object type]"`,其中`type`是对象的类型
 - 但是，不同的类型可能对`toString()`进行了重写，如下案例
 - 因此，只能通过`Object.prototype.toString()`来调用`Object`的`toString`方法
@@ -128,6 +131,10 @@ Object.prototype.toString.call(new Person) === "[object Object]"
 ```
 
 ### 第四种：最终解决方案
+
+- 先使用`typeof`检测数据类型拿到返回结果
+- 如果返回结果是字符串`'object'`,则使用`Object.prototype.toString`方式
+- 同时，拿到结果做一个字符串的截取和字母小写的转换
 
 ```js
 const dataType =  operand => {
