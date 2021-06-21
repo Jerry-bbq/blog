@@ -47,7 +47,7 @@ with(obj) {
 
 用JavaScript的树形结构对象来描述真实dom结构
 
-<img src="../../../public/js-vdom.png"/>
+![js-vdom](./images/js-vdom.png)
 
 ### 什么是 diff 算法
 
@@ -55,11 +55,11 @@ with(obj) {
 
 - 只比较同一层级，不跨级比较
 
-<img src="../../../public/diff1.jpg"/>
+![diff1](./images/diff1.jpg)
 
 - tag不相同，则直接删除掉，不再深度比较
 
-<img src="../../../public/diff2.jpg"/>
+![diff2](./images/diff2.jpg)
 
 - tag和key，两者都相同，则认为是相同节点，不再深度比较
 
@@ -97,6 +97,7 @@ Vue3.x借鉴了`ivi算法`和 `inferno算法`：在创建VNode时就确定其类
 [实现](https://github.com/luguanrui/virtualDOM)
 
 index.js
+
 ```js
 import { createElement,render,renderDOM } from './element'
 import diff from  './diff'

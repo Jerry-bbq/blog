@@ -37,7 +37,7 @@ MVVM作为绑定的入口，整合Observer，Compile和Watcher三者，通过Obs
 
 生命周期图：
 
-![vue-lifecycle](../../../public/vue-lifecycle.png)
+![vue-lifecycle](./images/vue-lifecycle.png)
 
 8个阶段：Vue 实例的创建到组件销毁的一个的过程
 
@@ -48,7 +48,7 @@ MVVM作为绑定的入口，整合Observer，Compile和Watcher三者，通过Obs
 
 描述：
 
-![vue-lifecycle2](../../../public/vue-lifecycle2.jpeg)
+![vue-lifecycle2](./images/vue-lifecycle2.jpeg)
 
 组件加载渲染过程：**beforeCreate-->created-->beforeMount-->mounted**
 
@@ -396,7 +396,7 @@ data: {
 
 ## 如何监测数组变化
 
-![vue-array](../../../public/vue-array.png)
+![vue-array](./images/vue-array.png)
 
 使用了函数劫持的方式，`重写了数组的方法`，Vue将data中的数组进行了原型链重写，指向了自己定义的数组原型方法，包含如下方法：
 
@@ -416,7 +416,7 @@ data: {
 
 ## 数据绑定与响应式数据原理
 
-![vue-obj](../../../public/vue-obj.png)
+![vue-obj](./images/vue-obj.png)
 
 - 监听data变化
 - 组件渲染和更新的流程
