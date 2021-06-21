@@ -22,7 +22,7 @@ Observe | 数据的`观察者`
 Watcher | 数据的`订阅者`，数据变化会通知Watcher，然后由Watcher进行相应的操作，例如更新视图
 Dep | Observe和Watcher的`纽带`，当数据发生变化时，会被Observe观察到，然后由Dep通知到Watcher
 
-## Observe类观察者
+## 观察者——Observe类
 
 概述：
 
@@ -36,7 +36,7 @@ Dep | Observe和Watcher的`纽带`，当数据发生变化时，会被Observe观
 
 [Observe的简单实现](./component/my-observe.md)
 
-## Dep类纽带
+## 纽带——Dep类
 
 - 用于收集当前响应式对象的依赖关系
 - 每个响应式对象包括子对象都拥有一个 Dep 实例（里面 subs 是 Watcher 实例数组
@@ -55,7 +55,7 @@ notify | 派发更新（通知订阅者）（实际上是调用Wathcer的`update
 Dep是Watcher实例的管理者。Dep 是一个类，用于依赖收集和派发更新，也就是存放`Watcher实例`和触发Watcher实例上的`update`
 :::
 
-## Watcher类订阅者
+## 订阅者——Watcher类
 
 ```js
 if (options) {
