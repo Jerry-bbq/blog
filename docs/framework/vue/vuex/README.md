@@ -6,7 +6,7 @@ sidebar: auto
 
 [Vuex](https://vuex.vuejs.org/zh/) 是一个专为 Vue.js 应用程序开发的状态管理模式。
 
-<img src="../../../public/vuex.png">
+![vuex](../../../public/vuex.png)
 
 ## 核心api
 

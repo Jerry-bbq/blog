@@ -1,3 +1,7 @@
+---
+sidebar: auto
+---
+
 # 渲染
 
 ## 模板编译
@@ -22,7 +26,7 @@ with(obj) {
 
 ## 描述vue组件是如何渲染和更新过程
 
-![](./images/render.png)
+![render](./images/render.png)
 
 初次渲染：
 

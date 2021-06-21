@@ -77,7 +77,7 @@ module.exports = {
     sidebar: {
       // '/base/': [],
       // '/share/': [],
-      '/framework/vue/v2/': [['', '目录'], 'reactive', 'render', 'extend'],
+      // '/framework/vue/v2/': [['', '目录'], 'reactive', 'render', 'extend'],
     },
   },
   markdown: {
