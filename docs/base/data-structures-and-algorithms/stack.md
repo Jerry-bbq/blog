@@ -6,7 +6,9 @@ sidebar: auto
 
 ## 定义
 
-栈是一种遵从`后进先出(LIFO)`原则的有序集合。新添加或待删除的元素都保存在栈的同一端，称作**栈顶**，另一端就叫**栈底**。在栈里，新元素都靠近栈顶，旧元素都接近栈底。
+栈是一种遵从`后进先出(LIFO)`原则的有序集合。
+
+新添加或待删除的元素都保存在栈的同一端，称作**栈顶**，另一端就叫**栈底**。在栈里，新元素都靠近栈顶，旧元素都接近栈底。
 
 栈也被用在编程语言的编译器和内存中保存变量、方法调用等，也被用于浏览器历史记录 (浏览器的返回按钮)。
 
@@ -63,6 +65,8 @@ stack.push(11);
 console.log(stack.size()); // 输出3
 console.log(stack.isEmpty()); // 输出false
 stack.push(15);
+console.log(stack.items); 
+// [5,8,11,15]
 ```
 
 下图描绘了对栈的操作和当前的状态：
@@ -75,6 +79,8 @@ stack.push(15);
 stack.pop();
 stack.pop(); 
 console.log(stack.size()); // 输出2
+console.log(stack.items); 
+// [5,8]
 ```
 
 下图描绘了对栈的操作和当前的状态：
@@ -176,6 +182,26 @@ function decimalToBinary(decNumber) {
 // 测试
 decimalToBinary(10)     // '1010'
 decimalToBinary(233)    // '11101001'
+```
+
+使用数组实现：
+
+```js
+function decimalToBinary(decNumber) {
+  const remArr = []
+  let number = decNumber
+  let rem
+
+  while (number > 0) {
+    rem = number % 2
+    remArr.push(rem)
+    number = Math.floor(number / 2)
+  }
+  return remArr
+    .reverse()
+    .toString()
+    .replace(/,/g, '')
+}
 ```
 
 ### 整数十进制转化为其他进制

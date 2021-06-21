@@ -1,233 +1,159 @@
-const Compare = {
-  LESS_THAN: -1,
-  BIGGER_THAN: 1,
-}
-function defaultCompare(a, b) {
-  if (a === b) {
-    return 0
+class Queue {
+  constructor() {
+    this.count = 0 // 记录队列的大小
+    this.lowestCount = 0 // 记录队列的前端
+    this.items = {}
   }
-  return a < b ? Compare.LESS_THAN : Compare.BIGGER_THAN
-}
-class Node {
-  constructor(key) {
-    this.key = key //  节点值
-    this.left = null // 左侧子节点引用
-    this.right = null // 右侧子节点引用
+  // 从`队列末尾`添加元素
+  enqueue(element) {
+    this.items[this.count] = element
+    this.count++
+  }
+  // 从`队列头部`移除元素
+  dequeue() {
+    if (this.isEmpty()) {
+      return undefined
+    }
+    // 删除队列前端
+    const result = this.items[this.lowestCount]
+    delete this.items[this.lowestCount]
+    this.lowestCount++
+    return result
+  }
+  peek() {
+    if (this.isEmpty()) {
+      return undefined
+    }
+    return this.items[this.lowestCount]
+  }
+  isEmpty() {
+    return this.count - this.lowestCount === 0
+  }
+  size() {
+    return this.count - this.lowestCount
+  }
+  clear() {
+    this.items = {}
+    this.count = 0
+    this.lowestCount = 0
+  }
+  toString() {
+    if (this.isEmpty()) {
+      return ''
+    }
+    let objString = `${this.items[this.lowestCount]}`
+    for (let i = this.lowestCount + 1; i < this.count; i++) {
+      objString = `${objString},${this.items[i]}`
+    }
+    return objString
   }
 }
-class BinarySearchTree {
-  constructor(compareFn = defaultCompare) {
-    this.compareFn = compareFn // 用来比较节点值
-    this.root = null // Node 类型的根节点
+
+class Deque {
+  constructor() {
+    this.count = 0
+    this.lowestCount = 0
+    this.items = {}
   }
-  insert(key) {
-    if (this.root == null) {
-      this.root = new Node(key)
+  // 向双端队列的前端添加元素
+  addFront(element) {
+    if (this.isEmpty()) {
+      // 场景一：双端队列是空的
+      this.addBack(element)
+    } else if (this.lowestCount > 0) {
+      // 场景二：一个元素已经被从双端队列的前端移除
+      this.lowestCount--
+      this.items[this.lowestCount] = element
     } else {
-      this.insertNode(this.root, key)
-    }
-  }
-  insertNode(node, key) {
-    if (this.compareFn(key, node.key) === Compare.LESS_THAN) {
-      if (node.left == null) {
-        node.left = new Node(key)
-      } else {
-        this.insertNode(node.left, key)
+      // 场景三：lowestCount 为 0 的情况
+      for (let i = this.count; i > 0; i--) {
+        this.items[i] = this.items[i - 1]
       }
-    } else {
-      if (node.right == null) {
-        node.right = new Node(key)
-      } else {
-        this.insertNode(node.right, key)
-      }
-    }
-  }
-  inOrderTraverse(callback) {
-    this.inOrderTraverseNode(this.root, callback)
-  }
-  inOrderTraverseNode(node, callback) {
-    if (node != null) {
-      this.inOrderTraverseNode(node.left, callback)
-      callback(node.key)
-      this.inOrderTraverseNode(node.right, callback)
+      this.count++
+      this.lowestCount = 0
+      this.items[0] = element
     }
   }
 
-  preOrderTraverse(callback) {
-    this.preOrderTraverseNode(this.root, callback)
-  }
-  preOrderTraverseNode(node, callback) {
-    if (node != null) {
-      callback(node.key)
-      this.preOrderTraverseNode(node.left, callback)
-      this.preOrderTraverseNode(node.right, callback)
-    }
+  // 以下方法都是Stack和Queue中已实现的
+  // 双端队列后端添加新的元素
+  addBack(element) {
+    this.items[this.count] = element
+    this.count++
   }
 
-  postOrderTraverse(callback) {
-    this.postOrderTraverseNode(this.root, callback)
-  }
-  postOrderTraverseNode(node, callback) {
-    if (node != null) {
-      this.postOrderTraverseNode(node.left, callback)
-      this.postOrderTraverseNode(node.right, callback)
-      callback(node.key)
+  // 双端队列前端移除第一个元素
+  removeFront() {
+    if (this.isEmpty()) {
+      return undefined
     }
+    const result = this.items[this.lowestCount]
+    delete this.items[this.lowestCount]
+    this.lowestCount++
+    return result
+  }
+  // 双端队列后端移除第一个元素
+  removeBack() {
+    if (this.isEmpty()) {
+      return undefined
+    }
+    this.count--
+    const result = this.items[this.count]
+    delete this.items[this.count]
+    return result
+  }
+  // 双端队列前端的第一个元素
+  peekFront() {
+    if (this.isEmpty()) {
+      return undefined
+    }
+    return this.items[this.lowestCount]
+  }
+  // 双端队列后端的第一个元素
+  peekBack() {
+    if (this.isEmpty()) {
+      return undefined
+    }
+    return this.items[this.count - 1]
   }
 
-  min() {
-    return this.minNode(this.root)
+  // 以下方法同普通队列相同
+  isEmpty() {
+    return this.count - this.lowestCount === 0
   }
-  minNode(node) {
-    let current = node
-    while (current != null && current.left != null) {
-      current = current.left
+  size() {
+    return this.count - this.lowestCount
+  }
+  clear() {
+    this.items = {}
+    this.count = 0
+    this.lowestCount = 0
+  }
+  toString() {
+    if (this.isEmpty()) {
+      return ''
     }
-    return current
-  }
-
-  max() {
-    return this.maxNode(this.root)
-  }
-  maxNode(node) {
-    let current = node
-    while (current != null && current.right != null) {
-      current = current.right
+    let objString = `${this.items[this.lowestCount]}`
+    for (let i = this.lowestCount + 1; i < this.count; i++) {
+      objString = `${objString},${this.items[i]}`
     }
-    return current
-  }
-
-  search(key) {
-    return this.searchNode(this.root, key)
-  }
-  searchNode(node, key) {
-    if (node == null) {
-      return false
-    }
-    if (this.compareFn(key, node.key) === Compare.LESS_THAN) {
-      return this.searchNode(node.left, key)
-    } else if (this.compareFn(key, node.key) === Compare.BIGGER_THAN) {
-      return this.searchNode(node.right, key)
-    } else {
-      return true
-    }
-  }
-
-  remove(key) {
-    this.root = this.removeNode(this.root, key)
-  }
-  removeNode(node, key) {
-    if (node == null) {
-      return null
-    }
-    if (this.compareFn(key, node.key) === Compare.LESS_THAN) {
-      node.left = this.removeNode(node.left, key)
-      return node
-    } else if (this.compareFn(key, node.key) === Compare.BIGGER_THAN) {
-      node.right = this.removeNode(node.right, key)
-      return node
-    } else {
-      // 键等于 node.key
-      // 第一种情况
-      if (node.left == null && node.right == null) {
-        node = null
-        return node
-      }
-      // 第二种情况
-      if (node.left == null) {
-        node = node.right
-        return node
-      } else if (node.right == null) {
-        node = node.left
-        return node
-      }
-      // 第三种情况
-      const aux = this.minNode(node.right)
-      node.key = aux.key
-      node.right = this.removeNode(node.right, aux.key)
-      return node
-    }
+    return objString
   }
 }
-const Colors = {
-  RED: 'RED',
-  BLACK: 'BLACK',
-}
-class RedBlackNode extends Node {
-  constructor(key) {
-    super(key)
-    this.key = key
-    this.color = Colors.RED
-    this.parent = null
-  }
-  isRed() {
-    return this.color === Colors.RED
-  }
-}
-class RedBlackTree extends BinarySearchTree {
-  constructor(compareFn = defaultCompare) {
-    super(compareFn)
-    this.compareFn = compareFn
-    this.root = null
-  }
-  insertNode(node, key) {
-    if (this.compareFn(key, node.key) === Compare.LESS_THAN) {
-      if (node.left == null) {
-        node.left = new RedBlackNode(key)
-        node.left.parent = node
-        return node.left
-      } else {
-        return this.insertNode(node.left, key)
-      }
-    } else if (node.right == null) {
-      node.right = new RedBlackNode(key)
-      node.right.parent = node
-      return node.right
-    } else {
-      return this.insertNode(node.right, key)
-    }
-  }
-  fixTreeProperties(node) {
-    while (
-      node &&
-      node.parent &&
-      node.parent.color.isRed() && // {1}
-      node.color !== Colors.BLACK
-    ) {
-      // {2}
-      let parent = node.parent // {3}
-      const grandParent = parent.parent // {4}
-      // 情形 A：父节点是左侧子节点
-      if (grandParent && grandParent.left === parent) {
-        // {5}
-        const uncle = grandParent.right // {6}10.6 自平衡树 197
-        // 情形 1A：叔节点也是红色——只需要重新填色
-        if (uncle && uncle.color === Colors.RED) {
-          // {7}
-          grandParent.color = Colors.RED
-          parent.color = Colors.BLACK
-          uncle.color = Colors.BLACK
-          node = grandParent // {8}
-        } else {
-          // 情形 2A：节点是右侧子节点——左旋转
-          // 情形 3A：节点是左侧子节点——右旋转
-        }
-      } else {
-        // 情形 B：父节点是右侧子节点
-        const uncle = grandParent.left // {9}
-        // 情形 1B：叔节点是红色——只需要重新填色
-        if (uncle && uncle.color === Colors.RED) {
-          // {10}
-          grandParent.color = Colors.RED
-          parent.color = Colors.BLACK
-          uncle.color = Colors.BLACK
-          node = grandParent
-        } else {
-          // 情形 2B：节点是左侧子节点——右旋转
-          // 情形 3B：节点是右侧子节点——左旋转
-        }
-      }
-    }
-    this.root.color = Colors.BLACK // {11}
-  }
-}
+
+const deque = new Deque();
+console.log(deque.isEmpty());                   // 输出true
+deque.addBack('John'); 
+deque.addBack('Jack');
+console.log(deque.toString());                  // John, Jack
+deque.addBack('Camila');
+console.log(deque.toString());                  // John, Jack, Camila
+console.log(deque.size());                      // 输出3
+console.log(deque.isEmpty());                   // 输出false
+deque.removeFront();                            // 移除John
+console.log(deque.toString());                  // Jack, Camila
+deque.removeBack();                             // Camila 决定离开
+console.log(deque.toString());                  // Jack
+deque.addFront('John');                         // John 回来询问一些信息
+console.log(deque.toString());                  // John, Jack
+

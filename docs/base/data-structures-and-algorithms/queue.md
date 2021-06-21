@@ -6,7 +6,9 @@ sidebar: auto
 
 ## 定义
 
-队列是遵循`先进先出`(FIFO，也称为先来先服务)原则的一组有序的项。队列在尾部添加新元素，并从顶部移除元素。最新添加的元素必须排在队列的末尾。
+队列是遵循`先进先出`(FIFO，也称为先来先服务)原则的一组有序的项。
+
+队列在尾部添加新元素，并从顶部移除元素。最新添加的元素必须排在队列的末尾。
 
 ## 方法
 
@@ -85,6 +87,9 @@ queue.enqueue('John');
 queue.enqueue('Jack');
 console.log(queue.toString()); // John,Jack
 queue.enqueue('Camila');
+
+console.log(queue.items)
+// {0: "John", 1: "Jack", 2: "Camila"}
 ```
 
 下图描绘了对队列的操作和当前的状态：
@@ -94,6 +99,9 @@ queue.enqueue('Camila');
 ```js
 queue.dequeue(); // 移除John
 queue.dequeue(); // 移除Jack
+
+console.log(queue.items)
+// {2: "Camila"}
 ```
 
 下图描绘了对队列的操作和当前的状态：
@@ -217,7 +225,8 @@ class Deque {
 ```js
 const deque = new Deque();
 console.log(deque.isEmpty());                   // 输出true
-deque.addBack('John'); 0 deque.addBack('Jack');
+deque.addBack('John'); 
+deque.addBack('Jack');
 console.log(deque.toString());                  // John, Jack
 deque.addBack('Camila');
 console.log(deque.toString());                  // John, Jack, Camila

@@ -31,6 +31,8 @@ sidebar: auto
 
 ## 方法
 
+添加删除链表元素的中心思想：改变`head`指针和`next`指针
+
 方法 | 说明 | 是否返回
 ---|---|---
 push(element) | 向链表尾部添加一个新元素 | false
@@ -108,9 +110,11 @@ push(element) {
   const node = new Node(element)
 
   if (this.head == null) {
+    // 添加第一个元素
     this.head = node
   } else {
     let current = this.head
+    // 迭代链表找到链表最后一个元素
     while (current.next != null) {
       current = current.next
     }
@@ -174,13 +178,16 @@ removeAt(index) {
     let current = this.head
 
     if (index === 0) {
+      // 删除第一个元素
       this.head = current.next
     } else {
       let previous
+      // 迭代链表，找到目标元素的前一个元素`previous`和后一个元素`current.next`
       for (let i = 0; i < index; i++) {
         previous = current        
         current = current.next     
       }
+      // 将目标元素的前一个元素的指针指向后一个元素
       previous.next = current.next
     }
     this.count--
@@ -205,7 +212,7 @@ removeAt(index) {
    2. 将目标元素的的前一个元素的指针指向目标元素的后一个元素
 4. 最后，递减链表的长度，返回要删除的元素的值
 
-### 循环迭代链表直到目标位置
+### 迭代链表直到目标位置
 
 ```js
 getElementAt(index) {

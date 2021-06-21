@@ -87,7 +87,9 @@ typeof /\d/             // 'object'
 
 :::
 
-### 第三种：Object.prototype.toString
+### 第三种：内部属性[[Class]]
+
+内部属性`[[Class]]`无法直接访问，一般通过 `Object.prototype.toString()` 来查看
 
 - JS所有的对象都是`Object`类型的实例，它们都会从`Object.prototype`上继承属性和方法,其中就包括`toString()`方法；因此，每个对象都有`toString()`方法
 - 返回一个表示该对象的字符串，默认格式是`"[object type]"`,其中`type`是对象的类型
