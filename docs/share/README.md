@@ -23,6 +23,9 @@
   - keep-alive的真实场景应用
   - 前端分页
 - [JavaScript](./javascript.md)
+  - 树形操作
+    - 平铺树
+    - 设置层级
   - 根据图片url，下载图片
   - 获取某年某个月的最后一天
   - scrollIntoView
