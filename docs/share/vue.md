@@ -4,6 +4,29 @@ sidebar: auto
 
 # Vue
 
+## 页面跳转
+
+### 业务场景
+
+从当前页面跳转到子页面，将当前页面的查询条件携带到子页面，并且子页面的查询条件不影响父级页面(**查询条件很多**)
+
+### 技术实现
+
+将查询条件放到**params**中，这样查询条件就不会出现在`url`中，不可以使用`path`跳转，必须使用`name`进行跳转
+
+```js
+this.$router.push({
+    name: 'commonReport',
+    query: {
+      id: data.key + '详情',
+      reportName: data.key + '详情',
+      bizType: 'market-detail',
+      code: data.code,
+      showType: this.tableId,
+    },
+    params: this.searchObj,
+  })
+```
 ## AntDesignVue自定义图片文件上组件
 
 ### 技术实现
