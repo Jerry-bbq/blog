@@ -8,6 +8,11 @@ sidebar: auto
 
 - [从零实现一个工具函数库](./tool-library.md)
 
+## 源码阅读
+
+- [vue-lazyload源码阅读](./vue-lazyload.md)
+- [flexible](./flexible.md)
+
 ## 开发工具
 
 - [NPM的镜像管理](./dev-tools/node-registry-manage.md)
@@ -68,11 +73,6 @@ sidebar: auto
 - 仿抖音评论区移动端弹出框
 
 > [传送门](./css/README.md)
-
-## 源码阅读
-
-- [vue-lazyload源码阅读](./vue-lazyload.md)
-- [flexible](./flexible.md)
 
 ## hexo搭建个人博客
 
