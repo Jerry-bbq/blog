@@ -27,6 +27,7 @@ this.$router.push({
     params: this.searchObj,
   })
 ```
+
 ## AntDesignVue自定义图片文件上组件
 
 ### 技术实现

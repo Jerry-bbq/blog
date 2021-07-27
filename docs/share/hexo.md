@@ -19,25 +19,31 @@ sidebar: auto
 使用hexo来安装，详细的文档请参考[官网](https://hexo.io/zh-cn/docs/)
 
 安装hexo
+
 ```bash
 npm install -g hexo-cli
 ```
+
 检查是否安装成功
+
 ```bash
 hexo -v
 ```
 
 初始化项目,如果在当前文件夹下初始化，可以不写blog,但是要保证这个文件夹是个空文件夹
+
 ```bash
 hexo init <blog>
 ```
 
 安装相关的依赖，使用过的nodejs的同学懂得
+
 ```bash
 npm install
 ```
 
 到此，我们的项目架构已经搭建好了，可以执行下面的命令在本地跑起来看看
+
 ```bash
 hexo server (或者简写 hexo s)
 ```
@@ -72,14 +78,19 @@ hexo server (或者简写 hexo s)
 - 在source下创建CNAME文件，不需要后缀，里面加上你的域名 www.xxxxx.com
 
 6. 创建页面
+
 ```bash
 hexo new <name>
 ```
+
 7. 打包
+
 ```bash
 hexo g
 ```
+
 8. 发布
+
 ```bash
 hexo d 
 ```
