@@ -56,17 +56,18 @@ MyPlugin.install = function (Vue, options) {
 
 - el：指令所绑定的DOM元素
 - binding：一个对象，包含以下属性：
-    - name：指令名，不包括 `v-` 前缀。
-    - value：指令的绑定值，例如`v-my-directive="1 + 1"` 中，绑定值为 `2`。
-    - oldValue：指令绑定的前一个值，仅在 `update` 和 `componentUpdated` 钩子中可用
-    - expression：字符串形式的指令表达式。例如 `v-my-directive="1 + 1"` 中，表达式为 `"1 + 1"`。
-    - arg：传给指令的参数，可选。例如 `v-my-directive:foo` 中，参数为 `"foo`"。
-    - modifiers：一个包含修饰符的对象。例如 `v-my-directive.foo.bar` 中，修饰符对象为 `{ foo: true, bar: true }`
+  - name：指令名，不包括 `v-` 前缀。
+  - value：指令的绑定值，例如`v-my-directive="1 + 1"` 中，绑定值为 `2`。
+  - oldValue：指令绑定的前一个值，仅在 `update` 和 `componentUpdated` 钩子中可用
+  - expression：字符串形式的指令表达式。例如 `v-my-directive="1 + 1"` 中，表达式为 `"1 + 1"`。
+  - arg：传给指令的参数，可选。例如 `v-my-directive:foo` 中，参数为 `"foo`"。
+  - modifiers：一个包含修饰符的对象。例如 `v-my-directive.foo.bar` 中，修饰符对象为 `{ foo: true, bar: true }`
 - vnode：Vue 编译生成的虚拟节点
 - oldVnode：上一个虚拟节点，仅在 update 和 componentUpdated 钩子中可用
 :::
   
 注册自定义插件并传入参数：
+
 ```js
 Vue.use(MyPlugin, { someOption: true })
 ```
@@ -89,6 +90,7 @@ Vue.directive('focus', {
 ```
 
 注册局部指令`v-focus`：
+
 ```js
 directives: {
   focus: {
@@ -115,6 +117,7 @@ directives: {
 注册全局组件：
 
 函数组件形式：
+
 ```js
 Vue.component('component-name', {
   props: []
@@ -126,17 +129,20 @@ Vue.component('component-name', {
   // options
 })
 ```
+
 以`.vue`模板的形式：
+
 ```js
 import ComponentA from '@/components/ComponentA'
 Vue.component('component-name', ComponentA)
 ```
   
 ### 5.图片懒加载的原理
-   
+
 懒加载的应用场景：当图片出现在视口中时，再加载图片
 
 实现步骤：
+
 1. 先将图片的`url`存放到`data-src`自定义属性（可随便设置）中（通过`el.dataset.src`来获取该属性的值）
 2. 实例化`Image`对象得到缓存对象`cacheImg`
 3. 判断图片是否出现在视口中`checkInView`
@@ -179,7 +185,7 @@ preloadImg() {
 
 getBoundingClientRect的图解：
 
-![](./vue-lazyload/getBoundingClientRect.png)
+![getBoundingClientRect](./images/getBoundingClientRect.png)
 
 实现：
 
@@ -262,8 +268,11 @@ new Vue({
 }).$mount('#app')
 
 ```
+
 ::: warning 警告
+
 由于`vue-lazyload`项目中引入插件`assign-deep`,所以需要先手动安装下这个插件, 执行命令`yarn install assign-deep`即可
+
 :::
 
 5. 以上步骤完成之后，就可以启动自己的项目，随便的调试源码了
@@ -302,6 +311,7 @@ new Vue({
 首先从入口文件`index.js`开始下手, 其中包含了一些`vue1.0`版本相关的兼容性代码，`vue3.0`即将在8月份来临，还有人在用`vue1.0`？因此，注释掉`vue1.0`相关的兼容性代码，代码结构也会显得更加的简单明了。
 
 源码解析如下：
+
 ```js
 import Lazy from './lazy'
 import LazyComponent from './lazy-component'
@@ -416,7 +426,7 @@ export default function(Vue) {
 
 `add()`方法实现的大致流程：
 
-![](./vue-lazyload/add.png)
+![add](./images/add.png)
 
 可以看出，插件内部维护了一个监听队列`ListenerQueue`，来存储监听器 `listener`对象，通过遍历监听队列`ListenerQueue`，最终实现每张图片的懒加载
 
@@ -495,14 +505,17 @@ add(el, binding, vnode) {
 ```
 
 ::: warning 疑问
+
 有必要在`Vue.nextTick`中再次去调用一次`Vue.nextTick(() => this.lazyLoadHandler());`？？？
+
 :::
 
 当虚拟dom更新时，会调用`lazy.update`方法，`update()`方法的实现的大致流程：
 
-![](./vue-lazyload/update.png)
+![update](./images/update.png)
 
 `update()`的实现源码如下：
+
 ```js
 update(el, binding, vnode) {
   let { src, loading, error } = this._valueFormatter(binding.value);
@@ -537,7 +550,7 @@ update(el, binding, vnode) {
 
 当指令与元素解绑时，调用`lazy.remove`方法，`remove()`方法的大致实现流程图：
 
-![](./vue-lazyload/remove.png)
+![remove](./images/remove.png)
 
 `remove()`的源码：
 
@@ -1060,7 +1073,9 @@ export default (lazy) => {
 ```
 
 ::: warning 提示
+
 使用该组件，如果容器中没有其他的DOM元素，rect对象的top，bottom，left，right都是0，则不会执行load方法，即不会渲染图片
+
 :::
 
 <!-- ## lazy-image组件
@@ -1097,7 +1112,6 @@ export default (lazy) => {
 - `Vue`自定义插件（包括自定义组件，自定义指令）
 - 对图片懒加载的实现有了全新的认识
 
-
 `vue-lazyload`通过会维护一个`ListenerQueue`队列来实现图片的懒加载，代码执行主流程如下：
 
-![](./vue-lazyload/main.png)
+![main](./images/main.png)
