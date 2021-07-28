@@ -19,6 +19,10 @@ module.exports = {
         link: '/base/',
       },
       {
+        text: 'JobSummary',
+        link: '/job-summary/'
+      },
+      {
         text: 'Framework',
         items: [
           {

@@ -28,11 +28,11 @@ unzip update.zip -d update
 
 ## 技术实现
 
-package.json 
+package.json
 
 ```bash
 scripts: {
-    deploy: "node deploy/deploy.js"
+  deploy: "node deploy/deploy.js"
 }
 ```
 
@@ -51,6 +51,7 @@ module.exports = config;
 ```
 
 部署工作：
+
 ```js
 // deploy.js
 const fs = require("fs");
@@ -141,5 +142,6 @@ compress();
 ```
 
 缺点：
+
 - 暴露了服务器的密码，有安全隐患
 - 需要先本地打包，然后在执行`npm run deploy`，部署完成之后需要手动删除本地的包

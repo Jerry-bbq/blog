@@ -13,66 +13,11 @@ sidebar: auto
 - [vue-lazyload源码阅读](./vue-lazyload.md)
 - [flexible](./flexible.md)
 
-## 开发工具
-
-- [NPM的镜像管理](./dev-tools/node-registry-manage.md)
-- [Node版本管理](./dev-tools/node-version-manager.md)
-- [Charles](./dev-tools/charles.md)
-
 ## 服务器相关
 
 - [Docker](./server/docker.md)
 - [nginx](./server/nginx.md)
 - [禅道](./server/zentao.md)
-
-## 移动端
-
-- [移动端适配](./flexible.md)
-
-## Vue
-
-- AntDesignVue自定义图片文件上组件
-- ElementUI table+分页封装
-- ElementUI table表格自适应
-- ElementUI弹窗组件简单封装
-- 循环组件引用
-- 编程式导航实现新窗口打开
-- 弹窗关闭初始化数据
-- vue绑定值与字符串拼接
-- 动态表格
-- keep-alive的真实场景应用
-- 前端分页
-
-> [传送门](./vue/README.md)
-
-## JavaScript
-
-- 树形操作
-  - 平铺树
-  - 设置层级
-- 二进制流文件下载
-- 根据图片url，下载图片
-- 获取某年某个月的最后一天
-- 自动部署
-- scrollIntoView
-- parseInt的正确使用
-
-> [传送门](./javascript/README.md)
-
-## CSS相关问题
-
-- 控制div内的元素自动换行
-- 文字超出隐藏并显示省略号
-- 设置input 的placeholder的字体样式
-- 取消input的边框
-- 隐藏滚动条或更改滚动条样式
-- CSS选择器last-child与last-of-type
-- h5吸顶
-- 让子元素水平垂直居中的方法
-- 移动端1px解决方案
-- 仿抖音评论区移动端弹出框
-
-> [传送门](./css/README.md)
 
 ## hexo搭建个人博客
 
