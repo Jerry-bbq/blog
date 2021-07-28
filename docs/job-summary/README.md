@@ -10,10 +10,6 @@ sidebar: auto
 - [Node版本管理](./dev-tools/node-version-manager.md)
 - [Charles](./dev-tools/charles.md)
 
-## 移动端
-
-- [移动端适配](./flexible/README.md)
-
 ## Vue
 
 - [vue-router通过携带query和params携带参数路由跳转](./vue/vue-router-params.md)

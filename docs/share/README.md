@@ -11,7 +11,7 @@ sidebar: auto
 ## 源码阅读
 
 - [vue-lazyload源码阅读](./vue-lazyload/README.md)
-- [flexible](./flexible.md)
+- [flexible](./flexible/README.md)
 
 ## 服务器相关
 

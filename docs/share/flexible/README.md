@@ -18,18 +18,21 @@ npm install postcss-pxtorem -D
 
 ## 使用
 
+在 index.html 的 head标签 中添加如下代码：
+
 ```html
-<!-- 1. 在 index.html 的 head标签 中添加如下代码 -->
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no">
 ```
 
+在 main.js中 引用
+
 ```js
-// 2. 在 main.js中 引用
 import 'amfe-flexible'
 ```
 
+在 postcss.config 中配置
+
 ```js
-// 3. 在 postcss.config 中配置
 module.exports = {
   plugins: {
     autoprefixer: {}, // 自动添加前缀，vue脚手架自带
@@ -72,12 +75,10 @@ rem（font size of the root element）是指相对于根元素的字体大小的
 ```js
 // 立即执行函数 ( function(){}() ) 或者 ( function(){} )(),传入window，document主要是为了压缩优化
 (function flexible (window, document) {
-
     // 获取文档对象的根元素: html
     var docEl = document.documentElement
     // 获取dpr
     var dpr = window.devicePixelRatio || 1
-  
     // adjust body font size
     function setBodyFontSize () {
       if (document.body) {
@@ -91,20 +92,16 @@ rem（font size of the root element）是指相对于根元素的字体大小的
     // TODO 1. 设置 body 的 fontSize = 12 * dpr (px)
     // body上设置12 * dpr的font-size值，为了重置页面中的字体默认值，不然没有设置font-size的元素会继承html上的font-size，变得很大。
     setBodyFontSize();
-  
     // set 1rem = viewWidth / 10
     function setRemUnit () {
       var rem = docEl.clientWidth / 10
       docEl.style.fontSize = rem + 'px'
     }
-  
     // TODO 2.设置 根元素: html 的 fontSize = clientWidth / 10 (px)
     setRemUnit()
-  
     // reset rem unit on page resize
     // TODO 3. 窗口大小变化的时候，重新设置 html的fontSize
     window.addEventListener('resize', setRemUnit)
-
     // TODO 4. 每次加载页面时触发
     window.addEventListener('pageshow', function (e) {
       //  如果页面从浏览器的缓存中读取
@@ -112,13 +109,11 @@ rem（font size of the root element）是指相对于根元素的字体大小的
         setRemUnit()
       }
     })
-  
     // 检测0.5px的支持，支持则root元素的class中有hairlines
     if (dpr >= 2) {
       var fakeBody = document.createElement('body')
       var testElement = document.createElement('div')
       testElement.style.border = '.5px solid transparent'
-      
       fakeBody.appendChild(testElement)
       docEl.appendChild(fakeBody)
       if (testElement.offsetHeight === 1) {
