@@ -6,7 +6,7 @@ sidebar: auto
 
 ## 下载
 
-[下载](https://www.charlesproxy.com/)
+[官方下载](https://www.charlesproxy.com/)
 
 ## Charles License
 
