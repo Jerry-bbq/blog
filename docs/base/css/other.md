@@ -2,7 +2,7 @@
 sidebar: auto
 ---
 
-# css3相关
+# 其他
 
 ## display:none、visibile:hidden、opacity:0的区别
 
@@ -30,4 +30,3 @@ display: -webkit-box;
 -webkit-line-clamp: 3; // 最多显示几行
 overflow: hidden;
 ```
-

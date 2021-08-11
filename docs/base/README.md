@@ -49,7 +49,7 @@ JS三座大山：
 ## CSS
 
 - [盒模型](./css/box-model.md)
-- [块级格式化上下文](./css/bfc.md)
+- [BFC](./css/bfc.md)
 - [清除浮动](./css/clear.md)
 - [水平垂直居中](./css/center.md)
 - [页面布局](./css/layout.md)
