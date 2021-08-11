@@ -2,23 +2,28 @@
 sidebar: auto
 ---
 
-# 数据类型
+# 数据结构与类型
 
 JavaScript数据类型大体上有两种(细分有8种)
 
-- 原始类型
+- 原始类型（又叫基本类型）
 - 引用类型
 
-## 类型
+## 数据类型
 
 类型 | 数据类型 | 存储
 ---|---|---
-原始类型（又叫基本类型） | `string`、`number`、`boolean`、`null`、`undefined`、`bigint`、`symbol` (7种)| 栈(stack)
+原始类型 | `string`、`number`、`boolean`、`null`、`undefined`、`bigint`、`symbol` (7种)| 栈(stack)
 引用类型 | `object`，其中包含具体的引用类型`Array`、`Function`、`Date`、`RegExp`等 | 堆(heap)
 
 ## 存储
 
-![数据类型存储图解](./images/buit-in-types.jpg)
+变量存在在内存的哪里？
+
+- 基本类型保存在**栈内存**中，因为类型在内存中占有固定大小的空间，通过**按值来访问**
+- 引用类型，因为这些值的大小不固定，但是内存地址是固定的，因此**将引用类型的访问地址保存在栈内存中，将值保存在堆内存中**。先从栈中读取内存地址，通过内存地址找到堆中的值。这叫做**按引用访问**
+
+![数据类型存储图解](./images/stack-heap.png)
 
 ::: danger 提示
 
@@ -27,11 +32,11 @@ JavaScript数据类型大体上有两种(细分有8种)
 
 :::
 
-## 检测
+## 数据类型的检测
 
 ### 第一种：typeof运算符
 
-`typeof`是通过检测 **类型标签（type tag）** 来检测数据类型，返回数据类型字符串
+`typeof`是通过检测变量值的 **类型标签（type tag）** 来检测数据类型，返回数据类型字符串
 
 ```js
 typeof 'hello world'    // 'string'
@@ -40,6 +45,7 @@ typeof true             // 'boolean'
 typeof undefined        // 'undefined'
 typeof Symbol()         // 'symbol'
 typeof 123n             // 'bigint'
+
 typeof null             // 'object' 无法判定是否为 null
 
 typeof {}               // 'object'
@@ -57,6 +63,8 @@ typeof /\d/             // 'object'
 因为 JavaScript 中的值是由一个 **类型标签（type tag）** 和 **实际数据值** 表示的，对象的类型标签是0，而`null`代表是空指针，它的类型标签也是0，因此返回`'object'`
 
 [参考文档](https://2ality.com/2013/10/typeof-null.html)
+
+3. **typeof**检测不了**null**和**引用类型**
 
 :::
 
@@ -83,7 +91,7 @@ typeof /\d/             // 'object'
 ::: tip 总结
 
 1. instanceof是通过原型链查找，可以参考另外一篇文章[原型和原型链](./prototype-chain.md)
-2. 可以看出，`instanceof`无法精准的判断数据类型,可以使用`Object.prototype.toString.call()`来判断
+2. 可以看出，`instanceof`也无法精准的判断数据类型
 
 :::
 
@@ -92,11 +100,11 @@ typeof /\d/             // 'object'
 内部属性`[[Class]]`无法直接访问，一般通过 `Object.prototype.toString()` 来查看
 
 - JS所有的对象都是`Object`类型的实例，它们都会从`Object.prototype`上继承属性和方法,其中就包括`toString()`方法；因此，每个对象都有`toString()`方法
-- 返回一个表示该对象的字符串，默认格式是`"[object type]"`,其中`type`是对象的类型
-- 但是，不同的类型可能对`toString()`进行了重写，如下案例
+- `Object.prototype.toString()`返回一个表示该对象的字符串，默认格式是`"[object type]"`,其中`type`是对象的类型
+- 但是，不同的类型可能对`toString()`进行了重写，如`Array`、`Number`等
 - 因此，只能通过`Object.prototype.toString()`来调用`Object`的`toString`方法
 - 但是上述的方案，`this`始终都是指向`Object`,因此需要改变`this`指向
-- 最终，`Object.prototype.toString.call()`或`Object.prototype.toString.apply()`
+- 最终方案：`Object.prototype.toString.call()`或`Object.prototype.toString.apply()`
 
 ```js
 Object.prototype.toString()             // "[object Object]"
@@ -132,13 +140,15 @@ function Person(){}
 Object.prototype.toString.call(new Person) === "[object Object]"
 ```
 
-### 第四种：最终解决方案
+### 最终解决方案
 
-- 先使用`typeof`检测数据类型拿到返回结果
-- 如果返回结果是字符串`'object'`,则使用`Object.prototype.toString`方式
-- 同时，拿到结果做一个字符串的截取和字母小写的转换
+- 首先，使用`typeof`检测数据类型；
+- 如果`typeof`检测数据类型未`'object'`,则使用`Object.prototype.toString.call()`检测数据类型
+- 同时，`Object.prototype.toString.call()`返回字符串格式统一为`[object `，即字符串前八位一致
+- 最后做一个字符串的截取和字母小写的转换
 
 ```js
+// 接收参数 operand：操作数
 const dataType =  operand => {
     const type = typeof operand
     const toString = Object.prototype.toString
