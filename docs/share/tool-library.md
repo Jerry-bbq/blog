@@ -742,8 +742,15 @@ npm unpublish utils-library --force
 ## 代码提交发布流程
 
 ```bash
+# 打包
+yarn build
+# git commit
 git add .
 yarn commit
+# 更新版本号
 yarn release
+# 代码提交
+git push
+# 发布
 npm publish
 ```
