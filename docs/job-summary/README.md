@@ -12,6 +12,7 @@ sidebar: auto
 
 ## Vue
 
+- [使用gitlab的上的url作为项目的依赖](./vue/gitlab.md)
 - [vue-router通过携带query和params携带参数路由跳转](./vue/vue-router-params.md)
 - [AntDesignVue自定义图片文件上组件](./vue/antd-vue-upload.md)
 - [ElementUI表格和分页组件化](./vue/elementui-table-pagination.md)
