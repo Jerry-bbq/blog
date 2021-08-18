@@ -738,3 +738,12 @@ npm unpublish utils-library --force
 > 注意：
 > 1. 使用淘宝源`cnpm`是无法登录`npmjs`的
 > 2. 发布的包名不可与`npmjs`上已经存在的包重名，否则会提示没有权限的问题
+
+## 代码提交发布流程
+
+```bash
+git add .
+yarn commit
+yarn release
+npm publish
+```
