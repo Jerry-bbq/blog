@@ -6,7 +6,7 @@ sidebar: auto
 
 ## 数据结构与算法
 
-- [学习JavaScript数据结构与算法（第3版）](./data-structures-and-algorithms)
+- [JavaScript数据结构与算法（第3版）](./data-structures-and-algorithms)
 
 其他
 

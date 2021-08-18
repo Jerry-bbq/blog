@@ -8,7 +8,7 @@ sidebar: auto
 
 - [从零实现一个工具函数库](./tool-library.md)
 
-## 源码阅读
+## 阅读
 
 - [vue-lazyload源码阅读](./vue-lazyload/README.md)
 - [flexible](./flexible/README.md)

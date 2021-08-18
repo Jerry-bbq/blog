@@ -1,4 +1,4 @@
-# 学习JavaScript数据结构与算法（第3版）
+# JavaScript数据结构与算法（第3版）
 
 - [数组](./array.md)
 - [栈](./stack.md)
