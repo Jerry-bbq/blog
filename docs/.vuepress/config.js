@@ -2,7 +2,7 @@ const dayjs = require('dayjs')
 
 module.exports = {
   title: 'Blog',
-  base: '/',
+  base: '/blog/',
   dest: 'dist',
   head: [['link', { rel: 'icon', href: '/logo.png' }]],
   themeConfig: {
