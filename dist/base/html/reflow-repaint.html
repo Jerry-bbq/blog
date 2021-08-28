@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>浏览器的回流与重绘 | Blog</title>
+    <meta name="generator" content="VuePress 1.8.2">
+    <link rel="icon" href="/logo.png">
+    <meta name="description" content="">
+    
+    <link rel="preload" href="/assets/css/0.styles.9e582df4.css" as="style"><link rel="preload" href="/assets/js/app.51d98596.js" as="script"><link rel="preload" href="/assets/js/2.4bb5c6af.js" as="script"><link rel="preload" href="/assets/js/57.3d2ffca5.js" as="script"><link rel="prefetch" href="/assets/js/10.d71054e5.js"><link rel="prefetch" href="/assets/js/100.b475a9ea.js"><link rel="prefetch" href="/assets/js/101.758351ad.js"><link rel="prefetch" href="/assets/js/102.cdd3ae9e.js"><link rel="prefetch" href="/assets/js/103.9863696b.js"><link rel="prefetch" href="/assets/js/104.61bd1403.js"><link rel="prefetch" href="/assets/js/105.06369dc4.js"><link rel="prefetch" href="/assets/js/106.7150ba7b.js"><link rel="prefetch" href="/assets/js/107.3c71da4f.js"><link rel="prefetch" href="/assets/js/108.300bbcf3.js"><link rel="prefetch" href="/assets/js/109.578e8e87.js"><link rel="prefetch" href="/assets/js/11.b08da65c.js"><link rel="prefetch" href="/assets/js/110.07289161.js"><link rel="prefetch" href="/assets/js/111.b3c8dce3.js"><link rel="prefetch" href="/assets/js/112.f670b8c5.js"><link rel="prefetch" href="/assets/js/113.80ff1862.js"><link rel="prefetch" href="/assets/js/114.26dc7182.js"><link rel="prefetch" href="/assets/js/115.b22021d0.js"><link rel="prefetch" href="/assets/js/116.831584d2.js"><link rel="prefetch" href="/assets/js/117.36308680.js"><link rel="prefetch" href="/assets/js/118.3fd83ea9.js"><link rel="prefetch" href="/assets/js/119.b470dc79.js"><link rel="prefetch" href="/assets/js/12.981297e9.js"><link rel="prefetch" href="/assets/js/13.efd053f5.js"><link rel="prefetch" href="/assets/js/14.8cc12ff7.js"><link rel="prefetch" href="/assets/js/15.4a8818f8.js"><link rel="prefetch" href="/assets/js/16.291e39f1.js"><link rel="prefetch" href="/assets/js/17.ab0d83d2.js"><link rel="prefetch" href="/assets/js/18.7d004264.js"><link rel="prefetch" href="/assets/js/19.b21feb30.js"><link rel="prefetch" href="/assets/js/20.a02f4d46.js"><link rel="prefetch" href="/assets/js/21.c42863d9.js"><link rel="prefetch" href="/assets/js/22.13af6003.js"><link rel="prefetch" href="/assets/js/23.2ba640af.js"><link rel="prefetch" href="/assets/js/24.289234f8.js"><link rel="prefetch" href="/assets/js/25.36d5baa9.js"><link rel="prefetch" href="/assets/js/26.40cbdc60.js"><link rel="prefetch" href="/assets/js/27.011d87ae.js"><link rel="prefetch" href="/assets/js/28.9654cbff.js"><link rel="prefetch" href="/assets/js/29.632c5366.js"><link rel="prefetch" href="/assets/js/3.94de22ef.js"><link rel="prefetch" href="/assets/js/30.16f4c0e5.js"><link rel="prefetch" href="/assets/js/31.bfdee0a9.js"><link rel="prefetch" href="/assets/js/32.712263a9.js"><link rel="prefetch" href="/assets/js/33.3cfecd6d.js"><link rel="prefetch" href="/assets/js/34.97b0cb27.js"><link rel="prefetch" href="/assets/js/35.fb0a95b3.js"><link rel="prefetch" href="/assets/js/36.55a78c76.js"><link rel="prefetch" href="/assets/js/37.3c22a100.js"><link rel="prefetch" href="/assets/js/38.666ceaf4.js"><link rel="prefetch" href="/assets/js/39.32d4fd77.js"><link rel="prefetch" href="/assets/js/4.2fee3bbc.js"><link rel="prefetch" href="/assets/js/40.8d502d95.js"><link rel="prefetch" href="/assets/js/41.8741d3ea.js"><link rel="prefetch" href="/assets/js/42.b8aef024.js"><link rel="prefetch" href="/assets/js/43.1abd49cf.js"><link rel="prefetch" href="/assets/js/44.548ea2f0.js"><link rel="prefetch" href="/assets/js/45.e3b03806.js"><link rel="prefetch" href="/assets/js/46.12a22081.js"><link rel="prefetch" href="/assets/js/47.0a0da69d.js"><link rel="prefetch" href="/assets/js/48.fae1220d.js"><link rel="prefetch" href="/assets/js/49.5c9e78cc.js"><link rel="prefetch" href="/assets/js/5.c9f2e963.js"><link rel="prefetch" href="/assets/js/50.2bab53a6.js"><link rel="prefetch" href="/assets/js/51.b7054197.js"><link rel="prefetch" href="/assets/js/52.18c36f09.js"><link rel="prefetch" href="/assets/js/53.e3cbe5e1.js"><link rel="prefetch" href="/assets/js/54.48f1ce4a.js"><link rel="prefetch" href="/assets/js/55.1a772e89.js"><link rel="prefetch" href="/assets/js/56.73875c40.js"><link rel="prefetch" href="/assets/js/58.751584ab.js"><link rel="prefetch" href="/assets/js/59.387a9cda.js"><link rel="prefetch" href="/assets/js/6.7912d9f4.js"><link rel="prefetch" href="/assets/js/60.7576b023.js"><link rel="prefetch" href="/assets/js/61.d0e40955.js"><link rel="prefetch" href="/assets/js/62.e97ebdcb.js"><link rel="prefetch" href="/assets/js/63.4d0844ca.js"><link rel="prefetch" href="/assets/js/64.73a7e936.js"><link rel="prefetch" href="/assets/js/65.ee0c5dc1.js"><link rel="prefetch" href="/assets/js/66.4a5ab46a.js"><link rel="prefetch" href="/assets/js/67.fd7cf2dc.js"><link rel="prefetch" href="/assets/js/68.0d09ef02.js"><link rel="prefetch" href="/assets/js/69.6e6349e0.js"><link rel="prefetch" href="/assets/js/7.6d4f04e9.js"><link rel="prefetch" href="/assets/js/70.3b3a43a4.js"><link rel="prefetch" href="/assets/js/71.c780a396.js"><link rel="prefetch" href="/assets/js/72.775b59eb.js"><link rel="prefetch" href="/assets/js/73.d5fee91c.js"><link rel="prefetch" href="/assets/js/74.dccbb432.js"><link rel="prefetch" href="/assets/js/75.032c2abb.js"><link rel="prefetch" href="/assets/js/76.f2a88541.js"><link rel="prefetch" href="/assets/js/77.fd062042.js"><link rel="prefetch" href="/assets/js/78.2764b3d9.js"><link rel="prefetch" href="/assets/js/79.de617e12.js"><link rel="prefetch" href="/assets/js/8.d12f84f3.js"><link rel="prefetch" href="/assets/js/80.9f7f02bd.js"><link rel="prefetch" href="/assets/js/81.697ea965.js"><link rel="prefetch" href="/assets/js/82.a7a11f44.js"><link rel="prefetch" href="/assets/js/83.2cca8f3f.js"><link rel="prefetch" href="/assets/js/84.59b968cc.js"><link rel="prefetch" href="/assets/js/85.638fc3a7.js"><link rel="prefetch" href="/assets/js/86.8977a851.js"><link rel="prefetch" href="/assets/js/87.3fdd18b9.js"><link rel="prefetch" href="/assets/js/88.8a655f7a.js"><link rel="prefetch" href="/assets/js/89.019ea6c3.js"><link rel="prefetch" href="/assets/js/9.e0a0ba7c.js"><link rel="prefetch" href="/assets/js/90.6f430729.js"><link rel="prefetch" href="/assets/js/91.0d6fb0ab.js"><link rel="prefetch" href="/assets/js/92.e934a9b3.js"><link rel="prefetch" href="/assets/js/93.7d28154f.js"><link rel="prefetch" href="/assets/js/94.b8fc4810.js"><link rel="prefetch" href="/assets/js/95.2d2fb851.js"><link rel="prefetch" href="/assets/js/96.c502f690.js"><link rel="prefetch" href="/assets/js/97.f68c3f94.js"><link rel="prefetch" href="/assets/js/98.f077cf61.js"><link rel="prefetch" href="/assets/js/99.2cbc685c.js">
+    <link rel="stylesheet" href="/assets/css/0.styles.9e582df4.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="theme-container"><header class="navbar"><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/" class="home-link router-link-active"><!----> <span class="site-name">Blog</span></a> <div class="links"><div class="search-box"><input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <nav class="nav-links can-hide"><div class="nav-item"><a href="/" class="nav-link">
+  Home
+</a></div><div class="nav-item"><a href="/base/" class="nav-link router-link-active">
+  FE
+</a></div><div class="nav-item"><a href="/job-summary/" class="nav-link">
+  JobSummary
+</a></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="Framework" class="dropdown-title"><span class="title">Framework</span> <span class="arrow down"></span></button> <button type="button" aria-label="Framework" class="mobile-dropdown-title"><span class="title">Framework</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><h4>
+          Vue
+        </h4> <ul class="dropdown-subitem-wrapper"><li class="dropdown-subitem"><a href="/framework/vue/v3/" class="nav-link">
+  v3
+</a></li><li class="dropdown-subitem"><a href="/framework/vue/v2/" class="nav-link">
+  v2
+</a></li><li class="dropdown-subitem"><a href="/framework/vue/vuex/" class="nav-link">
+  Vuex
+</a></li><li class="dropdown-subitem"><a href="/framework/vue/vue-router/" class="nav-link">
+  VueRouter
+</a></li></ul></li><li class="dropdown-item"><h4>
+          React
+        </h4> <ul class="dropdown-subitem-wrapper"><li class="dropdown-subitem"><a href="/framework/react/react/" class="nav-link">
+  React
+</a></li><li class="dropdown-subitem"><a href="/framework/react/react-router/" class="nav-link">
+  ReactRouter
+</a></li><li class="dropdown-subitem"><a href="/framework/react/redux/" class="nav-link">
+  Redux
+</a></li></ul></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="Bundler" class="dropdown-title"><span class="title">Bundler</span> <span class="arrow down"></span></button> <button type="button" aria-label="Bundler" class="mobile-dropdown-title"><span class="title">Bundler</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><h4>
+          Webpack
+        </h4> <ul class="dropdown-subitem-wrapper"><li class="dropdown-subitem"><a href="/bundler/webpack/v2.html" class="nav-link">
+  v2
+</a></li><li class="dropdown-subitem"><a href="/bundler/webpack/v4.html" class="nav-link">
+  v4
+</a></li></ul></li><li class="dropdown-item"><!----> <a href="/bundler/rollup/" class="nav-link">
+  Rollup
+</a></li><li class="dropdown-item"><!----> <a href="/bundler/gulp/" class="nav-link">
+  Gulp
+</a></li></ul></div></div><div class="nav-item"><a href="/share/" class="nav-link">
+  Share
+</a></div><div class="nav-item"><a href="https://gitee.com/luguanrui/lgr-tools?_from=gitee_search" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  lgr-tools
+  <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></div><div class="nav-item"><a href="https://github.com/luguanrui?tab=repositories" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  GitHub
+  <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></div> <!----></nav></div></header> <div class="sidebar-mask"></div> <aside class="sidebar"><nav class="nav-links"><div class="nav-item"><a href="/" class="nav-link">
+  Home
+</a></div><div class="nav-item"><a href="/base/" class="nav-link router-link-active">
+  FE
+</a></div><div class="nav-item"><a href="/job-summary/" class="nav-link">
+  JobSummary
+</a></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="Framework" class="dropdown-title"><span class="title">Framework</span> <span class="arrow down"></span></button> <button type="button" aria-label="Framework" class="mobile-dropdown-title"><span class="title">Framework</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><h4>
+          Vue
+        </h4> <ul class="dropdown-subitem-wrapper"><li class="dropdown-subitem"><a href="/framework/vue/v3/" class="nav-link">
+  v3
+</a></li><li class="dropdown-subitem"><a href="/framework/vue/v2/" class="nav-link">
+  v2
+</a></li><li class="dropdown-subitem"><a href="/framework/vue/vuex/" class="nav-link">
+  Vuex
+</a></li><li class="dropdown-subitem"><a href="/framework/vue/vue-router/" class="nav-link">
+  VueRouter
+</a></li></ul></li><li class="dropdown-item"><h4>
+          React
+        </h4> <ul class="dropdown-subitem-wrapper"><li class="dropdown-subitem"><a href="/framework/react/react/" class="nav-link">
+  React
+</a></li><li class="dropdown-subitem"><a href="/framework/react/react-router/" class="nav-link">
+  ReactRouter
+</a></li><li class="dropdown-subitem"><a href="/framework/react/redux/" class="nav-link">
+  Redux
+</a></li></ul></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="Bundler" class="dropdown-title"><span class="title">Bundler</span> <span class="arrow down"></span></button> <button type="button" aria-label="Bundler" class="mobile-dropdown-title"><span class="title">Bundler</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><h4>
+          Webpack
+        </h4> <ul class="dropdown-subitem-wrapper"><li class="dropdown-subitem"><a href="/bundler/webpack/v2.html" class="nav-link">
+  v2
+</a></li><li class="dropdown-subitem"><a href="/bundler/webpack/v4.html" class="nav-link">
+  v4
+</a></li></ul></li><li class="dropdown-item"><!----> <a href="/bundler/rollup/" class="nav-link">
+  Rollup
+</a></li><li class="dropdown-item"><!----> <a href="/bundler/gulp/" class="nav-link">
+  Gulp
+</a></li></ul></div></div><div class="nav-item"><a href="/share/" class="nav-link">
+  Share
+</a></div><div class="nav-item"><a href="https://gitee.com/luguanrui/lgr-tools?_from=gitee_search" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  lgr-tools
+  <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></div><div class="nav-item"><a href="https://github.com/luguanrui?tab=repositories" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  GitHub
+  <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></div> <!----></nav>  <ul class="sidebar-links"><li><section class="sidebar-group depth-0"><p class="sidebar-heading open"><span>浏览器的回流与重绘</span> <!----></p> <ul class="sidebar-links sidebar-group-items"><li><a href="/base/html/reflow-repaint.html#什么是回流和重绘" class="sidebar-link">什么是回流和重绘</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/base/html/reflow-repaint.html#回流reflow" class="sidebar-link">回流Reflow</a></li><li class="sidebar-sub-header"><a href="/base/html/reflow-repaint.html#重绘repaint" class="sidebar-link">重绘Repaint</a></li></ul></li><li><a href="/base/html/reflow-repaint.html#导致回流的操作" class="sidebar-link">导致回流的操作</a><ul class="sidebar-sub-headers"></ul></li><li><a href="/base/html/reflow-repaint.html#如何避免" class="sidebar-link">如何避免</a><ul class="sidebar-sub-headers"></ul></li></ul></section></li></ul> </aside> <main class="page"> <div class="theme-default-content content__default"><h1 id="浏览器的回流与重绘"><a href="#浏览器的回流与重绘" class="header-anchor">#</a> 浏览器的回流与重绘</h1> <h2 id="什么是回流和重绘"><a href="#什么是回流和重绘" class="header-anchor">#</a> 什么是回流和重绘</h2> <h3 id="回流reflow"><a href="#回流reflow" class="header-anchor">#</a> 回流Reflow</h3> <p>当渲染树<code>Render Tree</code>中<strong>部分或全部元素的尺寸、结构、或某些属性发生改变</strong>时，浏览器重新渲染部分或全部文档的过程称为回流</p> <h3 id="重绘repaint"><a href="#重绘repaint" class="header-anchor">#</a> 重绘Repaint</h3> <p>当页面中<strong>元素样式的改变并不影响它在文档流中的位置</strong>时（例如：color、background-color、visibility等），浏览器会将新样式赋予给元素并重新绘制它，这个过程称为重绘。</p> <div class="custom-block tip"><p class="custom-block-title">TIP</p> <p>回流必将引起重绘，重绘不一定会引起回流</p></div> <h2 id="导致回流的操作"><a href="#导致回流的操作" class="header-anchor">#</a> 导致回流的操作</h2> <ul><li>页面首次渲染</li> <li>浏览器窗口大小发生改变</li> <li>元素尺寸或位置发生改变</li> <li>元素内容变化（文字数量或图片大小等等）</li> <li>元素字体大小变化</li> <li>DOM元素的增加、删除</li> <li>激活CSS伪类（例如：:hover）</li> <li>查询某些属性或调用某些方法</li></ul> <p>一些常用且会导致回流的属性和方法：</p> <ul><li>clientWidth、clientHeight、clientTop、clientLeft</li> <li>offsetWidth、offsetHeight、offsetTop、offsetLeft</li> <li>scrollWidth、scrollHeight、scrollTop、scrollLeft</li> <li>scrollIntoView()、scrollIntoViewIfNeeded()</li> <li>getComputedStyle()</li> <li>getBoundingClientRect()</li> <li>scrollTo()</li></ul> <h2 id="如何避免"><a href="#如何避免" class="header-anchor">#</a> 如何避免</h2> <p>css</p> <ul><li>避免使用<code>table布局</code></li> <li>尽可能在DOM树的最末端改变class</li> <li>避免设置多层内联样式</li> <li>将动画效果应用到<code>position</code>属性为<code>absolute</code>或``fixed`的元素上</li> <li>避免使用CSS表达式（例如：<code>calc()</code>）</li></ul> <p>js</p> <ul><li>避免频繁操作样式，最好一次性重写<code>style</code>属性，或者将样式列表定义为class并一次性更改class属性</li> <li>避免频繁操作DOM，创建一个documentFragment，在它上面应用所有DOM操作，最后再把它添加到文档中</li> <li>也可以先为元素设置display: none，操作结束后再把它显示出来。因为在display属性为none的元素上进行的DOM操作不会引发回流和重绘</li> <li>避免频繁读取会引发回流/重绘的属性，如果确实需要多次使用，就用一个变量缓存起来</li> <li>对具有复杂动画的元素使用绝对定位，使它脱离文档流，否则会引起父元素及后续元素频繁回流</li></ul></div> <footer class="page-edit"><!----> <div class="last-updated"><span class="prefix">上次更新:</span> <span class="time">2021-06-01 20:48:15</span></div></footer> <!----> </main></div><div class="global-ui"><!----></div></div>
+    <script src="/assets/js/app.51d98596.js" defer></script><script src="/assets/js/2.4bb5c6af.js" defer></script><script src="/assets/js/57.3d2ffca5.js" defer></script>
+  </body>
+</html>
