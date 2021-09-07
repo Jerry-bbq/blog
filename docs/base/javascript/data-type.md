@@ -99,12 +99,9 @@ typeof /\d/             // 'object'
 
 内部属性`[[Class]]`无法直接访问，一般通过 `Object.prototype.toString()` 来查看
 
-- JS所有的对象都是`Object`类型的实例，它们都会从`Object.prototype`上继承属性和方法,其中就包括`toString()`方法；因此，每个对象都有`toString()`方法
+- JS所有的对象都是`Object`类型的实例，它们都会从`Object.prototype`上继承属性和方法,比如`toString()`方法；因此，每个对象都有`toString()`方法
 - `Object.prototype.toString()`返回一个表示该对象的字符串，默认格式是`"[object type]"`,其中`type`是对象的类型
 - 但是，不同的类型可能对`toString()`进行了重写，如`Array`、`Number`等
-- 因此，只能通过`Object.prototype.toString()`来调用`Object`的`toString`方法
-- 但是上述的方案，`this`始终都是指向`Object`,因此需要改变`this`指向
-- 最终方案：`Object.prototype.toString.call()`或`Object.prototype.toString.apply()`
 
 ```js
 Object.prototype.toString()             // "[object Object]"
@@ -116,6 +113,10 @@ Object.prototype.toString()             // "[object Object]"
 (Symbol()).toString()                   // "Symbol()"
 (123n).toString()                       // "123"
 ```
+
+- 因此，只能通过`Object.prototype.toString()`来调用`Object`的`toString`方法
+- 但是上述的方案，`this`始终都是指向`Object`,因此需要改变`this`指向
+- 改变`this`指向可以通过`call()`,`apply()`
 
 测试`Object.prototype.toString.call()`：
 
@@ -143,13 +144,13 @@ Object.prototype.toString.call(new Person) === "[object Object]"
 ### 最终解决方案
 
 - 首先，使用`typeof`检测数据类型；
-- 如果`typeof`检测数据类型未`'object'`,则使用`Object.prototype.toString.call()`检测数据类型
-- 同时，`Object.prototype.toString.call()`返回字符串格式统一为`[object `，即字符串前八位一致
-- 最后做一个字符串的截取和字母小写的转换
+- 如果`typeof`检测数据类型为`'object'`,则使用`Object.prototype.toString.call()`检测数据类型
+- 同时，`Object.prototype.toString.call()`返回字符串格式统一为`[object **]`，即字符串前八位一致
+- 最后，做字符串的截取和字母小写的转换
 
 ```js
 // 接收参数 operand：操作数
-const dataType =  operand => {
+const dataType = operand => {
     const type = typeof operand
     const toString = Object.prototype.toString
     const object = toString.call(operand).slice(8,-1).toLowerCase()
