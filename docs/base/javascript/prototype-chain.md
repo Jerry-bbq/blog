@@ -363,7 +363,7 @@ console.log(o);
 
 复制父类的方法和属性来重写子类的原型对象
 
-### 1. 借助构造函数实现继承(call)
+### 1. 构造函数：子类构造函数中执行父类构造函数
 
 子类构造函数中执行父类构造函数（` Parent.call(this) `）
 
@@ -389,7 +389,7 @@ console.log(child)
 
 结果：
 
-```js
+```json
 {
     name: "Parent"
     type: "Child"
@@ -402,12 +402,12 @@ console.log(child)
 
 ::: danger 缺点
 
-1. 只能继承父类通过`this`声明的属性/方法。不能继承父类`prototype`上的属性/方法
+1. 只能继承父类构造函数通过`this`声明的属性/方法。不能继承父类构造函数原型`prototype`上的属性/方法
 2. 父类方法无法复用。每次实例化子类，都要执行父类函数。重新声明父类所定义的方法，无法复用
 
 :::
 
-### 2. 借助原型链实现继承
+### 2. 原型链：将父类构造函数的实例赋值给子类构造函数的原型
 
 方法：将父类构造函数的实例赋值给子类构造函数的原型对象（`Child.prototype = new Parent()`）
 
@@ -440,6 +440,18 @@ s1.play.push(4)
 console.log(s1.play,s2.play)
 ```
 
+结果：
+
+```json
+Child
+    type: "Child"
+    [[Prototype]]: Parent
+        name: "Parent"
+        play: (3) [1, 2, 3]
+        [[Prototype]]: Object
+            constructor: ƒ Parent()
+```
+
 ::: danger 缺点
 
 1. 如果实例化两个子类构造函数，其中一个子类构造函数的原型上的方法和属性改变，另一个实例也会相应改变
@@ -447,9 +459,9 @@ console.log(s1.play,s2.play)
 
 :::
 
-### 3. 组合方式
+### 3. 组合方式：构造函数+原型链
 
-通过原型链继承来将this、prototype上的属性和方法继承制子类的原型对象上。使用借用构造函数来继承父类通过this声明的属性和方法在之子类的实例属性上
+通过原型链继承来将this、prototype上的属性和方法继承到子类的原型对象上。借用构造函数来继承父类通过this声明的属性和方法在之子类的实例属性上
 
 方法：
 
@@ -480,12 +492,12 @@ console.log(s1.play,s2.play)
 ::: danger 缺点
 
 1. 父类构造函数执行了两次,造成一定的性能问题
-2. 因调用两次父类，导出父类通过this声明的属性和方法被生成两份的问题
-3. 原型链上下文丢失，子类和父类通过prototype声明的属性和方法都存在与子类prototype上
+2. 因调用两次父类，导致父类通过`this`声明的属性和方法被生成两份的问题
+3. 原型链上下文丢失，子类和父类通过`prototype`声明的属性和方法都存在与子类`prototype`上
 
 :::
 
-### 4. 优化方式1: 通过父类的prototype
+### 4. 优化组合方式1: 将父类构造函数的原型赋值给子类构造函数的原型
 
 方法：
 
@@ -512,6 +524,7 @@ var s2 = new Child()
 console.log(s1, s2)
 console.log(s1 instanceof Child) // true
 console.log(s2 instanceof Parent) // true
+console.log(s1.constructor) // 子类实例的构造函数是`Parent`，而不是`Child`
 ```
 
 ::: danger 缺点
@@ -520,7 +533,7 @@ console.log(s2 instanceof Parent) // true
 
 :::
 
-### 5. 优化方式2：通过Object.create()
+### 5. 优化组合方式2：通过Object.create()
 
 方法：
 
@@ -530,7 +543,7 @@ console.log(s2 instanceof Parent) // true
 
 ```js
 // 父类
-function Parent()
+function Parent() {
     this.name = 'Parent'
     this.play = [1,2,3]
 }
@@ -545,7 +558,7 @@ Child.prototype.constructor = Child
 // 测试
 var s = new Child()
 console.log(s instanceof Child, s instanceof Parent)
-console.log(s.constructor)
+console.log(s.constructor) // 子类实例的构造函数是`Child`
 ```
 
 ### 6. 使用es6的extends

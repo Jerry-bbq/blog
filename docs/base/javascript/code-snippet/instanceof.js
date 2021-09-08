@@ -1,5 +1,5 @@
 // 模拟instanceof操作符
-const instanceOf = (left, right) => {
+const _instanceof = (left, right) => {
   let proto = left.__proto__
   let prototype = right.prototype
   while (true) {
@@ -18,5 +18,5 @@ const instanceOf = (left, right) => {
 }
 
 // 测试
-instanceOf([], Array) // true
-instanceOf([], Object) // true
+_instanceof([], Array) // true
+_instanceof([], Object) // true
