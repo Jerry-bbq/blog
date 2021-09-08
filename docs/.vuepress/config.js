@@ -2,6 +2,7 @@ const dayjs = require('dayjs')
 
 module.exports = {
   title: 'Blog',
+  cache: true,
   base: '/blog/',
   head: [['link', { rel: 'icon', href: '/logo.png' }]],
   themeConfig: {

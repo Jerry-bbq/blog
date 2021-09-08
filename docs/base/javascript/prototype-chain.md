@@ -46,17 +46,17 @@ Object.create(null) 创建的对象是一个空对象，在该对象上没有继
 
 构造函数（constructor）也称之为构造器，功能类似对象模板，一个构造器可以生成任意多个实例，实例对象具有相同的属性和方法，但是不相等
 
-在 JavaScript 中，构造器其实就是一个普通的函数。当使用 new 操作符 来作用这个函数时，它就可以被称为构造函数
+在JavaScript中，构造器其实就是一个普通的函数。当使用**new操作符**来作用这个函数时，它就可以被称为构造函数
 
 ### 特点
 
 - 首字母大写
 - 函数体内部使用`this`关键字,代表所要生成的对象实例
-- 生成对象时，必须使用`new`命令
+- 生成对象时，必须使用`new`操作符
 
 ## 原型
 
-JavaScript每个对象拥有一个原型对象，对象以其原型为模板、从原型继承方法和属性。
+JavaScript中每个对象都拥有一个原型对象，对象以其原型为模板、从原型继承方法和属性。
 
 每个函数都有一个特殊的属性叫作原型（prototype）,案例如下：
 
@@ -152,7 +152,7 @@ console.log( doSomeInstancing );
             __lookupSetter__: ƒ __lookupSetter__()
             get __proto__: ƒ __proto__()
             set __proto__: ƒ __proto__()
-                    }
+        }
     }
 }
 ```
@@ -160,7 +160,7 @@ console.log( doSomeInstancing );
 可以看到，`doSomeInstancing`实例的 `__proto__` 属性就是`doSomething`函数的`prototype`,即`doSomeInstancing.__proto__ === doSomething.prototype`。
 
 - 当访问`doSomeInstancing`的一个属性的时候，浏览器首先查找`doSomeInstancing`是否有这个属性
-- 如果没有，浏览器就会在`doSomeInstancing`的`__proto__`中查找这个属性
+- 如果没有，浏览器就会在`doSomeInstancing`的`__proto__`中查找这个属性，也就是到原型对象`doSomething.prototype`上查找
 - 如果也没有找到，则继续在`doSomeInstancing`的`__proto__`的`__proto__`上查找，所有函数的原型属性的 `__proto__` 就是 `window.Object.prototype`
 - 最后，原型链上的所有的`__proto__`都找完了也没找到该属性，这个属性返回`undefined`
 
@@ -242,9 +242,9 @@ console.dir(Object)
 
 ### 定义
 
-在JavaScript中，每个对象拥有一个**原型对象**，对象以其原型为模板、从原型继承方法和属性。原型对象也可能拥有原型，并从中继承方法和属性，一层一层、以此类推。这种关系常被称为原型链。它解释了为何一个对象会拥有定义在其他对象中的属性和方法
+**在JavaScript中，每个对象都拥有一个原型对象，对象以其原型为模板、从原型继承方法和属性。原型对象也可能拥有原型，并从中继承方法和属性，一层一层、以此类推。这种关系常被称为原型链**。它解释了为何一个对象会拥有定义在其他对象中的属性和方法
 
-### 查找过程
+### 原型链的查找过程
 
 - 当访问一个对象的某个属性时，会先在这个对象本身属性上查找
 - 如果没有找到，则会去该对象的`__proto__`上查找
@@ -255,11 +255,22 @@ console.dir(Object)
 
 ![constructor](./images/constructor.png)
 
+构造函数：
+- function Foo()
+- function Object()
+- function Function()
+
+总结：
+
+1. 所有的实例化对象的`__proto__`指向 其构造函数的`prototype`
+2. 所有普通的对象和构造函数的`prototype`的`__proto__`都指向`Object.prototype`
+3. 所有函数（包括构造函数）都是`Function`的实例，所以`__proto__`都指向`Function.prototype`
+
 ## instanceof运算符
 
 ### 原理
 
-检测构造函数的 `prototype` 属性是否出现在某个实例对象的原型链上
+检测构造函数的 `prototype` 属性是否出现在某个实例对象的原型链上，是则返回true，否则返回false
 
 ### 案例
 
@@ -282,13 +293,67 @@ console.log(auto instanceof Object);
 
 ## new运算符
 
-创建对象的实例
+创建一个对象的实例：`new [constructor]`
+
+1. 无 return
+
+```js
+function Foo(age) {
+  this.age = age;
+}
+
+var o = new Foo(111);
+console.log(o);
+```
+
+结果为：{ age: 111 }
+
+2. return 对象类型数据
+
+```js
+function Foo(age) {
+  this.age = age;
+
+  return { type: "return 对象" };
+}
+
+var o = new Foo(222);
+console.log(o);
+```
+结果为：{ type: "return 对象" }
+
+3. return 基本类型数据
+
+```js
+function Foo(age) {
+  this.age = age;
+
+  return 1;
+}
+
+var o = new Foo(333);
+console.log(o);
+```
+
+结果为：{ age: 333 }
+
+总结：
+
+- 如果构造函数显式返回对象类型，则直接返回这个对象
+- 如果构造函数没有显式返回对象类型（返回基本数据类型或者直接不返回），则返回最开始创建的对象
+
+::: warning 提示
+
+如果构造函数是箭头函数，因为箭头函数中没有`[[Construct]]`方法，不能使用`new`调用，会报错。
+
+:::
 
 ### 原理
 
-1. 创建一个空对象(`{}`)，将`{}`的`__proto__`指向`fn.prototype`（继承构造函数的原型对象）
-2. 执行构造函数，绑定`this`指向新创建的对象（新创建的对象作为`this`的上下文）
-3. 如果构造函数的执行结果是一个对象，则返回这个结果，否则，返回创建的对象
+1. 创建一个空对象实例`o`
+2. 将实例`o`的`__proto__`指向构造函数的原型`constructor.prototype`（继承构造函数的原型对象）
+3. 执行构造函数，绑定`this`指向实例`o`（`o`作为`this`的上下文）
+4. 如果构造函数的执行结果是一个对象，则返回这个对象，否则，返回对象`o`
 
 ### 实现
 
@@ -320,6 +385,19 @@ var child = new Child()
 
 // 测试
 console.log(child)
+```
+
+结果：
+
+```js
+{
+    name: "Parent"
+    type: "Child"
+    [[Prototype]]: {
+        constructor: ƒ Child()
+        [[Prototype]]: Object
+    }
+}
 ```
 
 ::: danger 缺点

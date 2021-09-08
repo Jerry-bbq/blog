@@ -1,6 +1,6 @@
 {
   "scripts": {
-    "serve": "vuepress dev docs",
+    "serve": "vuepress dev docs --open",
     "build": "vuepress build docs",
     "commit": "git-cz"
   },
