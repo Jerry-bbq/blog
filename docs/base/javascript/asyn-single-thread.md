@@ -4,6 +4,250 @@ sidebar: auto
 
 # 异步和单线程
 
+- 什么是单线程，和异步有什么关系
+- 什么是event-loop
+- 是否用过jQuery的deferred
+- promise的基本使用和原理
+- 介绍async/await（和promise的区别，联系）
+- 总结当前js解决异步的方案
+
+## 单线程
+
+- 只有一个线程，同一时间只能做一件事
+- 单线程的原因，避免dom渲染的冲突
+- 单线程的解决方案：异步
+
+### 单线程代码演示：
+
+循环运行期间，js执行和dom渲染暂时卡顿
+
+```js
+var i,sum = 0
+for (i = 0; i < 100000000;i++) {
+  sum+=i
+}
+console.log(sum)
+```
+
+alert不处理，js执行和dom渲染暂时卡顿
+
+```js
+console.log(1)
+alert('hello')
+console.log(2)
+```
+
+### 单线程是为了避免dom渲染的冲突
+
+为什么要避免DOM渲染的冲突？
+
+- 浏览器需要渲染DOM
+- JS可以修改DOM结构
+- JS执行的时候，浏览器DOM渲染会暂停
+- 两段JS也不能同时执行（都修改DOM就冲突了）
+- webworker支持多线程，但是不能访问DOM
+
+### 解决方案-异步
+
+场景一：
+
+```js
+console.log(100)
+setTimeout(function() {
+  console.log(200)
+},1000)
+console.log(300)
+console.log(400)
+// 100,300,400,200
+```
+
+场景二：
+
+```js
+console.log(100)
+$.ajax({
+  url: 'xxx',
+  success: function(result) {
+    console.log(result)
+  }
+})
+console.log(300)
+console.log(400)
+```
+
+异步的问题：
+
+- 没有按照书写方式执行，代码可读性差
+- callback中不容易模块化
+
+## 事件循环event-loop
+
+- 事件轮询，JS实现异步的具体解决方案
+- 同步代码，直接执行
+- 异步函数先放在异步队列中
+- 待同步函数执行完毕，轮询执行 异步队列 的函数
+
+案例一：
+
+```js
+setTimeout(function() {
+  console.log(100)
+})
+console.log(200)
+// 200 -> 100
+```
+
+案例二：
+
+```js
+setTimeout(function() {
+  console.log(1)
+},1000)
+setTimeout(function() {
+  console.log(2)
+})
+console.log(3)
+// 3 -> 2 -> 1
+```
+
+案例三：
+
+```js
+$.ajax({
+  url: 'xxx',
+  success: function(result) {
+    console.log('a')
+  }
+})
+setTimeout(function() {
+  console.log('b')
+},1000)
+setTimeout(function() {
+  console.log('c')
+})
+console.log('d')
+// d -> c -> a -> b
+// ajax可能很快
+```
+
+## 是否用过jQuery的Deferred
+
+jQuery1.5之前
+
+```js
+var ajax = $.ajax({
+  url: 'data.json',
+  success: function() {
+    console.log('success1')
+    console.log('success2')
+    console.log('success3')
+  },
+  error: function() {
+    console.log('error')
+  }
+})
+console.log(ajax) // 返回一个 XHR 对象
+```
+
+jQuery1.5之后
+
+```js
+var ajax = $.ajax('data.json')
+ajax.done(function() {
+  console.log('success1')
+})
+.fail(function() {
+  console.log('error1')
+})
+.done(function() {
+  console.log('success2')
+})
+.fail(function() {
+  console.log('error2')
+})
+console.log(ajax) // 返回一个 deferred 对象
+```
+
+或者使用then
+
+```js
+var ajax = $.ajax('data.json')
+ajax.then(function() {
+  console.log('success1')
+}, function() {
+  console.log('error1')
+}).then(function() {
+  console.log('success2')
+}, function() {
+  console.log('error2')
+})
+```
+
+jQuery1.5的变化
+
+- 无法改变JS异步和单线程的本质
+- 只能从写法上杜绝callback这种形式
+- 它是一种语法糖形式，但是解耦了代码
+- 很好的体现：开放封闭原则
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 ## 单线程
 
 [浏览器是多进程的](https://www.infoq.cn/article/CS9-WZQlNR5h05HHDo1b)，每个tab页都相当于是一个浏览器的进程（进程（process）是cpu资源分配的最小单位，线程（thread）是cpu调度的最小单位，线程是建立在进程的基础上的一次程序运行单位，一个进程中可以有多个线程）
@@ -140,4 +384,5 @@ console.log('script end')
 ```
 
 ## 事件循环机制
+
 

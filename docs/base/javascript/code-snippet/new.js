@@ -20,5 +20,5 @@ var o = _new(C)
 o instanceof C // 判断实例o是不是M构造函数的实例,返回true
 o instanceof Object 
 o.__proto__.constructor === C // 实例o的原型对象是否等于构造函数C
-C.prototype.walk = function() { console.log('walk') } // 在构造含税C的原型上增加一个方法walk
+C.prototype.walk = function() { console.log('walk') } // 在构造函数C的原型上增加一个方法walk
 o.walk()
