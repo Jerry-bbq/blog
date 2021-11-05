@@ -358,10 +358,10 @@ console.log(o);
 
 ### 原理
 
-1. 创建一个空对象实例`o`
-2. 将实例`o`的`__proto__`指向构造函数的原型`constructor.prototype`（继承构造函数的原型对象）
-3. 执行构造函数，绑定`this`指向实例`o`（`o`作为`this`的上下文）
-4. 如果构造函数的执行结果是一个对象，则返回这个对象，否则，返回实例对象`o`
+1. 创建一个空对象实例
+2. 将实例的`__proto__`指向构造函数的原型`constructor.prototype`（继承构造函数的原型对象）
+3. 执行构造函数，绑定`this`指向实例，实例作为`this`的上下文）
+4. 如果构造函数的执行结果是一个对象，则返回这个对象，否则，返回实例对象
 
 ### 实现
 
@@ -628,13 +628,15 @@ fn.bind(obj, 5, 6)(3,4)      // 5,6, obj
 
 api | 函数是否执行 | this指向 | 参数
 ---|---|---|---
-call | 执行 | 指向第一个参数 | call(obj, param1,param1...)
-apply | 执行 | 指向第一个参数 | apply(obj, [param1,param1...])
-bind | 返回一个新的函数 <br>（新函数内部会调用原来的函数） | 指向第一个参数 | bind(obj, param1,param1...)
+call | 执行 | 指向第一个参数 | call(obj, param1,param1...)，参数列表
+apply | 执行 | 指向第一个参数 | apply(obj, [param1,param1...])，参数是数组
+bind | 返回绑定this之后的新的函数 <br>（新函数内部会调用原来的函数） | 指向第一个参数 | bind(obj, param1,param1...)，参数可以分为多次传入
 
 ::: warning 提示
 
 如果 obj 为 `undefined` 或 `null`，`this` 指向 `Window`对象
+
+bind()会返回一个新的函数，如果这个返回的新的函数作为构造函数创建一个新的对象，那么此时 this 不再指向传入给 bind 的第一个参数，而是指向用 new 创建的实例
 
 :::
 

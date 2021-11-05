@@ -1,17 +1,20 @@
-// 模拟new操作符
+/**
+ * 模拟new操作符
+ * 1. 创建一个新对象obj
+ * 2. 继承构造函数的原型对象fn.prototype
+ * 3. 执行构造函数，并将this指向新创建的对象obj
+ * 4. 判断执行构造函数返回的结果res，如果res是一个对象，则返回这个res，否则返回创建的对象obj
+ */
 const _new = function(fn, ...arg) {
-    // 第一步：创建一个新对象，继承构造函数的原型对象
-    // 即创建对象o，继承构造函数的原型对象：o.__proto__ === func.prototype
-    const o = Object.create(fn.prototype)
-    // 第二步：执行构造函数，改变this指向`o`对象上
-    const res = fn.call(o, arg)
-    // 判断构造函数执行的结果是不是对象类型
+    const obj = Object.create(fn.prototype)
+    const res = fn.call(obj, arg)
     if (typeof res === 'object'){
         return res
     } else {
-        return o
+        return obj
     }
 }
+
 // 验证
 function C(age) {
     this.age = age

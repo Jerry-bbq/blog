@@ -1,18 +1,25 @@
-// 模拟instanceof操作符
+/**
+ * 模拟instanceof操作符
+ * 
+ * 检测构造函数的`prototype`属性是否出现在某个实例对象的原型链上，是则返回true，否则返回false
+ * 1. 获取实例的原型`proto`
+ * 2. 获取构造函数的原型`prototype`
+ * 3. 使用while循环
+ *    1）如果实例的原型proto为null，说明没有找到，返回 false
+ *    2）如果实例的原型proto等于构造函数的原型prototype，说明找到了，返回 true
+ *    3）循环条件是：通过原型链，依次比较构造函数的原型是否与实例的原型相等
+ * 
+ */
 const _instanceof = (left, right) => {
   let proto = left.__proto__
   let prototype = right.prototype
   while (true) {
-    // 实例的`__proto__`等于null，没有找到
     if (proto === null) {
       return false
     }
-    // 实例的`__proto__`等于构造函数的`prototype`，找到了
     if (proto === prototype) {
       return true
     }
-    // 如果上述条件都不满足
-    // 通过原型链查找，继续对比
     proto = proto.__proto__
   }
 }

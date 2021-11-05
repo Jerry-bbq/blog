@@ -38,11 +38,7 @@ sidebar: auto
 
 <<< @/docs/base/javascript/code-snippet/throttle.js
 
-## 实现一个JSON.parse
-
-## 实现一个JSON.stringify
-
-## 实现一个继承
+## 实现一个寄生组合继承
 
 ```js
 function Parent()
@@ -59,7 +55,7 @@ Child.prototype.constructor = Child
 
 ## 实现一个JS函数柯里化
 
-## 手写Promise
+## 实现Promise
 
 ### 简单版
 
@@ -230,34 +226,7 @@ Promise.prototype.then = function(onFulfilled, onRejected) {
 
 ```
 
-## 手写JS深拷贝
-
-### 乞丐版
-
-```js
- var newObj = JSON.parse( JSON.stringify( someObj ) );
-```
-
-### 够用版
-
-```js
-function deepCopy(obj){
-    //判断是否是简单数据类型，
-    if(typeof obj == "object"){
-        //复杂数据类型
-        var result = obj.constructor == Array ? [] : {};
-        for(let i in obj){
-            result[i] = typeof obj[i] == "object" ? deepCopy(obj[i]) : obj[i];
-        }
-    }else {
-        //简单数据类型 直接 == 赋值
-        var result = obj;
-    }
-    return result;
-}
-```
-
-## 浅拷贝和深拷贝
+## 实现浅拷贝和深拷贝
 
 1. 基本类型--名值存储在栈内存中
 2. 引用数据类型--名存在栈内存中，值存在于堆内存中，但是栈内存会提供一个引用的地址指向堆内存中的值
@@ -265,14 +234,14 @@ function deepCopy(obj){
 
 ### 浅拷贝
 
-#### Oject.assign
+#### 1.Oject.assign
 
 ```js
 // 对象
 const clone = obj => Object.assign({}, obj)
 ```
 
-#### 扩展运算符...
+#### 2.扩展运算符...
 
 ```js
 // 对象
@@ -282,11 +251,11 @@ const clone = obj => {...obj}
 
 ### 深拷贝
 
-#### JSON.parse + JSON.stringify
+#### 1.JSON.parse + JSON.stringify
 
 ```js
 // 对象或数组
-const deepClone = obj => typeof obj ==='undefined' ? JSON.parse(JSON.stringify(obj)) : null;
+const deepClone = obj => JSON.parse(JSON.stringify(obj))
 ```
 
 ::: warning 问题
@@ -298,25 +267,27 @@ const deepClone = obj => typeof obj ==='undefined' ? JSON.parse(JSON.stringify(o
 
 :::
 
-#### for...in + 递归
+#### 2.for...in + 递归
 
 ```js
 const deepClone = obj => {
+    // 定义一个对象来保存拷贝的对象
     var target = {};
     for (var key in obj) {
         if (Object.prototype.hasOwnProperty.call(obj, key)) {
+            // 如果值是对象，则递归
             if (typeof obj[key] === "object") {
-            target[key] = deepClone(obj[key]);
+                target[key] = deepClone(obj[key])
             } else {
-            target[key] = obj[key];
+                target[key] = obj[key]
             }
         }
     }
-    return target;
-};
+    return target
+}
 ```
 
-#### Object.create
+#### 3.Object.create
 
 ```js
 const deepClone = obj => {
@@ -327,7 +298,6 @@ const deepClone = obj => {
     var desc = Object.getOwnPropertyDescriptor(obj, name);
     Object.defineProperty(copy, name, desc);
     });
-
     return copy;
 };
 ```

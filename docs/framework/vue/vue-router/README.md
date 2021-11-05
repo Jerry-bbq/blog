@@ -13,7 +13,7 @@ SPA(single page application):单一页面应用程序，有且只有一个完整
 单页面应用(SPA)的核心之一是:
 
 1. 更新试图但是不重新请求页面，而且替换当前页面
-2. vue-router实现单页面路由跳转，提供了三种方式：`hash`模式、`history`模式，根据mode参数来决定采用哪一种方式。
+2. vue-router实现单页面路由跳转，提供了两种种方式：`hash`模式、`history`模式，根据mode参数来决定采用哪一种方式。
 
 ## 路由模式
 
