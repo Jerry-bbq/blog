@@ -5,11 +5,11 @@ Function.prototype._apply = function(obj, argsArr) {
     obj = window
   }
 
-  // 给obj添加一个方法: tempFn: this
+  // 给obj添加一个方法: fn: this
   obj.fn = this
-  // 调用obj的tempFn方法, 传入参数, 得到返回值
+  // 调用obj的fn方法, 传入参数, 得到返回值
   const result = obj.fn(...argsArr)
-  // 删除obj上的temFn
+  // 删除obj上的fn
   delete obj.fn
   // 返回方法的返回值
   return result

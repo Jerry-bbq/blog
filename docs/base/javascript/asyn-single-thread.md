@@ -190,64 +190,6 @@ jQuery1.5的变化
 - 它是一种语法糖形式，但是解耦了代码
 - 很好的体现：开放封闭原则
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 ## 单线程
 
 [浏览器是多进程的](https://www.infoq.cn/article/CS9-WZQlNR5h05HHDo1b)，每个tab页都相当于是一个浏览器的进程（进程（process）是cpu资源分配的最小单位，线程（thread）是cpu调度的最小单位，线程是建立在进程的基础上的一次程序运行单位，一个进程中可以有多个线程）
@@ -349,39 +291,44 @@ for(var i=0;i<4;i++){
 :::
 
 ```js
-console.log('script start')
+console.log('script start') // 同步
 
 async function async1() {
-  await async2()
-  console.log('async1 end')
+  await async2() // 同步
+  console.log('async1 end') // 异步
 }
 async function async2() {
   console.log('async2 end')
 }
+
 async1()
 
 setTimeout(function() {
-  console.log('setTimeout')
+  console.log('setTimeout') // 异步，宏任务
 }, 0)
 
 new Promise(resolve => {
-  console.log('Promise')
+  console.log('Promise') // 同步
   resolve()
 })
   .then(function() {
-    console.log('promise1')
+    console.log('promise1') // 异步，微任务
   })
   .then(function() {
-    console.log('promise2')
+    console.log('promise2') // 异步，微任务
   })
 
-console.log('script end')
+console.log('script end') // 同步
 
 // script start => async2 end => Promise => script end => promise1 => promise2 => async1 end => setTimeout
 
 // 新版本浏览器的执行顺序如下：因为 await 变快了
 // script start => async2 end => Promise => script end => async1 end => promise1 => promise2 =>setTimeout
 ```
+
+微任务比宏任务速度快
+
+[参考](https://juejin.cn/post/7016298598883131423)
 
 ## 事件循环机制
 

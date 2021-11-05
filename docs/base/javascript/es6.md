@@ -6,10 +6,71 @@ sidebar: auto
 
 ## 箭头函数与普通函数的区别
 
-- 箭头函数语法上更简洁
-- 箭头函数没有自己的this，它里面的this继承函数所处的上下文中的this（使用call，apply,bind并不会改变箭头函数的this指向）
-- 箭头函数中没有`arguments`（类数组），只能基于`...arg`获取传的参数集合(数组)
-- 箭头函数不能被new执行，因为箭头函数没有`this`，也没有`prototype`
+1. 箭头函数语法上更简洁
+2. 箭头函数没有原型对象`prototype`
+
+```js
+let arrowFn = () => {}
+function commonFn() {}
+
+console.log(arrowFn.prototype) // undefined
+console.log(commonFn.prototype) // {constructor: ƒ}
+```
+
+3. 箭头函数没有this，它里面的this继承函数所处的上下文中的this（通过查找作用域链来确定this的值），使用call，apply,bind 无法改变箭头函数的this指向
+
+```js
+let obj = {
+    stuName: 'jack',
+    printName: () => {
+        // 指向window对象
+        // 使用call无法改变this指向，仍然指向window对象
+        console.log(this, 'printName') 
+        console.log(this.stuName) // undefined
+    },
+    printName2: function() {
+        // 指向当前对象obj
+        // 使用call可以改变this指向对象 {stuName: 'luck'}
+        console.log(this, 'printName2')
+        console.log(this.stuName) // jack
+    },
+    printName3: function() {
+        return () => {
+            console.log(this, 'printName3') // 作用域链查找 指向当前对象obj
+        }
+    },
+}
+
+obj.printName()
+obj.printName2()
+obj.printName3()()
+obj.printName2.call({stuName: 'luck'})
+obj.printName.call({stuName: 'luck'})
+```
+
+4. 箭头函数中没有`arguments`（类数组），取而代之使用`rest`参数解决
+
+```js
+let arrowFn = (params) => { console.log(arguments) }
+function commonFn(params) { console.log(arguments) }
+
+arrowFn(1,2,3) // Uncaught ReferenceError: arguments is not defined
+commonFn(1,2,3) // Arguments(3) [1, 2, 3, callee: ƒ, Symbol(Symbol.iterator): ƒ]
+
+// 解决
+let arrowFn = (...params) => { console.log(params) }
+arrowFn(1,2,3) // [1, 2, 3]
+```
+
+5. 箭头函数是匿名函数，不能作为构造函数，不能使用new
+
+```js
+let arrowFn = () => {}
+function commonFn() {}
+
+let newFn = new arrowFn() // Uncaught TypeError: fn is not a constructor
+let newCommonFn = new commonFn() // commonFn {}
+```
 
 ## Symbol
 

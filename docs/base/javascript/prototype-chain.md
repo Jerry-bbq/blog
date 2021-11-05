@@ -266,6 +266,14 @@ console.dir(Object)
 2. 所有普通的对象和构造函数的`prototype`的`__proto__`都指向`Object.prototype`
 3. 所有函数（包括构造函数）都是`Function`的实例，所以`__proto__`都指向`Function.prototype`
 
+过程：
+- 定义一个构造函数Foo，并实例化为f1，从实例f1上查找某个属性或方法，会该实例本身上查找属性或方法，
+- 如果没有找到，则从实例的__proto__上查找，也就是实例f1的构造函数Foo的原型对象上（即Foo.prototype）查找
+- 如果没有找到，则继续从实例f1的__proto__的__proto__上查找，也就是实例f1的构造函数的原型的原型上查找，即Foo.prototype.__proro__上查找，
+- 如果没有找到，则继续从实例f1的__proto__的__proto__的__proto__上查找，即实例f1的构造函数的原型的原型的原型上查找，即Foo.prototype.__proro__.__proro__上，最后找到Object.prototype上，
+- 如果还是没有，则找到null
+- 对象以此类推
+
 ## instanceof运算符
 
 ### 原理
@@ -353,7 +361,7 @@ console.log(o);
 1. 创建一个空对象实例`o`
 2. 将实例`o`的`__proto__`指向构造函数的原型`constructor.prototype`（继承构造函数的原型对象）
 3. 执行构造函数，绑定`this`指向实例`o`（`o`作为`this`的上下文）
-4. 如果构造函数的执行结果是一个对象，则返回这个对象，否则，返回对象`o`
+4. 如果构造函数的执行结果是一个对象，则返回这个对象，否则，返回实例对象`o`
 
 ### 实现
 
