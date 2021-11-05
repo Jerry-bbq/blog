@@ -30,3 +30,14 @@ display: -webkit-box;
 -webkit-line-clamp: 3; // 最多显示几行
 overflow: hidden;
 ```
+
+## 实现一个等腰三角形 
+
+```css
+.triangle {
+    width: 0;
+    height: 0;
+    border: 50px solid transparent;
+    border-left: 50px solid black;
+}
+```

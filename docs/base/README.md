@@ -6,20 +6,24 @@ sidebar: auto
 
 ## 自我介绍
 
-面试官你好，我叫xx，今天来面试贵公司的前端开发工程师岗位。我从事前端开发五年多的时间，有三年多的vue项目开发经验，在上家公司主要从事ERP，CRM，后台管理系统等项目的开发。平常喜欢逛一些技术社区来丰富自己的技术，也有自己的开源项目，比如常用函数工具库，以此来做一些技术沉淀。我性格开朗，擅长沟通，跟同事朋友相处都相当融洽，私下也喜欢跟朋友们出去聚餐唱k。以上是我的个人介绍，谢谢。
+面试官你好，我叫xx，今天来面试贵公司的前端开发工程师岗位。我16年毕业之后就从事前端开发，已有五年多的时间，有三年多的vue项目开发经验，在上家公司主要从事ERP教务系统，CRM销售系统，后台管理系统等项目的开发。平常喜欢逛一些技术社区来丰富自己的技术，也有自己的开源项目，比如常用函数工具库，以此来做一些技术沉淀。我性格开朗，擅长沟通，跟同事朋友相处都相当融洽，私下也喜欢跟朋友们出去聚餐唱k。以上是我的个人介绍，谢谢。
 
-## 数据结构与算法
+## HTML
 
-- [JavaScript数据结构与算法（第3版）](./data-structures-and-algorithms)
+- [声明文档类型DOCTYPE](./html/doctype.md)
+- [浏览器的渲染过程](./html/painting.md)
+- [浏览器的回流与重绘](./html/reflow-repaint.md)
+- [Canvas与SVG的区别](./html/canvas-svg.md)
+- [其他](./html/other.md)
 
-其他
+## CSS
 
-- [时间复杂度和空间复杂度](./javascript/algorithm/complexity.md)
-- 算法案例
-  - [二分查找](./javascript/algorithm/binary-search.md)
-  - [排序](./javascript/algorithm/sort.md)
-  - [递归](./javascript/algorithm/recursion.md)
-  - [深度优先搜索和广度优先搜索](./javascript/algorithm/dfs-bfs.md)
+- [盒模型](./css/box-model.md)
+- [BFC](./css/bfc.md)
+- [清除浮动](./css/clear.md)
+- [水平垂直居中](./css/center.md)
+- [页面布局](./css/layout.md)
+- [其他](./css/other.md)
 
 ## JavaScript
 
@@ -42,19 +46,15 @@ JS三座大山：
 - [es6](./javascript/es6.md)
 - [coding](./javascript/coding.md)
 
-## HTML
+## 数据结构与算法
 
-- [声明文档类型DOCTYPE](./html/doctype.md)
-- [浏览器的渲染过程](./html/painting.md)
-- [浏览器的回流与重绘](./html/reflow-repaint.md)
-- [Canvas与SVG的区别](./html/canvas-svg.md)
-- [其他](./html/other.md)
+- [JavaScript数据结构与算法（第3版）](./data-structures-and-algorithms)
 
-## CSS
+其他
 
-- [盒模型](./css/box-model.md)
-- [BFC](./css/bfc.md)
-- [清除浮动](./css/clear.md)
-- [水平垂直居中](./css/center.md)
-- [页面布局](./css/layout.md)
-- [其他](./css/other.md)
+- [时间复杂度和空间复杂度](./javascript/algorithm/complexity.md)
+- 算法案例
+  - [二分查找](./javascript/algorithm/binary-search.md)
+  - [排序](./javascript/algorithm/sort.md)
+  - [递归](./javascript/algorithm/recursion.md)
+  - [深度优先搜索和广度优先搜索](./javascript/algorithm/dfs-bfs.md)
