@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>深度优先搜索和广度优先搜索 | Blog</title>
+    <meta name="generator" content="VuePress 1.8.2">
+    <link rel="icon" href="/blog/logo.png">
+    <meta name="description" content="">
+    
+    <link rel="preload" href="/blog/assets/css/0.styles.925f0c2d.css" as="style"><link rel="preload" href="/blog/assets/js/app.abf11c23.js" as="script"><link rel="preload" href="/blog/assets/js/2.26401494.js" as="script"><link rel="preload" href="/blog/assets/js/21.8e95b607.js" as="script"><link rel="prefetch" href="/blog/assets/js/10.7adf1e21.js"><link rel="prefetch" href="/blog/assets/js/100.2b8bbcbe.js"><link rel="prefetch" href="/blog/assets/js/101.aec31119.js"><link rel="prefetch" href="/blog/assets/js/102.ea17c2f8.js"><link rel="prefetch" href="/blog/assets/js/103.a8304f41.js"><link rel="prefetch" href="/blog/assets/js/104.6610b665.js"><link rel="prefetch" href="/blog/assets/js/105.6adccae5.js"><link rel="prefetch" href="/blog/assets/js/106.5bb2ce66.js"><link rel="prefetch" href="/blog/assets/js/107.e4a40a78.js"><link rel="prefetch" href="/blog/assets/js/108.f57e6e75.js"><link rel="prefetch" href="/blog/assets/js/109.48d82197.js"><link rel="prefetch" href="/blog/assets/js/11.91ee0e72.js"><link rel="prefetch" href="/blog/assets/js/110.b177e5cc.js"><link rel="prefetch" href="/blog/assets/js/111.6cd73687.js"><link rel="prefetch" href="/blog/assets/js/112.4e11444b.js"><link rel="prefetch" href="/blog/assets/js/113.08154a34.js"><link rel="prefetch" href="/blog/assets/js/114.019c57b5.js"><link rel="prefetch" href="/blog/assets/js/115.3771802e.js"><link rel="prefetch" href="/blog/assets/js/116.a84cd132.js"><link rel="prefetch" href="/blog/assets/js/117.e20684a6.js"><link rel="prefetch" href="/blog/assets/js/118.6c130864.js"><link rel="prefetch" href="/blog/assets/js/12.1b43906a.js"><link rel="prefetch" href="/blog/assets/js/13.e54fa127.js"><link rel="prefetch" href="/blog/assets/js/14.6a606711.js"><link rel="prefetch" href="/blog/assets/js/15.c5b19284.js"><link rel="prefetch" href="/blog/assets/js/16.7a3ea575.js"><link rel="prefetch" href="/blog/assets/js/17.24a2d938.js"><link rel="prefetch" href="/blog/assets/js/18.f02df400.js"><link rel="prefetch" href="/blog/assets/js/19.f9cb51a0.js"><link rel="prefetch" href="/blog/assets/js/20.23923a2f.js"><link rel="prefetch" href="/blog/assets/js/22.961ab701.js"><link rel="prefetch" href="/blog/assets/js/23.68f32ec5.js"><link rel="prefetch" href="/blog/assets/js/24.41751005.js"><link rel="prefetch" href="/blog/assets/js/25.6cec95a2.js"><link rel="prefetch" href="/blog/assets/js/26.c39b77a6.js"><link rel="prefetch" href="/blog/assets/js/27.8f285ea7.js"><link rel="prefetch" href="/blog/assets/js/28.12fb7e61.js"><link rel="prefetch" href="/blog/assets/js/29.20ec2b08.js"><link rel="prefetch" href="/blog/assets/js/3.255e0206.js"><link rel="prefetch" href="/blog/assets/js/30.1640f607.js"><link rel="prefetch" href="/blog/assets/js/31.5d2af237.js"><link rel="prefetch" href="/blog/assets/js/32.8298eec9.js"><link rel="prefetch" href="/blog/assets/js/33.c6f8f721.js"><link rel="prefetch" href="/blog/assets/js/34.c0872a5c.js"><link rel="prefetch" href="/blog/assets/js/35.5b393112.js"><link rel="prefetch" href="/blog/assets/js/36.52abe624.js"><link rel="prefetch" href="/blog/assets/js/37.81f53f0f.js"><link rel="prefetch" href="/blog/assets/js/38.453562e5.js"><link rel="prefetch" href="/blog/assets/js/39.2c1c0b7d.js"><link rel="prefetch" href="/blog/assets/js/4.89da6ee0.js"><link rel="prefetch" href="/blog/assets/js/40.0bfca58e.js"><link rel="prefetch" href="/blog/assets/js/41.4e1304e0.js"><link rel="prefetch" href="/blog/assets/js/42.bd6afb6b.js"><link rel="prefetch" href="/blog/assets/js/43.0356fec8.js"><link rel="prefetch" href="/blog/assets/js/44.6506d83e.js"><link rel="prefetch" href="/blog/assets/js/45.5c8d5032.js"><link rel="prefetch" href="/blog/assets/js/46.12138c6d.js"><link rel="prefetch" href="/blog/assets/js/47.fa9c6b32.js"><link rel="prefetch" href="/blog/assets/js/48.a6ea83be.js"><link rel="prefetch" href="/blog/assets/js/49.d9b9aba6.js"><link rel="prefetch" href="/blog/assets/js/5.3e85bd34.js"><link rel="prefetch" href="/blog/assets/js/50.4d4a4bcc.js"><link rel="prefetch" href="/blog/assets/js/51.33eabfd6.js"><link rel="prefetch" href="/blog/assets/js/52.08654efc.js"><link rel="prefetch" href="/blog/assets/js/53.e0364988.js"><link rel="prefetch" href="/blog/assets/js/54.2b66ac44.js"><link rel="prefetch" href="/blog/assets/js/55.6dfc0e24.js"><link rel="prefetch" href="/blog/assets/js/56.ab0d9520.js"><link rel="prefetch" href="/blog/assets/js/57.bcdb112b.js"><link rel="prefetch" href="/blog/assets/js/58.751584ab.js"><link rel="prefetch" href="/blog/assets/js/59.55d1ab1d.js"><link rel="prefetch" href="/blog/assets/js/6.efa41982.js"><link rel="prefetch" href="/blog/assets/js/60.08975a87.js"><link rel="prefetch" href="/blog/assets/js/61.835076f0.js"><link rel="prefetch" href="/blog/assets/js/62.5d0db7eb.js"><link rel="prefetch" href="/blog/assets/js/63.83bf7f5b.js"><link rel="prefetch" href="/blog/assets/js/64.9bfd44ed.js"><link rel="prefetch" href="/blog/assets/js/65.d868676a.js"><link rel="prefetch" href="/blog/assets/js/66.cf7933e9.js"><link rel="prefetch" href="/blog/assets/js/67.01196b6c.js"><link rel="prefetch" href="/blog/assets/js/68.f8075620.js"><link rel="prefetch" href="/blog/assets/js/69.520819e8.js"><link rel="prefetch" href="/blog/assets/js/7.1ca16779.js"><link rel="prefetch" href="/blog/assets/js/70.fd361e82.js"><link rel="prefetch" href="/blog/assets/js/71.602ade27.js"><link rel="prefetch" href="/blog/assets/js/72.16133e17.js"><link rel="prefetch" href="/blog/assets/js/73.e4460522.js"><link rel="prefetch" href="/blog/assets/js/74.a8061c47.js"><link rel="prefetch" href="/blog/assets/js/75.28ef9de2.js"><link rel="prefetch" href="/blog/assets/js/76.0b56fe62.js"><link rel="prefetch" href="/blog/assets/js/77.90dad086.js"><link rel="prefetch" href="/blog/assets/js/78.34d738e0.js"><link rel="prefetch" href="/blog/assets/js/79.095872d2.js"><link rel="prefetch" href="/blog/assets/js/8.4bb50bcb.js"><link rel="prefetch" href="/blog/assets/js/80.ca525846.js"><link rel="prefetch" href="/blog/assets/js/81.6a4be1de.js"><link rel="prefetch" href="/blog/assets/js/82.3a11bc02.js"><link rel="prefetch" href="/blog/assets/js/83.ed2c4561.js"><link rel="prefetch" href="/blog/assets/js/84.d20af6b2.js"><link rel="prefetch" href="/blog/assets/js/85.c26072d9.js"><link rel="prefetch" href="/blog/assets/js/86.385dfd46.js"><link rel="prefetch" href="/blog/assets/js/87.c73a31d9.js"><link rel="prefetch" href="/blog/assets/js/88.e69f81b4.js"><link rel="prefetch" href="/blog/assets/js/89.703fc061.js"><link rel="prefetch" href="/blog/assets/js/9.327cba84.js"><link rel="prefetch" href="/blog/assets/js/90.831396cf.js"><link rel="prefetch" href="/blog/assets/js/91.8793446a.js"><link rel="prefetch" href="/blog/assets/js/92.d7be76be.js"><link rel="prefetch" href="/blog/assets/js/93.95378c46.js"><link rel="prefetch" href="/blog/assets/js/94.0651bdce.js"><link rel="prefetch" href="/blog/assets/js/95.6bd8206e.js"><link rel="prefetch" href="/blog/assets/js/96.fae15f54.js"><link rel="prefetch" href="/blog/assets/js/97.94fd30ae.js"><link rel="prefetch" href="/blog/assets/js/98.e756979b.js"><link rel="prefetch" href="/blog/assets/js/99.0f4fa3e2.js">
+    <link rel="stylesheet" href="/blog/assets/css/0.styles.925f0c2d.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="theme-container"><header class="navbar"><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/blog/" class="home-link router-link-active"><!----> <span class="site-name">Blog</span></a> <div class="links"><div class="search-box"><input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <nav class="nav-links can-hide"><div class="nav-item"><a href="/blog/" class="nav-link">
+  Home
+</a></div><div class="nav-item"><a href="/blog/base/" class="nav-link router-link-active">
+  FE
+</a></div><div class="nav-item"><a href="/blog/job-summary/" class="nav-link">
+  JobSummary
+</a></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="Framework" class="dropdown-title"><span class="title">Framework</span> <span class="arrow down"></span></button> <button type="button" aria-label="Framework" class="mobile-dropdown-title"><span class="title">Framework</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><h4>
+          Vue
+        </h4> <ul class="dropdown-subitem-wrapper"><li class="dropdown-subitem"><a href="/blog/framework/vue/v3/" class="nav-link">
+  v3
+</a></li><li class="dropdown-subitem"><a href="/blog/framework/vue/v2/" class="nav-link">
+  v2
+</a></li><li class="dropdown-subitem"><a href="/blog/framework/vue/vuex/" class="nav-link">
+  Vuex
+</a></li><li class="dropdown-subitem"><a href="/blog/framework/vue/vue-router/" class="nav-link">
+  VueRouter
+</a></li></ul></li><li class="dropdown-item"><h4>
+          React
+        </h4> <ul class="dropdown-subitem-wrapper"><li class="dropdown-subitem"><a href="/blog/framework/react/react/" class="nav-link">
+  React
+</a></li><li class="dropdown-subitem"><a href="/blog/framework/react/react-router/" class="nav-link">
+  ReactRouter
+</a></li><li class="dropdown-subitem"><a href="/blog/framework/react/redux/" class="nav-link">
+  Redux
+</a></li></ul></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="Bundler" class="dropdown-title"><span class="title">Bundler</span> <span class="arrow down"></span></button> <button type="button" aria-label="Bundler" class="mobile-dropdown-title"><span class="title">Bundler</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><h4>
+          Webpack
+        </h4> <ul class="dropdown-subitem-wrapper"><li class="dropdown-subitem"><a href="/blog/bundler/webpack/v2.html" class="nav-link">
+  v2
+</a></li><li class="dropdown-subitem"><a href="/blog/bundler/webpack/v4.html" class="nav-link">
+  v4
+</a></li></ul></li><li class="dropdown-item"><!----> <a href="/blog/bundler/rollup/" class="nav-link">
+  Rollup
+</a></li><li class="dropdown-item"><!----> <a href="/blog/bundler/gulp/" class="nav-link">
+  Gulp
+</a></li></ul></div></div><div class="nav-item"><a href="/blog/share/" class="nav-link">
+  Share
+</a></div><div class="nav-item"><a href="https://gitee.com/luguanrui/lgr-tools?_from=gitee_search" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  lgr-tools
+  <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></div><div class="nav-item"><a href="https://github.com/luguanrui?tab=repositories" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  GitHub
+  <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></div> <!----></nav></div></header> <div class="sidebar-mask"></div> <aside class="sidebar"><nav class="nav-links"><div class="nav-item"><a href="/blog/" class="nav-link">
+  Home
+</a></div><div class="nav-item"><a href="/blog/base/" class="nav-link router-link-active">
+  FE
+</a></div><div class="nav-item"><a href="/blog/job-summary/" class="nav-link">
+  JobSummary
+</a></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="Framework" class="dropdown-title"><span class="title">Framework</span> <span class="arrow down"></span></button> <button type="button" aria-label="Framework" class="mobile-dropdown-title"><span class="title">Framework</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><h4>
+          Vue
+        </h4> <ul class="dropdown-subitem-wrapper"><li class="dropdown-subitem"><a href="/blog/framework/vue/v3/" class="nav-link">
+  v3
+</a></li><li class="dropdown-subitem"><a href="/blog/framework/vue/v2/" class="nav-link">
+  v2
+</a></li><li class="dropdown-subitem"><a href="/blog/framework/vue/vuex/" class="nav-link">
+  Vuex
+</a></li><li class="dropdown-subitem"><a href="/blog/framework/vue/vue-router/" class="nav-link">
+  VueRouter
+</a></li></ul></li><li class="dropdown-item"><h4>
+          React
+        </h4> <ul class="dropdown-subitem-wrapper"><li class="dropdown-subitem"><a href="/blog/framework/react/react/" class="nav-link">
+  React
+</a></li><li class="dropdown-subitem"><a href="/blog/framework/react/react-router/" class="nav-link">
+  ReactRouter
+</a></li><li class="dropdown-subitem"><a href="/blog/framework/react/redux/" class="nav-link">
+  Redux
+</a></li></ul></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="Bundler" class="dropdown-title"><span class="title">Bundler</span> <span class="arrow down"></span></button> <button type="button" aria-label="Bundler" class="mobile-dropdown-title"><span class="title">Bundler</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><h4>
+          Webpack
+        </h4> <ul class="dropdown-subitem-wrapper"><li class="dropdown-subitem"><a href="/blog/bundler/webpack/v2.html" class="nav-link">
+  v2
+</a></li><li class="dropdown-subitem"><a href="/blog/bundler/webpack/v4.html" class="nav-link">
+  v4
+</a></li></ul></li><li class="dropdown-item"><!----> <a href="/blog/bundler/rollup/" class="nav-link">
+  Rollup
+</a></li><li class="dropdown-item"><!----> <a href="/blog/bundler/gulp/" class="nav-link">
+  Gulp
+</a></li></ul></div></div><div class="nav-item"><a href="/blog/share/" class="nav-link">
+  Share
+</a></div><div class="nav-item"><a href="https://gitee.com/luguanrui/lgr-tools?_from=gitee_search" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  lgr-tools
+  <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></div><div class="nav-item"><a href="https://github.com/luguanrui?tab=repositories" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  GitHub
+  <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></div> <!----></nav>  <ul class="sidebar-links"><li><section class="sidebar-group depth-0"><p class="sidebar-heading open"><span>深度优先搜索和广度优先搜索</span> <!----></p> <ul class="sidebar-links sidebar-group-items"><li><a href="/blog/base/javascript/algorithm/dfs-bfs.html#深度优先搜索" class="sidebar-link">深度优先搜索</a><ul class="sidebar-sub-headers"></ul></li><li><a href="/blog/base/javascript/algorithm/dfs-bfs.html#广度优先搜索" class="sidebar-link">广度优先搜索</a><ul class="sidebar-sub-headers"></ul></li><li><a href="/blog/base/javascript/algorithm/dfs-bfs.html#应用" class="sidebar-link">应用</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/blog/base/javascript/algorithm/dfs-bfs.html#递归" class="sidebar-link">递归</a></li><li class="sidebar-sub-header"><a href="/blog/base/javascript/algorithm/dfs-bfs.html#深度优先遍历" class="sidebar-link">深度优先遍历</a></li><li class="sidebar-sub-header"><a href="/blog/base/javascript/algorithm/dfs-bfs.html#广度优先遍历" class="sidebar-link">广度优先遍历</a></li><li class="sidebar-sub-header"><a href="/blog/base/javascript/algorithm/dfs-bfs.html#总结" class="sidebar-link">总结</a></li></ul></li></ul></section></li></ul> </aside> <main class="page"> <div class="theme-default-content content__default"><h1 id="深度优先搜索和广度优先搜索"><a href="#深度优先搜索和广度优先搜索" class="header-anchor">#</a> 深度优先搜索和广度优先搜索</h1> <h2 id="深度优先搜索"><a href="#深度优先搜索" class="header-anchor">#</a> 深度优先搜索</h2> <p><code>深度优先搜索</code>（Depth-first search），从图中也可以看出来，是从根节点开始，沿树的深度进行搜索，尽可能深的搜索分支。当节点所在的边都已经搜多过，则回溯到上一个节点，再搜索其余的边。</p> <p>深度优先搜索采用<code>栈结构</code>，<code>后进先出</code>。</p> <p><img src="/blog/assets/img/dfs.0b83cd5b.gif" alt="dfs"></p> <h2 id="广度优先搜索"><a href="#广度优先搜索" class="header-anchor">#</a> 广度优先搜索</h2> <p><code>广度优先搜索</code>（Breadth-first search），从图中也可以看出来，是从根节点开始，沿树的宽度进行搜索，如果所有节点都被访问，则算法中止。</p> <p>广度优先搜索采用<code>队列的形式</code>，<code>先进先出</code>。</p> <p><img src="/blog/assets/img/bfs.04e40865.gif" alt="bfs"></p> <h2 id="应用"><a href="#应用" class="header-anchor">#</a> 应用</h2> <div class="language-js line-numbers-mode"><pre class="language-js"><code><span class="token keyword">var</span> tree <span class="token operator">=</span> <span class="token punctuation">{</span>
+  name<span class="token operator">:</span> <span class="token string">'中国'</span><span class="token punctuation">,</span>
+  children<span class="token operator">:</span> <span class="token punctuation">[</span>
+    <span class="token punctuation">{</span>
+      name<span class="token operator">:</span> <span class="token string">'北京'</span><span class="token punctuation">,</span>
+      children<span class="token operator">:</span> <span class="token punctuation">[</span>
+        <span class="token punctuation">{</span>
+          name<span class="token operator">:</span> <span class="token string">'朝阳群众'</span><span class="token punctuation">,</span>
+          children<span class="token operator">:</span> <span class="token punctuation">[</span>
+            <span class="token punctuation">{</span>
+              name<span class="token operator">:</span> <span class="token string">'西宁市'</span><span class="token punctuation">,</span>
+              code<span class="token operator">:</span> <span class="token string">'0521'</span><span class="token punctuation">,</span>
+            <span class="token punctuation">}</span><span class="token punctuation">,</span>
+          <span class="token punctuation">]</span><span class="token punctuation">,</span>
+        <span class="token punctuation">}</span><span class="token punctuation">,</span>
+        <span class="token punctuation">{</span>
+          name<span class="token operator">:</span> <span class="token string">'海淀区'</span><span class="token punctuation">,</span>
+        <span class="token punctuation">}</span><span class="token punctuation">,</span>
+        <span class="token punctuation">{</span>
+          name<span class="token operator">:</span> <span class="token string">'昌平区'</span><span class="token punctuation">,</span>
+        <span class="token punctuation">}</span><span class="token punctuation">,</span>
+      <span class="token punctuation">]</span><span class="token punctuation">,</span>
+    <span class="token punctuation">}</span><span class="token punctuation">,</span>
+    <span class="token punctuation">{</span>
+      name<span class="token operator">:</span> <span class="token string">'浙江省'</span><span class="token punctuation">,</span>
+      children<span class="token operator">:</span> <span class="token punctuation">[</span>
+        <span class="token punctuation">{</span>
+          name<span class="token operator">:</span> <span class="token string">'杭州市'</span><span class="token punctuation">,</span>
+          code<span class="token operator">:</span> <span class="token string">'0571'</span><span class="token punctuation">,</span>
+        <span class="token punctuation">}</span><span class="token punctuation">,</span>
+        <span class="token punctuation">{</span>
+          name<span class="token operator">:</span> <span class="token string">'嘉兴市'</span><span class="token punctuation">,</span>
+        <span class="token punctuation">}</span><span class="token punctuation">,</span>
+        <span class="token punctuation">{</span>
+          name<span class="token operator">:</span> <span class="token string">'绍兴市'</span><span class="token punctuation">,</span>
+        <span class="token punctuation">}</span><span class="token punctuation">,</span>
+        <span class="token punctuation">{</span>
+          name<span class="token operator">:</span> <span class="token string">'宁波市'</span><span class="token punctuation">,</span>
+        <span class="token punctuation">}</span><span class="token punctuation">,</span>
+      <span class="token punctuation">]</span><span class="token punctuation">,</span>
+    <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  <span class="token punctuation">]</span><span class="token punctuation">,</span>
+<span class="token punctuation">}</span>
+<span class="token keyword">var</span> node <span class="token operator">=</span> dfs <span class="token operator">/</span> <span class="token function">bfs</span><span class="token punctuation">(</span>tree<span class="token punctuation">,</span> <span class="token string">'西宁市'</span><span class="token punctuation">)</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>node<span class="token punctuation">)</span> <span class="token comment">// 输出： { name: '西宁市', code: '0521' }</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br><span class="line-number">17</span><br><span class="line-number">18</span><br><span class="line-number">19</span><br><span class="line-number">20</span><br><span class="line-number">21</span><br><span class="line-number">22</span><br><span class="line-number">23</span><br><span class="line-number">24</span><br><span class="line-number">25</span><br><span class="line-number">26</span><br><span class="line-number">27</span><br><span class="line-number">28</span><br><span class="line-number">29</span><br><span class="line-number">30</span><br><span class="line-number">31</span><br><span class="line-number">32</span><br><span class="line-number">33</span><br><span class="line-number">34</span><br><span class="line-number">35</span><br><span class="line-number">36</span><br><span class="line-number">37</span><br><span class="line-number">38</span><br><span class="line-number">39</span><br><span class="line-number">40</span><br><span class="line-number">41</span><br><span class="line-number">42</span><br><span class="line-number">43</span><br><span class="line-number">44</span><br><span class="line-number">45</span><br></div></div><h3 id="递归"><a href="#递归" class="header-anchor">#</a> 递归</h3> <div class="language-js line-numbers-mode"><pre class="language-js"><code><span class="token comment">// 递归</span>
+<span class="token keyword">function</span> <span class="token function">search</span><span class="token punctuation">(</span><span class="token parameter">tree<span class="token punctuation">,</span> name</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">if</span> <span class="token punctuation">(</span>tree<span class="token punctuation">.</span>name <span class="token operator">===</span> name<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">return</span> tree
+  <span class="token punctuation">}</span>
+  <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span>tree<span class="token punctuation">.</span>name <span class="token operator">&amp;&amp;</span> <span class="token operator">!</span>tree<span class="token punctuation">.</span>children<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">return</span> <span class="token keyword">null</span>
+  <span class="token punctuation">}</span>
+  <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">let</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> tree<span class="token punctuation">.</span>children<span class="token punctuation">.</span>length<span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">var</span> result <span class="token operator">=</span> <span class="token function">search</span><span class="token punctuation">(</span>tree<span class="token punctuation">.</span>children<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">,</span> name<span class="token punctuation">)</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>result<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      <span class="token keyword">return</span> result
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span>
+  <span class="token keyword">return</span> <span class="token keyword">null</span>
+<span class="token punctuation">}</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br></div></div><h3 id="深度优先遍历"><a href="#深度优先遍历" class="header-anchor">#</a> 深度优先遍历</h3> <div class="language-js line-numbers-mode"><pre class="language-js"><code><span class="token comment">// 栈</span>
+<span class="token keyword">function</span> <span class="token function">dfs</span><span class="token punctuation">(</span><span class="token parameter">tree<span class="token punctuation">,</span> name</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">let</span> stack <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">]</span>
+  <span class="token keyword">let</span> result <span class="token operator">=</span> <span class="token punctuation">{</span><span class="token punctuation">}</span>
+  stack<span class="token punctuation">.</span><span class="token function">push</span><span class="token punctuation">(</span>tree<span class="token punctuation">)</span>
+  <span class="token keyword">while</span> <span class="token punctuation">(</span>stack<span class="token punctuation">.</span>length <span class="token operator">!=</span> <span class="token number">0</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">var</span> item <span class="token operator">=</span> stack<span class="token punctuation">.</span><span class="token function">pop</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>item<span class="token punctuation">.</span>name <span class="token operator">==</span> name<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      result <span class="token operator">=</span> item
+      <span class="token keyword">break</span>
+    <span class="token punctuation">}</span>
+    <span class="token keyword">let</span> children <span class="token operator">=</span> item<span class="token punctuation">.</span>children
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>children<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">let</span> i <span class="token operator">=</span> children<span class="token punctuation">.</span>length <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">;</span> i <span class="token operator">&gt;=</span> <span class="token number">0</span><span class="token punctuation">;</span> i<span class="token operator">--</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        stack<span class="token punctuation">.</span><span class="token function">push</span><span class="token punctuation">(</span>children<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">)</span>
+      <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span>
+  <span class="token keyword">return</span> result
+<span class="token punctuation">}</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br><span class="line-number">17</span><br><span class="line-number">18</span><br><span class="line-number">19</span><br><span class="line-number">20</span><br></div></div><h3 id="广度优先遍历"><a href="#广度优先遍历" class="header-anchor">#</a> 广度优先遍历</h3> <div class="language-js line-numbers-mode"><pre class="language-js"><code><span class="token comment">// 队列</span>
+<span class="token keyword">function</span> <span class="token function">bfs</span><span class="token punctuation">(</span><span class="token parameter">tree<span class="token punctuation">,</span> name</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">let</span> queue <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">]</span>
+  <span class="token keyword">let</span> result <span class="token operator">=</span> <span class="token punctuation">{</span><span class="token punctuation">}</span>
+  queue<span class="token punctuation">.</span><span class="token function">unshift</span><span class="token punctuation">(</span>tree<span class="token punctuation">)</span>
+  <span class="token keyword">while</span> <span class="token punctuation">(</span>queue<span class="token punctuation">.</span>length <span class="token operator">!=</span> <span class="token number">0</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">var</span> item <span class="token operator">=</span> queue<span class="token punctuation">.</span><span class="token function">shift</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>item<span class="token punctuation">.</span>name <span class="token operator">==</span> name<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      result <span class="token operator">=</span> item
+      <span class="token keyword">break</span>
+    <span class="token punctuation">}</span>
+    <span class="token keyword">var</span> children <span class="token operator">=</span> item<span class="token punctuation">.</span>children
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>children<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">let</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> children<span class="token punctuation">.</span>length<span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        queue<span class="token punctuation">.</span><span class="token function">push</span><span class="token punctuation">(</span>children<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">)</span>
+      <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span>
+  <span class="token keyword">return</span> result
+<span class="token punctuation">}</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br><span class="line-number">17</span><br><span class="line-number">18</span><br><span class="line-number">19</span><br><span class="line-number">20</span><br></div></div><h3 id="总结"><a href="#总结" class="header-anchor">#</a> 总结</h3> <h4 id="深搜优缺点"><a href="#深搜优缺点" class="header-anchor">#</a> 深搜优缺点</h4> <ul><li>能找出所有解决方案</li> <li>优先搜索一棵子树，然后是另一棵，所以和广搜对比，有着内存需要相对较少的优点</li> <li>要多次遍历，搜索所有可能路径，标识做了之后还要取消。</li> <li>在深度很大的情况下效率不高</li></ul> <h4 id="广搜优缺点"><a href="#广搜优缺点" class="header-anchor">#</a> 广搜优缺点</h4> <ul><li>对于解决最短或最少问题特别有效，而且寻找深度小</li> <li>每个结点只访问一遍，结点总是以最短路径被访问，所以第二次路径确定不会比第一次短</li> <li>内存耗费量大（需要开大量的数组单元用来存储状态）</li></ul></div> <footer class="page-edit"><!----> <div class="last-updated"><span class="prefix">上次更新:</span> <span class="time">2021-06-08 17:09:13</span></div></footer> <!----> </main></div><div class="global-ui"><!----></div></div>
+    <script src="/blog/assets/js/app.abf11c23.js" defer></script><script src="/blog/assets/js/2.26401494.js" defer></script><script src="/blog/assets/js/21.8e95b607.js" defer></script>
+  </body>
+</html>
