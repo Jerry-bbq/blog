@@ -25,6 +25,27 @@ export function treeToList(tree, children = 'children') {
 }
 ```
 
+## 将数组转化为树形结构
+
+```js
+function convert(list, parentId = 0) {
+  var itemArr = []
+  for (var i = 0; i < list.length; i++) {
+    var node = list[i]
+    if (node.parentId === parentId) {
+      var newNode = {
+        ...node,
+        name: node.name,
+        id: node.id,
+        children: convert(list, node.id),
+      }
+      itemArr.push(newNode)
+    }
+  }
+  return itemArr
+}
+```
+
 ## 设置层级
 
 递归遍历树形结构，设置层级`level`

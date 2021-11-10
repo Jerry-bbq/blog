@@ -56,7 +56,7 @@ document.addEventListener('DOMContentLoaded', () => {
 history实际采用了HTML5中提供的API来实现，设置history模式需要后台支持。
 
 - [history.pushState()](https://developer.mozilla.org/zh-CN/docs/Web/API/History/pushState)：向当前浏览器会话的历史堆栈中添加一个状态。注意，`pushState()` 不会造成 `hashchange` 事件调用, 即使新的URL和之前的URL只是锚的数据不同
-- [window.onpopstate()](https://developer.mozilla.org/zh-CN/docs/Web/API/Window/onpopstate)：调用`history.pushState()`或h`istory.replaceState()`不会触发`popstate`事件。只有在做出浏览器动作时，比如点击后退、前进按钮【或者调用JS中的`history.back()`、`history.forward()`、`history.go()`】才会触发该事件
+- [window.onpopstate()](https://developer.mozilla.org/zh-CN/docs/Web/API/Window/onpopstate)：调用`history.pushState()`或`history.replaceState()`不会触发`popstate`事件。只有在做出浏览器动作时，比如点击后退、前进按钮【或者调用JS中的`history.back()`、`history.forward()`、`history.go()`】才会触发该事件
 
 简单实现：
 
@@ -122,6 +122,8 @@ export default new Router({
 
 ## 路由懒加载
 
+当打包构建应用时，JavaScript 包会变得非常大，影响页面加载。如果我们能把不同路由对应的组件分割成不同的代码块，然后当路由被访问的时候才加载对应组件，这样就更加高效了
+
 在Vue Router中，怎么实现路由懒加载？
 
 ### vue异步组件
@@ -176,3 +178,10 @@ const Home = () => import('@/components/home'）
 - beforeRouterEnter(to, from, next)
 - beforeRouterUpdate(to, from, next)
 - beforeRouterLeave(to, from, next)
+
+
+说明：
+
+- to：进入到哪个路由去
+- from：从哪个路由离开
+- next：路由的控制参数，常用的有next(true)（进行管道中的下一个钩子）和next(false)（中断当前的导航），next('/')或者next({ path: '/' })（跳转到一个不同的地址）
