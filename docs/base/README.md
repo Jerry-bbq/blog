@@ -28,7 +28,7 @@ sidebar: auto
 ## JavaScript
 
 - [数据类型](./javascript/data-type.md)
-- [垃圾回收机制](./javascript/gc.md)
+- [垃圾回收机制与内存泄漏](./javascript/gc.md)
 
 JS三座大山：
 

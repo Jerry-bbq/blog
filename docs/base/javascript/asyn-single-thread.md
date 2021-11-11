@@ -4,13 +4,6 @@ sidebar: auto
 
 # 异步和单线程
 
-- 什么是单线程，和异步有什么关系
-- 什么是event-loop
-- 是否用过jQuery的deferred
-- promise的基本使用和原理
-- 介绍async/await（和promise的区别，联系）
-- 总结当前js解决异步的方案
-
 ## 单线程
 
 - 只有一个线程，同一时间只能做一件事
@@ -129,66 +122,6 @@ console.log('d')
 // d -> c -> a -> b
 // ajax可能很快
 ```
-
-## 是否用过jQuery的Deferred
-
-jQuery1.5之前
-
-```js
-var ajax = $.ajax({
-  url: 'data.json',
-  success: function() {
-    console.log('success1')
-    console.log('success2')
-    console.log('success3')
-  },
-  error: function() {
-    console.log('error')
-  }
-})
-console.log(ajax) // 返回一个 XHR 对象
-```
-
-jQuery1.5之后
-
-```js
-var ajax = $.ajax('data.json')
-ajax.done(function() {
-  console.log('success1')
-})
-.fail(function() {
-  console.log('error1')
-})
-.done(function() {
-  console.log('success2')
-})
-.fail(function() {
-  console.log('error2')
-})
-console.log(ajax) // 返回一个 deferred 对象
-```
-
-或者使用then
-
-```js
-var ajax = $.ajax('data.json')
-ajax.then(function() {
-  console.log('success1')
-}, function() {
-  console.log('error1')
-}).then(function() {
-  console.log('success2')
-}, function() {
-  console.log('error2')
-})
-```
-
-jQuery1.5的变化
-
-- 无法改变JS异步和单线程的本质
-- 只能从写法上杜绝callback这种形式
-- 它是一种语法糖形式，但是解耦了代码
-- 很好的体现：开放封闭原则
 
 ## 单线程
 
@@ -371,3 +304,180 @@ new Promise(function (resolve) {
 ## 事件循环机制
 
 
+## 问题及分析
+
+浏览器是多线程的，但是js是单线程的
+
+- GUI渲染线程（给浏览器画画用的 DOM/BOM）
+- JS引擎线程（web worker）
+- 浏览器事件线程（onclick）
+- 定时器触发线程
+- http异步线程
+- EventLoop（事件线程）处理线程
+
+### 案例一
+
+```js
+let setTimeoutCallBack = function() {
+  console.log('定时器回调')
+}
+let httpCallback = function() {
+  console.log('http回调')
+}
+
+console.log('同步任务1')
+
+// 定时 1s
+setTimeout(setTimeoutCallBack, 1000)
+
+// 请求了 2s
+ajax.get('/info', httpCallback)
+
+console.log('同步任务2')
+
+// 执行结果
+// 同步任务1 => 同步任务2 => 定时器回调 => http回调
+```
+
+分析：
+
+- call back（调用栈）中同步任务先执行
+- 异步任务，定时器进入定时器触发线程中，http请求进入http异步线程中（并不是马上放到任务队列中去）
+- 调用栈中，同步任务执行结束之后，到task queue任务队列中轮询
+- 当1s的之后，拿到定时器任务，放在调用栈中执行
+- 当2s的时候，拿到http请求，放到调用栈中执行
+
+### 案例二
+
+```js
+// `宏任务1`
+setTimeout(()=> {
+  console.log(1)
+}, 20)
+
+console.log(2)
+
+// `宏任务2`
+setTimeout(()=> {
+  console.log(3)
+}, 10)
+
+console.log(4)
+
+// 大概执行33ms
+console.time('AA')
+for(let i=0;i<9000000;i++){
+  // do somethingg
+}
+console.timeEnd('AA')
+
+console.log(5)
+
+// `宏任务3`
+setTimeout(()=> {
+  console.log(6)
+}, 20)
+
+console.log(7)
+
+// `宏任务4`
+setTimeout(()=> {
+  console.log(8)
+}, 10)
+
+// 执行结果
+// 2 => 4 => 5 => 7 => 3 => 1 => 8 => 6
+```
+
+分析：
+
+- 调用栈执行同步代码，输出：2 => 4 => 5 => 7
+- 在33ms时，同步任务执行完毕
+- 在异步队列中
+  - 在10ms时放入`宏任务2`,输出 3
+  - 在20ms时放入`宏任务1`,输出 1
+  - 在43ms时放入`宏任务4`,输出 8
+  - 在53ms时放入`宏任务3`,输出 6
+
+### 案例三
+
+```js
+async function async1() {
+  console.log('A')
+  await async2()
+  console.log('B')
+}
+
+async function async2() {
+  console.log('C')
+} 
+
+console.log('D')
+
+setTimeout(function() {
+  console.log('E')
+}, 0)
+
+async1()
+
+new Promise(function(resolve) {
+  console.log('F')
+  resolve()
+}).then(function() {
+  console.log('G')  
+})
+console.log('H')  
+
+// 执行结果
+// D => A => C => F => H => B => G => E
+
+/*
+将async/await转化为promise
+
+function async1() {
+  console.log('A')
+  new Promise(resolve => {
+    console.log('C')
+    resolve()
+  }).then(res => {
+    console.log('B')
+  })  
+}
+*/
+```
+
+### 案例四
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+<button id="button">button</button>
+
+<script>
+
+const button = document.getElementById('button')
+button.addEventListener('click', () => {
+  Promise.resolve().then(()=> console.log('Microtask 1'))
+  console.log('Listener 1')  
+})
+button.addEventListener('click', () => {
+  Promise.resolve().then(()=> console.log('Microtask 2'))
+  console.log('Listener 2')  
+})
+
+</script>
+
+</body>
+</html>
+<!-- 输出结果：Listener 1 =>  => Microtask 1 => Listener 2 => Microtask 2  -->
+```
+
+分析：
+
+- 
