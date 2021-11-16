@@ -20,6 +20,8 @@ sidebar: auto
 
 - [盒模型](./css/box-model.md)
 - [BFC](./css/bfc.md)
+- [flex](./css/flex.md)
+- [rem](./css/rem.md)
 - [清除浮动](./css/clear.md)
 - [水平垂直居中](./css/center.md)
 - [页面布局](./css/layout.md)
