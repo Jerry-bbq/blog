@@ -24,25 +24,7 @@ module.exports = {
       },
       {
         text: 'Framework',
-        items: [
-          {
-            text: 'Vue',
-            items: [
-              { text: 'v3', link: '/framework/vue/v3/' },
-              { text: 'v2', link: '/framework/vue/v2/' },
-              { text: 'Vuex', link: '/framework/vue/vuex/' },
-              { text: 'VueRouter', link: '/framework/vue/vue-router/' },
-            ],
-          },
-          {
-            text: 'React',
-            items: [
-              { text: 'React', link: '/framework/react/react/' },
-              { text: 'ReactRouter', link: '/framework/react/react-router/' },
-              { text: 'Redux', link: '/framework/react/redux/' },
-            ],
-          },
-        ],
+        link: '/framework/'
       },
       {
         text: 'Bundler',
