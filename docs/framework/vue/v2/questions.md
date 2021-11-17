@@ -396,19 +396,60 @@ data: {
 
 ## 如何监测数组变化
 
-![vue-array](./images/vue-array.png)
+Vue官方给出了解释是【Vue不能检测】，而很多文章写出的是【Object.defineProperty不能检测】。但实际上Object.defineProperty是可以检测到数组索引的变化的
 
-使用了函数劫持的方式，`重写了数组的方法`，Vue将data中的数组进行了原型链重写，指向了自己定义的数组原型方法，包含如下方法：
+Vue的解决方案，就是重写了数组的原型，更准确的表达是`拦截`了数组的原型
 
-- push
-- pop
-- shift
-- unshift
-- splice
-- sort
-- reverse
+源码：
 
-这样当调用数组api时，可以通知依赖更新。如果数组中包含着引用类型，会对数组中的引用类型再次递归遍历进行监控。这样就实现了监测数组变化
+```js
+function def (obj: Object, key: string, val: any, enumerable?: boolean) {
+  Object.defineProperty(obj, key, {
+    value: val,
+    enumerable: !!enumerable,
+    writable: true,
+    configurable: true
+  })
+}
+// 获得原型上的方法
+const arrayProto = Array.prototype
+// 创建一个新对象，使用现有的对象来提供新创建的对象的__proto__
+const arrayMethods = Object.create(arrayProto)
+// Vue拦截的方法
+const methodsToPatch = [
+  'push',
+  'pop',
+  'shift',
+  'unshift',
+  'splice',
+  'sort',
+  'reverse'
+]
+// 将上面的方法重写
+methodsToPatch.forEach(function (method) {
+  // 缓存原始方法
+  const original = arrayProto[method]
+  // 
+  def(arrayMethods, method, function mutator (...args) {
+    const result = original.apply(this, args)
+    const ob = this.__ob__
+    let inserted
+    switch (method) {
+      case 'push':
+      case 'unshift':
+        inserted = args
+        break
+      case 'splice':
+        inserted = args.slice(2)
+        break
+    }
+    if (inserted) ob.observeArray(inserted)
+    // 派发更新
+    ob.dep.notify()
+    return result
+  })
+})
+```
 
 ## 采用异步渲染
 
@@ -452,7 +493,7 @@ Vue3.x改用`Proxy`替代`Object.defineProperty`。因为`Proxy`可以直接监�
 缺点：
 
 - 无法检测到对象属性的新增或删除，解决方案：Vue.set(obj, propertName/index, value),Vue.delete()
-- 不能监听数组的变化，因此vue重写了数组操作的方法，比如push，pop，shift，unshift，splice，sort，reverse
+- 可以检测到数组索引的变化的，但是性能影响太大，因此vue重写了数组操作的方法，比如push，pop，shift，unshift，splice，sort，reverse。[参考](https://segmentfault.com/a/1190000015783546)
 
 Proxy是ES6提供的一个新的API，用于修改某些操作的默认行为
 

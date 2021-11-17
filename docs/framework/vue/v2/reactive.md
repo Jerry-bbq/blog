@@ -4,6 +4,8 @@ sidebar: auto
 
 # 响应式原理
 
+[参考](https://juejin.cn/post/6844903858850758670)
+
 简单概述：
 
 采用**数据劫持**结合**发布-订阅模式**,通过 `Object.defineProperty` 来劫持各个属性的`getter`和`setter`,在数据变动时发布消息给**订阅者**,触发相应的**监听回调**
