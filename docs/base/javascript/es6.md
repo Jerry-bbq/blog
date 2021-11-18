@@ -7,7 +7,16 @@ sidebar: auto
 ## 箭头函数与普通函数的区别
 
 1. 箭头函数语法上更简洁
-2. 箭头函数没有原型对象`prototype`
+2. 箭头函数是匿名函数，不能作为构造函数，不能使用`new`操作符
+
+```js
+let arrowFn = () => {}
+function commonFn() {}
+
+let newFn = new arrowFn() // Uncaught TypeError: fn is not a constructor
+let newCommonFn = new commonFn() // commonFn {}
+```
+3. 箭头函数没有原型对象`prototype`
 
 ```js
 let arrowFn = () => {}
@@ -17,7 +26,7 @@ console.log(arrowFn.prototype) // undefined
 console.log(commonFn.prototype) // {constructor: ƒ}
 ```
 
-3. 箭头函数没有this，它里面的this继承函数所处的上下文中的this（通过查找作用域链来确定this的值），使用call，apply,bind 无法改变箭头函数的this指向
+4. 箭头函数没`this`，它里面的`this`**继承函数所处的上下文中的this**（通过查找作用域链来确定`this`的值），使用call/apply/bind 无法改变箭头函数的this指向
 
 ```js
 let obj = {
@@ -48,7 +57,7 @@ obj.printName2.call({stuName: 'luck'})
 obj.printName.call({stuName: 'luck'})
 ```
 
-4. 箭头函数中没有`arguments`（类数组），取而代之使用`rest`参数解决
+5. 箭头函数中没有`arguments`（类数组），取而代之使用`rest`参数解决
 
 ```js
 let arrowFn = (params) => { console.log(arguments) }
@@ -60,16 +69,6 @@ commonFn(1,2,3) // Arguments(3) [1, 2, 3, callee: ƒ, Symbol(Symbol.iterator): 
 // 解决
 let arrowFn = (...params) => { console.log(params) }
 arrowFn(1,2,3) // [1, 2, 3]
-```
-
-5. 箭头函数是匿名函数，不能作为构造函数，不能使用new
-
-```js
-let arrowFn = () => {}
-function commonFn() {}
-
-let newFn = new arrowFn() // Uncaught TypeError: fn is not a constructor
-let newCommonFn = new commonFn() // commonFn {}
 ```
 
 ## Symbol
