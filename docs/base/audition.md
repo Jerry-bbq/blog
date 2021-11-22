@@ -4,6 +4,43 @@ sidebar: auto
 
 # 面试题
 
+
+## 来未来笔试题
+
+- 2021.11.20
+
+- 从url中获取参数，getParamsUrl(url, param)
+
+```js
+const getParamsUrl = (url, param) {}
+```
+
+- promise并发请求两次
+
+```js
+```
+
+- 使用给出的校验规则，校验一个json对象的每个属性是否匹配，不匹配打印出对象的key，输出格式如下：['name','parent.age', 'joms.name']
+
+```js
+function validate(rules, fileds) {}
+```
+
+## 阿里一面
+
+- 2021.11.19
+- 盒模型，如何获取dom的宽度，两个元素margin重叠如何解决
+- 讲讲作用域链
+- 讲讲原型链
+- 讲讲事件循环
+- vue响应式原理
+- 讲讲vue的生命周期
+- 讲讲vue的通信方式
+- computed watcher和watcher的区别
+- 项目介绍，讲讲你在项目中遇到的问题
+- 讲讲你知道的设计模式
+- promise的三个状态，它的rejected和catch的区别
+
 ## 同花顺一面
 
 - 2021.11.16

@@ -23,31 +23,6 @@ module.exports = {
         link: '/job-summary/'
       },
       {
-        text: 'Framework',
-        link: '/framework/'
-      },
-      {
-        text: 'Bundler',
-        items: [
-          {
-            text: 'Webpack',
-            link: '/bundler/webpack/',
-            items: [
-              {
-                text: 'v2',
-                link: '/bundler/webpack/v2',
-              },
-              {
-                text: 'v4',
-                link: '/bundler/webpack/v4',
-              },
-            ],
-          },
-          { text: 'Rollup', link: '/bundler/rollup/' },
-          { text: 'Gulp', link: '/bundler/gulp/' },
-        ],
-      },
-      {
         text: 'Share',
         link: '/share/',
       },
