@@ -4,16 +4,9 @@ sidebar: auto
 
 # HTTP
 
-## HTTP协议的主要特点
-
-- 无连接：连接一次就会断开，不会保持连接
-- 无状态：两次连接不会区分用户身份和状态
-- 简单快速：访问资源（图片，页面）通过输入简单的uri连接即可
-- 灵活：通过一个http协议可以完成不同类型数据的传输
-
 ## HTTP报文的组成部分
 
-(1)请求报文（Request Headers）：
+### 请求报文（Request Headers）：
 
 分类 | 说明
 ---|---
@@ -22,7 +15,7 @@ sidebar: auto
 空行 | 用来告诉服务器，下面的是请求体
 请求体 | 数据部分
 
-(2)响应报文：
+### 响应报文：
 
 分类 | 说明
 ---|---
@@ -67,27 +60,74 @@ PATCH | 是对 PUT 方法的补充，用来对已知资源进行局部更新
 4xx | 客户端错误 - 请求有语法错误或者请求无法实现
 5xx | 服务器错误 - 服务器未能实现合法的请求
 
-200 OK：客户端请求成功
+- 200 OK：客户端请求成功
+- 206 Partial Content：客户端发送了一个带有Range头的GET请求，服务端完成了它(比如音频文件太大)
+- 301 Moved Permanently：所请求的页面已经转移至新的url
+- 302 Found：所请求的页面已经临时转移至新的url
+- 304 Not Modified：客户端有缓存的文档并发出了一个条件性的请求，服务端告诉客户端原来缓存的文档还可以继续使用
+- 400 Bad Request：客户端请求有语法错误，不能被服务器所理解
+- 401 Unauthorized：请求未经授权，这个状态码必须和WWW-Authenticate报头域一起使用
+- 403 Forbidden：对被请求页面的访问被禁止
+- 404 Not Found：请求资源不存在
+- 500 Internal Server Error：服务器发生了不可预期的错误原来缓冲的文档可以继续使用
+- 503 Service Unavailable：请求未完成，服务器临时过载或宕机，一段时间后可恢复正常
 
-206 Partial Content：客户端发送了一个带有Range头的GET请求，服务端完成了它(比如音频文件太大)
+## HTTP的缓存
 
-301 Moved Permanently：所请求的页面已经转移至新的url
+http缓存机制主要在http响应头中设定，响应头中相关字段为`Expires`、`Cache-Control`、`Last-Modified`、`Etag`。
 
-302 Found：所请求的页面已经临时转移至新的url
+### 强缓存
 
-304 Not Modified：客户端有缓存的文档并发出了一个条件性的请求，服务端告诉客户端原来缓存的文档还可以继续使用
+浏览器不会像服务器发送任何请求，直接从本地缓存中读取文件并返回Status Code: 200 OK
 
-400 Bad Request：客户端请求有语法错误，不能被服务器所理解
+强缓存的header参数：
 
-401 Unauthorized：请求未经授权，这个状态码必须和WWW-Authenticate报头域一起使用
+- Expires：过期时间，如果设置了时间，则浏览器会在设置的时间内直接读取缓存，不再请求
+- Cache-Control：当值设为max-age=300时，则代表在这个请求正确返回时间（浏览器也会记录下来）的5分钟内再次加载资源，就会命中强缓存。
 
-403 Forbidden：对被请求页面的访问被禁止
+cache-control：除了该字段外，还有下面几个比较常用的设置值：
 
-404 Not Found：请求资源不存在
+- max-age：用来设置资源（representations）可以被缓存多长时间，单位为秒
+- s-maxage：和max-age是一样的，不过它只针对代理服务器缓存而言；
+- public：指示响应可被任何缓存区缓存；
+- private：只能针对个人用户，而不能被代理服务器缓存；
+- no-cache：强制客户端直接向服务器发送请求,也就是说每次请求都必须向服务器发送。服务器接收到     请求，然后判断资源是否变更，是则返回新内容，否则返回304，未变更。这个很容易让人产生误解，使人误     以为是响应不被缓存。实际上Cache-Control:     no-cache是会被缓存的，只不过每次在向客户端（浏览器）提供响应数据时，缓存都要向服务器评估缓存响应的有效性。
+- no-store：禁止一切缓存（这个才是响应不被缓存的意思）
 
-500 Internal Server Error：服务器发生了不可预期的错误原来缓冲的文档可以继续使用
+cache-control是http1.1的头字段，expires是http1.0的头字段,如果expires和cache-control同时存在，cache-control会覆盖expires，建议两个都写。
 
-503 Service Unavailable：请求未完成，服务器临时过载或宕机，一段时间后可恢复正常
+### 协商缓存
+
+向服务器发送请求，服务器会根据这个请求的request header的一些参数来判断是否命中协商缓存，如果命中，则返回304状态码并带上新的response header通知浏览器从缓存中读取资源；
+
+协商缓存的header参数：
+
+Last-Modifed/If-Modified-Since和Etag/If-None-Match是分别成对出现的，呈一一对应关系
+
+Etag/If-None-Match：
+
+Etag：
+
+Etag是属于HTTP 1.1属性，它是由服务器（Apache或者其他工具）生成返回给前端，用来帮助服务器控制Web端的缓存验证。
+Apache中，ETag的值，默认是对文件的索引节（INode），大小（Size）和最后修改时间（MTime）进行Hash后得到的。
+
+If-None-Match：
+
+当资源过期时，浏览器发现响应头里有Etag,则再次像服务器请求时带上请求头if-none-match(值是Etag的值)。服务器收到请求进行比对，决定返回200或304
+
+Last-Modifed/If-Modified-Since：
+
+Last-Modified：
+
+浏览器向服务器发送资源最后的修改时间
+
+If-Modified-Since：
+
+当资源过期时（浏览器判断Cache-Control标识的max-age过期），发现响应头具有Last-Modified声明，则再次向服务器请求时带上头if-modified-since，表示请求时间。服务器收到请求后发现有if-modified-since则与被请求资源的最后修改时间进行对比（Last-Modified）,若最后修改时间较新（大），说明资源又被改过，则返回最新资源，HTTP 200 OK;若最后修改时间较旧（小），说明资源无新修改，响应HTTP 304 走缓存。
+
+- Last-Modifed/If-Modified-Since的时间精度是秒，而Etag可以更精确。
+- Etag优先级是高于Last-Modifed的，所以服务器会优先验证Etag
+- Last-Modifed/If-Modified-Since是http1.0的头字段
 
 ## 什么是持久连接：每个连接可以处理多个请求-响应事务
 
@@ -131,10 +171,6 @@ http的缺点：
 3. http和https使用的是完全不同的连接方式，用的端口也不一样，前者是80，后者是443。
 
 4. http的连接很简单，是无状态的；HTTPS协议是由SSL+HTTP协议构建的可进行加密传输、身份认证的网络协议，比http协议安全。
-
-## 简述https原理，以及与http的区别
-## 操作系统中进程和线程怎么通信
-## 你知道哪些http头部
 
 ## TCP三次握手
 
@@ -181,3 +217,13 @@ tcp 终止一个连接，需要经过四次挥手
 ## 四次挥手原因
 
 服务端在收到客户端断开连接 Fin 报文后，并不会立即关闭连接，而是先发送一个 ACK 包先告诉客户端收到关闭连接的请求，只有当服务器的所有报文发送完毕之后，才发送 FIN 报文断开连接，因此需要四次挥手
+
+## HTTPS
+
+HTTPS 是超文本传输安全协议，即HTTP + SSL/TLS
+
+### 什么是SSL/TLS
+
+
+### tcp和udp的区别
+

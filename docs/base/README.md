@@ -55,6 +55,7 @@ sidebar: auto
 - [v2.0](../framework/vue/v2)
 - [Vuex](../framework/vue/vuex)
 - [VueRouter](../framework/vue/vue-router)
+- [axios](../framework/vue/axios)
 
 [可参考](https://jonny-wei.github.io/blog/vue/vue/vue-observer.html#%E5%A6%82%E4%BD%95%E4%BE%A6%E6%B5%8B%E6%95%B0%E6%8D%AE%E7%9A%84%E5%8F%98%E5%8C%96)
 
@@ -76,6 +77,6 @@ sidebar: auto
   - [递归](./javascript/algorithm/recursion.md)
   - [深度优先搜索和广度优先搜索](./javascript/algorithm/dfs-bfs.md)
 
-## 面试题
+## 面经
 
-- [真题](./audition.md)
+- [面经](./audition.md)
