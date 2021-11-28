@@ -51,7 +51,9 @@ const getParamsUrl = (url, param) {}
 function validate(rules, fileds) {}
 ```
 
-## 阿里一面
+## 阿里乌鸫科技
+
+### 一面
 
 - 2021.11.19
 - 盒模型，如何获取dom的宽度，两个元素margin重叠如何解决
@@ -65,6 +67,16 @@ function validate(rules, fileds) {}
 - 项目介绍，讲讲你在项目中遇到的问题
 - 讲讲你知道的设计模式
 - promise的三个状态，它的rejected和catch的区别
+
+### 二面
+
+- 2021.11.25
+- 自我介绍
+- 了解数据结构嘛
+- 讲讲你的项目经历以及在项目中扮演的角色
+- 讲讲你在项目中遇到的问题以及解决方案
+- vue响应式原理
+- promise.all的实现原理
 
 ## 同花顺一面
 
