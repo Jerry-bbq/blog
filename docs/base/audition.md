@@ -36,7 +36,16 @@ sidebar: auto
 ### 二面
 
 - 2021.11.30
-- 
+- 自我介绍
+- vue3的新特性
+- vite了解过嘛，跟webpack的区别
+- es6的新特性你用过哪些
+- 箭头函数和普通函数的区别
+- promise的三个状态，给了一道题判断状态
+- 你做过哪些webpack的优化
+- code review是怎么做的
+- node用过嘛
+- commonjs和es module的区别
 
 ## 奇点云
 

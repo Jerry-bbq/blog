@@ -4,30 +4,31 @@ sidebar: auto
 
 # 安全
 
-## CSRF-跨站请求伪造
+## CSRF
 
-- 基本概念和缩写
+Cross-site request forgery，中文`跨站请求伪造`
 
-CSRF，通常称为`跨站请求伪造`，英文名：Cross-site request forgery
+劫持受信任用户向服务器发送非预期请求的攻击方式
 
-- 攻击原理
-- 防御措施
-  - Token验证
-  - Referer验证
-  - 隐藏令牌
+### 防御措施
 
-## XSS-跨域脚本攻击
+- Token验证
+- Referer验证：只接受本站的请求，服务器才做响应；如果不是，就拦截
+- 隐藏令牌：把 token 隐藏在 http 的 head头中
 
-- 基本概念和缩写
+## XSS
 
-XSS(cross-site scripting： `跨域脚本攻击`)
+Cross-site Scripting，中文`跨域脚本攻击`
 
-- 攻击原理
+向页面中注入js脚本，篡改网页内容
 
-https://www.imooc.com/learn/812
+### 攻击类型
+  - 存储型
+  - 反射型
+  - DOM型
 
-向页面注入js脚本
+### 防御措施
 
-- 防御措施
-
-https://www.imooc.com/learn/812
+- HttpOnly 防止劫取 Cookie
+- 输入检查
+- 输出检查
