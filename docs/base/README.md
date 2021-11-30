@@ -56,9 +56,6 @@ sidebar: auto
 - [Vuex](../framework/vue/vuex)
 - [VueRouter](../framework/vue/vue-router)
 - [axios](../framework/vue/axios)
-- 手写响应式
-- 手写发布订阅模式
-- 手写diff算法
 
 [可参考](https://jonny-wei.github.io/blog/vue/vue/vue-observer.html#%E5%A6%82%E4%BD%95%E4%BE%A6%E6%B5%8B%E6%95%B0%E6%8D%AE%E7%9A%84%E5%8F%98%E5%8C%96)
 
