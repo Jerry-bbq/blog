@@ -11,7 +11,13 @@ sidebar: auto
 ### 一面
 
 - 2021.12.01
-- 
+- 自我介绍
+- nextTick原理
+- vue中数据量比较多大的话，怎么处理(Object.freeze()冻结)
+- webpack优化
+- 用过哪些es6语法，const、let、箭头函数、数组遍历的方法（map,filter,find,every,some,reduce）、对象操作的方法（扩展运算法（浅拷贝），keys,values,assign,freeze,set,map）
+- 箭头函数与普通函数的区别
+- 深拷贝实现
 
 ## 每日互动
 
