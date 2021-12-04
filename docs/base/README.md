@@ -4,10 +4,6 @@ sidebar: auto
 
 # 目录
 
-## 自我介绍
-
-面试官你好，我叫xx，今天来面试贵公司的前端开发工程师岗位。我16年毕业之后就从事前端开发，已有五年多的时间，有三年多的vue项目开发经验，在上家公司主要从事数据BI，CRM销售系统，ERP教务系统，后台管理系统等项目的开发。平常喜欢逛一些技术社区来丰富自己的技术，也有自己的开源项目，比如常用函数工具库，以此来做一些技术沉淀。以上是我的个人介绍，谢谢。
-
 ## HTML
 
 - [声明文档类型DOCTYPE](./html/doctype.md)
@@ -38,7 +34,7 @@ sidebar: auto
 - [通信](./javascript/communications.md)
 - [HTTP](./javascript/http.md)
 - [安全](./javascript/safe.md)
-- [页面性能](./javascript/page-performance.md)
+- [性能优化](./javascript/page-performance.md)
 - [错误监控](./javascript/error.md)
 - [es6](./javascript/es6.md)
 - [设计模式](./design-patterns)
@@ -76,7 +72,3 @@ sidebar: auto
   - [排序](./javascript/algorithm/sort.md)
   - [递归](./javascript/algorithm/recursion.md)
   - [深度优先搜索和广度优先搜索](./javascript/algorithm/dfs-bfs.md)
-
-## 面经
-
-- [面经](./audition.md)

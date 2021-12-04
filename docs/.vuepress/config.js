@@ -23,6 +23,10 @@ module.exports = {
         link: '/job-summary/'
       },
       {
+        text: 'HK-Office',
+        link: '/audition/',
+      },
+      {
         text: 'Share',
         link: '/share/',
       },
