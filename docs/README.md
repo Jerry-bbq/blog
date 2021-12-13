@@ -2,7 +2,7 @@
 home: true
 heroImage: /logo.png
 heroText: Blog
-tagline: Welcome To My Blog
+tagline: ' '
 actionText: LET'S GO →
 actionLink: /base/
 features:
