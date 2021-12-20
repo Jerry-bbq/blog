@@ -4,6 +4,27 @@ sidebar: auto
 
 # es6
 
+[w3c](https://www.w3cschool.cn/escript6/escript6-pm6z37es.html)
+
+## le与const
+
+`let`声明的变量只在它所在的`代码块`有效
+
+```js
+{
+  let a = 10;
+  var b = 1;
+}
+a // ReferenceError: a is not defined.
+b // 1
+```
+
+## 解构赋值
+
+## 字符串的扩展
+
+## 字符串的新增方法
+
 ## 箭头函数与普通函数的区别
 
 1. 箭头函数语法上更简洁
@@ -355,3 +376,17 @@ MyPromise.prototype.catch = function(onRejected){
     return this.then(null, onRejected);
 }
 ```
+
+## Proxy
+
+## Relect
+
+## Iterator 与 for...of 循环
+
+## Generator函数的语法
+
+## async 函数
+
+## Class
+
+## Module

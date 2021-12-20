@@ -2,15 +2,23 @@
 sidebar: auto
 ---
 
-# 页面性能
+# 性能优化
 
-题目：提升页面性能的方法有哪些
+## 减少请求量
+
+- 减少HTTP请求
+- 资源压缩合并
+- 雪碧图
+- base64
+- 使用字体图标来代替图片
+- 浏览器缓存`cach-control`
     
 - 资源压缩合并，减少HTTP请求
 - 非核心代码异步加载->异步加载的方式->异步加载的区别
 - 利用浏览器缓存->缓存的分类->缓存的原理
 - 使用CDN
 - 预解析DNS
+
 ```html
 <meta http-equiv="x-dns-prefetch-control" content="on">
 <link rel="dns-prefetch" href="//host_name_to_prefetch.com">
