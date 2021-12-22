@@ -40,26 +40,3 @@ class MyPromise {
     }
   }
 }
-
-const arr = [1, '1', true, { key: 12 }]
-let copy_arr = []
-
-// copy_arr = arr.concat()
-// copy_arr = arr.slice(0)
-// copy_arr = Array.from(arr)
-// copy_arr = Array.of(arr)
-// copy_arr = Object.assign([], arr)
-// [...copy_arr] = arr
-
-for (let i = 0; i < arr.length; i++) {
-  const element = arr[i];
-  copy_arr.push(element)
-}
-
-console.log(arr, 'arr')
-copy_arr[0] = 2
-copy_arr[1] = '2'
-copy_arr[2] = false
-copy_arr[3].key = 'update'
-console.log(copy_arr, 'update copy_arr')
-console.log(arr, 'updated arr')

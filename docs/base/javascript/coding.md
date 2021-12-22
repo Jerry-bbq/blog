@@ -53,9 +53,7 @@ Child.prototype = Object.create(Parent.prototype)
 Child.prototype.constructor = Child
 ```
 
-## 实现一个JS函数柯里化
-
-## 实现Promise
+## 手写Promise
 
 Promise的过程：
 - 初始化Promise状态，为pending
@@ -66,67 +64,68 @@ Promise的过程：
 
 ### 基础版
 
-```js
-class MyPromise {
-  constructor(executor) {
-    this.state = 'pending'
-    this.value = undefined
-    this.reason = undefined
-    this.onFullfilledCallbacks = []
-    this.onRejectedCallbacks = []
+<<< @/docs/base/javascript/code-snippet/promise.js
 
-    let resolve = value => {
-      if (this.state === 'pending') {
-        this.state = 'fulfilled'
-        this.value = value
-        this.onFullfilledCallbacks.forEach(fn => fn(value))
-      }
-    }
-    let reject = reason => {
-      if (this.state === 'pending') {
-        this.state = 'rejected'
-        this.reason = reason
-        this.onRejectedCallbacks.forEach(fn => fn(reason))
-      }
-    }
-
-    try {
-      executor(resolve, reject)
-    } catch (error) {
-      throw new Error(error)
-    }
-  }
-  then(onFullfilled, onRejected) {
-    if (this.state === 'pending') {
-      this.onFullfilledCallbacks.push(onFullfilled)
-      this.onRejectedCallbacks.push(onRejected)
-    }
-    if (this.state === 'fullfilled') {
-      onFullfilled(this.value)
-    }
-    if (this.state === 'rejected') {
-      onRejected(this.reason)
-    }
-  }
-}
-```
-
-## 实现浅拷贝和深拷贝
+## 拷贝
 
 1. 基本类型--名值存储在栈内存中
 2. 引用数据类型--名存在栈内存中，值存在于堆内存中，但是栈内存会提供一个引用的地址指向堆内存中的值
 3. 浅拷贝复制的数组对象在栈内存中的引用地址
 
-### 浅拷贝
+### 数组的拷贝
 
-#### 1.Oject.assign
+#### 浅拷贝
+
+如果数组中的元素都是原始类型的，都会是深拷贝，改变拷贝后的数组的值，原始数组不会改变
+
+```js
+const arr = [1,'1',true]
+let copy_arr = []
+
+// 数组结构
+[...copy_arr] = arr
+// 数组拼接
+copy_arr = arr.concat()
+// 数据截取
+copy_arr = arr.slice()
+// Array.from()
+copy_arr = Array.from(arr)
+// Array.of()
+copy_arr = Array.of(arr)
+// Object.assign
+copy_arr = Object.assign([], arr)
+// 循环
+for (let i = 0; i < arr.length; i++) {
+  const element = arr[i];
+  copy_arr.push(element)
+}
+```
+
+如果数组中的元素是引用类型的，则是浅拷贝
+
+##### 深拷贝
+
+```js
+const copy_arr = JSON.parse(JSON.stringify(arr))
+```
+
+```js
+
+```
+
+
+### 对象的拷贝
+
+#### 浅拷贝
+
+1. Oject.assign
 
 ```js
 // 对象
 const clone = obj => Object.assign({}, obj)
 ```
 
-#### 2.扩展运算符...
+2. 扩展运算符...
 
 ```js
 // 对象
@@ -134,9 +133,9 @@ const clone = obj => {...obj}
 // 数组
 ```
 
-### 深拷贝
+#### 深拷贝
 
-#### 1.JSON.parse + JSON.stringify
+1. JSON.parse + JSON.stringify
 
 ```js
 // 对象或数组
@@ -152,7 +151,7 @@ const deepClone = obj => JSON.parse(JSON.stringify(obj))
 
 :::
 
-#### 2.for...in + 递归
+2. for...in + 递归
 
 ```js
 const deepClone = obj => {
@@ -172,7 +171,7 @@ const deepClone = obj => {
 }
 ```
 
-#### 3.Object.create
+3. Object.create
 
 ```js
 const deepClone = obj => {
