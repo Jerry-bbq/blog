@@ -32,8 +32,14 @@ IE模型 | `box-sizing: border-box;` 怪异盒模型 <br> width和height是对**
 ## JS如何设置获取盒模型对应的宽和高
 
 ```js
-dom.style.width/height  // 只能取内联样式的宽高
-dom.currentStyle.width/height // 只有ie支持
+// 只能获取内联样式的宽高，style和外部css样式表中的高宽无法获取
+dom.style.width/height  
+// 页面渲染完成后的结果，获取即时的计算的样式，但是只有IE支持
+dom.currentStyle.width/height 
+// 页面渲染完成后的结果，获取即时计算的样式，支持其他浏览器，兼容性更好
 window.getComputedStyle(dom).width/height
+// 获得运行后的属性，返回一个矩形对象，left,top,right,buttom
 dom.getBoundingClientRect().width/height
+//返回元素实际大小，包含边框，内边距和滚动条,如果没有设置任何CSS宽度和高度，也会在计算后得到宽度和高度
+dom.offsetWidth/offsetHeight
 ```

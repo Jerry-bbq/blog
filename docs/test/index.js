@@ -1,65 +1,25 @@
-class MyPromise {
-  constructor(executor) {
-    this.state = 'pending'
-    this.value = undefined
-    this.reason = undefined
-    this.onFullfilledCallbacks = []
-    this.onRejectedCallbacks = []
+// const str  = 'aaffffcc'
 
-    let resolve = value => {
-      if (this.state === 'pending') {
-        this.state = 'fulfilled'
-        this.value = value
-        this.onFullfilledCallbacks.forEach(fn => fn(value))
-      }
-    }
-    let reject = reason => {
-      if (this.state === 'pending') {
-        this.state = 'rejected'
-        this.reason = reason
-        this.onRejectedCallbacks.forEach(fn => fn(reason))
-      }
-    }
+// let getRepeatStr = str => str.split(',').reduce((prev,next)=> {
 
-    try {
-      executor(resolve, reject)
-    } catch (error) {
-      throw new Error(error)
-    }
-  }
-  then(onFullfilled, onRejected) {
-    if (this.state === 'pending') {
-      this.onFullfilledCallbacks.push(onFullfilled)
-      this.onRejectedCallbacks.push(onRejected)
-    }
-    if (this.state === 'fullfilled') {
-      onFullfilled(this.value)
-    }
-    if (this.state === 'rejected') {
-      onRejected(this.reason)
+// }, 0)
+
+// console.log(str)
+
+/**
+ * @param {number[]} nums
+ * @param {number} target
+ * @return {number[]}
+ */
+var twoSum = function(nums, target) {
+  let len = nums.length
+  for (let i = 0; i < len; i++) {
+    for (let j = i + 1; j < len; j++) {
+      if (nums[i] + nums[j] === target) {
+        return [i, j]
+      }
     }
   }
 }
 
-const arr = [1, '1', true, { key: 12 }]
-let copy_arr = []
-
-// copy_arr = arr.concat()
-// copy_arr = arr.slice(0)
-// copy_arr = Array.from(arr)
-// copy_arr = Array.of(arr)
-// copy_arr = Object.assign([], arr)
-// [...copy_arr] = arr
-
-for (let i = 0; i < arr.length; i++) {
-  const element = arr[i];
-  copy_arr.push(element)
-}
-
-console.log(arr, 'arr')
-copy_arr[0] = 2
-copy_arr[1] = '2'
-copy_arr[2] = false
-copy_arr[3].key = 'update'
-console.log(copy_arr, 'update copy_arr')
-console.log(arr, 'updated arr')
+console.log(twoSum([2, 7, 11, 15], 9))

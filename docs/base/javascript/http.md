@@ -4,9 +4,11 @@ sidebar: auto
 
 # HTTP
 
-## HTTP报文的组成部分
+超文本传输协议（Hyper Text Transfer Protocol，HTTP）是一个简单的请求-响应协议，它通常运行在TCP之上
 
-### 请求报文（Request Headers）：
+## 报文的组成
+
+### 请求报文
 
 分类 | 说明
 ---|---
@@ -15,7 +17,7 @@ sidebar: auto
 空行 | 用来告诉服务器，下面的是请求体
 请求体 | 数据部分
 
-### 响应报文：
+### 响应报文
 
 分类 | 说明
 ---|---
@@ -24,33 +26,33 @@ sidebar: auto
 空行 |
 响应体 |
 
-## HTTP请求的方法
+## 请求的方法
 
 方法 | 说明
 ---|---
-GET | 获取资源
-POST | 传输资源
-HEAD | 获取报文首部
-PUT | 更新资源
-DELETE | 删除资源
-CONNECT | HTTP/1.1 协议中预留给能够将连接改为管道方式的代理服务器
-OPTIONS | 用于获取目的资源所支持的通信选项
-TRACE | 回显服务器收到的请求，主要用于测试或诊断
-PATCH | 是对 PUT 方法的补充，用来对已知资源进行局部更新
+GET(HTTP1.0) | 获取资源
+POST(HTTP1.0) | 传输资源
+HEAD(HTTP1.0) | 获取报文首部
+PUT(HTTP1.1) | 更新资源
+DELETE (HTTP1.1)| 删除资源
+CONNECT(HTTP1.1) | 协议中预留给能够将连接改为管道方式的代理服务器
+OPTIONS(HTTP1.1) | 用于获取目的资源所支持的通信选项
+TRACE(HTTP1.1) | 回显服务器收到的请求，主要用于测试或诊断
+PATCH(HTTP1.1) | 是对 PUT 方法的补充，用来对已知资源进行局部更新
 
-## POST个GET的区别（记住三到四个）
+## POST和GET的区别
 
-- [x] GET参数通过URL传递，POST放在Request body中
-- [x] GET请求参数会被完整保留在浏览器历史记录里，而POST中的参数不会保留
-- [x] GET请求在URL中传送的参数是有长度限制的，而POST没有限制
-- [x] GET在浏览器回退时是无害的，而POST会再次请求
-- [x] GET请求会被浏览器主动缓存，而POST不会，除非手动设置
+- GET参数通过URL传递，POST放在Request body中
+- GET请求参数会被完整保留在浏览器历史记录里，而POST中的参数不会保留
+- GET请求在URL中传送的参数是有长度限制的，而POST没有限制
+- GET在浏览器回退时是无害的，而POST会再次请求
+- GET请求会被浏览器主动缓存，而POST不会，除非手动设置
 - GET产生的URL地址可以被隐藏，而POST不可以
 - GET请求只能进行url编码，而POST支持多种编码方式
 - 对于参数的数据类型，GET只接受ASCII字符，而POST没有限制
 - GET比POST更不安全，因为参数直接暴露在URL上，所以不能用来传递敏感信息
 
-## HTTP状态码
+## 状态码
 
 状态码 | 说明
 ---|---
@@ -71,6 +73,46 @@ PATCH | 是对 PUT 方法的补充，用来对已知资源进行局部更新
 - 404 Not Found：请求资源不存在
 - 500 Internal Server Error：服务器发生了不可预期的错误原来缓冲的文档可以继续使用
 - 503 Service Unavailable：请求未完成，服务器临时过载或宕机，一段时间后可恢复正常
+
+## HTTP1.0
+
+只能与服务器保持短暂的连接，每次请求都需要与服务器建立一个TCP连接，服务器处理完请求之后，立即断开TCP连接
+
+如果需要建立长连接，需要设置一个非标准的`Connection`字段 `Connection: keep-alive`
+
+### 缓存
+
+缓存策略：
+
+- If-Modiified-Since,Expires
+
+## HTTP1.1
+
+在HTTP1.1中，默认支持长连接（Connection: keep-alive），即在一个TCP连接上可以传送多个HTTP请求和响应，减少了建立和关闭连接的消耗和延迟
+
+- 引入了更多的缓存控制策略，如If-Unmodified-Since, If-Match, If-None-Match等缓存头来控制缓存策略
+- 引入range，允许值请求资源某个部分
+- 引入host，实现了在一台WEB服务器上可以在同一个IP地址和端口号上使用不同的主机名来创建多个虚拟WEB站点
+- 还添加了其他的请求方法：put、delete、options...
+
+### 缓存
+
+- Entity tag, If-Unmodified-Since, If-Match, If-None-Match
+
+## HTTP2.0
+
+性能上有很大的提升，添加了如下特性：
+
+- 多路复用
+- 二进制分帧
+- 首部压缩
+- 服务器推送
+
+## HTTPS
+
+- https协议需要CA申请证书，
+- http协议运行在TCP协议之上,传输的内容都是明文传送,安全性较差,而https则是运行在SSL/TLS层之上, 而SSL/TLS层是运行在TCP层之上,https传输的内容都是经过加密的,安全性较高
+- http与https使用不同的连接方式.其中http默认用的是80端口,而https默认用的是443端口（SSL/TLS ==> secure socket layer / transport layer security）
 
 ## HTTP的缓存
 
@@ -148,6 +190,8 @@ HTTP/1.1允许多个http请求通过一个套接字同时被输出 ，而不用�
 只有GET和HEAD请求可以进行管线化，而POST有所限制
 
 创建连接时不应启动管线化机制，因为服务器不一定支持HTTP/1.1版本的协议
+
+## http
 
 ## http和https的区别
 
