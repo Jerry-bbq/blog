@@ -4,68 +4,70 @@ sidebar: auto
 
 # 性能优化
 
-## 减少请求量
+## 定位问题
 
-- 减少HTTP请求
-- 资源压缩合并
-- 雪碧图
-- base64
-- 使用字体图标来代替图片
-- 浏览器缓存`cach-control`
-    
-- 资源压缩合并，减少HTTP请求
-- 非核心代码异步加载->异步加载的方式->异步加载的区别
-- 利用浏览器缓存->缓存的分类->缓存的原理
-- 使用CDN
-- 预解析DNS
+[参考](https://juejin.cn/post/6904517485349830670)
+
+- chrome的network
+- webpack的webpack-bundle-analyzer
+- chrome的Performance
+- PerformanceNavigationTiming
+- 抓包
+- 性能测试工具（Pingdom、Load Impact、Free Speed Test等）
+
+## 减少网络时间
+
+- DNS缓存
 
 ```html
 <meta http-equiv="x-dns-prefetch-control" content="on">
 <link rel="dns-prefetch" href="//host_name_to_prefetch.com">
 ```
-    
-## 异步加载的方式
-1. 动态脚本加载；
-2. defer；
-3. async
-    
-## 异步加载的区别：
-    
-- defer是在HTML解析完之后才会执行，如果是多个，按照加载的顺序依次执行
-- async是在加载完之后立即执行，如果是多个，执行顺序和加载顺序无关
-    
-## 浏览器缓存：
 
-优点：
-- 减少了冗余的数据传输，节省了网费
-- 减少了服务器的负担，大大提升了网站的性能
-- 加快了客户端加载网页的速度
+- 减少传输的文件大小（文件压缩）
+- 加快文件传输速度（静态资源使用CDN内容分发网络）
+- 使用 HTTP2
 
-### 缓存分类
+## 减少请求量
 
-缓存分类:
+- 浏览器缓存（强缓存和协商缓存）
 
-1. 强缓存
-
-不会向服务器发送请求，直接从缓存中读取资源，在chrome控制台的network选项中可以看到该请求返回200的状态码;
-
-```bash
-Expires:Thu,21 Jan 2017 23:39:02 GMT
-Cache-Control Cache-Control:max-age=3600
-```
-
-2. 协商缓存
-
-向服务器发送请求，服务器会根据这个请求的request header的一些参数来判断是否命中协商缓存，如果命中，则返回304状态码并带上新的response header通知浏览器从缓存中读取资源；
-
-```bash
-Last-Modified/If-Modified-Since Last-Modified:Wed,26 Jan 2017 00:35:11 GMT
-Etag If-None-Match
-```
+    1. 强缓存
+    不会向服务器发送请求，直接从缓存中读取资源，在chrome控制台的network选项中可以看到该请求返回200的状态码;
+    ```bash
+    Expires:Thu,21 Jan 2017 23:39:02 GMT
+    Cache-Control Cache-Control:max-age=3600
+    ```
+    2. 协商缓存
+    向服务器发送请求，服务器会根据这个请求的request header的一些参数来判断是否命中协商缓存，如果命中，则返回304状态码并带上新的response header通知浏览器从缓存中读取资源；
+    ```bash
+    Last-Modified/If-Modified-Since Last-Modified:Wed,26 Jan 2017 00:35:11 GMT
+    Etag If-None-Match
+    ```
 
 ::: tip 区别
 都是从客户端缓存中读取资源；区别是强缓存不会发请求，协商缓存会发请求
 :::
+
+- 减少HTTP请求
+- 资源压缩合并
+- 小图片采用雪碧图，合并成一个大的图片文件
+- 图片使用base64编码
+- 使用字体图标来代替图片
+
+## 异步加载的方式
+
+1. 动态脚本加载；
+2. defer：defer是在HTML解析完之后才会执行，如果是多个，按照加载的顺序依次执行
+3. async：async是在加载完之后立即执行，如果是多个，执行顺序和加载顺序无关
+
+## 其他
+
+- 图片延迟加载
+- 提取第三方库
+- 减少DOM操作
+- 使用事件委托
+- 降低CSS选择器的复杂性
 
 ## 服务端返回十万条数据，前端如何优雅的展示
 
