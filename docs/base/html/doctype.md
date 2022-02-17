@@ -18,6 +18,16 @@ DTD（Document Type Defination，文档类型定义）是一系列的语法规�
 
 ```html
 <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+</html>
 ```
 
 ### HTML4.01 Strict（严格模式）

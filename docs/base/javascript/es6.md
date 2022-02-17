@@ -283,99 +283,335 @@ for (var [key, val] of map.entries()) {
 
 ## Promise
 
-三种状态
+![](./images/promise-constructor.png)
 
-状态 | 说明
---- | ---
-pending | 初始状态
-fulfilled | 完成状态
-rejected | 失败状态
+1. `Promise`是一个构造函数，它的静态方法有：`all`,`allSettled`,`any`,`race`,`reject`,`resolve`，实例方法有：`catch`,`finally`,`then`
 
-### reject和catch
+2. `Promise`有三种状态，分别是`pending`（初始化）、`fulfilled`（完成）、`rejected`（失败）；状态只能由`pending -> fulfilled`， `pending -> rejected`，且**不可逆**。
 
-- reject后的东西，一定会进入then中的第二个回调，如果then中没有写第二个回调，则进入catch
-- resolve的东西，一定会进入then的第一个回调，肯定不会进入catch
+3. 当实例化一个`Promise`时，需要传入一个执行函数`executor`，该函数有两个函数参数`resolve`,`reject`，并且执行该函数执行函数
 
-### 原理图
-
-![promise](./images/promise.png)
-
-### 手写promise
+### 基础结构
 
 ```js
-const PENDING = 'pending';
-const FULFILLED = 'fulfilled';
-const REJECTED = 'rejected';
+const PENDING = 'PENDING'
+const FULFILLED = 'FULFILLED'
+const REJECTED = 'REJECTED'
 
-function MyPromise(executor) {
-    this.state = PENDING;
-    this.value = null;
-    this.reason = null;
-    this.onFulfilledCallbacks = [];
-    this.onRejectedCallbacks = [];
+class Promise {
+  constructor(executor) {
+    this.status = PENDING
+    let resolve = () => {}
+    let reject = () => {}
+    executor(resolve, reject)
+  }
 
-    const resolve = value => {
-        if (this.state === PENDING) {
-            this.state === FULFILLED;
-            this.value === value;
-            this.onFulfilledCallbacks.forEach(fuc =>{
-                fuc();
-            });
-        }
-    };
+  // 实例方法
+  then() {}
+  catch() {}
+  finally() {}
 
-    const reject = reason => {
-        if (this.state === PENDING) {
-            this.state = REJECTED;
-            this.reason === reason;
-            this.onRejectedCallbacks.forEach(fuc =>{
-                fuc();
-            })
-        }
-    };
-
-    try {
-        executor(resolve, reject);
-    } catch (reason) {
-        reject(reason);
-    }
-}
-
-/*
-- then方法接受两个参数onFulfilled、onRejected，它们分别在状态由PENDING改变为FULFILLED、REJECTED后调用
-- 一个promise可绑定多个then方法
-- then方法可以同步调用也可以异步调用
-- 同步调用：状态已经改变，直接调用onFulfilled方法
-- 异步调用：状态还是PENDING，将onFulfilled、onRejected分别加入两个函数- 
-- 数组onFulfilledCallbacks、onRejectedCallbacks，
-- 当异步调用resolve和reject时，将两个数组中绑定的事件循环执行。
-*/
-
-MyPromise.prototype.then = function(onFulfilled,onRejected){
-    switch(this.state){
-        case FULFILLED:
-            onFulfilled(this.value);
-            break;
-        case REJECTED:
-            onRejected(this.reason);
-            break;
-        case PENDING:
-            this.onFulfilledCallbacks.push(()=>{
-                onFulfilled(this.value);
-            });
-            this.onRejectedCallbacks.push(() => {
-                onRejected(this.reason);
-            })
-            break;
-            
-    }
-}
-
-// 由于catch方法是then(null, onRejected)的语法糖，所以这里也很好实现
-MyPromise.prototype.catch = function(onRejected){
-    return this.then(null, onRejected);
+  // 静态方法
+  static resolve() {}
+  static reject() {}
+  static all() {}
+  static race() {}
+  static allSettled() {}
+  static any() {}
 }
 ```
+
+### 初始化并执行传入的函数
+
+```js
+const p = new Promise((resolve, reject) => {
+  console.log('执行函数')
+  throw new Error('this is a Error')
+})
+p.catch(err=> {
+    // 检测到throw抛出的错误
+    console.log(err)
+})
+```
+
+- 初始化时，`Promise`状态`status`为`pending`，成功的值`value`和失败的原因`reason`为`undefined`
+- 执行函数的两个**参数函数**`resolve`和`reject`，用于改变`status`状态
+- 执行函数`executor`执行时，因为`Promise`可以捕获到`throw new Error()`抛出的错误，所以外面需要包一层`try...catch`
+
+```js
+const PENDING = 'PENDING'
+const FULFILLED = 'FULFILLED'
+const REJECTED = 'REJECTED'
+
+class MyPromise {
+  constructor(executor) {
+    this.status = PENDING
+    this.value = undefined
+    this.reason = undefined
+    let resolve = value => {
+      if (this.status === PENDING) {
+        this.value = value
+        this.status = FULFILLED
+      }
+    }
+    let reject = reason => {
+      if (this.status === PENDING) {
+        this.reason = reason
+        this.status = REJECTED
+      }
+    }
+    try {
+      executor(resolve, reject)
+    } catch (error) {
+      reject(error)
+    }
+  }
+}
+```
+
+### then
+
+```js
+const p = new Promise((resolve, reject) => {
+  console.log('执行函数')
+  // resolve(1) // 执行时进 onFulfilled
+  reject(1) // 执行时进 onRejected，如果不写控制台会报未捕获的错误
+})
+
+p.then(
+  value => {
+    console.log(value, 'onFulfilled')
+  },
+  reason => {
+    console.log(reason, 'onRejected')
+  }
+)
+
+// 链式调用
+const promise = new Promise((resolve, reject) => {
+  reject('失败')
+})
+  .then()
+  .then()
+  .then(
+    data => {
+      console.log(data)
+    },
+    err => {
+      console.log('err', err)
+    }
+  )
+```
+
+- 执行函数的函数体中如果不执行`resolve`或`reject`的话，是不会执行`then`的
+- `then`接收两个可选的函数参数`onFulfilled`， `onRejected`，作为成功和失败的回调函数
+  - 当状态`status`从`pending`变为`fulfilled`的时，执行`onFulfilled`；当`status`从`pending`变为`rejected`时，执行`onRejected`
+  - 如果`onFulfilled`是函数，它有一个参数，接受最终的结果`value`；否则在内部会替换为`(x) => x`
+  - 如果`onRejected`是函数，它有一个参数，为失败的原因`reason`；否则在内部会替换为`err => throw new Error(err)`
+- `then`是异步的，将成功回调存储得到`onFulfilledCallbacks`数组中,将失败回调存储到`onRejectedCallbacks`数组中（发布订阅模式）
+- `then`返回一个`Promise`实例
+- 链式调用
+
+```js
+const resolvePromise = (promise, x, resolve, reject) => {
+  if (promise === x) {
+    return reject(new TypeError('Chaining cycle detected for promise #<Promise>'))
+  }
+  if (typeof x === 'object' && x !== null && typeof x === 'function') {
+    let called
+    try {
+      let then = x.then
+      if (typeof then === 'function') {
+        then.call(
+          x,
+          y => {
+            if (called) {
+              return
+            }
+            resolvePromise(promise, y, resolve, reject)
+          },
+          r => {
+            if (called) {
+              return
+            }
+            called = true
+            reject(r)
+          }
+        )
+      } else {
+        resolve(x)
+      }
+    } catch (error) {
+      if (called) {
+        return
+      }
+      called = true
+      reject(error)
+    }
+  } else {
+    resolve(x)
+  }
+}
+
+then(onFulfilled, onRejected) {
+    onFulfilled = typeof onFulfilled === 'function' ? onFulfilled : val => val
+    onRejected =
+      typeof onRejected === 'function'
+        ? onRejected
+        : err => {
+            throw new Error(err)
+          }
+
+    let promise = new Promise((resolve, reject) => {
+      if (this.status === FULFILLED) {
+        setTimeout(() => {
+          try {
+            let x = onFulfilled(this.value)
+            resolvePromise(promise, x, resolve, reject)
+          } catch (error) {
+            reject(error)
+          }
+        }, 0)
+      }
+      if (this.status === REJECTED) {
+        setTimeout(() => {
+          try {
+            let x = onRejected(this.reason)
+            resolvePromise(promise, x, resolve, reject)
+          } catch (error) {
+            reject(error)
+          }
+        }, 0)
+      }
+      if (this.status === PENDING) {
+        this.onFulfilledCallbacks.push(() => {
+          setTimeout(() => {
+            try {
+              let x = onFulfilled(this.value)
+              resolvePromise(promise, x, resolve, reject)
+            } catch (error) {
+              reject(error)
+            }
+          }, 0)
+        })
+        this.onRejectedCallbacks.push(() => {
+          setTimeout(() => {
+            try {
+              let x = onRejected(this.reason)
+              resolvePromise(promise, x, resolve, reject)
+            } catch (error) {
+              reject(error)
+            }
+          }, 0)
+        })
+      }
+    })
+    return promise
+}
+```
+
+### resolve
+
+```js
+static resolve(value) {
+    if (value instanceof Promise) return value
+    return new Promise((resolve, reject) => resolve(value))
+}
+```
+
+### reject
+
+```js
+static reject(reason) {
+    if (value instanceof Promise) return value
+    return new Promise((resolve, reject) => reject(reason))
+}
+```
+
+### all
+
+- 接收一个Promise的iterable类型（Array,Map,Set），每个元素都是promise对象
+- 只有所有的promise 都 fulfilled，才会执行then，并且结果顺序和iterable类型数据一致；如果有一个发生reject，则返回这个值
+- 返回一个**Promise实例**
+
+```js
+static all(values) {
+    if (!Array.isArray(values)) {
+      const type = typeof values
+      return new TypeError(`TypeError: ${type} ${values} is not iterable`)
+    }
+    return new Promise((resolve, reject) => {
+      let arr = []
+      let count = 0
+      const processResultByKey = (val, index) => {
+        arr[index] = val
+        if (++count === values.length) {
+          resolve(arr)
+        }
+      }
+      for (let i = 0; i < values.length; i++) {
+        let value = values[i]
+        if (value && typeof value.then === 'function') {
+          value.then(val => {
+            processResultByKey(val, i)
+          }, reject)
+        } else {
+          processResultByKey(value, i)
+        }
+      }
+    })
+}
+```
+
+### race
+
+- 谁先完成用谁
+
+```js
+static race(values) {
+    return new Promise((resolve, reject) => {
+      for (let i = 0; i < values.length; i++) {
+        let val = values[i]
+        if (val && typeof val.then === 'function') {
+          val.then(resolve, reject)
+        } else {
+          resolve(val)
+        }
+      }
+    })
+}
+```
+
+### catch
+
+```js
+catch(errCallback) {
+    return this.then(null, errCallback)
+}
+```
+
+### finally
+
+```js
+finally(cb) {
+    return this.then(
+      value => {
+        return Promise.resolve(cb()).then(() => value)
+      },
+      reason => {
+        return Promise.resolve(cb()).then(() => {
+          throw reason
+        })
+      }
+    )
+}
+```
+
+### allSettled
+
+### any
+
+[参考](https://zhuanlan.zhihu.com/p/183801144)
 
 ## Proxy
 

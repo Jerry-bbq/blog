@@ -4,6 +4,186 @@ sidebar: auto
 
 # 性能优化
 
+## 网络层面
+
+- DNS解析
+- TCP连接
+- HTTP请求和响应
+
+### HTTP优化概述
+
+- 减少请求次数
+- 减少单次请求所花的时间
+
+总的来说也就是资源的压缩与合并，在这里使用webpack来实现。
+
+webpack的优化瓶颈有两个方面：
+
+- 构建过程时间太长
+- 打包体积过大
+
+### loader优化-以babel-loader为例：
+
+使用`exclude`和`include`来避免不必要的转义，如第三方库`node_modules`：
+
+```js
+module: {
+  rules: [
+    {
+      test: /\.js$/,
+      exclude: /(node_modules|bower_components)/,
+      use: {
+        loader: 'babel-loader',
+        options: {
+          presets: ['@babel/preset-env']
+        }
+      }
+    }
+  ]
+}
+```
+
+开启缓存系统：
+
+```js
+loader: 'babel-loader?cacheDirectory'
+// 或者
+loader: 'babel-loader?cacheDirectory=true'
+```
+
+### 第三方库提取
+
+- `externals`可以防止将某些`import`的包打包到`bundle`中，而在运行时再去从外部获取这些依赖。比如第三方库`jQuery`使用CDN引入
+
+webpack.config.js
+
+```js
+module.exports = {
+  externals: {
+    jquery: 'jQuery',
+  },
+};
+```
+
+在代码中`import $ from 'jquery'`依然可以正常运行
+
+- `CommonsChunkPlugin`提取第三方库和代码中的**公共模块**，并将他们打包到一个单独的文件中避免bundle体积过大，也避免重复打包（于webpack v4 版本中移除，新增`SplitChunksPlugin`）
+
+```js
+new webpack.optimize.CommonsChunkPlugin(options);
+```
+
+- `SplitChunksPlugin`
+
+```js
+module.exports = {
+  optimization: {
+      splitChunks: {
+          // options
+      }
+  },
+};
+```
+
+- `DllPlugin`，拆分bundles，同时大大提升构建速度。
+
+```js
+// 生成一个`manifest.json`文件
+new webpack.DllPlugin(options)
+
+// 引用`manifest.json`文件
+new webpack.DllReferencePlugin(options)
+```
+
+### 构建结果体积压缩
+
+引入可视化工具[webpack-bundle-analyzer](https://github.com/webpack-contrib/webpack-bundle-analyzer)，查看各个模块的大小以及依赖关系进行分析
+
+```bash
+npm install --save-dev webpack-bundle-analyzer
+# 或
+yarn add -D webpack-bundle-analyzer
+```
+
+- 拆分资源（DllPlugin）
+- 删除冗余代码（Tree Shaking基于import/export语法）
+- 按需加载（异步路由）
+- 代码压缩
+
+### Gzip压缩原理
+
+### 图片的优化
+
+Web图片格式有JPEG/JPG、PNG、WebP、Base64、SVG等
+
+JPEG/JPG关键字：有损压缩、体积小、加载快、不支持透明
+
+PNG关键字：无损压缩、质量高、体积大、支持透明
+
+SVG文本文件、体积小、不失真、兼容性好
+
+Base64文本文件、依赖编码、小图标解决方案
+
+- 雪碧图（CSS Sprites），将小图标合并到一张图中，减少请求次数，Base64是作为雪碧图的补充而存在的。
+
+Base64是一种用于传输8Bit字节码的编码方式，通过对图片进行Base64编码，我们可以直接将编码结果写入HTML或者写入CSS，从而减少HTTP请求的次数。
+
+Base64的应用场景：
+
+- 图片的实际尺寸很小（大家可以观察一下掘金页面的Base64图，几乎没有超过2kb的）
+- 图片无法以雪碧图的形式与其它小图结合（合成雪碧图仍是主要的减少HTTP请求的途径，Base64是雪碧图的补充）
+- 图片的更新频率非常低（不需我们重复编码和修改文件内容，维护成本较低）
+
+
+webpack的`url-loader`可以帮助我们进行Base64编码
+
+webp像jpeg图片细节丰富，像png支持透明，像gif支持动态显示图片，兼容性不是很好
+
+### 浏览器的缓存
+
+- 强缓存
+- 协商缓存
+
+### 本地缓存
+
+cookie，localstorage，sessionstorage
+
+### CDN内容分发网络
+
+### 服务端渲染SSR
+
+## 渲染层面
+
+- 减少DOM操作
+- 异步更新DOM
+- 图片懒加载
+- 防抖节流
+
+## 性能监控
+
+浏览器的performance、Lighthouse与performance api
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 ## 定位问题
 
 [参考](https://juejin.cn/post/6904517485349830670)

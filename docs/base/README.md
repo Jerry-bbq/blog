@@ -6,6 +6,7 @@ sidebar: auto
 
 ## HTML
 
+- [浏览器](./html/rendering-engine.md)
 - [声明文档类型DOCTYPE](./html/doctype.md)
 - [浏览器的渲染过程](./html/painting.md)
 - [浏览器的回流与重绘](./html/reflow-repaint.md)
@@ -38,6 +39,7 @@ sidebar: auto
 - [错误监控](./javascript/error.md)
 - [es6](./javascript/es6.md)
 - [设计模式](./design-patterns)
+- [前端模块化](./javascript/modules.md)
 
 ## coding
 
