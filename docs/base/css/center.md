@@ -7,47 +7,54 @@ sidebar: auto
 ## flex
 
 ```css
-// 父容器
-display: flex;
-justify-content: center;
-align-items: center;
+.content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
 ```
 
 ## position
 
 ```css
-// 父容器
-position: relative;
-
-// 子容器
-position: absolute;
-margin: auto;
-top: 0;
-bottom: 0;
-left: 0;
-right: 0;
+.content {
+    position: relative;
+}
+.item {
+    position: absolute;
+    margin: auto;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+}
 ```
 
 ## position + transform
 
 ```css
-// 父容器
-position: relative;
+.content {
+    position: relative;
+}
 
-// 子容器
-position: absolute;
-top: 50%;
-left: 50%;
-transform: translate(-50%, -50%);
+.item {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
 ```
+::: tip
 
-> transform还有其他的属性:
->
-> 1. 转换: translate(x,y), translateX(x), translateY(y), translateZ(z), translate3d(x,y,z)
-> 2. 缩放: scale((x,y), scaleX(x), scaleY(y), scaleZ(z), scale3d((x,y,z)
-> 3. 旋转: rotate(angle), rotateX(angle), rotateY(angle), rotateZ(angle), rotate3d(x,y,z,angle)
-> 4. 倾斜: skew(x-angle,y-angle),skewX(angle), skewY(angle)
-> 5. 透视: perspective(n)
+transform还有其他的属性:
+
+1. 转换: translate(x,y)、translateX(x)、translateY(y)、translateZ(z)、translate3d(x,y,z)
+2. 缩放: scale((x,y)、scaleX(x)、scaleY(y)、scaleZ(z)、scale3d((x,y,z)
+3. 旋转: rotate(angle)、rotateX(angle)、rotateY(angle)、rotateZ(angle)、rotate3d(x,y,z,angle)
+4. 倾斜: skew(x-angle,y-angle)、skewX(angle)、skewY(angle)
+5. 透视: perspective(n)
+
+:::
 
 ## table-cell
 

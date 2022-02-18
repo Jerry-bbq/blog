@@ -2,7 +2,10 @@ const dayjs = require('dayjs')
 
 module.exports = {
   title: 'Blog',
-  cache: true,
+  // cache: true,
+  host: 'localhost',
+  port: 2222,
+  description: '前端博客',
   base: '/blog/',
   head: [['link', { rel: 'icon', href: '/logo.png' }]],
   themeConfig: {

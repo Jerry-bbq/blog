@@ -12,10 +12,10 @@ sidebar: auto
 
 2. 说明：（四个部分）
 
-- 内容边界**content**（通过 `width`、`min-width``max-width`、`height`、`min-height`，和 `max-height` 控制）
-- 内边距边界**padding**（`padding-top`、`padding-right`、`padding-bottom`、`padding-left`，和简写属性 `padding` 控制）
-- 边框边界**border**（边框的粗细由 `border-width` 和简写的 `border` 属性控制）
-- 外边框边界**margin**（由 `margin-top`、`margin-right`、`margin-bottom`、`margin-left`，和简写属性 `margin` 控制）
+- 内容边界`content`（`width`、`min-width``max-width`、`height`、`min-height`、`max-height`）
+- 内边距边界`padding`（`padding-top`、`padding-right`、`padding-bottom`、`padding-left`、`padding`）
+- 边框边界`border`（`border-width`、`border`）
+- 外边框边界`margin`（`margin-top`、`margin-right`、`margin-bottom`、`margin-left`、`margin`）
 
 ## 标准盒模型与IE模盒型
 
@@ -31,15 +31,82 @@ IE模型 | `box-sizing: border-box;` 怪异盒模型 <br> width和height是对**
 
 ## JS如何设置获取盒模型对应的宽和高
 
+### css的三种写法
+
+内联样式
+
+```html
+<div style="width: 100px">text</div>
+```
+
+内部样式
+
+```html
+<head>
+    <style>
+        .content {
+            width: 100px;
+        }
+    </style>
+</head>
+```
+
+外部样式表
+
+```html
+<head>
+    <link href="./css/index.css"/>
+</head>
+```
+
+### 盒模型宽高获取
+
+第一种：
+
 ```js
-// 只能获取内联样式的宽高，style和外部css样式表中的高宽无法获取
-dom.style.width/height  
-// 页面渲染完成后的结果，获取即时的计算的样式，但是只有IE支持
+dom.style.width/height 
+```
+
+::: danger
+只能获取内联样式的宽高，内部样式和外部css样式表中的高宽无法获取
+:::
+
+第二种：
+
+```js
 dom.currentStyle.width/height 
-// 页面渲染完成后的结果，获取即时计算的样式，支持其他浏览器，兼容性更好
+```
+
+::: danger
+页面渲染完成后的结果，获取即时的计算的样式，但是只有IE支持
+:::
+
+第三种：
+
+```js
 window.getComputedStyle(dom).width/height
-// 获得运行后的属性，返回一个矩形对象，left,top,right,buttom
+```
+
+::: danger
+页面渲染完成后的结果，获取即时计算的样式，支持其他浏览器，兼容性更好
+:::
+
+第四种：
+
+```js
 dom.getBoundingClientRect().width/height
-//返回元素实际大小，包含边框，内边距和滚动条,如果没有设置任何CSS宽度和高度，也会在计算后得到宽度和高度
+```
+
+::: danger
+获得运行后的属性，返回一个矩形对象，left,top,right,buttom
+:::
+
+第五种：
+
+```js
 dom.offsetWidth/offsetHeight
 ```
+
+::: danger
+返回元素实际大小，包含边框，内边距和滚动条,如果没有设置任何CSS宽度和高度，也会在计算后得到宽度和高度
+:::

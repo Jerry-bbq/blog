@@ -30,7 +30,7 @@ sidebar: auto
 - [垃圾回收机制与内存泄漏](./javascript/gc.md)
 - [作用域和闭包](./javascript/scope-closure.md)
 - [原型和原型链](./javascript/prototype-chain.md)
-- [异步和单线程](./javascript/asyn-single-thread.md)
+- [事件循环](./javascript/asyn-single-thread.md)
 - [DOM事件](./javascript/dom.md)
 - [通信](./javascript/communications.md)
 - [HTTP](./javascript/http.md)
@@ -39,7 +39,7 @@ sidebar: auto
 - [错误监控](./javascript/error.md)
 - [es6](./javascript/es6.md)
 - [设计模式](./design-patterns)
-- [前端模块化](./javascript/modules.md)
+- [前端工程化](./javascript/engineering.md)
 
 ## coding
 
@@ -61,6 +61,7 @@ sidebar: auto
 
 - [v4](../bundler/webpack/v4.md)
 - [v2](../bundler/webpack/v2.md)
+- [babel](../bundler/babel.md)
 
 ## 数据结构与算法
 

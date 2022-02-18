@@ -2,482 +2,396 @@
 sidebar: auto
 ---
 
-# 异步和单线程
+# 事件循环
 
-## 单线程
+因为js是单线程的，因此异步操作需要借助**事件循环**机制来实现，理解事件循环有助于我们深入理解异步事件
 
-- 只有一个线程，同一时间只能做一件事
-- 单线程的原因，避免dom渲染的冲突
-- 单线程的解决方案：异步
+## 浏览器中的事件循环
 
-### 单线程代码演示：
+因为浏览器的js是单线程的，也就是说同一时间只能做一件事（也就是执行一段js代码），可是浏览器又要执行DOM渲染、各种DOM操作事件、定时器、异步请求等操作，因此引入了事件循环机制。
 
-循环运行期间，js执行和dom渲染暂时卡顿
+看一张图：
 
-```js
-var i,sum = 0
-for (i = 0; i < 100000000;i++) {
-  sum+=i
-}
-console.log(sum)
-```
+![event-loop](./images/event-loop.jpg)
 
-alert不处理，js执行和dom渲染暂时卡顿
+- js的主线程有一个执行栈，所有的js代码都在执行栈中执行
+- 在执行js代码的过程中，如果遇到异步任务，那么浏览器会将异步代码放到另一个线程中执行（幕后线程），这个线程的执行不阻塞主线程中代码的执行
+- 当幕后线程中的代码执行完成之后，该线程会将异步代码的回调函数放到任务队列（又称作事件队列、消息队列）中等待执行
+- 当主线程中的代码执行完成之后，它会去检查任务队列是否有任务要执行。如果有，则将该任务放到执行栈中执行，如果当前任务队列为空，它就会一直循环等待任务到来。因此，这叫做事件循环
 
-```js
-console.log(1)
-alert('hello')
-console.log(2)
-```
+### 任务队列
 
-### 单线程是为了避免dom渲染的冲突
+如果任务队列中有多个任务，那么先执行哪一个任务呢？由上图可见，实际上有两个任务队列，一个是**宏任务队列**（Macrotask Queue又叫Task Queue），一个是**微任务队列**（Microtask Queue）
 
-为什么要避免DOM渲染的冲突？
+宏任务：
 
-- 浏览器需要渲染DOM
-- JS可以修改DOM结构
-- JS执行的时候，浏览器DOM渲染会暂停
-- 两段JS也不能同时执行（都修改DOM就冲突了）
-- webworker支持多线程，但是不能访问DOM
+- script的主代码块
+- 定时器：setTimeout、setInterval、requestAnimationFrame
+- 事件绑定
+- ajax
+- 回调函数
+- 用户交互操作，UI渲染
+- setImmediate （node）
+- I/O（node）
 
-### 解决方案-异步
+微任务：
 
-场景一：
-
-```js
-console.log(100)
-setTimeout(function() {
-  console.log(200)
-},1000)
-console.log(300)
-console.log(400)
-// 100,300,400,200
-```
-
-场景二：
-
-```js
-console.log(100)
-$.ajax({
-  url: 'xxx',
-  success: function(result) {
-    console.log(result)
-  }
-})
-console.log(300)
-console.log(400)
-```
-
-异步的问题：
-
-- 没有按照书写方式执行，代码可读性差
-- callback中不容易模块化
-
-## 事件循环event-loop
-
-- 事件轮询，JS实现异步的具体解决方案
-- 同步代码，直接执行
-- 异步函数先放在异步队列中
-- 待同步函数执行完毕，轮询执行 异步队列 的函数
-
-案例一：
-
-```js
-setTimeout(function() {
-  console.log(100)
-})
-console.log(200)
-// 200 -> 100
-```
-
-案例二：
-
-```js
-setTimeout(function() {
-  console.log(1)
-},1000)
-setTimeout(function() {
-  console.log(2)
-})
-console.log(3)
-// 3 -> 2 -> 1
-```
-
-案例三：
-
-```js
-$.ajax({
-  url: 'xxx',
-  success: function(result) {
-    console.log('a')
-  }
-})
-setTimeout(function() {
-  console.log('b')
-},1000)
-setTimeout(function() {
-  console.log('c')
-})
-console.log('d')
-// d -> c -> a -> b
-// ajax可能很快
-```
-
-## 单线程
-
-[浏览器是多进程的](https://www.infoq.cn/article/CS9-WZQlNR5h05HHDo1b)，每个tab页都相当于是一个浏览器的进程（进程（process）是cpu资源分配的最小单位，线程（thread）是cpu调度的最小单位，线程是建立在进程的基础上的一次程序运行单位，一个进程中可以有多个线程）
-
-浏览器有哪些进程：
-
-- Browser Process
-- GPU Process
-- Plugin Process
-- Renderer Process
-- Device Process
-- Storage Process
-- Network Process
-- UI Process
-
-JavaScript是**单线程**执行的，所谓的单线程就是指一次只能完成一个任务，如果是多个任务就必须要排队执行，前面一个任务执行完毕之后，再执行后面一个任务。（因为js引擎的主线程负责代码的运行，有且只有一个主线程）
-
-缺点：如果一个任务耗时较长，后面的任务就必须排队等着，容易造成浏览器无响应（假死）
-
-解决方案：JavaScript将执行模式分为两种：同步任务（Synchronous）和异步任务（Asynchronous）
-
-## 异步
-
-同步任务：后一个任务等待前一个任务执行结束在执行。在主线程(这里的主线程就是JS引擎线程)上执行，会形成一个执行栈
-
-异步任务：每个异步任务都有一个或多个回调函数（callback），前一个任务结束后，不是执行后一个任务，而是执行后一个任务的回到函数。异步任务相关的回调函数会被放入任务队列（callback queue），当主线程中的执行栈被清空时，去任务队列中取任务到执行栈中执行
-
-- javascript是单线程语言，一个线程里只有一个调用栈（`call stack`）
-- 单线程：一次只能做一件事
-- js执行，任务进入调用栈，同步任务进入主线程，异步任务进入事件队列，待主线程中的同步任务执行完毕之后，清空调用栈，事件循环检测主线程是否清空，如果清空，依次从执行任务队列中取任务到调用栈中执行，执行完毕，清空调用栈
-
-异步任务：宏任务（`macrotask`，也被成为task）和微任务（`microtask`，也被成为jobs）
-
-### 宏任务
-
-- 主代码块
-- setTimeout
-- setInterval
-- setImmediate ()-Node
-- requestAnimationFrame ()-浏览器
-
-### 微任务
-
-- process.nextTick ()-Node
-- Promise.then()
-- catch
-- finally
+- Promise.then
+- Promise.catch
+- Promise.finally
+- async/await
+- process.nextTick(node)
 - Object.observe
 - MutationObserver
 
-### 问题
+### 宏任务与微任务的执行
 
-同步任务和异步任务的执行顺序
+1. 执行栈中优先执行同步代码，同步代码执行完毕之后，进入下一步；
+2. 检查`宏任务队列`是否为空，若不为空，则进行下一步，若为空，则跳到4；
+3. 从`宏任务队列`中取队首(在队列时间最长)的任务进去执行栈中执行(仅仅一个)，执行完后进入下一步；
+4. 检查`微任务队列`是否为空，若不为空，则进入下一步，否则，跳到2（开始新的事件循环）；
+5. 从`微任务队列`中取队首(在队列时间最长)的任务进去事件队列执行，执行完后，跳到4；其中，在执行代码过程中新增的`microtask任务`会在当前事件循环周期内执行，而新增的`macrotask任务`只能等到下一次事件循环才能执行了。
+
+::: tip
+
+- 简单来说，一次事件循环只执行处于`宏任务队列`**队首**的任务，执行完成后，立即执行`微任务队列`中的**所有任务**。
+- 执行栈全局任务属于宏任务
+- 执行顺序为：执行栈全局任务(宏任务) --> 宏任务中的微任务 --> 下一个宏任务
+
+:::
+
+### 案例分析1
 
 ```js
 console.log(1)
-setTimeout(function() {console.log(3)},0)
-console.log(2)
-
-// 1 2 3
-```
-
-::: tip
-
-同步任务执行完成之后，执行异步任务
-
-:::
-
-```js
-console.log('A')
-while(true){}
-console.log('B')
-// A
-```
-
-```js
-console.log('A')
-setTimeout(function() {console.log('B')},0)
-while(true){}
-// A
-```
-
-```js
-for(var i=0;i<4;i++){
-  setTimeout(function() {console.log(i)},1000)
-}
-
-// 或者
-for(var i=0;i<4;i++){
-  setTimeout(function() {console.log(i)},0)
-}
-// 4 4 4 4
-```
-
-::: tip
-
-队列插入时间，for循环执行到setTimeout时，并没有将setTimeout放置到异步队列中去，只有当定时器的时间到了，才会将setTimeout放置到异步队列，等待事件循环，执行setTimeout，此时i已经变为4
-
-:::
-
-```js
-console.log('script start') // 同步
-
-async function async1() {
-  await async2() // 同步
-  console.log('async1 end') // 异步
-}
-async function async2() {
-  console.log('async2 end')
-}
-
-async1()
-
 setTimeout(function() {
-  console.log('setTimeout') // 异步，宏任务
+  //settimeout1
+  console.log(2)
 }, 0)
-
-new Promise(resolve => {
-  console.log('Promise') // 同步
-  resolve()
-})
-  .then(function() {
-    console.log('promise1') // 异步，微任务
-  })
-  .then(function() {
-    console.log('promise2') // 异步，微任务
-  })
-
-console.log('script end') // 同步
-
-// script start => async2 end => Promise => script end => promise1 => promise2 => async1 end => setTimeout
-
-// 新版本浏览器的执行顺序如下：因为 await 变快了
-// script start => async2 end => Promise => script end => async1 end => promise1 => promise2 =>setTimeout
-```
-
-微任务比宏任务速度快
-
-[参考](https://juejin.cn/post/7016298598883131423)
-
-```js
-setTimeout(function () {
-  console.log("1"); 
-}, 0);
-
-async function async1() {
-  console.log("2"); 
-  const data = await async2(); 
-  console.log("3");
-  return data;
-}
-
-async function async2() {
-  return new Promise((resolve) => {
-    console.log("4"); 
-    resolve("async2的结果"); 
-  }).then((data) => {
-    console.log("5");
-    return data;
-  });
-}
-
-async1().then((data) => {
-  console.log("6"); 
-  console.log(data); 
-});
-
-new Promise(function (resolve) {
-  console.log("7"); 
-  //   resolve()
-}).then(function () {
-  console.log("8"); 
-});
-
-// 结果为：2 4 7 5 3 6 async2的结果 1
-// 如果resolve打开，2 4 7 5 8 3 6 async2的结果 1
-```
-
-## 事件循环机制
-
-
-## 问题及分析
-
-浏览器是多线程的，但是js是单线程的
-
-- GUI渲染线程（给浏览器画画用的 DOM/BOM）
-- JS引擎线程（web worker）
-- 浏览器事件线程（onclick）
-- 定时器触发线程
-- http异步线程
-- EventLoop（事件线程）处理线程
-
-### 案例一
-
-```js
-let setTimeoutCallBack = function() {
-  console.log('定时器回调')
-}
-let httpCallback = function() {
-  console.log('http回调')
-}
-
-console.log('同步任务1')
-
-// 定时 1s
-setTimeout(setTimeoutCallBack, 1000)
-
-// 请求了 2s
-ajax.get('/info', httpCallback)
-
-console.log('同步任务2')
-
-// 执行结果
-// 同步任务1 => 同步任务2 => 定时器回调 => http回调
-```
-
-分析：
-
-- call back（调用栈）中同步任务先执行
-- 异步任务，定时器进入定时器触发线程中，http请求进入http异步线程中（并不是马上放到任务队列中去）
-- 调用栈中，同步任务执行结束之后，到task queue任务队列中轮询
-- 当1s的之后，拿到定时器任务，放在调用栈中执行
-- 当2s的时候，拿到http请求，放到调用栈中执行
-
-### 案例二
-
-```js
-// `宏任务1`
-setTimeout(()=> {
-  console.log(1)
-}, 20)
-
-console.log(2)
-
-// `宏任务2`
-setTimeout(()=> {
+const intervalId = setInterval(function() {
+  //setinterval1
   console.log(3)
-}, 10)
+}, 0)
+setTimeout(function() {
+  //settimeout2
+  console.log(10)
+  new Promise(function(resolve) {
+    //promise1
+    console.log(11)
+    resolve()
+  })
+    .then(function() {
+      console.log(12)
+    })
+    .then(function() {
+      console.log(13)
+      clearInterval(intervalId)
+    })
+}, 0)
 
-console.log(4)
-
-// 大概执行33ms
-console.time('AA')
-for(let i=0;i<9000000;i++){
-  // do somethingg
-}
-console.timeEnd('AA')
-
-console.log(5)
-
-// `宏任务3`
-setTimeout(()=> {
-  console.log(6)
-}, 20)
-
-console.log(7)
-
-// `宏任务4`
-setTimeout(()=> {
-  console.log(8)
-}, 10)
-
-// 执行结果
-// 2 => 4 => 5 => 7 => 3 => 1 => 8 => 6
+//promise2
+Promise.resolve()
+  .then(function() {
+    console.log(7)
+  })
+  .then(function() {
+    console.log(8)
+  })
+console.log(9)
 ```
+
+输出结果：1 9 7 8 2 3 10 11 12 13
 
 分析：
 
-- 调用栈执行同步代码，输出：2 => 4 => 5 => 7
-- 在33ms时，同步任务执行完毕
-- 在异步队列中
-  - 在10ms时放入`宏任务2`,输出 3
-  - 在20ms时放入`宏任务1`,输出 1
-  - 在43ms时放入`宏任务4`,输出 8
-  - 在53ms时放入`宏任务3`,输出 6
+执行栈全局任务（宏任务）：
 
-### 案例三
+- console.log(1)被执行，输出1
+- settimeout1执行，加入macrotask队列
+- setinterval1执行，加入macrotask队列
+- settimeout2执行，加入macrotask队列
+- promise2执行，它的两个then函数加入microtask队列
+- console.log(9)执行，输出9
+- 根据事件循环的定义，接下来会执行新增的microtask任务，按照进入队列的顺序，执行console.log(7)和console.log(8),输出7和8 microtask队列为空，回到第一步，进入下一个事件循环，此时macrotask队列为: settimeout1,setinterval1,settimeout2
+
+第二次事件循环：
+
+从macrotask队列里取位于队首的任务(settimeout1)并执行，输出2 microtask队列为空，回到第一步，进入下一个事件循环，此时macrotask队列为: setinterval1,settimeout2
+
+第三次事件循环：
+
+从macrotask队列里取位于队首的任务(setinterval1)并执行，输出3,然后又将新生成的setinterval1加入macrotask队列 
+microtask队列为空，回到第一步，进入下一个事件循环，此时macrotask队列为: settimeout2,setinterval1
+
+第四次事件循环：
+
+从macrotask队列里取位于队首的任务(settimeout2)并执行,输出10，并且执行new Promise内的函数(new Promise内的函数是同步操作，并不是异步操作),输出11，并且将它的两个then函数加入microtask队列 从microtask队列中，取队首的任务执行，直到为空为止。因此，两个新增的microtask任务按顺序执行，输出12和13，并且将setinterval1清空。
+
+此时，microtask队列和macrotask队列都为空，浏览器会一直检查队列是否为空，等待新的任务加入队列。在这里，大家可以会想，在第一次循环中，为什么不是macrotask先执行？因为按照流程的话，不应该是先检查macrotask队列是否为空，再检查microtask队列吗？
+
+原因：因为一开始js主线程中跑的任务就是macrotask任务，而根据事件循环的流程，一次事件循环只会执行一个macrotask任务，因此，执行完主线程的代码后，它就去从microtask队列里取队首任务来执行。
+
+注意：由于在执行microtask任务的时候，只有当microtask队列为空的时候，它才会进入下一个事件循环，因此，如果它源源不断地产生新的microtask任务，就会导致主线程一直在执行microtask任务，而没有办法执行macrotask任务，这样我们就无法进行UI渲染/IO操作/ajax请求了，因此，我们应该避免这种情况发生。在nodejs里的process.nexttick里，就可以设置最大的调用次数，以此来防止阻塞主线程。
+
+### async/await
+
+async/await其实是 Promise 和 Generator 的语法糖，所以我们把它们转成我们熟悉的 Promise
 
 ```js
 async function async1() {
-  console.log('A')
-  await async2()
-  console.log('B')
+  console.log('async1 start');
+  await async2();
+  console.log('async1 end');
 }
 
+// 等价于
+async function async1() {
+  console.log('async1 start');
+  Promise.resolve(async2()).then(()=>console.log('async1 end'))
+}
+```
+
+### 案例分析2
+
+```js
+async function async1() {
+  console.log('async1 start')
+  await async2()
+  console.log('async1 end')
+}
 async function async2() {
-  console.log('C')
-} 
-
-console.log('D')
-
-setTimeout(function() {
-  console.log('E')
-}, 0)
-
+  console.log('async2')
+}
 async1()
-
 new Promise(function(resolve) {
-  console.log('F')
+  console.log('promise1')
   resolve()
 }).then(function() {
-  console.log('G')  
+  console.log('promise2')
 })
-console.log('H')  
-
-// 执行结果
-// D => A => C => F => H => B => G => E
-
-/*
-将async/await转化为promise
-
-function async1() {
-  console.log('A')
-  new Promise(resolve => {
-    console.log('C')
-    resolve()
-  }).then(res => {
-    console.log('B')
-  })  
-}
-*/
+console.log('script end')
 ```
 
-### 案例四
+解析为：
 
-```html
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-<button id="button">button</button>
-
-<script>
-
-const button = document.getElementById('button')
-button.addEventListener('click', () => {
-  Promise.resolve().then(()=> console.log('Microtask 1'))
-  console.log('Listener 1')  
+```js
+async function async1() {
+  console.log('async1 start')
+  Promise.resolve(async2()).then(()=>console.log('async1 end'))
+}
+async function async2() {
+  console.log('async2')
+}
+async1()
+new Promise(function(resolve) {
+  console.log('promise1')
+  resolve()
+}).then(function() {
+  console.log('promise2')
 })
-button.addEventListener('click', () => {
-  Promise.resolve().then(()=> console.log('Microtask 2'))
-  console.log('Listener 2')  
+console.log('script end')
+```
+
+结果为：async1 start -> async2 -> promise1 -> script end -> async1 end -> promise2
+
+Promise.resolve为同步任务
+
+### 定时器的问题
+
+setTimeout(task, 100)并不能保证任务会在100ms时去执行
+
+
+### 案例分析3
+
+```js
+function func1() {
+  console.log('func1 start')
+  return new Promise(resolve => {
+    resolve('OK')
+  })
+}
+function func2() {
+  console.log('func2 start')
+  return new Promise(resolve => {
+    setTimeout(() => {
+      resolve('OK')
+    }, 10)
+  })
+}
+console.log(1)
+setTimeout(async () => {
+  console.log(2)
+  await func1()
+  console.log(3)
+}, 20)
+for (let i = 0; i < 90000000; i++) {} // 约 80 ms
+console.log(4)
+func1().then(() => {
+  console.log(5)
 })
+func2().then(() => {
+  console.log(6)
+})
+setTimeout(() => {
+  console.log(7)
+}, 0)
+console.log(8)
+```
 
-</script>
+结果： 1 -> 4 -> func1 start -> func2 start -> 8 -> 5 -> 2 -> func1 start -> 3 -> 7 -> 6
 
-</body>
-</html>
-<!-- 输出结果：Listener 1 =>  => Microtask 1 => Listener 2 => Microtask 2  -->
+分析：
+
+第一次循环打印结果：主线程执行完毕：1 -> 4 -> func1 start -> func2 start -> 8；
+
+第二次循环打印结果：检查微任务队列是否有任务，执行任务func1().then()；func2().then()返回一个宏任务，执行栈中代码执行完毕：5；
+
+第三次循环打印结果：2 -> func1 start -> 3；检测宏任务队列列表中是否有任务，执行队首宏任务，执行完毕之后，检测微任务队列中是否有任务，执行微任务
+
+第四次循环打印结果：7 -> 6；检测宏任务队列列表中是否有任务，执行队首任务，执行完毕之后，检测微任务队列中是否有任务，执行微任务
+
+### 案例分析4
+
+```js
+console.log('start')
+setTimeout(() => {
+  console.log('children2')
+  Promise.resolve().then(() => {
+    console.log('children3')
+  })
+}, 0)
+
+new Promise(function(resolve, reject) {
+  console.log('children4')
+  setTimeout(function() {
+    console.log('children5')
+    resolve('children6')
+  }, 0)
+}).then(res => {
+  // flag
+  console.log('children7')
+  setTimeout(() => {
+    console.log(res)
+  }, 0)
+})
+```
+
+结果：start children4 children2 children3 children5 children7 children6
+
+分析：
+
+第一次循环：执行栈中同步任务执行完毕：start、children
+
+第二次循环：由于resolve('children6')没有立即执行，因此没有本轮循环没有微任务，检测宏任务队列，并执行微任务队列的回调：children2、children3
+
+第三次循环：检测宏任务队列，检测微任务队列：children5、children7、children6
+
+### 案例分析5
+
+```js
+async function async1() {
+  console.log('async1 start')
+  await async2()
+  console.log('async1 end')
+}
+async function async2() {
+  console.log('async2')
+}
+console.log('script start')
+setTimeout(function () {
+  console.log('setTimeout')
+}, 0)
+async1()
+new Promise((resolve) => {
+  console.log('promise1')
+  resolve()
+}).then(function () {
+  console.log('promise2')
+})
+console.log('script end')
 ```
 
 分析：
 
-- 
+第一轮循环：执行栈中同步任务先执行：script start  ->  async1 start -> async2 -> promise1 -> script end；
+
+第二轮循环：检测微任务列表是否为空，执行微任务：async1 end -> promise2；
+
+第三轮循环：检测宏任务列表是否为空，执行宏任务：setTimeout
+
+
+### 案例分析6
+
+```js
+async function async1() {
+  console.log('async1 start');
+  await async2();
+  console.log('async1 end');
+}
+async function async2() {
+  new Promise(function (resolve) {
+      console.log('promise1');
+      resolve();
+  }).then(function () {
+      console.log('promise2');
+  });
+}
+console.log('script start');
+setTimeout(function () {
+  console.log('setTimeout');
+}, 0)
+async1();
+new Promise(function (resolve) {
+  console.log('promise3');
+  resolve();
+}).then(function () {
+  console.log('promise4');
+});
+console.log('script end');
+```
+
+分析：
+
+主线程中代码执行：script start -> async1 start -> promise1 -> promise3 -> script end
+
+第一轮循环：检查微任务队列中是否有任务：promise2 -> async1 end -> promise4 -> setTimeout
+
+
+### 案例分析7
+
+```js
+async function async1() {
+  console.log('async1 start');
+  await async2();
+  setTimeout(function() {
+      console.log('setTimeout1') 
+  },0)
+}
+async function async2() {
+  setTimeout(function() {
+      console.log('setTimeout2')
+  },0)
+}
+console.log('script start');
+setTimeout(function() {
+  console.log('setTimeout3');
+}, 0)
+async1();
+new Promise(function(resolve) {
+  console.log('promise1');
+  resolve();
+}).then(function() {
+  console.log('promise2');
+});
+console.log('script end');
+```
+
+分析：
+
+第一轮：script start -> async1 start -> promise1 -> script end
+
+第二轮：检测微任务队列：promise2
+
+第三轮：检测宏任务队列：setTimeout3 -> setTimeout2 -> setTimeout1
+
+## nodejs中的事件循环

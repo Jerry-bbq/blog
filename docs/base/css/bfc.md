@@ -21,7 +21,7 @@ sidebar: auto
 
 属性| 值
 ---|---
-根元素html | `html`标签就是一个`BFC`s
+根元素html | `html`标签就是一个`BFC`
 float | `left`、`right`(`不为none)
 position | `absolute`、`fixed`、`sticky`等（不为static或relative）
 display | 值为`inline-block`, `table-cell`, `table-caption`, `flex`, `inline-flex`
