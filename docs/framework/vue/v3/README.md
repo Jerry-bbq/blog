@@ -1,3 +1,7 @@
+---
+sidebar: auto
+---
+
 # Vue3
 
 ## 生命周期的变化
@@ -77,4 +81,5 @@ console.log('c' in p, p.c); // false, 37
 2. 在Vue 3中，我们通过将大多数全局API和内部帮助程序移动到Javascript的module.exports属性上实现这一点。这允许现代模式下的module bundler能够静态地分析模块依赖关系，并删除与未使用的module.exports属性相关的代码。模板编译器还生成了对树抖动友好的代码，只有在模板中实际使用某个特性时，该代码才导入该特性的帮助程序。
 3. 尽管增加了许多新特性，但Vue 3被压缩后的基线大小约为10 KB，不到Vue 2的一半。
 
-## Vue3
+## vite
+

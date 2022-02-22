@@ -25,7 +25,7 @@ sidebar: auto
 
 ### 哪些情况会引起内存泄漏
 
-#### 不正当的闭包
+### 不正当的闭包
 
 什么是闭包：
 
@@ -69,7 +69,7 @@ fn2Child()
 fn2Child = null
 ```
 
-#### 使用未定义的全局变量
+### 使用未定义的全局变量
 
 函数中的局部变量在函数执行结束后这些变量已经不再被需要，所以垃圾回收器会识别并释放它们。但是对于全局变量，垃圾回收器很难判断这些变量什么时候才不被需要，所以全局变量通常不会被回收，我们使用全局变量是 OK 的，但同时我们要避免一些额外的全局变量产生
 
@@ -94,7 +94,7 @@ var test = new Array(10000)
 test = null
 ```
 
-#### dom引用
+### dom引用
 
 ```html
 <div id="root">
@@ -121,12 +121,12 @@ test = null
 </script>
 ```
 
-#### 定时器
+### 定时器
 
 - 使用计时器`setTimeout`和`setInterval`，可调用`clearInterval`或者`clearTimeout`来清除
 - `requestAnimationFrame` 也存在这个问题，可调用`cancelAnimationFrame` 来取消使用
 
-#### 事件监听
+### 事件监听
 
 ```vue
 <template>
@@ -151,7 +151,7 @@ export default {
 
 ```
 
-#### 监听者模式
+### 监听者模式
 
 比如`EventBus`
 
@@ -177,7 +177,7 @@ export default {
 </script>
 ```
 
-#### 未清理的Console输出
+### 未清理的Console输出
 
 开发环境下我们可以使用控制台输出来便于我们调试，但是在生产环境下，一定要及时清理掉输出。
 

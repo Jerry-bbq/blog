@@ -214,6 +214,12 @@ export default {
 </script>
 ```
 
+### v-bind和v-model的区别
+
+v-bind主要是属性绑定，比如class、style、value、href等
+
+v-model主要用在表单元素中，实现双向绑定
+
 ### v-if和v-show的区别
 
 - v-show通过CSS display来控制显示和隐藏

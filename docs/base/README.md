@@ -45,24 +45,6 @@ sidebar: auto
 
 - [手撕代码](./javascript/coding.md)
 
-## 框架
-
-### Vue
-
-- [v3.0](../framework/vue/v3)
-- [v2.0](../framework/vue/v2)
-- [Vuex](../framework/vue/vuex)
-- [VueRouter](../framework/vue/vue-router)
-- [axios](../framework/vue/axios)
-
-[可参考](https://jonny-wei.github.io/blog/vue/vue/vue-observer.html#%E5%A6%82%E4%BD%95%E4%BE%A6%E6%B5%8B%E6%95%B0%E6%8D%AE%E7%9A%84%E5%8F%98%E5%8C%96)
-
-## webpack
-
-- [v4](../bundler/webpack/v4.md)
-- [v2](../bundler/webpack/v2.md)
-- [babel](../bundler/babel.md)
-
 ## 数据结构与算法
 
 - [JavaScript数据结构与算法（第3版）](./data-structures-and-algorithms)

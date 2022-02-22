@@ -254,34 +254,81 @@ function validate(rules, fileds) {}
 vue
 
 - 响应式原理
-- object.defineProperty的缺点
-- v-if v-show区别
+  - 采用数据劫持结合发布订阅模式来实现响应式的，使用`Object.defineProperty`来劫持数据的`getter`和`setter`,在数据变动的时候，发布消息给订阅者，触发相应的监听回调
+- Object.defineProperty的缺点
+  - 无法检测到对象属性的新增和删除，解决方案是`Vue.set(obj, property, value)`
+  - 可以检测到数据索引的变化，但是性能影响，因此Vue重写了数组操作的方法，如`push，pop，shift，unshift，splice，sort，reverse`
+- v-if与v-show区别
+  - v-if是组件真的渲染和销毁，而不是显示和隐藏；v-show通过CSS display来控制显示和隐藏
 - keep-alive的api以及作用
+  - 实现组件的缓存，当切换组件的时候，不会对当前组件进行销毁
+  - 两个常用属性`include`、`exclude`，允许组件有条件的进行缓存
+  - 两个生命周期`activated`、`deactivated`，用来得知当前组件是否处于活跃状态
 - computed与watcher的区别
+  - computed本质是一个具备缓存的watcher，依赖的属性发生变化就会更新视图，并且计算属性默认只有getter，计算比较消耗性能的计算场景或者表达式过于复杂
+  - watch没有缓存性，更多的是观察的作用，可以监听某些数据执行回调
 - vue3与vue2的区别
+  - vue3性能比vue2强
+  - vue3使用`proxy`替换了`Object.defineProperty`
+  - 新增了Composition API（组合API）
+  - 新增了Fragment, Teleport, Suspense
+  - 新增了vite构建工具
+  - 支持ts
 - 子组件向父组件传参的方式有哪些
-- Vue中的data为什么是一个函数
+  - $emit
+  - $refs
+  - vuex
+- Vue中的data为什么是一个函数不是直接是一个对象
+  - 一个组件被复用多次的话，也就会创建多个实例。本质上，这些实例用的都是同一个构造函数。如果data是对象的话，对象属于引用类型，会影响到所有的实例。所以为了保证组件不同的实例之间data不冲突，data必须是一个函数
 - for循环为什么使用key
+  - 标识组件的唯一性，虚拟DOM的diff算法在同层级比较的时候效率会提升
+  - 尽量不要使用数组的的索引值index做key值，因为如果数组中的内容增加或者减少的话，会造成不必要的DOM更新
 
 js
 
 - const定义的变量能不能改变
+  - 定义的基本类型不能改变
+  - 定义的引用类型可以改变，改变的是引用类型的值，而不是引用类型的指向地址
 - new操作符的实现原理
+  - 创建一个空对象实例
+  - 将实例的__proto__指向构造函数的原型constructor.prototype（继承构造函数的原型对象）
+  - 执行构造函数，绑定this指向实例，实例作为this的上下文）
+  - 如果构造函数的执行结果是一个对象，则返回这个对象，否则，返回实例对象
 - 判断是否是数组的方法有哪些
+  - instanceof，如 arr instanceof Array
+  - Object.prototype.toString.call(arr) === '[object, Array]'
+  - Array.isArray(arr)
 - 数组遍历的方法有哪些
+  - for、forEach、map、filter、find、findIndex、every、reduce、some
 - 垃圾回收机制是怎么样的，闭包是怎么清除的
+  - js引擎会对程序不使用的内存或者使用过的内存不会再使用的内存空间进行内存释放，闭包是通过使用完之后将闭包函数赋值为空来清除的
 - undefined和null的区别
+  - undefined 表示一个变量没有被声明，或者被声明了但没有被赋值（未初始化），一个没有传入实参的形参变量的值为undefined，如果一个函数什么都不返回，则该函数默认返回undefined
+  - null则表示“什么都没有”，即“空值”
+  - null和undefined之间的主要区别在于它们被转换为原始类型的方式
+    ```js
+    var v1= 5+ null;
+    console.log(v1)   // 5
+
+    var v2= 5+ undefined;
+    console.log(v2)   // NaN
+    ```
 
 webpack
 
 - 热更新原理
+  - webpack --watch启动监听模式之后，webpack第一次编译项目，并将结果存储在内存文件系统，相比较磁盘文件读写方式内存文件管理速度更快，内存webpack服务器通知浏览器加载资源，浏览器获取的静态资源除了JS code内容之外，还有一部分通过webpack-dev-server注入的的 HMR runtime代码，作为浏览器和webpack服务器通信的客户端（webpack-hot-middleware 提供类似的功能）
+  - 文件系统中一个文件（或者模块）发生变化，webpack监听到文件变化对文件重新编译打包，每次编译生成唯一的hash值，根据变化的内容生成两个补丁文件：说明变化内容的manifest（文件格式是hash.hot-update.json，包含了hash和chundId用来说明变化的内容）和chunk js（hash.hot-update.js）模块
+  - hrm-server通过websocket将manifest推送给浏览器浏览器接受到最新的hotCurrentHash，触发 hotDownloadManifest函数，获取manifest json 文件
+  - 浏览器端hmr runtime根据manifest的hash和chunkId使用ajax拉取最新的更新模块chunk 
 - 打包文件使用什么loader
-
+  - file-loader
 
 ### 二面
 
 - 2021.11.11
 - 讲讲你在项目中遇到的问题以及解决方案
+  - 
 - 比如开发了一个页面，使用越来越卡顿，你会怎么去排查问题
 - 讲讲defineReative的流程
 - 使用const定义一个对象，可以更改嘛，为什么可以

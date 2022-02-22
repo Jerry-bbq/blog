@@ -22,8 +22,70 @@ module.exports = {
         link: '/base/',
       },
       {
+        text: 'Framework',
+        link: '/framework/',
+        items: [
+          {
+            text: 'Vue',
+            items: [
+              {
+                text: 'v3',
+                link: '/framework/vue/v3/',
+              },
+              {
+                text: 'v2',
+                link: '/framework/vue/v2/',
+              },
+              {
+                text: 'vue-router',
+                link: '/framework/vue/vue-router/',
+              },
+              {
+                text: 'vuex',
+                link: '/framework/vue/vuex/',
+              },
+              {
+                text: 'axios',
+                link: '/framework/vue/axios/',
+              },
+            ],
+          },
+          {
+            text: 'React',
+            link: '/framework/react/',
+          },
+        ],
+      },
+      {
+        text: 'Bundler',
+        link: '/bundler/',
+        items: [
+          {
+            text: 'Webpack',
+            items: [
+              {
+                text: 'v5',
+                link: '/bundler/webpack/v5.md',
+              },
+              {
+                text: 'v4',
+                link: '/bundler/webpack/v4.md',
+              },
+              {
+                text: 'v2',
+                link: '/bundler/webpack/v2.md',
+              },
+              {
+                text: 'babel',
+                link: '/bundler/babel.md',
+              }
+            ],
+          },
+        ],
+      },
+      {
         text: 'JobSummary',
-        link: '/job-summary/'
+        link: '/job-summary/',
       },
       {
         text: 'HK-Office',
@@ -52,7 +114,7 @@ module.exports = {
     lineNumbers: true,
   },
   plugins: [
-    '@vuepress/medium-zoom', 
+    '@vuepress/medium-zoom',
     '@vuepress/back-to-top',
     '@vuepress/nprogress',
     [
