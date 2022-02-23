@@ -281,6 +281,50 @@ for (var [key, val] of map.entries()) {
 - set
 - has
 
+## Set和Map的区别
+
+Set 是一种叫做集合的数据结构，Map 是一种叫做字典的数据结构。
+
+集合 与 字典 的区别：
+
+- 共同点：集合、字典 可以储存不重复的值
+- 不同点：集合 是以 [value, value]的形式储存元素，字典 是以 [key, value] 的形式储存
+
+ES6 新增的一种新的数据结构，类似于数组，成员唯一（内部元素没有重复的值）。且使用键对数据排序即顺序存储（经评论区大佬提醒）。
+
+Set 本身是一种构造函数，用来生成 Set 数据结构。
+
+Set 对象允许你储存任何类型的唯一值，无论是原始值或者是对象引用。
+
+操作方法：
+
+- add(value)：新增，相当于 array里的push。
+- delete(value)：存在即删除集合中value。
+- has(value)：判断集合中是否存在 value。
+- clear()：清空集合。
+
+便利方法：遍历方法（遍历顺序为插入顺序）
+
+- keys()：返回一个包含集合中所有键的迭代器。
+- values()：返回一个包含集合中所有值得迭代器。
+- entries()：返回一个包含Set对象中所有元素得键值对迭代器。
+- forEach(callbackFn, thisArg)：用于对集合成员执行callbackFn操作，如果提供了 thisArg 参数，回调中的this会是这个参数，没有返回值。
+
+## WeakSet与Set的区别
+
+WeakSet 对象允许你将弱引用对象储存在一个集合中。
+
+WeakSet 与 Set 的区别：
+
+- WeakSet 只能储存对象引用，不能存放值，而 Set 对象都可以。
+- WeakSet 对象中储存的对象值都是被弱引用的，即垃圾回收机制不考虑 WeakSet 对该对象的应用，如果没有其他的变量或属性引用这个对象值，则这个对象将会被垃圾回收掉（不考虑该对象还存在于 WeakSet 中），所以，WeakSet 对象里有多少个成员元素，取决于垃圾回收机制有没有运行，运行前后成员个数可能不一致，遍历结束之后，有的成员可能取不到了（被垃圾回收了），WeakSet 对象是无法被遍历的（ES6 规定 WeakSet 不可遍历），也没有办法拿到它包含的所有元素。
+
+方法：
+
+- add(value)：在WeakSet 对象中添加一个元素value。
+- has(value)：判断 WeakSet 对象中是否包含value。
+- delete(value)：删除元素 value
+
 ## Promise
 
 ![](./images/promise-constructor.png)
