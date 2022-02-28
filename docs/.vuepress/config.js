@@ -88,6 +88,10 @@ module.exports = {
         link: '/job-summary/',
       },
       {
+        text: 'leetcode',
+        link: '/leetcode/',
+      },
+      {
         text: 'HK-Office',
         link: '/audition/',
       },

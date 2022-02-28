@@ -318,7 +318,8 @@ obj: {
 
 - 来源不明确，不利于代码的阅读，如果有个mixins和自动合并
 - 多个mixins会造成命名冲突
-- mixin和组件可能出现多对多的关系，复杂度较高
+- 混入对象的生命周期将在组件自身生命周期之前调用`mixin的beforeCreate > 父beforeCreate > mixin的created > 父created > mixin的beforeMount > 父beforeMount > 子beforeCreate > 子created > 子beforeMount > 子mounted > mixin的mounted >父mounted`
+- 值为对象的选项，例如 methods、components 和 directives，将被合并为同一个对象。两个对象键名冲突时，取组件对象的键值对
 
 ## 全局函数
 
