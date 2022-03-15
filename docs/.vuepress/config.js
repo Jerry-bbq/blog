@@ -91,10 +91,10 @@ module.exports = {
         text: 'leetcode',
         link: '/leetcode/',
       },
-      {
-        text: 'HK-Office',
-        link: '/audition/',
-      },
+      // {
+      //   text: 'HK-Office',
+      //   link: '/audition/',
+      // },
       {
         text: 'Share',
         link: '/share/',
