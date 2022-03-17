@@ -2,7 +2,7 @@
   "scripts": {
     "serve": "vuepress dev docs --open",
     "build": "vuepress build docs",
-    "test": "sh deploy.sh",
+    "release": "sh deploy.sh",
     "commit": "git-cz",
     "push": "git status -s && git add . && yarn commit && git push"
   },

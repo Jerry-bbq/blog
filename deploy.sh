@@ -2,6 +2,8 @@
 
 git status -s
 
+yarn build
+
 git add .
 
 yarn commit
