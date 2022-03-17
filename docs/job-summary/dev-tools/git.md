@@ -49,6 +49,7 @@ git status -s
 
 ```bash
 git add .
+# 将文件添加到暂存区
 ```
 
 ### 忽略文件
@@ -69,7 +70,30 @@ cat .gitignore
 ### 提交更新
 
 ```bash
-git commit
+# 将暂存区的文件提交
+git commit -m 'upate'
+
+# 跳过暂存区直接提交文件，就省了掉git add的步骤了
+git commit -a -m 'update'
+```
+
+### 查看提交历史
+
+```bash
+# 按照时间先后顺序列出所有提交
+git log
+
+# 只显示hash和commit的信息
+git log --pretty=oneline
+# 显示7位的hash和commit的信息
+git log --oneline
+```
+
+### 撤销操作
+
+```bash
+# 撤销commit提交
+git commit --amend
 ```
 
 ## 工具
