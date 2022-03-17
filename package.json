@@ -2,7 +2,8 @@
   "scripts": {
     "serve": "vuepress dev docs --open",
     "build": "vuepress build docs",
-    "commit": "git-cz"
+    "commit1": "git-cz",
+    "commit": "git add . && yarn commit1 && git push"
   },
   "devDependencies": {
     "@vuepress/plugin-back-to-top": "^1.8.2",
