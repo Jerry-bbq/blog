@@ -6,35 +6,30 @@ sidebar: auto
 
 git是一个分布式版本控制系统（distributed version control system）
 
-::: tip 提示
-
 术语：
+
 - 版本控制系统（VCS）
 - 源代码管理器（SCM）
 
-:::
-
-## 基础
-
-### 下载安装
+## 命令
 
 下载[git](https://git-scm.com)并安装
 
-### 检测版本
+检测版本
 
 ```bash
 git --version
 # git version 2.15.0
 ```
 
-### 克隆现有的仓库
+克隆现有的仓库
 
 ```bash
 git clone https://github.com/libgit2/libgit2
 # 可以使用https://协议、git://协议、SSH传输协议（user@server:path/to/repo.git）
 ```
 
-### 检测当前文件状态
+检测当前文件状态
 
 ```bash
 # 输出十分详细
@@ -45,14 +40,14 @@ git status -s
 # git status --short
 ```
 
-### 跟踪新文件
+跟踪新文件
 
 ```bash
 git add .
 # 将文件添加到暂存区
 ```
 
-### 忽略文件
+忽略文件
 
 ```bash
 # 在根目录下创建文件.gitignore
@@ -67,7 +62,7 @@ cat .gitignore
 - 匹配模式可以以（/）结尾指定目录。
 - 要忽略指定模式以外的文件或目录，可以在模式前加上叹号（!）取反。
 
-### 提交更新
+提交更新
 
 ```bash
 # 将暂存区的文件提交
@@ -77,7 +72,7 @@ git commit -m 'upate'
 git commit -a -m 'update'
 ```
 
-### 查看提交历史
+查看提交历史
 
 ```bash
 # 按照时间先后顺序列出所有提交
@@ -89,20 +84,18 @@ git log --pretty=oneline
 git log --oneline
 ```
 
-### 撤销操作
+撤销操作
 
 ```bash
 # 撤销commit提交
 git commit --amend
 ```
 
-## 规范代码提交格式
+## commitizen
 
-### commitizen
+[commitizen](https://github.com/commitizen/cz-cli)是git代码提交规范工具，规范`commit message`格式，通过使用命令行工具来帮助开发人员实现代码格式的规范提交
 
-[commitizen](https://github.com/commitizen/cz-cli)是git代码提价规范工具，规范`commit message`格式
-
-#### 安装
+### 安装Commitizen
 
 一般都安装在当前项目当中，而不是作为全局安装
 
@@ -112,7 +105,9 @@ npm install commitzen -D
 yarn add commitzen -D
 ```
 
-#### 添加适配器cz-conventional-changelog
+### 安装Adapter
+
+commitizen支持多种不同的提交规范，可以安装和配置不同的适配器实现
 
 ```bash
 # npm
@@ -123,7 +118,7 @@ npx commitizen init cz-conventional-changelog --yarn --dev --exact
 
 ::: warning
 
-由于commitizen是安装在项目当中的，并不是全局的，所以需要加`npx`来使用命令`commitizen`
+由于commitizen是本地安装的，并不是全局的，所以需要加`npx`来使用命令`commitizen`
 
 :::
 
@@ -139,7 +134,7 @@ npx commitizen init cz-conventional-changelog --yarn --dev --exact
 }
 ```
 
-到此，我们可以使用如下命令来提交代码：
+安装完成后，使用`npx git-cz`或`npx cz`替换`git commit`
 
 ```bash
 git add .
@@ -158,11 +153,31 @@ git push
 }
 ```
 
-### vscode插件git-commit-plugin
+::: tip
+
+`git-cz`支持`git commit`所有的参数设置
+
+:::
+
+### 提示信息
+
+- feat：添加新特性
+- fix：修复bug
+- docs：对文档进行了修改
+- style：不影响代码含义的修改，比如空格、格式化、缺失的分号等
+- refactor：代码重构，没有添加新功能或者修改bug
+- perf：优化相关，比如提升性能、体验
+- test：增加确实的测试或者矫正已存在的测试
+- chore：改变构建流程、或者增加依赖库、工具等
+- build：对构建系统或者外部依赖项进行了修改，如gulp、broccoli、npm等
+- ci：ci配置相关，例如k8s、docker的配置文件的修改
+- revert：回滚到上一个版本
+
+## vscode插件git-commit-plugin
 
 安装插件`git-commit-plugin`
 
-### husky
+## 检查提交信息是否符合格式要求husky
 
 [husky](https://github.com/typicode/husky)
 
