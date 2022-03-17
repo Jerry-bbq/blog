@@ -1,3 +1,9 @@
-#!/usr/bin/env node
+#!/bin/bash
 
-ll
+git status -s
+
+git add .
+
+yarn commit
+
+git push
