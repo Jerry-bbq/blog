@@ -2,10 +2,10 @@
 
 git status -s
 
-yarn build
+vuepress build docs
 
 git add .
 
-yarn commit
+git commit -m "build: build"
 
 git push
