@@ -96,9 +96,71 @@ git log --oneline
 git commit --amend
 ```
 
-## 工具
+## 规范代码提交格式
 
-### gitignore
+### commitizen
+
+[commitizen](https://github.com/commitizen/cz-cli)是git代码提价规范工具，规范`commit message`格式
+
+#### 安装
+
+一般都安装在当前项目当中，而不是作为全局安装
+
+```bash
+npm install commitzen -D
+# 或者
+yarn add commitzen -D
+```
+
+#### 添加适配器cz-conventional-changelog
+
+```bash
+# npm
+npx commitizen init cz-conventional-changelog --save-dev --save-exact
+# yarn
+npx commitizen init cz-conventional-changelog --yarn --dev --exact
+```
+
+::: warning
+
+由于commitizen是安装在项目当中的，并不是全局的，所以需要加`npx`来使用命令`commitizen`
+
+:::
+
+这个时候，项目中会自动安装依赖`cz-conventional-changelog`，并在`package.json`中生成配置：
+
+```json
+{
+    "config": {
+        "commitizen": {
+        "path": "./node_modules/cz-conventional-changelog"
+        }
+    }
+}
+```
+
+到此，我们可以使用如下命令来提交代码：
+
+```bash
+git add .
+npx cz
+# 或 npx git-cz
+git push
+```
+
+为了简化命令，我们可以将`npx cz`添加到`package.json`文件中：
+
+```json
+{
+  "scripts": {
+    "commit": "git-cz",
+  }
+}
+```
+
+### vscode插件git-commit-plugin
+
+安装插件`git-commit-plugin`
 
 ### husky
 
