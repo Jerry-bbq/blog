@@ -11,6 +11,11 @@ git是一个分布式版本控制系统（distributed version control system）
 - 版本控制系统（VCS）
 - 源代码管理器（SCM）
 
+## 生成秘钥
+
+```bash
+```
+
 ## 命令
 
 下载[git](https://git-scm.com)并安装
@@ -27,6 +32,11 @@ git --version
 ```bash
 git clone https://github.com/libgit2/libgit2
 # 可以使用https://协议、git://协议、SSH传输协议（user@server:path/to/repo.git）
+```
+
+从指定分支克隆
+
+```bash
 ```
 
 检测当前文件状态
