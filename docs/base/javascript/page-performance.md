@@ -359,6 +359,8 @@ const renderListByRequestAnimationFrameAndFragment = async () => {
 
 ## 前端性能监控
 
+[web-vitals JavaScript库](https://web.dev/vitals/)
+
 [参考W3C标准](https://github.com/w3c/navigation-timing)
 
 前端性能监控主要使用`Performance`接口，获取当前页面中与性能相关的信息，有三个level:
