@@ -22,6 +22,14 @@ text-overflow: ellipsis;
 white-space: nowrap;
 ```
 
+::: tip 复杂情况
+
+如果后面跟icon，可以添加`padding-right`配合`position: absolute`来使用
+
+注意：`overflow`会遮盖`position: absolute`
+
+:::
+
 多行
 
 ```css
