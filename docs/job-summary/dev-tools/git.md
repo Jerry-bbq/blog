@@ -11,9 +11,28 @@ git是一个分布式版本控制系统（distributed version control system）
 - 版本控制系统（VCS）
 - 源代码管理器（SCM）
 
+## 查看配置
+
+```bash
+# 查看全部配置
+git config --list
+# 查看全部配置及所在的文件
+git config --list --show-origin
+# 查看某一项配置 git config <key>
+git config user.name
+```
+
+## 设置用户信息
+
+```bash
+git config --global user.name "Jerry"
+git config --global user.email Jerry@example.com
+```
+
 ## 生成秘钥
 
 ```bash
+ssh-keygen -t rsa -C "Jerry@example.com"
 ```
 
 ## 命令

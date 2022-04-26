@@ -12,7 +12,11 @@ sidebar: auto
 - [Charles](./dev-tools/charles.md)
 - [Git](./dev-tools/git.md)
 
-## Vue
+## uniapp
+
+- [开发app遇到的问题及解决方案](./uniapp/app.md)
+
+## Vue2.0
 
 - [vue2.0兼容IE9及以上](./vue/vue-ie9.md)
 - [使用gitlab的上的url作为项目的依赖](./vue/gitlab.md)
