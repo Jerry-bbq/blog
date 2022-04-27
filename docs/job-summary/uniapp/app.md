@@ -4,10 +4,25 @@ sidebar: auto
 
 # Q&A
 
-## H5跨域
+## 单位
 
-- 使用内置浏览器，不需要配置
-- 使用浏览器打开，配置`manifest.json`文件
+- rpx 即响应式 px，一种根据屏幕宽度自适应的动态单位
+- vh viewpoint height，视窗高度，1vh 等于视窗高度的 1%
+- vw viewpoint width，视窗宽度，1vw 等于视窗宽度的 1%
+
+## 开发调试
+
+### 内置浏览器
+
+不需要任何的跨域配置，但是会有一些意想不到的问题；比如，mac内置浏览器开发者控制台空白问题，[官方解决方案](https://hx.dcloud.net.cn/Tutorial/faq/devtools)：
+
+```bash
+lsof -i:9777 | awk '{print $2}' | tail -n +2 | xargs kill -9
+```
+
+### 其他浏览器调试
+
+- 使用浏览器打开，需要配置跨域，配置`manifest.json`文件如下：
 
 ```json
 "h5": {
@@ -23,6 +38,10 @@ sidebar: auto
     }
 }
 ```
+
+### 真机调试
+
+- 安卓手机连接mac电脑会时不时的断开连接，需要重新连接，苹果手机暂无该问题
 
 ## 状态栏遮挡
 
@@ -52,7 +71,7 @@ var(--status-bar-height)
 "style": {
     "bounce":"none"
 }
-```
+``
 
 ## 输入框的键盘会将页面上移
 
@@ -240,12 +259,11 @@ export default {
 
 ### android
 
-公共证书
-
+公共证
 ### ios
 
+- 需要付费开通开发者账户
 - [官方流程](https://ask.dcloud.net.cn/article/152)
-- 付费开通开发者账户
 
 ### 问题
 
@@ -256,3 +274,168 @@ export default {
 
 由于在项目中年没有配置`process.env.NODE_ENV`,直接使用作为判断，开发环境下没有问题（内置浏览器或运行到手机），但是打包之后，接口不会请求，排查问题浪费太多的时间
 
+## uni.showModal在iOS和Android表现不一致
+
+- ~~使用H5自定义开发modal，会遮盖不住tabbar~~
+- 还有很多付费的插件
+
+## uni.showToast在安卓机型上表现的问题
+
+在安卓上如果一直点击按钮，会一直显示，加节流函数：
+
+```js
+export const throttle = (callback, delay = 800) => {
+  let flag = true;
+  return (...args) => {
+    if (!flag) return;
+    flag = false;
+    setTimeout(() => {
+      callback.apply(this, args);
+      flag = true;
+    }, delay);
+  };
+};
+```
+
+```vue
+<template>
+  <view class="logout-content">
+        <view class="logout-btn" @click="handleClick">点击</view>
+      </view>
+</template>
+<script>
+import { throttle, notOnline } from '@/utils/index'
+  export default {
+    data() {
+      return {}
+    },
+    methods: {
+      handleClick: throttle(notOnline)
+    }
+  }
+</script>
+```
+
+## checkbox没有绑定数据
+
+添加checked字段，操作选择取消的时候，组件自身并不会改变数据的checked字段需要手动去改变
+
+## 字体图标相对路径引入的问题
+
+使用绝对路径的方式引用，否则Hbuilder会报`文件查找失败`的错误
+
+```css
+@font-face {
+  font-family: "iconfont"; /* Project id 3354199 */
+  src: url('@/static/iconfont.woff2') format('woff2'),
+       url('@/static/iconfont.woff') format('woff'),
+       url('@/static/iconfont.ttf') format('truetype'),
+       url('@/static/iconfont.svg') format('svg');
+}
+```
+
+使用:
+
+在项目根目录的 `App.vue` 中，引入上述的 `iconfont.css`，注意自己存放的路径，且通过 `@import` 引入的外部样式，需要写在 `style` 标签有效内容中的最前面
+
+```vue
+ <uni-icons custom-prefix="iconfont" type="icon-yaobaiguan" size="30"></uni-icons>
+```
+
+## 基于slider封装更好看的slider
+
+## 自定义仪表盘
+
+### 绘制圆形
+
+```js
+ctx.arc(x, y, radius, startAngle, endAngle, anticlockwise);
+```
+
+- x,y为坐标中心
+- radius为半径
+- startAngle，endAngle为角度
+- anticlockwise为false时，顺时针旋转从startAngle->endAngle;否则逆时针从endAngle->startAngle
+
+[角度以及方向](https://blog.csdn.net/Abudula__/article/details/84951776)
+
+### 绘制文本
+
+```js
+fillText(text, x, y [, maxWidth])
+```
+
+- text 文本内容
+- x,y 文本位置
+
+### 旋转
+
+```js
+ctx.rotate(angle);
+```
+
+- 旋转中心点一直是 canvas 的起始点。 如果想改变中心点，我们可以通过 [`translate()`](https://developer.mozilla.org/zh-CN/docs/Web/API/CanvasRenderingContext2D/translate) 方法移动 canvas 
+- angle顺时针旋转的弧度(不是角度)。如果你想通过角度值计算，可以使用公式： `degree*Math.PI / 180` 
+
+## 防抖节流
+
+不能使用箭头函数，会导致`this`指向丢失（指向`undefined`）
+
+```js
+// export const throttle = (callback, delay = 800) => {
+//   let flag = true
+//   return (...args) => {
+//     if (!flag) return
+//     flag = false
+//     setTimeout(() => {
+//       callback.apply(this, args)
+//       flag = true
+//     }, delay)
+//   }
+// }
+
+export function throttle(fn, wait = 300, isImmediate = false) {
+  let flag = true
+  if (isImmediate) {
+    return function () {
+      if (flag) {
+        fn.apply(this, arguments)
+        flag = false
+        setTimeout(() => {
+          flag = true
+        }, wait)
+      }
+    }
+  }
+  return function () {
+    if (flag == true) {
+      flag = false
+      setTimeout(() => {
+        fn.apply(this, arguments)
+        flag = true
+      }, wait)
+    }
+  }
+}
+```
+
+使用（可传参）：
+
+```js
+export default {
+  data() {},
+  methods: {
+    touchmove: throttle(function (e) {
+        this.gauge.touchmove(e.changedTouches[0])
+    })
+  }
+}
+```
+
+## uni-popup在ios中被底部安全区遮盖
+
+![safe-area](./images/safe-area.png)
+
+```vue
+<uni-popup type="bottom" :safe-area="false">底部弹出 Popup</uni-popup>
+```

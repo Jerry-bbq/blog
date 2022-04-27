@@ -133,7 +133,7 @@ module.exports = {
     [
       'one-click-copy',
       {
-        copyMessage: '代码片段复制成功',
+        copyMessage: 'Copy Success',
       },
     ],
   ],
