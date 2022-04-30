@@ -344,6 +344,121 @@ import { throttle, notOnline } from '@/utils/index'
 
 ## 基于slider封装更好看的slider
 
+```vue
+<template>
+	<view class="m-slider-container">
+		<slider ref="slider" class="m-slider" v-bind="$attrs" v-on="$listeners" />
+		<view class="range-text" v-if="showStartEnd">
+			<text>{{ $attrs.min }}{{ unit }}</text>
+			<text>{{ $attrs.max }}{{ unit }}</text>
+		</view>
+		<view class="step-text" v-if="showTick">
+			<text v-for="(item, index) in stepList" :key="item" class="text" :class="{ active: curValue === item }"
+				:style="{ left: left(index) }">{{ item }}{{ unit }}</text>
+		</view>
+	</view>
+</template>
+<script>
+	export default {
+		props: {
+			unit: {
+				type: String,
+				default: '',
+			},
+			showStartEnd: {
+				type: Boolean,
+				default: false,
+			},
+			showTick: {
+				type: Boolean,
+				default: false,
+			},
+		},
+		data() {
+			return {
+				curValue: 1,
+			}
+		},
+		computed: {
+			stepList() {
+				const {
+					min,
+					max
+				} = this.$attrs
+				let arr = []
+				for (let i = min; i <= max; i++) {
+					arr.push(i)
+				}
+				return arr
+			},
+		},
+		mounted() {
+			console.log(this.$listeners)
+		},
+		methods: {
+			change(e) {
+				console.log(e.detail.value)
+				this.curValue = e.detail.value
+				this.$emit('change', this.curValue)
+			},
+			left(index) {
+				return index * (100 / (this.stepList.length - 1)) + '%'
+			},
+		},
+	}
+</script>
+<style lang="scss" scoped>
+	.m-slider-container {
+		.m-slider {
+			margin: 0;
+
+			/deep/ {
+				// 高度
+				.uni-slider-handle-wrapper {
+					height: 10rpx;
+				}
+				// 滑块
+				.uni-slider-thumb {
+					// background: -webkit-radial-gradient(circle closest-side, #4072ff 5px, #fff 2px);
+				}
+				// 滑动轨迹 track
+				.uni-slider-track {
+					background-image: linear-gradient(270deg, #4072ff 0%, #6791ff 99%);
+					border-radius: 5px;
+				}
+			}
+		}
+
+		// 最大最小值
+		.range-text {
+			display: flex;
+			align-items: center;
+			justify-content: space-between;
+			font-size: 24rpx;
+		}
+
+		// 步长
+		.step-text {
+			margin-top: 20rpx;
+			height: 36rpx;
+			position: relative;
+
+			.text {
+				position: absolute;
+				top: 0;
+				margin-left: -13px;
+				text-align: center;
+				width: 56rpx;
+				font-size: 24rpx;
+				&.active {
+					color: #999999;
+				}
+			}
+		}
+	}
+</style>
+```
+
 ## 自定义仪表盘
 
 ### 绘制圆形
@@ -438,4 +553,24 @@ export default {
 
 ```vue
 <uni-popup type="bottom" :safe-area="false">底部弹出 Popup</uni-popup>
+```
+
+## radio-group中使用stop修饰符
+
+使用`radio-group`时，`change`事件与子元素`click`事件冲突；需要给子元素的`click`事件添加修饰符`.stop`来阻止事件冒泡，但是在`click`时控制台会报错...
+  
+![stop](./images/stop.png)
+
+解决方案：`@click.native.stop`
+
+```vue
+<radio-group @change="handleChecked">
+  <label class="template-item" v-for="item in list" :key="item.id" :class="{ actived: item.id == checked }">
+    <radio style="display: none" :value="item.id + ''" :checked="item.id == checked" />
+    <view class="template-title">
+      <text>{{ item.title }}</text>
+      <uni-icons custom-prefix="iconfont" type="icon-delete" size="22" color="#FF4848" @click.native.stop="handleRemove($event)"></uni-icons>
+    </view>
+  </label>
+</radio-group>
 ```
