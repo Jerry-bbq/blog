@@ -10,7 +10,7 @@
     "@vuepress/plugin-nprogress": "^1.8.2",
     "commitizen": "^4.2.4",
     "cz-conventional-changelog": "3.3.0",
-    "vuepress": "^1.8.2",
+    "vuepress": "^1.9.7",
     "vuepress-plugin-one-click-copy": "^1.0.3"
   },
   "dependencies": {
