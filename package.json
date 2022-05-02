@@ -20,5 +20,6 @@
     "commitizen": {
       "path": "./node_modules/cz-conventional-changelog"
     }
-  }
+  },
+  "version": "v1.22.18"
 }
