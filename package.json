@@ -14,7 +14,8 @@
     "vuepress-plugin-one-click-copy": "^1.0.3"
   },
   "dependencies": {
-    "dayjs": "^1.8.28"
+    "dayjs": "^1.8.28",
+    "markdown-it-task-lists": "^2.1.1"
   },
   "config": {
     "commitizen": {

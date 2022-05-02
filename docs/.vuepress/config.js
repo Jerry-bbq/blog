@@ -100,10 +100,6 @@ module.exports = {
         link: '/share/',
       },
       {
-        text: 'lgr-tools',
-        link: 'https://gitee.com/luguanrui/lgr-tools?_from=gitee_search',
-      },
-      {
         text: 'GitHub',
         link: 'https://github.com/luguanrui?tab=repositories',
       },
@@ -116,6 +112,10 @@ module.exports = {
   },
   markdown: {
     lineNumbers: true,
+    extendMarkdown: md => {
+      // 任务列表
+      md.use(require('markdown-it-task-lists'))
+    }
   },
   plugins: [
     '@vuepress/medium-zoom',

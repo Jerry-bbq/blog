@@ -4,8 +4,7 @@ sidebar: auto
 
 # 分享
 
-## 工具函数库
-
+- [canvas自定义仪表盘](./gauge.md)
 - [从零实现一个工具函数库](./tool-library.md)
 
 ## 阅读

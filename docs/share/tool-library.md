@@ -4,6 +4,8 @@ sidebar: auto
 
 # 从零实现一个工具函数库
 
+- [工具函数库](https://www.npmjs.com/package/lgr-tools)
+
 ## 功能点
 
 - [x] rollup打包
