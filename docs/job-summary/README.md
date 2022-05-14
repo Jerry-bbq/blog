@@ -11,6 +11,7 @@ sidebar: auto
 - [Node版本管理](./dev-tools/node-version-manager.md)
 - [Charles](./dev-tools/charles.md)
 - [Git](./dev-tools/git.md)
+- [Vue](./dev-tools/vue.md)
 
 ## uniapp
 
