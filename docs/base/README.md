@@ -41,7 +41,11 @@ sidebar: auto
 - [设计模式](./design-patterns)
 - [前端工程化](./javascript/engineering.md)
 
-## coding
+## TypeScript
+
+- [TypeScript](./base/../typescript/README.md)
+
+## Coding
 
 - [手撕代码](./javascript/coding.md)
 
