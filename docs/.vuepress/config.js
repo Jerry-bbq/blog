@@ -3,7 +3,6 @@ const { defaultTheme } = require('@vuepress/theme-default')
 const { mediumZoomPlugin } = require('@vuepress/plugin-medium-zoom')
 const { backToTopPlugin } = require('@vuepress/plugin-back-to-top')
 const { nprogressPlugin } = require('@vuepress/plugin-nprogress')
-const { registerComponentsPlugin } = require('@vuepress/plugin-register-components')
 const { docsearchPlugin } = require('@vuepress/plugin-docsearch')
 const { clipboardPlugin } = require("vuepress-plugin-clipboard")
 
@@ -11,7 +10,7 @@ module.exports = {
   title: 'Blog',
   host: 'localhost',
   port: 2222,
-  description: '前端博客',
+  description: '技术博客',
   base: '/blog/',
   head: [['link', { rel: 'icon', href: '/logo.png' }]],
   theme: defaultTheme({
@@ -105,14 +104,9 @@ module.exports = {
       },
       {
         text: 'GitHub',
-        link: 'https://github.com/luguanrui?tab=repositories',
+        link: 'https://github.com/Jerry-bbq?tab=repositories',
       },
-    ],
-    sidebar: {
-      // '/base/': [],
-      // '/share/': [],
-      // '/framework/vue/v2/': [['', '目录'], 'reactive', 'render', 'extend'],
-    },
+    ]
   }),
   markdown: {
     importCode: {
@@ -127,17 +121,7 @@ module.exports = {
     mediumZoomPlugin({}),
     backToTopPlugin(),
     nprogressPlugin(),
-    registerComponentsPlugin(),
     docsearchPlugin({}),
     clipboardPlugin({})
-  ],
-  // plugins: [
-  //   // 复制代码
-  //   [
-  //     'one-click-copy',
-  //     {
-  //       copyMessage: '已复制',
-  //     },
-  //   ],
-  // ],
+  ]
 }
