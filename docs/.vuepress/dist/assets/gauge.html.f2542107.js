@@ -1,0 +1,1 @@
+const e=JSON.parse('{"key":"v-1777b4a9","path":"/share/gauge.html","title":"canvas\u81EA\u5B9A\u4E49\u4EEA\u8868\u76D8","lang":"en-US","frontmatter":{"sidebar":"auto"},"excerpt":"","headers":[],"git":{"updatedTime":1651506225000},"filePathRelative":"share/gauge.md"}');export{e as data};

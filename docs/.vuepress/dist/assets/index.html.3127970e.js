@@ -1,0 +1,1 @@
+const a=JSON.parse('{"key":"v-491714a6","path":"/base/data-structures-and-algorithms/","title":"JavaScript\u6570\u636E\u7ED3\u6784\u4E0E\u7B97\u6CD5\uFF08\u7B2C3\u7248\uFF09","lang":"en-US","frontmatter":{},"excerpt":"","headers":[],"git":{"updatedTime":1629272195000},"filePathRelative":"base/data-structures-and-algorithms/README.md"}');export{a as data};
