@@ -4,6 +4,8 @@ sidebar: auto
 
 # Canvas与SVG
 
+SVG是一种使用XML描述2D图形的语言，canvas需要在js中绘制，而SVG只需要在html里面通过标签绘制即可
+
 ## SVG
 
 - `SVG` 指可伸缩矢量图形 (Scalable Vector Graphics)

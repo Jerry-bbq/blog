@@ -10,33 +10,46 @@ TypeScript是JavaScript的超集
 
 ## 基础类型
 
-### 布尔值
+### 布尔值-boolean
 
 ```ts
 let isDone: boolean = false;
 ```
 
-### 数字
+### 数字-number
+
+除了支持`十进制`和`十六进制`字面量，TypeScript还支持ECMAScript 2015中引入的`二进制`和`八进制`字面量
 
 ```ts
+// 十进制
 let decLiteral: number = 6;
+// 十六进制
 let hexLiteral: number = 0xf00d;
+// 二进制
 let binaryLiteral: number = 0b1010;
+// 八进制
 let octalLiteral: number = 0o744;
 ```
 
-### 字符串
+### 字符串-string
 
 ```ts
-let name: string = "bob";
-let sentence: string = `Hello, my name is ${ name }`
+let name: string = `Gene`;
+let age: number = 37;
+let sentence: string = `Hello, my name is ${ name }.
+
+I'll be ${ age + 1 } years old next month.`;
 ```
 
-### 数组
+### 数组-Array
+
+- 元素类型后面接上`[]`
+- `Array<元素类型>`
 
 ```ts
+// 第一种定义方式：
 let list: number[] = [1, 2, 3];
-// 数组泛型，Array<元素类型>
+// 第二种定义方式：数组泛型，Array<元素类型>
 let list: Array<number> = [1, 2, 3];
 ```
 
@@ -46,7 +59,7 @@ let list: Array<number> = [1, 2, 3];
 let x: [string, number];
 ```
 
-### 枚举
+### 枚举-enum
 
 ```ts
 enum Color {Red, Green, Blue}

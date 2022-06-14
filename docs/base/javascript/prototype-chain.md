@@ -297,7 +297,7 @@ console.log(auto instanceof Object);
 
 ### 实现
 
-<<< @/docs/base/javascript/code-snippet/instanceof.js
+@[code](@code-snippet/instanceof.js)
 
 ## new运算符
 
@@ -365,7 +365,7 @@ console.log(o);
 
 ### 实现
 
-<<< @/docs/base/javascript/code-snippet/new.js
+@[code](@code-snippet/new.js)
 
 ## 继承
 
@@ -651,11 +651,11 @@ bind()会返回一个新的函数，如果这个返回的新的函数作为构�
 
 call():
 
-<<< @/docs/base/javascript/code-snippet/call.js
+@[code](@code-snippet/call.js)
 
 apply():
 
-<<< @/docs/base/javascript/code-snippet/apply.js
+@[code](@code-snippet/apply.js)
 
 ### 自定义bind
 
@@ -664,4 +664,4 @@ apply():
 1. 返回一个新函数
 2. 在新函数内部通过原函数对象的`call`方法来执行原函数，指定`this`为`obj`，指定参数为bind调用的参数和后面新函数调用的参数
 
-<<< @/docs/base/javascript/code-snippet/bind.js
+@[code](@code-snippet/bind.js)

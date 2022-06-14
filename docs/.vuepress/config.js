@@ -1,22 +1,26 @@
-const dayjs = require('dayjs')
+const path = require('path')
+const { defaultTheme } = require('@vuepress/theme-default')
+const { mediumZoomPlugin } = require('@vuepress/plugin-medium-zoom')
+const { backToTopPlugin } = require('@vuepress/plugin-back-to-top')
+const { nprogressPlugin } = require('@vuepress/plugin-nprogress')
+const { registerComponentsPlugin } = require('@vuepress/plugin-register-components')
+const { docsearchPlugin } = require('@vuepress/plugin-docsearch')
+const { clipboardPlugin } = require("vuepress-plugin-clipboard")
 
 module.exports = {
   title: 'Blog',
-  // cache: true,
   host: 'localhost',
   port: 2222,
   description: '前端博客',
   base: '/blog/',
   head: [['link', { rel: 'icon', href: '/logo.png' }]],
-  themeConfig: {
+  theme: defaultTheme({
     displayAllHeaders: true,
-    lastUpdated: '上次更新',
+    lastUpdated: true,
+    lastUpdatedText: '上次更新',
+    contributors: false,
     sidebarDepth: 3, // 1
-    nav: [
-      {
-        text: 'Home',
-        link: '/',
-      },
+    navbar: [
       {
         text: 'FE',
         link: '/base/',
@@ -24,10 +28,10 @@ module.exports = {
       {
         text: 'Framework',
         link: '/framework/',
-        items: [
+        children: [
           {
             text: 'Vue',
-            items: [
+            children: [
               {
                 text: 'v3',
                 link: '/framework/vue/v3/',
@@ -59,10 +63,10 @@ module.exports = {
       {
         text: 'Bundler',
         link: '/bundler/',
-        items: [
+        children: [
           {
             text: 'Webpack',
-            items: [
+            children: [
               {
                 text: 'v5',
                 link: '/bundler/webpack/v5.md',
@@ -109,32 +113,31 @@ module.exports = {
       // '/share/': [],
       // '/framework/vue/v2/': [['', '目录'], 'reactive', 'render', 'extend'],
     },
-  },
+  }),
   markdown: {
-    lineNumbers: true,
-    extendMarkdown: md => {
-      // 任务列表
-      md.use(require('markdown-it-task-lists'))
+    importCode: {
+      handleImportPath: (str) =>
+        str.replace(/^@code-snippet/, path.resolve(__dirname, '../../docs/base/javascript/code-snippet')),
     }
   },
+  extendsMarkdown: md => {
+    md.use(require('markdown-it-task-lists'), {})
+  },
   plugins: [
-    '@vuepress/medium-zoom',
-    '@vuepress/back-to-top',
-    '@vuepress/nprogress',
-    [
-      '@vuepress/last-updated',
-      {
-        transformer: (timestamp, lang) => {
-          return dayjs(timestamp).format('YYYY-MM-DD HH:mm:ss')
-        },
-      },
-    ],
-    // 复制代码
-    [
-      'one-click-copy',
-      {
-        copyMessage: 'Copy Success',
-      },
-    ],
+    mediumZoomPlugin({}),
+    backToTopPlugin(),
+    nprogressPlugin(),
+    registerComponentsPlugin(),
+    docsearchPlugin({}),
+    clipboardPlugin({})
   ],
+  // plugins: [
+  //   // 复制代码
+  //   [
+  //     'one-click-copy',
+  //     {
+  //       copyMessage: '已复制',
+  //     },
+  //   ],
+  // ],
 }
