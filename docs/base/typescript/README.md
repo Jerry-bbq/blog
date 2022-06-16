@@ -41,7 +41,7 @@ let sentence: string = `Hello, my name is ${ name }.
 I'll be ${ age + 1 } years old next month.`;
 ```
 
-### 数组-Array
+### 数组-[]/Array
 
 - 元素类型后面接上`[]`
 - `Array<元素类型>`
@@ -53,26 +53,50 @@ let list: number[] = [1, 2, 3];
 let list: Array<number> = [1, 2, 3];
 ```
 
-### 元组 Tuple
+### 元组Tuple
+
+元组类型允许表示一个已知元素数量和类型的数组，各元素的类型不必相同。 比如，你可以定义一对值分别为 string和number类型的元组。
 
 ```ts
 let x: [string, number];
+x = ['hello', 10]; // OK
+x = [10, 'hello']; // Error
 ```
 
 ### 枚举-enum
 
+- 默认情况下，从0开始为元素编号，也可以手动编号
+
 ```ts
 enum Color {Red, Green, Blue}
 let c: Color = Color.Green;
+
+enum Color {Red = 1, Green, Blue}
+let c: Color = Color.Green;
+
+enum Color {Red = 1, Green = 2, Blue = 4}
+let c: Color = Color.Green;
+
+enum Color {Red = 1, Green, Blue}
+let colorName: string = Color[2];
+
+console.log(colorName);  // 显示'Green'因为上面代码里它的值是2
 ```
 
 ### any
 
+- 在编程阶段还不清楚类型的变量指定一个类型
+
 ```ts
 let notSure: any = 4;
+
+let list: any[] = [1, true, "free"];
+list[1] = 100;
 ```
 
 ### void
+
+- void类型像是与any类型相反，它表示没有任何类型。 当一个函数没有返回值时可以使用
 
 ```ts
 function warnUser(): void {
@@ -80,7 +104,16 @@ function warnUser(): void {
 }
 ```
 
+- 声明一个void类型的变量没有什么大用，因为你只能为它赋予undefined和null：
+
+```ts
+let unusable: void = undefined;
+```
+
 ### undefined和null
+
+- 和void相似，它们的本身的类型用处不是很大
+- 默认情况下null和undefined是所有类型的子类型。 就是说你可以把 null和undefined赋值给number类型的变量。
 
 ```ts
 let u: undefined = undefined;
@@ -89,14 +122,34 @@ let n: null = null;
 
 ### never
 
+- never类型表示的是那些永不存在的值的类型
+- never类型是那些总是会抛出异常或根本就不会有返回值的函数表达式或箭头函数表达式的返回值类型；
+- 变量也可能是 never类型，当它们被永不为真的类型保护所约束时。
+- never类型是任何类型的子类型，也可以赋值给任何类型
+- 没有类型是never的子类型或可以赋值给never类型（除了never本身之外）。 即使 any也不可以赋值给never。
+
 ```ts
 // 返回never的函数必须存在无法达到的终点
 function error(message: string): never {
     throw new Error(message);
 }
+// 推断的返回值类型为never
+function fail() {
+    return error("Something failed");
+}
+
+// 返回never的函数必须存在无法达到的终点
+function infiniteLoop(): never {
+    while (true) {
+    }
+}
 ```
 
 ### object
+
+object表示非原始类型，也就是除number，string，boolean，symbol，null或undefined之外的类型。
+
+使用object类型，就可以更好的表示像Object.create这样的API。例如：
 
 ```ts
 declare function create(o: object | null): void;
@@ -133,6 +186,8 @@ printLabel(myObj);
 
 ### 可选属性-?
 
+- 接口里的属性不全都是必需的
+
 ```ts
 interface SquareConfig {
   color?: string;
@@ -155,6 +210,8 @@ let mySquare = createSquare({color: "black"});
 
 ### 只读属性-readonly
 
+- 一些对象属性只能在对象刚刚创建的时候修改其值。 你可以在属性名前用 readonly来指定只读属性:
+
 ```ts
 interface Point {
     readonly x: number;
@@ -164,13 +221,30 @@ let p1: Point = { x: 10, y: 20 };
 p1.x = 5; // error!
 ```
 
-### 函数类型
+`ReadonlyArray<T>`类型，它与`Array<T>`相似，只是把所有可变方法去掉了，因此可以确保数组创建后再也不能被修改：
 
 ```ts
+let a: number[] = [1, 2, 3, 4];
+let ro: ReadonlyArray<number> = a;
+ro[0] = 12; // error!
+ro.push(5); // error!
+ro.length = 100; // error!
+a = ro; // error!
+```
+
+### 函数类型
+
+接口除了能够描述`对象`，也可以描述`函数类型`
+
+为了使用接口表示函数类型，我们需要给接口定义一个`调用签名`。 它就像是一个`只有参数列表和返回值类型`的函数定义。参数列表里的每个参数都需要名字和类型。
+
+```ts
+// 调用签名
 interface SearchFunc {
   (source: string, subString: string): boolean;
 }
 
+// 使用
 let mySearch: SearchFunc;
 mySearch = function(source: string, subString: string) {
   let result = source.search(subString);
@@ -180,7 +254,10 @@ mySearch = function(source: string, subString: string) {
 
 ### 可索引的类型
 
+- 可索引类型具有一个`索引签名`，它描述了对象索引的类型，还有相应的索引返回值类型
+
 ```ts
+// 索引签名
 interface StringArray {
   [index: number]: string;
 }
@@ -191,18 +268,23 @@ myArray = ["Bob", "Fred"];
 let myStr: string = myArray[0];
 ```
 
-### 类类型
+### 类类型-implements
 
 ```ts
+// 接口
 interface ClockInterface {
     currentTime: Date;
 }
-
+// 类
 class Clock implements ClockInterface {
     currentTime: Date;
     constructor(h: number, m: number) { }
 }
+```
 
+在接口中描述方法，在类里面实现，如下面的setTime方法：
+
+```ts
 interface ClockInterface {
     currentTime: Date;
     setTime(d: Date);
@@ -217,7 +299,9 @@ class Clock implements ClockInterface {
 }
 ```
 
-### 继承接口
+### 继承接口-extends
+
+和类一样，接口也可以相互继承
 
 ```ts
 interface Shape {
@@ -233,7 +317,30 @@ square.color = "blue";
 square.sideLength = 10;
 ```
 
+一个接口可以继承多个接口，创建出多个接口的合成接口。
+
+```ts
+interface Shape {
+    color: string;
+}
+
+interface PenStroke {
+    penWidth: number;
+}
+
+interface Square extends Shape, PenStroke {
+    sideLength: number;
+}
+
+let square = <Square>{};
+square.color = "blue";
+square.sideLength = 10;
+square.penWidth = 5.0;
+```
+
 ### 混合类型
+
+一个对象可以同时做为函数和对象使用，并带有额外的属性。
 
 ```ts
 interface Counter {
@@ -256,6 +363,9 @@ c.interval = 5.0;
 ```
 
 ### 接口继承类
+
+- 当接口继承了一个类类型时，它会继承类的成员但不包括其实现
+- 接口同样会继承到类的private和protected成员
 
 ```ts
 class Control {
@@ -284,20 +394,45 @@ class Location {
 }
 ```
 
-## 类
+## 类-class
+
+派生类包含了一个构造函数，它 必须调用 super()，它会执行基类的构造函数。 而且，在构造函数里访问 this的属性之前，我们 一定要调用 super()：
 
 ```ts
-class Greeter {
-    greeting: string;
-    constructor(message: string) {
-        this.greeting = message;
-    }
-    greet() {
-        return "Hello, " + this.greeting;
+class Animal {
+    name: string;
+    constructor(theName: string) { this.name = theName; }
+    move(distanceInMeters: number = 0) {
+        console.log(`${this.name} moved ${distanceInMeters}m.`);
     }
 }
 
-let greeter = new Greeter("world");
+class Snake extends Animal {
+    constructor(name: string) { super(name); }
+    move(distanceInMeters = 5) {
+        console.log("Slithering...");
+        super.move(distanceInMeters);
+    }
+}
+
+class Horse extends Animal {
+    constructor(name: string) { super(name); }
+    move(distanceInMeters = 45) {
+        console.log("Galloping...");
+        super.move(distanceInMeters);
+    }
+}
+
+let sam = new Snake("Sammy the Python");
+let tom: Animal = new Horse("Tommy the Palomino");
+
+sam.move();
+tom.move(34);
+
+// Slithering...
+// Sammy the Python moved 5m.
+// Galloping...
+// Tommy the Palomino moved 34m.
 ```
 
 ### 继承-extends关键字
@@ -350,6 +485,8 @@ new Animal("Cat").name; // 错误: 'name' 是私有的.
 
 ### 受保护属性-关键字protected
 
+- protected修饰符与 private修饰符的行为很相似，但有一点不同， protected成员在派生类中仍然可以访问
+
 ```ts
 class Person {
     protected name: string;
@@ -376,6 +513,8 @@ console.log(howard.name); // 错误
 
 ### 只读属性-关键字readonly
 
+- 只读属性必须在声明时或构造函数里被初始化
+
 ```ts
 class Octopus {
     readonly name: string;
@@ -388,7 +527,25 @@ let dad = new Octopus("Man with the 8 strong legs");
 dad.name = "Man with the 3-piece suit"; // 错误! name 是只读的.
 ```
 
+### 参数属性
+
+在上面的例子中，我们必须在Octopus类里定义一个只读成员 name和一个参数为 theName的构造函数，并且立刻将 theName的值赋给 name，这种情况经常会遇到。 参数属性可以方便地让我们在一个地方定义并初始化一个成员。 下面的例子是对之前 Octopus类的修改版，使用了参数属性：
+
+```ts
+class Octopus {
+    readonly numberOfLegs: number = 8;
+    constructor(readonly name: string) {
+    }
+}
+```
+
+注意看我们是如何舍弃了 theName，仅在构造函数里使用 readonly name: string参数来创建和初始化 name成员。 我们把声明和赋值合并至一处。
+
+参数属性通过给构造函数参数前面添加一个访问限定符来声明。 使用 private限定一个参数属性会声明并初始化一个私有成员；对于 public和 protected来说也是一样。
+
 ### 存取器-getters/setters
+
+- TypeScript支持通过getters/setters来截取对对象成员的访问。 它能帮助你有效的控制对对象成员的访问。
 
 ```ts
 let passcode = "secret passcode";
@@ -572,10 +729,79 @@ let employeeName = buildName("Joseph", "Samuel", "Lucas", "MacKinzie");
 function identity(arg: any): any {
     return arg;
 }
+```
+
+使用any类型会导致这个函数可以接收任何类型的arg参数，这样就丢失了一些信息：传入的类型与返回的类型应该是相同的。如果我们传入一个数字，我们只知道任何类型的值都有可能被返回。
+
+因此，我们需要一种方法使返回值的类型与传入参数的类型是相同的。 这里，我们使用了**类型变量**，它是一种特殊的变量，**只用于表示类型而不是值**。
+
+```ts
+function identity<T>(arg: T): T {
+    return arg;
+}
+```
+
+使用泛型函数：
+
+```ts
+// 第一种：这里我们明确的指定了T是string类型，并做为一个参数传给函数，使用了<>括起来而不是()。
+let output = identity<string>("myString");  // type of output will be 'string'
+
+// 第二种：利用了类型推论 -- 即编译器会根据传入的参数自动地帮助我们确定T的类型
+let output = identity("myString");  // type of output will be 'string'
+```
+
+注意我们没必要使用尖括号（<>）来明确地传入类型；编译器可以查看myString的值，然后把T设置为它的类型。 类型推论帮助我们保持代码精简和高可读性。
+
+### 泛型类型
+
+泛型函数的类型与非泛型函数的类型没什么不同，只是有一个类型参数在最前面，像函数声明一样
+
+```ts
+function identity<T>(arg: T): T {
+    return arg;
+}
+
+let myIdentity: <T>(arg: T) => T = identity;
+// 使用不同的泛型参数名
+let myIdentity: <U>(arg: U) => U = identity;
+// 使用带有调用签名的对象字面量来定义泛型函数
+let myIdentity: {<T>(arg: T): T} = identity;
+```
+
+### 泛型接口
+
+```ts
+interface GenericIdentityFn<T> {
+    (arg: T): T;
+}
 
 function identity<T>(arg: T): T {
     return arg;
 }
+
+let myIdentity: GenericIdentityFn<number> = identity;
+```
+
+### 泛型类
+
+泛型类看上去与泛型接口差不多。 泛型类使用（ <>）括起泛型类型，跟在类名后面。
+
+```ts
+class GenericNumber<T> {
+    zeroValue: T;
+    add: (x: T, y: T) => T;
+}
+
+let myGenericNumber = new GenericNumber<number>();
+myGenericNumber.zeroValue = 0;
+myGenericNumber.add = function(x, y) { return x + y; };
+
+let stringNumeric = new GenericNumber<string>();
+stringNumeric.zeroValue = "";
+stringNumeric.add = function(x, y) { return x + y; };
+
+console.log(stringNumeric.add(stringNumeric.zeroValue, "test"));
 ```
 
 ## 枚举
