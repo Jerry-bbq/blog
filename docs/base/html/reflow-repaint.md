@@ -46,7 +46,7 @@ css
 - 避免使用`table布局`
 - 尽可能在DOM树的最末端改变class
 - 避免设置多层内联样式
-- 将动画效果应用到`position`属性为`absolute`或``fixed`的元素上
+- 将动画效果应用到`position`属性为`absolute`或`fixed`的元素上
 - 避免使用CSS表达式（例如：`calc()`）
 
 js

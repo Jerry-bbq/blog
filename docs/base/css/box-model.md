@@ -12,35 +12,33 @@ sidebar: auto
 
 2. 说明：（四个部分）
 
-- 内容边界`content`（`width`、`min-width``max-width`、`height`、`min-height`、`max-height`）
+- 内容边界`content`（`width`、`min-width`、`max-width`、`height`、`min-height`、`max-height`）
 - 内边距边界`padding`（`padding-top`、`padding-right`、`padding-bottom`、`padding-left`、`padding`）
 - 边框边界`border`（`border-width`、`border`）
 - 外边框边界`margin`（`margin-top`、`margin-right`、`margin-bottom`、`margin-left`、`margin`）
 
 ## 标准盒模型与IE模盒型
 
-概念 | 设置模型 | 说明
----|---|---
-<div style="width: 80px">标准盒模型</div> | <div style="width: 350px">`box-sizing: content-box;`（默认值）</div> <br> width和height是对**content**设置 | ![盒模型](./images/content-box.png)
-IE模型 | `box-sizing: border-box;` 怪异盒模型 <br> width和height是对**content+padding+border**设置 | ![盒模型](./images/border-box.png)
+| 概念 | 设置模型 | 说明 |
+|---|---|---|
+| <div style="width: 80px">标准盒模型</div> | <div style="width: 350px">`box-sizing: content-box;`（默认值）</div> <br> width和height是对**content**设置 | ![盒模型](./images/content-box.png) |
+| 怪异盒模型 | `box-sizing: border-box;` 怪异盒模型 <br> width和height是对**content+padding+border**设置 | ![盒模型](./images/border-box.png) |
 
 ::: tip
 1. 如果不想因为改变padding的时候盒子的大小也会跟着变化的话，可以使用怪异盒模型
 2. 如果想让盒子的大小被padding撑开的话，可以使用标准盒模型
 :::
 
-## JS如何设置获取盒模型对应的宽和高
+## css的三种设置样式的方式
 
-### css的三种写法
 
-内联样式
-
+:::: code-group
+::: code-group-item 内联样式
 ```html
 <div style="width: 100px">text</div>
 ```
-
-内部样式
-
+:::
+::: code-group-item 内部样式
 ```html
 <head>
     <style>
@@ -50,16 +48,19 @@ IE模型 | `box-sizing: border-box;` 怪异盒模型 <br> width和height是对**
     </style>
 </head>
 ```
-
-外部样式表
-
+:::
+::: code-group-item 外部样式表
 ```html
 <head>
     <link href="./css/index.css"/>
 </head>
 ```
+:::
+::::
 
-### 盒模型宽高获取
+## js如何获取盒模型对应的宽和高
+
+### dom.style.width/height 
 
 第一种：
 
@@ -68,8 +69,10 @@ dom.style.width/height
 ```
 
 ::: danger
-只能获取内联样式的宽高，内部样式和外部css样式表中的高宽无法获取
+只能获取**内联样式**的宽高，内部样式和外部css样式表中的高宽无法获取
 :::
+
+### dom.currentStyle.width/height 
 
 第二种：
 
@@ -78,8 +81,10 @@ dom.currentStyle.width/height
 ```
 
 ::: danger
-页面渲染完成后的结果，获取即时的计算的样式，但是只有IE支持
+页面渲染完成后的结果，获取即时的计算的样式，但是**只有IE支持**
 :::
+
+### window.getComputedStyle(dom).width/height 
 
 第三种：
 
@@ -91,6 +96,8 @@ window.getComputedStyle(dom).width/height
 页面渲染完成后的结果，获取即时计算的样式，支持其他浏览器，兼容性更好
 :::
 
+### dom.getBoundingClientRect().width/height
+
 第四种：
 
 ```js
@@ -100,6 +107,8 @@ dom.getBoundingClientRect().width/height
 ::: danger
 获得运行后的属性，返回一个矩形对象，left,top,right,buttom
 :::
+
+### dom.offsetWidth/offsetHeight
 
 第五种：
 

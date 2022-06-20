@@ -4,21 +4,21 @@ sidebar: auto
 
 # 浏览器
 
-浏览器的引擎主要分为渲染引擎（布局引擎）和JavaScript引擎
+浏览器的引擎主要分为**渲染引擎（布局引擎）**和**JavaScript引擎**
 
 ## 浏览器的高层组件
 
 ![layers](./images/layers.png)
 
-- User interface：用户界面，包括地址栏、前进后退按钮、书签等
-- Browser engine：浏览器引擎，在用户界面和渲染引擎之间传送指令
-- Rendering engine：渲染引擎，负责显示请求的内容，如解析HTML、CSS内容，并将解析后的内容显示在屏幕上
-- Networking：网络，用于网络调用，比如HTTP请求
-- UI backend：用户界面后端，用于绘制基础的窗口小部件，比如组合框和窗口
-- JavaScript interpreter：javascript解释器，用于解析和执行javascript代码
-- Data storage：数据存储，如cookie
+- User interface：**用户界面**，包括地址栏、前进后退按钮、书签等
+- Browser engine：**浏览器引擎**，在用户界面和渲染引擎之间传送指令
+- Rendering engine：**渲染引擎**，负责显示请求的内容，如解析HTML、CSS内容，并将解析后的内容显示在屏幕上
+- Networking：**网络**，用于网络调用，比如HTTP请求
+- UI backend：**用户界面后端**，用于绘制基础的窗口小部件，比如组合框和窗口
+- JavaScript interpreter：**Javascript解释器**，用于解析和执行Javascript代码
+- Data storage：**数据存储**，如cookie
 
-和大多数浏览器不同，chrome浏览器的每一个标签都分别对应一个渲染引擎，每个标签都是一个独立的进程
+和大多数浏览器不同，chrome浏览器的每一个tab标签都分别对应一个渲染引擎，每个tab标签都是一个独立的进程
 
 ## 渲染引擎
 
@@ -32,8 +32,10 @@ sidebar: auto
 打开浏览器的控制台，通过`navigator.userAgent`查看不同浏览器内核：
 
 ```js
+navigator.userAgent
+
 // chrome
-'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/97.0.4692.71 Safari/537.36'
+"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/97.0.4692.71 Safari/537.36"
 
 // firefox
 "Mozilla/5.0 (Macintosh; Intel Mac OS X 10.0; rv:57.0) Gecko/20100101 Firefox/57.0"
@@ -73,7 +75,7 @@ Gecko 将视觉格式化元素组成的树称为“框架树”。每个元素�
 
 解析是以文档遵循的的语法规则为基础。所有可以解析的格式都必须对应确定的语法。
 
-解析的过程分为两个子过程：词法分析和语法分析
+解析的过程分为两个子过程：**词法分析**和**语法分析**
 
 HTML 解析器的任务是将 HTML 标记解析成解析树。
 

@@ -14,6 +14,8 @@ DTD（Document Type Defination，文档类型定义）是一系列的语法规�
 
 ## 常用声明方式
 
+`<!DOCTYPE>`声明必须是html文档的第一行，位于html标签之前
+
 ### HTML5
 
 ```html
@@ -25,7 +27,7 @@ DTD（Document Type Defination，文档类型定义）是一系列的语法规�
     <title>Document</title>
 </head>
 <body>
-    
+
 </body>
 </html>
 ```
@@ -36,6 +38,16 @@ DTD（Document Type Defination，文档类型定义）是一系列的语法规�
 
 ```html
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+</body>
+</html>
 ```
 
 ### HTML4.01 Transitional（传统模式）
@@ -44,4 +56,14 @@ DTD（Document Type Defination，文档类型定义）是一系列的语法规�
 
 ```html
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+</body>
+</html>
 ```

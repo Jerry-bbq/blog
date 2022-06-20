@@ -22,14 +22,14 @@ sidebar: auto
 属性| 值
 ---|---
 根元素html | `html`标签就是一个`BFC`
-float | `left`、`right`(`不为none)
+float | `left`、`right`(不为none)
 position | `absolute`、`fixed`、`sticky`等（不为static或relative）
 display | 值为`inline-block`, `table-cell`, `table-caption`, `flex`, `inline-flex`
 overflow | `hidden`、`auto`、`scroll`等（不为visible）
 
 ## BFC的作用
 
-- 分属于不同的`BFC`时可以**阻止margin重叠**
+- 分属于不同的`BFC`时可以 **阻止margin重叠**
 - 避免浮动元素和其他元素重叠
 - 清除内部浮动
 

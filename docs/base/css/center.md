@@ -58,6 +58,8 @@ transform还有其他的属性:
 
 ## table-cell
 
+:::: code-group
+::: code-group-item html
 ```html
 <div class="box">
     <div class="content">
@@ -65,7 +67,8 @@ transform还有其他的属性:
     </div>
 </div>
 ```
-
+:::
+::: code-group-item css
 ```css
 html, body {
     height: 100%;
@@ -89,3 +92,5 @@ html, body {
     height: 200px;
 }
 ```
+:::
+::::

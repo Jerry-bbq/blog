@@ -17,9 +17,11 @@ opacity:0 | 是 | 是 | 是
 单行
 
 ```css
-overflow: hidden;
-text-overflow: ellipsis;
-white-space: nowrap;
+.ellipsis {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
 ```
 
 ::: tip 复杂情况
@@ -33,10 +35,12 @@ white-space: nowrap;
 多行
 
 ```css
-display: -webkit-box;
--webkit-box-orient: vertical;
--webkit-line-clamp: 3; // 最多显示几行
-overflow: hidden;
+.ellipsis-line {
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 3; // 最多显示几行
+    overflow: hidden;
+}
 ```
 
 ## 实现一个等腰三角形 

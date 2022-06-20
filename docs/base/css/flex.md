@@ -16,8 +16,8 @@ flex是`flexible box`的缩写，又叫弹性布局；任何一个容器都可�
 
 默认有两根轴：
 
-- 水平的主轴**main axis**
-- 垂直的交叉轴**cross axis**
+- 水平的主轴 **main axis**
+- 垂直的交叉轴 **cross axis**
 
 ![](./images/flex-box.png)
 

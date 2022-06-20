@@ -11,7 +11,7 @@ JavaScript数据类型大体上有两种(细分有8种)
 
 ## 数据类型
 
-类型 | 数据类型 | 存储
+类型 | 数据类型 | 值存储
 ---|---|---
 原始类型 | `string`、`number`、`boolean`、`null`、`undefined`、`bigint`、`symbol` (7种)| 栈(stack)
 引用类型 | `object`，其中包含具体的引用类型`Array`、`Function`、`Date`、`RegExp`等 | 堆(heap)
@@ -36,7 +36,7 @@ JavaScript变量存储在内存的哪里？
 
 ### 第一种：typeof运算符
 
-`typeof`是通过检测变量值的 **类型标签（type tag）** 来检测数据类型，返回数据类型字符串
+`typeof`是通过检测变量值的 **类型标签（type tag）** 来检测数据类型，**返回数据类型字符串**
 
 ```js
 typeof 'hello world'    // 'string'
@@ -57,7 +57,7 @@ typeof /\d/             // 'object'
 
 ::: tip 总结
 
-1. 可以看出，除了`null`以外，其他的原始数据类型都可以用`typeof`检测出来；
+1. 可以看出，除了`null`以外，其他的基本类型都可以用`typeof`检测出来；
 2. 为什么`typeof null === 'object'`？
 
 因为 JavaScript 中的值是由一个 **类型标签（type tag）** 和 **实际数据值** 表示的，对象的类型标签是0，而`null`代表是空指针，它的类型标签也是0，因此返回`'object'`
@@ -70,9 +70,9 @@ typeof /\d/             // 'object'
 
 ### 第二种：instanceof运算符
 
-`instanceof`检测构造函数的 `prototype` 属性是否出现在某个实例对象的原型链上，返回`Boolean`值。
+`instanceof`检测构造函数的 `prototype` 属性是否出现在某个实例对象的原型链上，**返回Boolean值**。
 
-注意：`instanceof`只能用于引用类型，不适用原始类型的值
+注意：`instanceof`只能用于引用类型，不适用基本类型
 
 ```js
 [] instanceof Array             // true
@@ -90,7 +90,7 @@ typeof /\d/             // 'object'
 
 ::: tip 总结
 
-1. instanceof是通过原型链查找，可以参考另外一篇文章[原型和原型链](./prototype-chain.md)
+1. instanceof 是通过原型链查找，可以参考另外一篇文章[原型和原型链](./prototype-chain.md)
 2. 可以看出，`instanceof`也无法精准的判断数据类型
 
 :::
@@ -99,7 +99,7 @@ typeof /\d/             // 'object'
 
 内部属性`[[Class]]`无法直接访问，一般通过 `Object.prototype.toString()` 来查看
 
-- JS所有的对象都是`Object`类型的实例，它们都会从`Object.prototype`上继承属性和方法,比如`toString()`方法；因此，每个对象都有`toString()`方法
+- JS所有的对象都是`Object`类型的实例，它们都会从`Object.prototype`上继承属性和方法，比如`toString()`方法；因此，每个对象都有`toString()`方法
 - `Object.prototype.toString()`返回一个表示该对象的字符串，默认格式是`"[object type]"`,其中`type`是对象的类型
 - 但是，不同的类型可能对`toString()`进行了重写，如`Array`、`Number`等
 
@@ -121,6 +121,7 @@ Object.prototype.toString()             // "[object Object]"
 测试`Object.prototype.toString.call()`：
 
 ```js
+// 基本类型
 Object.prototype.toString.call("hello world") === "[object String]"
 Object.prototype.toString.call(10) === "[object Number]"
 Object.prototype.toString.call(true) === "[object Boolean]"
@@ -129,10 +130,10 @@ Object.prototype.toString.call(null) === "[object Null]"
 Object.prototype.toString.call(Symbol()) === "[object Symbol]"
 Object.prototype.toString.call(123n) === "[object BigInt]"
 
+// 引用类型
 Object.prototype.toString.call({}) === "[object Object]"
 Object.prototype.toString.call([]) === "[object Array]"
 Object.prototype.toString.call(()=>{})  === "[object Function]"
-
 Object.prototype.toString.call(new Date) === "[object Date]"
 Object.prototype.toString.call(/\d/) === "[object RegExp]"
 

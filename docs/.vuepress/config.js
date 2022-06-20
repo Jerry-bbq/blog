@@ -7,12 +7,16 @@ const { docsearchPlugin } = require('@vuepress/plugin-docsearch')
 const { clipboardPlugin } = require("vuepress-plugin-clipboard")
 
 module.exports = {
+  // 站点配置
   title: 'Blog',
-  host: 'localhost',
-  port: 2222,
   description: '技术博客',
   base: '/blog/',
   head: [['link', { rel: 'icon', href: '/logo.png' }]],
+  // dev
+  host: 'localhost',
+  port: 2222,
+  open: true,
+  // 主题
   theme: defaultTheme({
     displayAllHeaders: true,
     lastUpdated: true,
@@ -108,15 +112,21 @@ module.exports = {
       },
     ]
   }),
+  // markdown
   markdown: {
+    code: {
+      lineNumbers: false
+    },
     importCode: {
       handleImportPath: (str) =>
         str.replace(/^@code-snippet/, path.resolve(__dirname, '../../docs/base/javascript/code-snippet')),
     }
   },
+  // 插件api
   extendsMarkdown: md => {
     md.use(require('markdown-it-task-lists'), {})
   },
+  // plugins
   plugins: [
     mediumZoomPlugin({}),
     backToTopPlugin(),
