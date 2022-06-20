@@ -8,7 +8,7 @@ sidebar: auto
 
 ## 路由原理
 
-SPA(single page application):单一页面应用程序，有且只有一个完整的页面；当它在加载页面的时候，不会加载整个页面的内容，而只更新某个指定的容器中内容。
+SPA(single page application)：单一页面应用程序，有且只有一个完整的页面；当它在加载页面的时候，不会加载整个页面的内容，而只更新某个指定的容器中内容。
 
 单页面应用(SPA)的核心之一是:
 
@@ -126,7 +126,7 @@ export default new Router({
 
 在Vue Router中，怎么实现路由懒加载？
 
-### vue异步组件
+### 方案一：vue异步组件
 
 ```js
 {
@@ -136,7 +136,7 @@ export default new Router({
 }
 ```
 
-### es提案的import()
+### 方案二：es提案的import()
 
 ```js
 const Home = () => import('@/components/home'）
@@ -148,7 +148,7 @@ const Home = () => import('@/components/home'）
 }
 ```
 
-### webpack的require,ensure()
+### 方案三：webpack的require,ensure()
 
 ```js
 {
@@ -158,7 +158,7 @@ const Home = () => import('@/components/home'）
 }
 ```
 
-## 导航守卫
+## 导航守卫-即路由变换的钩子函数
 
 在Vue Router中，什么是导航守卫？
 

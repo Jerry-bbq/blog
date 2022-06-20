@@ -44,7 +44,7 @@ sidebar: auto
 - Object.observe
 - MutationObserver
 
-### 宏任务与微任务的执行
+### 宏任务与微任务的执行顺序
 
 1. 执行栈中优先执行同步代码，同步代码执行完毕之后，进入下一步；
 2. 检查`宏任务队列`是否为空，若不为空，则进行下一步，若为空，则跳到4；
@@ -64,19 +64,19 @@ sidebar: auto
 
 ```js
 console.log(1)
+// settimeout1
 setTimeout(function() {
-  //settimeout1
   console.log(2)
 }, 0)
+// setinterval1
 const intervalId = setInterval(function() {
-  //setinterval1
   console.log(3)
 }, 0)
+// settimeout2
 setTimeout(function() {
-  //settimeout2
   console.log(10)
+  // promise1
   new Promise(function(resolve) {
-    //promise1
     console.log(11)
     resolve()
   })

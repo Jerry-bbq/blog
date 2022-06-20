@@ -133,15 +133,15 @@ fetch('/some/url/', {
 
 [cookie](https://developer.mozilla.org/zh-CN/docs/Web/API/Document/cookie)
 
-属性 | 说明
----|---
-<div style="width: 130px">name(必要)</div> | 要创建或覆盖的cookie的名字(string)
-value(必要) | cookie的值(string)
-domain | 可以访问此cookie的域名
-path | 可以访问此cookie的页面路径(如果没有定义，默认为当前文档位置的路径)
-expires/max-age | 设置cookie超时时间。如果设置的值为一个时间，则当到达该时间时此cookie失效。不设置的话默认是session，意思是cookie会和session一起失效，当浏览器关闭（并不是浏览器标签关闭，而是整个浏览器关闭）后，cookie失效。
-http | cookie的HttpOnly属性，若此属性为True，则只有在http请求头中会有此cookie信息，而不能通过document.cookie来访问此cookie。
-secure | cookie只会被https传输 (boolean或null)
+| 属性 | 说明 |
+|---|---|
+|<div style="width: 130px">name(必要)</div> | 要创建或覆盖的cookie的名字(string) |
+|value(必要) | cookie的值(string) |
+|domain | 可以访问此cookie的域名 |
+|path | 可以访问此cookie的页面路径(如果没有定义，默认为当前文档位置的路径) |
+|expires/max-age | 设置cookie超时时间。如果设置的值为一个时间，则当到达该时间时此cookie失效。不设置的话默认是session，意思是cookie会和session一起失效，当浏览器关闭（并不是浏览器标签关闭，而是整个浏览器关闭）后，cookie失效。 |
+|http | cookie的HttpOnly属性，若此属性为True，则只有在http请求头中会有此cookie信息，而不能通过document.cookie来访问此cookie。 |
+|secure | cookie只会被https传输 (boolean或null) |
 
 ### 创建读取删除
 

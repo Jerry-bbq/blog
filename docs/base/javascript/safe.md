@@ -4,7 +4,9 @@ sidebar: auto
 
 # 安全
 
-## CSRF
+## CSRF-跨站请求伪造
+
+- [如何防止CSRF攻击](https://tech.meituan.com/2018/10/11/fe-security-csrf.html)
 
 Cross-site request forgery，中文`跨站请求伪造`
 
@@ -16,7 +18,9 @@ Cross-site request forgery，中文`跨站请求伪造`
 - Referer验证：只接受本站的请求，服务器才做响应；如果不是，就拦截
 - 隐藏令牌：把 token 隐藏在 http 的 head头中
 
-## XSS
+## XSS-跨域脚本攻击
+
+- [如何防止XSS攻击](https://tech.meituan.com/2018/09/27/fe-security.html)
 
 Cross-site Scripting，中文`跨域脚本攻击`
 

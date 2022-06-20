@@ -51,4 +51,5 @@ sidebar: auto
 - 模板方法模式
 - 访问者模式
 
-[参考](https://juejin.cn/post/6844903795017646094)
+- [design patterns](https://refactoringguru.cn/design-patterns/factory-method)
+- [参考](https://juejin.cn/post/6844903795017646094)

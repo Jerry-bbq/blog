@@ -195,7 +195,7 @@ v-model会把它关联的响应式数据，动态地绑定到表单元素的valu
 
 ```vue
 <template>
-  <input type="text" :value="text" @input="$emit('change', $event.target,value)"/>
+  <input type="text" :value="text" @input="$emit('change', $event.target.value)"/>
   <!-- 
     1. :value而不是v-model
     2. change和model.event对应起来即可
@@ -216,13 +216,31 @@ export default {
 
 ### v-bind和v-model的区别
 
-v-bind主要是属性绑定，比如class、style、value、href等
+v-bind主要是文本、属性的绑定，比如class、style、value、href等，简写`:`
+
+```vue
+// 绑定文本
+<p v-bind="message"></p>
+
+// 绑定属性
+<p v-bind:src="http://...."></p>
+<p v-bind:class="http://...."></p>
+<p v-bind:style="http://...."></p>
+
+// 绑定表达式
+{{ number + 1 }}
+{{ ok ? 'YES' : 'NO' }}
+{{ message.split('').reverse().join('') }}
+
+// 绑定html
+<div>{{{ raw_html }}}</div>
+```
 
 v-model主要用在表单元素中，实现双向绑定
 
 ### v-if和v-show的区别
 
-- v-show通过CSS display来控制显示和隐藏
+- v-show通过CSS `display`来控制显示和隐藏
 - v-if是组件真的渲染和销毁，而不是显示和隐藏
 - 频繁切换显示状态用v-show
 
@@ -257,7 +275,7 @@ v-model主要用在表单元素中，实现双向绑定
 
 ### .sync修饰符有什么作用
 
-对prop进行“双向绑定”，使得子组件可以修改父组件的数据
+对`props`进行「双向绑定」，使得子组件可以修改父组件的数据
 
 ## 内置组件
 
@@ -265,7 +283,7 @@ v-model主要用在表单元素中，实现双向绑定
 
 作用：
 
-- keep-alive可以实现`组件缓存`，当组件切换时不会对当前组件进行卸载。
+- keep-alive可以实现**组件缓存**，当组件切换时不会对当前组件进行卸载。
 - 常用的两个属性`include`/`exclude`，允许组件有条件的进行缓存。
 - 两个生命周期`activated`/`deactivated`，用来得知当前组件是否处于活跃状态。
 - keep-alive的中还运用了LRU(Least Recently Used)算法。
@@ -275,20 +293,19 @@ v-model主要用在表单元素中，实现双向绑定
 - activated：当组件激活时，钩子触发的顺序是`created->mounted->activated`
 - deactivated: 组件停用时会触发deactivated，当再次前进或者后退的时候只触发activated
 
+页面第一次进入，钩子的触发顺序`created-> mounted-> activated`，退出时触发`deactivated`；当再次进入（前进或者后退）时，只触发`activated`
+
 ### slot组件
 
-slot插槽，分为匿名插槽，具名插槽，作用域插槽：
-slot | 说明
----|---
-匿名插槽 | 无name属性，在组件中只可以使用一次，父组件提供样式和内容
-具名插槽 | 有name属性，在组件中可以用多次，父组件可以通过html模板上slot关联具名插槽
-作用域插槽 | 父组件提供样式，子组件提供提供内容，在slot上绑定数据，子组件的值可以传给父组件使用，父组件展示子组件有三种，flex显示，列表显示，直接显示，使用slot-scope必须使用template。scope返回值是slot标签上放回所有属性值，并且是一个对象形式保存起来的，slot有两个属性，一个row，一个index
+slot插槽，分为：
 
-页面第一次进入，钩子的触发顺序`created-> mounted-> activated`，退出时触发deactivated。当再次进入（前进或者后退）时，只触发`activated`
+- 匿名插槽：无name属性，在组件中只可以使用一次，父组件提供样式和内容
+- 具名插槽：有name属性，在组件中可以用多次，父组件可以通过html模板上slot关联具名插槽
+- 作用域插槽：父组件提供样式，子组件提供提供内容，在slot上绑定数据，子组件的值可以传给父组件使用，父组件展示子组件有三种，flex显示，列表显示，直接显示，使用slot-scope必须使用template。scope返回值是slot标签上放回所有属性值，并且是一个对象形式保存起来的，slot有两个属性，一个row，一个index
 
 ## computed与watch的区别
 
-1. computed本质是一个`具备缓存的watcher`，依赖的属性发生变化就会更新视图，并且计算属性默认只有`getter`，不过在需要时你也可以提供一个 `setter`
+1. computed本质是一个**具备缓存的watcher**，依赖的属性发生变化就会更新视图，并且计算属性默认只有`getter`，不过在需要时你也可以提供一个 `setter`
 
 适用于场景：
 
@@ -299,13 +316,13 @@ slot | 说明
 
 ```js
 watch: {
-obj: {
-  handler(val, oldValue) {
-    // ...
-  },
-  deep: true, // 深度监听
-  immediate: true // 立即调用
-}
+  obj: {
+    handler(val, oldValue) {
+      // ...
+    },
+    deep: true, // 深度监听
+    immediate: true // 立即调用
+  }
 }
 ```
 
@@ -320,6 +337,11 @@ obj: {
 - 多个mixins会造成命名冲突
 - 混入对象的生命周期将在组件自身生命周期之前调用`mixin的beforeCreate > 父beforeCreate > mixin的created > 父created > mixin的beforeMount > 父beforeMount > 子beforeCreate > 子created > 子beforeMount > 子mounted > mixin的mounted >父mounted`
 - 值为对象的选项，例如 methods、components 和 directives，将被合并为同一个对象。两个对象键名冲突时，取组件对象的键值对
+
+问题：
+
+- mixins的执行顺序的问题，当存在相同钩子函数的时候，mixins是优先执行的
+- 同时使用两个同名函数的时候呢，会出现一个问题就是我们的mixins里面的函数被覆盖掉了
 
 ## 全局函数
 
@@ -342,12 +364,16 @@ extend是vue提供的一个全局方法，使用基础 Vue 构造器，创建一
 
 使用场景：
 
-1. 在`created钩子函数`中使用，因为此时DOM并未渲染
+1. 在`created钩子函数`中使用DOM，此时DOM并未渲染
 2. 更改数据后当你想`立即使用js操作新的视图`的时候需要使用它
 
 原理：
 
 Vue是异步执行DOM更新的，一旦观察到数据变化，Vue就会开启一个队列，然后把在同一个事件循环 (event loop) 当中观察到数据变化的 watcher 推送进这个队列。如果这个watcher被触发多次，只会被推送到队列一次。这种缓冲行为可以有效的去掉重复数据造成的不必要的计算和DOM操作。而在下一个事件循环时，Vue会清空队列，并进行必要的DOM更新
+
+为什么采用异步渲染DOM？
+
+因为不采用异步渲染，那么每次更新数据都会对当前组件进行重新渲染，所以为了性能考虑，vue会在本轮数据更新后，再去更新试图
 
 ## class可接收哪几种类型的值
 
@@ -374,10 +400,12 @@ Vue是异步执行DOM更新的，一旦观察到数据变化，Vue就会开启�
 ```
 
 ```js
-data: {
-  styleObject: {
-    color: 'red',
-    fontSize: '13px'
+export default {
+  data: {
+    styleObject: {
+      color: 'red',
+      fontSize: '13px'
+    }
   }
 }
 ```
@@ -389,23 +417,25 @@ data: {
 ```
 
 ```js
-data: {
-  baseStyles: {
-    color: 'red',
-    fontSize: '13px'
-  },
-  overridingStyles: {
-    color: 'red',
-    fontSize: '13px'
+export default {
+  data: {
+    baseStyles: {
+      color: 'red',
+      fontSize: '13px'
+    },
+    overridingStyles: {
+      color: 'red',
+      fontSize: '13px'
+    }
   }
 }
 ```
 
 ## 如何监测数组变化
 
-Vue官方给出了解释是【Vue不能检测】，而很多文章写出的是【Object.defineProperty不能检测】。但实际上Object.defineProperty是可以检测到数组索引的变化的
+Vue官方给出了解释是「Vue不能检测」，而很多文章写出的是「Object.defineProperty不能检测」。但实际上`Object.defineProperty`是可以检测到数组索引的变化的
 
-Vue的解决方案，就是重写了数组的原型，更准确的表达是`拦截`了数组的原型
+Vue的解决方案，就是重写了数组的原型，更准确的表达是**拦截**了数组的原型
 
 源码：
 
@@ -458,10 +488,6 @@ methodsToPatch.forEach(function (method) {
 })
 ```
 
-## 采用异步渲染
-
-因为不采用异步渲染，那么每次更新数据都会对当前组件进行重新渲染，所以为了性能考虑，vue会在本轮数据更新后，再去更新试图
-
 ## 数据绑定与响应式数据原理
 
 ![vue-obj](./images/vue-obj.png)
@@ -489,7 +515,7 @@ Vue在初始化数据时，会使用`Object.defineProperty`重新定义data中�
 
 ## ref和$refs有什么作用
 
-ref 被用来给元素或子组件注册引用信息。引用信息将会注册在父组件的 $refs 对象上。如果在普通的 DOM 元素上使用，引用指向的就是 DOM 元素
+ref 被用来给元素或子组件**注册引用信息**。引用信息将会注册在**父组件的`$refs`对象上**。如果在普通的 DOM 元素上使用，引用指向的就是 DOM 元素
 
 ## Vue3.x响应式数据原理
 
@@ -499,7 +525,7 @@ Vue3.x改用`Proxy`替代`Object.defineProperty`。因为`Proxy`可以直接监�
 
 缺点：
 
-- 无法检测到对象属性的新增或删除，解决方案：Vue.set(obj, propertName/index, value),Vue.delete()
+- 无法检测到对象属性的新增或删除，解决方案：`Vue.set(obj, propertName/index, value)`、`Vue.delete()`
 - 可以检测到数组索引的变化的，但是性能影响太大，因此vue重写了数组操作的方法，比如push，pop，shift，unshift，splice，sort，reverse。[参考](https://segmentfault.com/a/1190000015783546)
 
 Proxy是ES6提供的一个新的API，用于修改某些操作的默认行为
@@ -513,7 +539,7 @@ Proxy只会代理对象的第一层，那么Vue3又是怎样处理这个问题�
 
 ## vue-loader
 
-- 解析`.vue`文件的一个加载器，将template/js/style转换成js模块。
+- 解析单文件组件（`.vue`文件）的一个加载器，将template/js/style转换成js模块。
 - 用途：js可以写es6、style样式可以scss或less、template可以加jade等
 
 ```vue
@@ -524,8 +550,8 @@ Proxy只会代理对象的第一层，那么Vue3又是怎样处理这个问题�
 
 ## Vue中元素的key有什么作用
 
-- 必须使用key，且不能使用index和random
-- diff算法中通过tag和key来判断，是否是相同的dom
+- 必须使用key
+- diff算法中通过`tag`和`key`来判断，是否是相同的dom
 - 好处是减少渲染次数，提升渲染性能
 - diff算法，就地复用
 
