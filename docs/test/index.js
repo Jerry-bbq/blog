@@ -1,53 +1,36 @@
-let tree = [
-    {
-        id: 1,
-        name: '部门A',
-        parentId: 0,
-        children: [
-            {
-                id: 3,
-                name: '部门C',
-                parentId: 1,
-                children: [{ id: 6, name: '部门F', parentId: 3, children: [] }]
-            },
-            {
-                id: 4,
-                name: '部门D',
-                parentId: 1,
-                children: [{ id: 8, name: '部门H', parentId: 4, children: [] }]
-            },
-        ],
-    },
-    {
-        id: 2,
-        name: '部门B',
-        parentId: 0,
-        children: [
-            { id: 5, name: '部门E', parentId: 2, children: [] },
-            { id: 7, name: '部门G', parentId: 2, children: [] },
-        ],
-    },
-]
-
-// 根据id获取树形结构节点信息
-function getTreeNodeById(tree, id) {
-    var stark = []
-    stark = stark.concat(tree)
-    // console.log(stark)
-    while (stark.length) {
-        let temp = stark.shift()
-        console.log(temp)
-        if (temp.id === id) {
-            return temp
+var events = {
+    clientList: [],
+    listen: function (key, fn) {
+        if (!this.clientList[key]) {
+            this.clientList[key] = [];
         }
-        if (temp.children) {
-            stark = stark.concat(temp.children)
+        this.clientList[key].push(fn); // 订阅的消息添加进缓存列表
+    },
+    trigger: function () {
+        var key = Array.prototype.shift.call(arguments), // (1); 
+            fns = this.clientList[key];
+        if (!fns || fns.length === 0) { // 如果没有绑定对应的消息
+            return false;
+        }
+        for (var i = 0, fn; fn = fns[i++];) {
+            fn.apply(this, arguments); // (2) // arguments 是 trigger 时带上的参数
         }
     }
-}
+};
 
-console.log(getTreeNodeById(tree, 1))
-// console.log(getTreeNodeById(tree, 2))
-// console.log(getTreeNodeById(tree, 4))
-// console.log(getTreeNodeById(tree, 8))
-// console.log(getTreeNodeById(tree, 5))
+var installEvent = function (obj) {
+    for (var i in events) {
+        obj[i] = events[i];
+    }
+};
+
+var salesOffices = {};
+installEvent(salesOffices);
+salesOffices.listen('squareMeter88', function (price) { // 小明订阅消息
+    console.log('价格= ' + price);
+});
+salesOffices.listen('squareMeter100', function (price) { // 小红订阅消息
+    console.log('价格= ' + price);
+});
+salesOffices.trigger('squareMeter88', 2000000); // 输出：2000000 
+salesOffices.trigger('squareMeter100', 3000000); // 输出：3000000

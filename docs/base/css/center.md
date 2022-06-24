@@ -4,10 +4,31 @@ sidebar: auto
 
 # 水平垂直居中的方式
 
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style></style>
+</head>
+<body>
+    <div class="content">
+        <div class="item">text</div>
+    </div>
+</body>
+</html>
+```
+
 ## flex
 
 ```css
 .content {
+    border: 1px solid black;
+    width: 200px;
+    height: 200px;
+
     display: flex;
     justify-content: center;
     align-items: center;
@@ -18,9 +39,16 @@ sidebar: auto
 
 ```css
 .content {
+    border: 1px solid black;
+    width: 200px;
+    height: 200px;
     position: relative;
 }
+
 .item {
+    width: 50px;
+    height: 50px;
+    background: green;
     position: absolute;
     margin: auto;
     top: 0;
@@ -34,6 +62,9 @@ sidebar: auto
 
 ```css
 .content {
+    border: 1px solid black;
+    width: 200px;
+    height: 200px;
     position: relative;
 }
 
@@ -44,53 +75,26 @@ sidebar: auto
     transform: translate(-50%, -50%);
 }
 ```
-::: tip
 
-transform还有其他的属性:
+transform的属性：
 
-1. 转换: translate(x,y)、translateX(x)、translateY(y)、translateZ(z)、translate3d(x,y,z)
-2. 缩放: scale((x,y)、scaleX(x)、scaleY(y)、scaleZ(z)、scale3d((x,y,z)
-3. 旋转: rotate(angle)、rotateX(angle)、rotateY(angle)、rotateZ(angle)、rotate3d(x,y,z,angle)
-4. 倾斜: skew(x-angle,y-angle)、skewX(angle)、skewY(angle)
-5. 透视: perspective(n)
-
-:::
+| 属性 | 具体 |
+|---|---|
+| 转换 | translate(x,y)、translateX(x)、translateY(y)、translateZ(z)、translate3d(x,y,z) |
+| 缩放 | scale((x,y)、scaleX(x)、scaleY(y)、scaleZ(z)、scale3d((x,y,z) |
+| 旋转 | rotate(angle)、rotateX(angle)、rotateY(angle)、rotateZ(angle)、rotate3d(x,y,z,angle) |
+| 倾斜 | skew(x-angle,y-angle)、skewX(angle)、skewY(angle) |
+| 透视 | perspective(n) |
 
 ## table-cell
 
-:::: code-group
-::: code-group-item html
-```html
-<div class="box">
-    <div class="content">
-        <div class="inner"></div>
-    </div>
-</div>
-```
-:::
-::: code-group-item css
 ```css
-html, body {
-    height: 100%;
-    width: 100%;
-    margin: 0;
-}
-.box {
-    display: table;
-    height: 100%;
-    width: 100%;
-}
 .content {
-    display: table-cell;
-    vertical-align: middle;
-    text-align: center;
-}
-.inner {
-    background-color: #000;
-    display: inline-block;
+    border: 1px solid black;
     width: 200px;
     height: 200px;
+
+    display: table-cell;
+    text-align: center;
+    vertical-align: middle;
 }
-```
-:::
-::::

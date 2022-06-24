@@ -4,26 +4,6 @@ sidebar: auto
 
 # 目录
 
-## HTML
-
-- [浏览器](./html/rendering-engine.md)
-- [声明文档类型DOCTYPE](./html/doctype.md)
-- [浏览器的渲染过程](./html/painting.md)
-- [浏览器的回流与重绘](./html/reflow-repaint.md)
-- [Canvas与SVG的区别](./html/canvas-svg.md)
-- [其他](./html/other.md)
-
-## CSS
-
-- [盒模型](./css/box-model.md)
-- [BFC](./css/bfc.md)
-- [flex](./css/flex.md)
-- [rem](./css/rem.md)
-- [清除浮动](./css/clear.md)
-- [水平垂直居中](./css/center.md)
-- [页面布局](./css/layout.md)
-- [其他](./css/other.md)
-
 ## JavaScript
 
 - [数据类型](./javascript/data-type.md)
@@ -62,3 +42,23 @@ sidebar: auto
   - [排序](./javascript/algorithm/sort.md)
   - [递归](./javascript/algorithm/recursion.md)
   - [深度优先搜索和广度优先搜索](./javascript/algorithm/dfs-bfs.md)
+
+## HTML
+
+- [浏览器](./html/rendering-engine.md)
+- [声明文档类型DOCTYPE](./html/doctype.md)
+- [浏览器的渲染过程](./html/painting.md)
+- [浏览器的回流与重绘](./html/reflow-repaint.md)
+- [Canvas与SVG的区别](./html/canvas-svg.md)
+- [其他](./html/other.md)
+
+## CSS
+
+- [盒模型](./css/box-model.md)
+- [BFC](./css/bfc.md)
+- [flex](./css/flex.md)
+- [rem](./css/rem.md)
+- [清除浮动](./css/clear.md)
+- [水平垂直居中](./css/center.md)
+- [页面布局](./css/layout.md)
+- [其他](./css/other.md)
