@@ -14,7 +14,7 @@ sidebar: auto
 
 ### 内置浏览器
 
-不需要任何的跨域配置，但是会有一些意想不到的问题；比如，mac内置浏览器开发者控制台空白问题，[官方解决方案](https://hx.dcloud.net.cn/Tutorial/faq/devtools)：
+不需要任何的跨域配置，但是会有一些意想不到的问题；比如，mac内置浏览器开发者控制台空白问题，[官方解决方案](https://hx.dcloud.net.cn/Tutorial/faq/devtools)
 
 ```bash
 lsof -i:9777 | awk '{print $2}' | tail -n +2 | xargs kill -9
@@ -251,8 +251,6 @@ export default {
 <style lang="scss" scoped src="./index.scss"></style>
 ```
 
-
-
 ## 云打包
 
 使用云打包的方式,「一个账号一天大概只能打7-8次」，如需继续打包，使用付费服务（2元一次）
@@ -270,14 +268,16 @@ export default {
 - android打包时，某一时段使用云打包的开发者太多，到时排队时间长
 - 生成下载的链接，只可以下载5次，解决方案，将包下载下来，上传到`fir.im`平台（开通付费），[链接](https://www.betaqr.com/)
 
-## process.env.NODE_ENV引发的问题
 
-由于在项目中年没有配置`process.env.NODE_ENV`,直接使用作为判断，开发环境下没有问题（内置浏览器或运行到手机），但是打包之后，接口不会请求，排查问题浪费太多的时间
+## NODE_ENV引发的问题
+
+由于在项目中没有配置`NODE_ENV`，直接使用作为判断，开发环境下没有问题（内置浏览器或运行到手机），但是打包之后，接口不会请求，排查问题浪费太多的时间
 
 ## uni.showModal在iOS和Android表现不一致
 
 - ~~使用H5自定义开发modal，会遮盖不住tabbar~~
 - 还有很多付费的插件
+
 
 ## uni.showToast在安卓机型上表现的问题
 
@@ -552,7 +552,9 @@ export default {
 ![safe-area](./images/safe-area.png)
 
 ```vue
-<uni-popup type="bottom" :safe-area="false">底部弹出 Popup</uni-popup>
+<template>
+  <uni-popup type="bottom" :safe-area="false">底部弹出 Popup</uni-popup>
+</template>
 ```
 
 ## radio-group中使用stop修饰符
@@ -564,13 +566,15 @@ export default {
 解决方案：`@click.native.stop`
 
 ```vue
-<radio-group @change="handleChecked">
-  <label class="template-item" v-for="item in list" :key="item.id" :class="{ actived: item.id == checked }">
-    <radio style="display: none" :value="item.id + ''" :checked="item.id == checked" />
-    <view class="template-title">
-      <text>{{ item.title }}</text>
-      <uni-icons custom-prefix="iconfont" type="icon-delete" size="22" color="#FF4848" @click.native.stop="handleRemove($event)"></uni-icons>
-    </view>
-  </label>
-</radio-group>
+<template>
+  <radio-group @change="handleChecked">
+    <label class="template-item" v-for="item in list" :key="item.id" :class="{ actived: item.id == checked }">
+      <radio style="display: none" :value="item.id + ''" :checked="item.id == checked" />
+      <view class="template-title">
+        <text>{{ item.title }}</text>
+        <uni-icons custom-prefix="iconfont" type="icon-delete" size="22" color="#FF4848" @click.native.stop="handleRemove($event)"></uni-icons>
+      </view>
+    </label>
+  </radio-group>
+</template>
 ```

@@ -15,8 +15,11 @@ sidebar: auto
 
 ## uniapp
 
-- [开发app遇到的问题及解决方案](./uniapp/app.md)
+- [开发app遇到的问题及解决方案](./uni-app/app.md)
 
+## 工作流
+
+- [开发工作流](./work-flow/README.md)
 ## Vue2.0
 
 - [vue2.0兼容IE9及以上](./vue/vue-ie9.md)
