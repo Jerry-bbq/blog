@@ -1,8 +1,4 @@
----
-sidebar: auto
----
-
-# 安全
+# 安全-CSRF/XSS
 
 ## CSRF-跨站请求伪造
 

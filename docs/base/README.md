@@ -14,7 +14,7 @@ sidebar: auto
 - [DOM事件](./javascript/dom.md)
 - [通信](./javascript/communications.md)
 - [HTTP](./javascript/http.md)
-- [安全](./javascript/safe.md)
+- [安全-CSRF/XSS](./javascript/safe.md)
 - [性能优化](./javascript/page-performance.md)
 - [错误监控](./javascript/error.md)
 - [es6](./javascript/es6.md)
