@@ -18,11 +18,12 @@ module.exports = {
   open: true,
   // 主题
   theme: defaultTheme({
-    displayAllHeaders: true,
     lastUpdated: true,
     lastUpdatedText: '上次更新',
     contributors: false,
+    sidebar: 'auto',
     sidebarDepth: 3, // 1
+    toggleColorMode: '切换主题',
     navbar: [
       {
         text: 'FE',
@@ -95,16 +96,16 @@ module.exports = {
         link: '/job-summary/',
       },
       {
+        text: 'Share',
+        link: '/share/',
+      },
+      {
         text: 'leetcode',
         link: '/leetcode/',
       },
       {
         text: 'HK-Office',
         link: '/audition/',
-      },
-      {
-        text: 'Share',
-        link: '/share/',
       },
       {
         text: 'GitHub',
@@ -131,7 +132,11 @@ module.exports = {
     mediumZoomPlugin({}),
     backToTopPlugin(),
     nprogressPlugin(),
-    docsearchPlugin({}),
+    docsearchPlugin({
+      apiKey: '',
+      indexName: '',
+      appId: ''
+    }),
     clipboardPlugin({})
   ]
 }
