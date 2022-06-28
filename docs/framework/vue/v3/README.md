@@ -4,6 +4,99 @@ sidebar: auto
 
 # Vue3
 
+- Vue3支持vue2的大多数特性
+- 更好的支持Typescript
+
+- 性能提升
+  - 打包大小减少41%
+  - 初次渲染快55%, 更新渲染快133%
+  - 内存减少54%
+  - 使用Proxy代替defineProperty实现数据响应式
+  - 重写虚拟DOM的实现和Tree-Shaking
+- 新增特性
+  - Composition (组合) API
+  - setup
+  - 新组件
+  - 其它API更新
+
+## 组合式api
+### setup
+
+```vue
+<template>
+    <div>{{ msg }}</div>
+    <div @click="handleClick"></div>
+</template>
+<script lang="ts">
+import { defineComponent, reactive, ref, onMounted, onUnmounted  } from 'vue'
+
+export default defineComponent({
+    props: {},
+    components: {},
+    setup(props, { emit }) {
+        let msg = ref('')
+        const obj = {
+            name: '',
+            age: '',
+            class: {
+                name: '',
+                count: 0
+            }
+        }
+        const stu = reactive(obj)
+
+        onMounted(()=> {
+
+        })
+
+        onUnmounted(() => {
+            
+        })
+
+        const handleClick = () => {
+            msg.value += '-'
+            emit('handleClick', msg.value)
+        }
+
+        const computed = computed(()=> {
+            return stu.name + stu.age
+        })
+
+        const computed2 =  computed({
+            get() {
+                return stu.name + stu.age
+            },
+            set(val) {
+                stu.age = val
+            }
+        })
+
+        watch(stu, () => {
+           // .... 
+        }, { immediate: true, deep: true})
+
+        watch([() => stu.name, () => stu.age, stu], (values)=> {
+            console.log(values)
+        })
+
+
+        return {
+            msg,
+            stu
+        }
+    }
+})
+</script>
+```
+
+## ref和reactive
+
+ref定义一个数据的响应式
+
+reactive定义多个数据的响应式
+
+
+
 ## 生命周期的变化
 
 Vue2.x | Vue3

@@ -49,8 +49,10 @@ I'll be ${ age + 1 } years old next month.`;
 ```ts
 // 第一种定义方式：
 let list: number[] = [1, 2, 3];
+let list: any[] = [1, '2', {}, true];
 // 第二种定义方式：数组泛型，Array<元素类型>
 let list: Array<number> = [1, 2, 3];
+
 ```
 
 ### 元组Tuple
