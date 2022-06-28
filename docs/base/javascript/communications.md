@@ -6,7 +6,7 @@ sidebar: auto
 
 ## 什么是同源策略及限制
 
-同源策略限制从一个源加载的文件或者脚本如何与来自另一个源的资源进行交互。这是一个用于隔离潜在恶意文件的关键的安全机制。（源包含：协议+域名+端口）
+同源策略限制从一个源加载的文件或者脚本如何与来自另一个源的资源进行交互。这是一个用于隔离潜在恶意文件的关键的安全机制。（源包含：**协议+域名+端口**）
 
 同源策略有哪些限制：
 - Cookie,LocalStrorage和IndexDB无法读取
@@ -211,7 +211,7 @@ const removeCookie = name => {
 
 [localStorage](https://developer.mozilla.org/zh-CN/docs/Web/API/Window/localStorage)
 
-只要在相同的协议、相同的主机名、相同的端口下，就能读取/修改到同一份localStorage数据
+只要在相同的**协议+域名+端口**下，就能读取/修改到同一份localStorage数据
 
 localStorage理论上来说是永久有效的，即不主动清空的话就不会消失
 
@@ -227,7 +227,7 @@ localStorage.clear();
 
 [sessionStorage](https://developer.mozilla.org/zh-CN/docs/Web/API/Window/sessionStorage)
 
-除了协议、主机名、端口外，还要求在同一窗口（也就是浏览器的标签页）下
+除了**协议+域名+端口**外，还要求在同一窗口（也就是浏览器的标签页）下
 
 
 ```js

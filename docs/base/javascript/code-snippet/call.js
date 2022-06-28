@@ -7,9 +7,6 @@
  */
 Function.prototype._call = function(obj, ...args) {
   // 处理obj是undefined或者null的情况
-  if (obj === undefined || obj === null) {
-    obj = window
-  }
   obj = obj || window
 
   // 给obj添加一个方法fn,赋值this

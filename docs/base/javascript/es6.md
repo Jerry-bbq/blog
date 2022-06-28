@@ -184,7 +184,7 @@ gs1 === gs2  // true
 
 ## Map和Weakmap的区别
 
-1. Map
+### 1. Map
 
 字符串作为key， 和JS对象类似
 ```js
@@ -222,7 +222,7 @@ for (var key of map.keys()) {
 }
 ```
 
-迭代器
+迭代器 for...of
 
 ```js
 var map = new Map()
@@ -266,7 +266,7 @@ for (var [key, val] of map.entries()) {
 - size
 - values
 
-2. WeakMap
+### 2. WeakMap
 
 与Map的区别
 
@@ -329,11 +329,32 @@ WeakSet 与 Set 的区别：
 
 ![](./images/promise-constructor.png)
 
-1. `Promise`是一个构造函数，它的静态方法有：`all`,`allSettled`,`any`,`race`,`reject`,`resolve`，实例方法有：`catch`,`finally`,`then`
+1. `Promise`是一个构造函数
 
-2. `Promise`有三种状态，分别是`pending`（初始化）、`fulfilled`（完成）、`rejected`（失败）；状态只能由`pending -> fulfilled`， `pending -> rejected`，且**不可逆**。
+它的静态方法有：
 
-3. 当实例化一个`Promise`时，需要传入一个执行函数`executor`，该函数有两个函数参数`resolve`,`reject`，并且执行该函数执行函数
+- `all()`
+- `allSettled()`
+- `any()`
+- `race()`
+- `reject()`
+- `resolve`
+
+实例方法有：
+
+- `catch()`
+- `finally()`
+- `then()`
+
+2. `Promise`有三种状态，分别是：
+   
+- `pending`（初始化）
+- `fulfilled`（完成）
+- `rejected`（失败）；
+
+状态只能由`pending -> fulfilled`， `pending -> rejected`，且**不可逆**。
+
+3. 当实例化一个`Promise`时，需要传入一个执行函数`executor()`，`executor()`有两个函数参数`resolve()`,`reject()`，并且执行该函数执行函数
 
 ### 基础结构
 
@@ -342,7 +363,7 @@ const PENDING = 'PENDING'
 const FULFILLED = 'FULFILLED'
 const REJECTED = 'REJECTED'
 
-class Promise {
+class MyPromise {
   constructor(executor) {
     this.status = PENDING
     let resolve = () => {}
@@ -379,8 +400,8 @@ p.catch(err=> {
 ```
 
 - 初始化时，`Promise`状态`status`为`pending`，成功的值`value`和失败的原因`reason`为`undefined`
-- 执行函数的两个**参数函数**`resolve`和`reject`，用于改变`status`状态
-- 执行函数`executor`执行时，因为`Promise`可以捕获到`throw new Error()`抛出的错误，所以外面需要包一层`try...catch`
+- 执行函数`executor()`的两个**参数函数**`resolve()`和`reject()`，用于改变`status`状态
+- 执行函数`executor()`执行时，因为`Promise`可以捕获到`throw new Error()`抛出的错误，所以外面需要包一层`try...catch`
 
 ```js
 const PENDING = 'PENDING'
@@ -447,13 +468,13 @@ const promise = new Promise((resolve, reject) => {
   )
 ```
 
-- 执行函数的函数体中如果不执行`resolve`或`reject`的话，是不会执行`then`的
-- `then`接收两个可选的函数参数`onFulfilled`， `onRejected`，作为成功和失败的回调函数
-  - 当状态`status`从`pending`变为`fulfilled`的时，执行`onFulfilled`；当`status`从`pending`变为`rejected`时，执行`onRejected`
-  - 如果`onFulfilled`是函数，它有一个参数，接受最终的结果`value`；否则在内部会替换为`(x) => x`
-  - 如果`onRejected`是函数，它有一个参数，为失败的原因`reason`；否则在内部会替换为`err => throw new Error(err)`
-- `then`是异步的，将成功回调存储得到`onFulfilledCallbacks`数组中,将失败回调存储到`onRejectedCallbacks`数组中（发布订阅模式）
-- `then`返回一个`Promise`实例
+- 执行函数`executor()`的函数体中如果不执行`resolve()`或`reject()`的话，是不会执行`then()`的
+- `then()`接收两个可选的函数参数`onFulfilled()`， `onRejected()`，作为成功和失败的回调函数
+  - 当状态`status`从`pending`变为`fulfilled`的时，执行`onFulfilled()`；当`status`从`pending`变为`rejected`时，执行`onRejected()`
+  - 如果`onFulfilled()`是函数，它有一个参数，接受最终的结果`value`；否则在内部会替换为`(x) => x`
+  - 如果`onRejected()`是函数，它有一个参数，为失败的原因`reason`；否则在内部会替换为`err => throw new Error(err)`
+- `then()`是异步的，将成功回调存储得到`onFulfilledCallbacks`数组中,将失败回调存储到`onRejectedCallbacks`数组中（发布订阅模式）
+- `then()`返回一个`Promise`实例
 - 链式调用
 
 ```js
