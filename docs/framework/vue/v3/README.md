@@ -131,20 +131,59 @@ Object.defineProperty( Obj, 'name', {
 
 ```
 
-```js
-//两个参数，对象，13个配置项
-const handler = {
-    get: function(obj, prop) {
-        return prop in obj ? obj[prop] : 37;
-    },
-    set:function(){ },
-    ...13个配置项
-};
-const p = new Proxy({}, handler);
-p.a = 1;
-p.b = undefined;
-console.log(p.a, p.b);      // 1, undefined
-console.log('c' in p, p.c); // false, 37
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Proxy 与 Reflect</title>
+</head>
+<body>
+  <script>
+    
+    const user = {
+      name: "John",
+      age: 12
+    };
+
+    /* 
+    proxyUser是代理对象, user是被代理对象
+    后面所有的操作都是通过代理对象来操作被代理对象内部属性
+    */
+    const proxyUser = new Proxy(user, {
+
+      get(target, prop) {
+        console.log('劫持get()', prop)
+        return Reflect.get(target, prop)
+      },
+
+      set(target, prop, val) {
+        console.log('劫持set()', prop, val)
+        return Reflect.set(target, prop, val); // (2)
+      },
+
+      deleteProperty (target, prop) {
+        console.log('劫持delete属性', prop)
+        return Reflect.deleteProperty(target, prop)
+      }
+    });
+    // 读取属性值
+    console.log(proxyUser===user)
+    console.log(proxyUser.name, proxyUser.age)
+    // 设置属性值
+    proxyUser.name = 'bob'
+    proxyUser.age = 13
+    console.log(user)
+    // 添加属性
+    proxyUser.sex = '男'
+    console.log(user)
+    // 删除属性
+    delete proxyUser.sex
+    console.log(user)
+  </script>
+</body>
+</html>
 ```
 
 1. defineProperty只能绑定首次渲染时候的属性，Proxy需要的是整体，不需要关心里面有什么属性，而且Proxy的配置项有13种，可以做更细致的事情，这是之前的defineProperty无法达到的
