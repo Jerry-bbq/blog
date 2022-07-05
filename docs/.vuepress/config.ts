@@ -4,7 +4,7 @@ const { mediumZoomPlugin } = require('@vuepress/plugin-medium-zoom')
 const { backToTopPlugin } = require('@vuepress/plugin-back-to-top')
 const { nprogressPlugin } = require('@vuepress/plugin-nprogress')
 const { docsearchPlugin } = require('@vuepress/plugin-docsearch')
-const { clipboardPlugin } = require("vuepress-plugin-clipboard")
+const { clipboardPlugin } = require('vuepress-plugin-clipboard')
 
 module.exports = {
   // 站点配置
@@ -22,7 +22,7 @@ module.exports = {
     lastUpdatedText: '上次更新',
     contributors: false,
     sidebar: 'auto',
-    sidebarDepth: 3, // 1
+    sidebarDepth: 3,
     toggleColorMode: '切换主题',
     navbar: [
       {
@@ -86,10 +86,14 @@ module.exports = {
               {
                 text: 'babel',
                 link: '/bundler/babel.md',
-              }
+              },
             ],
           },
         ],
+      },
+      {
+        text: 'node',
+        link: '/node/',
       },
       {
         text: 'JobSummary',
@@ -111,17 +115,19 @@ module.exports = {
         text: 'GitHub',
         link: 'https://github.com/Jerry-bbq?tab=repositories',
       },
-    ]
+    ],
   }),
   // markdown
   markdown: {
     code: {
-      lineNumbers: false
+      lineNumbers: false,
+    },
+    extractHeaders: {
+      level: [2, 3, 4],
     },
     importCode: {
-      handleImportPath: (str) =>
-        str.replace(/^@code-snippet/, path.resolve(__dirname, '../../docs/base/javascript/code-snippet')),
-    }
+      handleImportPath: str => str.replace(/^@code-snippet/, path.resolve(__dirname, '../../docs/base/javascript/code-snippet')),
+    },
   },
   // 插件api
   extendsMarkdown: md => {
@@ -135,8 +141,8 @@ module.exports = {
     docsearchPlugin({
       apiKey: '',
       indexName: '',
-      appId: ''
+      appId: '',
     }),
-    clipboardPlugin({})
-  ]
+    clipboardPlugin({}),
+  ],
 }

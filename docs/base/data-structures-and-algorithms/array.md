@@ -3,6 +3,16 @@
 - 数据呈线性排列的一种数据结构
 - 在数组中，访问数据十分简单，而添加和删除数据比较耗工夫
 
+```js
+let arr = []
+arr.push(1)
+arr.push(2)
+arr.push(3)
+arr.pop(1)
+arr.unshift(0)
+arr.shift(0)
+```
+
 ## 方法
 
 数组的一些核心方法：

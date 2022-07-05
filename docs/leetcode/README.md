@@ -21,16 +21,13 @@ sidebar: auto
 
 ```js
 var twoSum = function (nums, target) {
-  const len = nums.length
-  let index = []
-  for (let i = 0; i < lenlen; i++) {
-    for (let j = i + 1; j < len; j++) {
-      if (nums[i] + nums[j] === target) {
-        index = [i, j]
-      }
+    for (let i = 0; i < nums.length; i++) {
+        for (let j = i + 1; j < nums.length; j++) {
+            if (nums[i] + nums[j] === target) {
+                return [i, j]
+            }
+        }
     }
-  }
-  return index
 }
 ```
 
@@ -42,3 +39,16 @@ var twoSum = function (nums, target) {
 ### hash表
 
 不可以使用set，因为set会对数组去重
+
+```js
+var twoSum = function(nums, target) {
+    let map = new Map()
+    for (let i = 0; i < nums.length; i++) {
+        let diff = target - nums[i]
+        if (map.has(diff)) {
+            return [map.get(diff), i]
+        }
+        map.set(nums[i], i)
+    }
+}
+```
