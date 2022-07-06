@@ -1,95 +1,32 @@
-let map = new Map()
-map.set('name', 'John')
-map.set('name', 'John1')
+var testStr = 'abcdaabbsssss'
 
+var testStrArr = testStr.split("").sort();
+let startIndex = 0;
+let endIndex = 1;
+let maxNum = 0;
+let validWords = [];
 
-map.set('age', 10)
-map.set('class', '一年级二班')
-
-console.log(map)
-
-console.log(map.size)
-// map.delete('class')
-console.log(map.get('class'))
-console.log(map.keys())
-console.log(map.values())
-console.log(map.entries())
-
-// 迭代
-
-for (const key of map) {
-    console.log(key)
-}
-
-for (const key of map.keys()) {
-    console.log(key)
-}
-
-for (const key of map.values()) {
-    console.log(key)
-}
-
-for (const key of map.entries()) {
-    console.log(key)
-}
-
-map.forEach((value, key) => {
-    console.log(value, key)
-})
-
-const kvArray = [["key1", "value1"], ["key2", "value2"]];
-const myMap = new Map(kvArray);
-console.log(myMap)
-console.log(Array.from(myMap));
-console.log([...myMap]);
-console.log(Array.from(myMap.keys()));
-
-
-console.log('-----------------------')
-
-let set = new Set()
-set.add(1)
-set.add(2)
-set.add(3)
-set.add(3)
-set.add('string')
-set.add({ a: 1, b: 2 })
-
-console.log(set)
-console.log(set.has(6))
-console.log(set.size)
-
-console.log(set.keys())
-console.log(set.values())
-console.log(set.entries())
-
-// 迭代
-for (const key of set) {
-    console.log(key)
-}
-
-for (const key of set.keys()) {
-    console.log(key)
-}
-
-for (const key of set.values()) {
-    console.log(key)
-}
-for (const key of set.entries()) {
-    console.log(key)
-}
-set.forEach(value => {
-    console.log(value)
-})
-
-var longestCommonPrefix = function(strs) {
-    if (strs.length === 0) return "";
-    let prefix = strs[0];
-    for (let i = 1; i < strs.length; i++) {
-        while (strs[i].indexOf(prefix) !== 0) {
-            prefix = prefix.substring(0, prefix.length - 1);
-            if (prefix === "") return "";
+// 使用指针法，获取最大重复次数及最大次数对应的字符数组
+while (startIndex < testStrArr.length) {
+    // startIndex 和 endIndex 位置的字符不同
+    if (testStrArr[startIndex] !== testStrArr[endIndex]) {
+        // 计算 startIndex 和 endIndex 之间的字符个数
+        const rangeNum = endIndex - startIndex;
+        if (rangeNum > maxNum) {
+            maxNum = rangeNum;
+            // 如果出现了新的最大次数，则给存放符合条件字符的数组重新赋值
+            validWords = [testStrArr[startIndex]];
+        } else if (rangeNum === maxNum) {
+            // 如果新的次数和最大次数相等，则将该字符 push 进字符数组
+            validWords.push(testStrArr[startIndex]);
         }
+        startIndex = endIndex;
     }
-    return prefix;
+    endIndex++;
+}
+console.log(validWords)
+// 打印结果
+for (let index = 0; index < validWords.length; index++) {
+    const word = validWords[index];
+    console.log(`重复次数最多的是：${ word }，重复次数为：${ maxNum }`)
 }

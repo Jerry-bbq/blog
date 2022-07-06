@@ -32,6 +32,18 @@ JavaScript变量存储在内存的哪里？
 
 :::
 
+```js
+let a1 = 1
+let a2 = a1
+a2++
+console.log(a1, a2)       // 1 2
+
+let obj1 = { name: 'john' }
+let obj2 = obj1
+obj2.name = 'marry'
+console.log(obj1, obj2) // {name: 'marry'} {name: 'marry'}
+```
+
 ## 数据类型的检测
 
 ### 第一种：typeof运算符

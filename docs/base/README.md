@@ -7,12 +7,12 @@ sidebar: auto
 ## JavaScript
 
 - [数据类型](./javascript/data-type.md)
+- [原型和原型链](./javascript/prototype-chain.md)
+- [通信](./javascript/communications.md)
 - [垃圾回收机制与内存泄漏](./javascript/gc.md)
 - [作用域和闭包](./javascript/scope-closure.md)
-- [原型和原型链](./javascript/prototype-chain.md)
 - [事件循环](./javascript/asyn-single-thread.md)
 - [DOM事件](./javascript/dom.md)
-- [通信](./javascript/communications.md)
 - [HTTP](./javascript/http.md)
 - [安全-CSRF/XSS](./javascript/safe.md)
 - [性能优化](./javascript/page-performance.md)

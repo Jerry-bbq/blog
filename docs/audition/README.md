@@ -2,6 +2,13 @@
 sidebar: auto
 ---
 
+杭州目前招聘情况要求：
+
+- 技术栈： vue、react、react-native、ts、小程序开发（uniapp，taro）、webpack
+- 端：2B，2C
+- 业务：数据可视化（echart，g2，地图、webgl，threejs），低代码平台
+- 大厂都要求算法题（阿里，网易...），微前端
+
 # 面经
 
 大厂基本上都是从自我介绍开始，询问项目的情况，比如你在项目中是一个什么角色，在项目之中有没有遇到什么问题，是怎么解决的，项目中使用的第三方包是怎么一个原理，你有没有去研究过等，基本上是你说到哪就会问到哪，这其实是对面试者知识体系的一个考察，所以说准备大厂可以参考这个思路来准备
@@ -9,6 +16,49 @@ sidebar: auto
 ## 自我介绍
 
 面试官你好，我叫xx，今天来面试贵公司的前端开发工程师岗位。我是16年开始从事前端开发，已有五年多的时间，有三年多的vue项目开发经验。在上家公司的「MDV云管家」产品线担任敏捷开发迭代负责人，根据不同迭代版本进行相应的需求评审、UI 评审、反讲、工作量评估 以及项目排期等工作。平常喜欢逛一些技术社区来丰富自己的技术，也有自己的开源项目，比如常用函数工具库、自定义仪表盘，以此来做一些技术沉淀。以上是我的个人介绍，谢谢
+
+## 网易农业事业部
+
+- 获取字符串中重复次数最多的字符
+
+```js
+var testStr = 'abcdaabbsssss'
+
+var testStrArr = testStr.split("").sort();
+let startIndex = 0;
+let endIndex = 1;
+let maxNum = 0;
+let validWords = [];
+
+// 使用指针法，获取最大重复次数及最大次数对应的字符数组
+while (startIndex < testStrArr.length) {
+    // startIndex 和 endIndex 位置的字符不同
+    if (testStrArr[startIndex] !== testStrArr[endIndex]) {
+        // 计算 startIndex 和 endIndex 之间的字符个数
+        const rangeNum = endIndex - startIndex;
+        if (rangeNum > maxNum) {
+            maxNum = rangeNum;
+            // 如果出现了新的最大次数，则给存放符合条件字符的数组重新赋值
+            validWords = [testStrArr[startIndex]];
+        } else if (rangeNum === maxNum) {
+            // 如果新的次数和最大次数相等，则将该字符 push 进字符数组
+            validWords.push(testStrArr[startIndex]);
+        }
+        startIndex = endIndex;
+    }
+    endIndex++;
+}
+console.log(validWords)
+// 打印结果
+for (let index = 0; index < validWords.length; index++) {
+    const word = validWords[index];
+    console.log(`重复次数最多的是：${ word }，重复次数为：${ maxNum }`)
+}
+```
+
+- 获取字符串中重复次数最多的字符
+
+
 
 ## 六量科技
 
