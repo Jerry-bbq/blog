@@ -260,7 +260,24 @@ WeakSet 与 Set 的区别：
 
 ## Relect
 
-## Iterator 与 for...of 循环
+## for...of
+
+只能在存在**可迭代对象**的时候使用，如果不存在迭代对象，则报错。
+
+- String
+- Array
+- Map
+- WeakMap
+- Set
+- WeakSet
+- TypedArray
+- argument
+
+由 break, throw 或 return 终止
+
+`for...in`语句以任意顺序迭代一个对象的除Symbol以外的可枚举属性，包括继承的可枚举属性。for ... in是为遍历对象属性而构建的，不建议与数组一起使用
+
+[参考](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Statements/for...of)
 
 ## Generator函数的语法
 

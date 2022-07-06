@@ -2,21 +2,16 @@
 sidebar: auto
 ---
 
-# 数据结构与类型
+# 数据类型
 
-JavaScript数据类型大体上有两种(细分有8种)
+## 分类
 
-- 原始类型（又叫基本类型）
-- 引用类型
+| 类型 | 数据类型 | 值存储 |
+|---|---|---|
+| 基本类型 | string、number、boolean、null、undefined、bigint、symbol (7种)| 栈(stack) |
+| 引用类型 | object，其中包含具体的引用类型Array、Function、Date、RegExp等 | 堆(heap) |
 
-## 数据类型
-
-类型 | 数据类型 | 值存储
----|---|---
-原始类型 | `string`、`number`、`boolean`、`null`、`undefined`、`bigint`、`symbol` (7种)| 栈(stack)
-引用类型 | `object`，其中包含具体的引用类型`Array`、`Function`、`Date`、`RegExp`等 | 堆(heap)
-
-## 存储
+## 值存储
 
 JavaScript变量存储在内存的哪里？
 
