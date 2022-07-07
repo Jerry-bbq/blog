@@ -26,8 +26,12 @@ module.exports = {
     toggleColorMode: '切换主题',
     navbar: [
       {
-        text: 'FE',
+        text: 'Primary',
         link: '/base/',
+      },
+      {
+        text: 'Advanced',
+        link: '/advanced/'
       },
       {
         text: 'Framework',
@@ -92,20 +96,8 @@ module.exports = {
         ],
       },
       {
-        text: 'node',
-        link: '/node/',
-      },
-      {
         text: 'JobSummary',
         link: '/job-summary/',
-      },
-      {
-        text: 'Share',
-        link: '/share/',
-      },
-      {
-        text: 'leetcode',
-        link: '/leetcode/',
       },
       {
         text: 'HK-Office',

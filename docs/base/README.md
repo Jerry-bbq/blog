@@ -2,16 +2,16 @@
 sidebar: auto
 ---
 
-# 目录
+# 初级
 
 ## JavaScript
 
 - [数据类型](./javascript/data-type.md)
 - [原型和原型链](./javascript/prototype-chain.md)
+- [事件循环](./javascript/asyn-single-thread.md)
 - [通信](./javascript/communications.md)
 - [垃圾回收机制与内存泄漏](./javascript/gc.md)
 - [作用域和闭包](./javascript/scope-closure.md)
-- [事件循环](./javascript/asyn-single-thread.md)
 - [DOM事件](./javascript/dom.md)
 - [HTTP](./javascript/http.md)
 - [安全-CSRF/XSS](./javascript/safe.md)
@@ -30,29 +30,6 @@ sidebar: auto
 ## Coding
 
 - [手撕代码](./javascript/coding.md)
-
-## 数据结构与算法
-
-- [JavaScript数据结构与算法（第3版）](./data-structures-and-algorithms)
-- [算法动态演示](https://algorithm-visualizer.org/brute-force/bubble-sort)
-
-其他
-
-- [时间复杂度和空间复杂度](./javascript/algorithm/complexity.md)
-- 算法案例
-  - [二分查找](./javascript/algorithm/binary-search.md)
-  - [排序](./javascript/algorithm/sort.md)
-  - [递归](./javascript/algorithm/recursion.md)
-  - [深度优先搜索和广度优先搜索](./javascript/algorithm/dfs-bfs.md)
-
-## HTML
-
-- [浏览器](./html/rendering-engine.md)
-- [声明文档类型DOCTYPE](./html/doctype.md)
-- [浏览器的渲染过程](./html/painting.md)
-- [浏览器的回流与重绘](./html/reflow-repaint.md)
-- [Canvas与SVG的区别](./html/canvas-svg.md)
-- [其他](./html/other.md)
 
 ## CSS
 
