@@ -1,1 +1,0 @@
-const e=JSON.parse('{"key":"v-52a1df4e","path":"/share/swagger/","title":"swagger","lang":"en-US","frontmatter":{"sidebar":"auto"},"excerpt":"","headers":[],"git":{"updatedTime":1655090468000},"filePathRelative":"share/swagger/README.md"}');export{e as data};

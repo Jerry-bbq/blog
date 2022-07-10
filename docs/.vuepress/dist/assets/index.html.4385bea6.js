@@ -1,0 +1,1 @@
+const e=JSON.parse('{"key":"v-57086a89","path":"/advanced/share/swagger/","title":"swagger","lang":"en-US","frontmatter":{"sidebar":"auto"},"excerpt":"","headers":[],"git":{"updatedTime":1657172225000},"filePathRelative":"advanced/share/swagger/README.md"}');export{e as data};

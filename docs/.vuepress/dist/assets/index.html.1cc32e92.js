@@ -1,0 +1,1 @@
+const e=JSON.parse('{"key":"v-9296393a","path":"/advanced/share/ts-axios/","title":"ts-axios","lang":"en-US","frontmatter":{"sidebar":"auto"},"excerpt":"","headers":[{"level":2,"title":"\u524D\u7F6E\u77E5\u8BC6","slug":"\u524D\u7F6E\u77E5\u8BC6","children":[]}],"git":{"updatedTime":1657172225000},"filePathRelative":"advanced/share/ts-axios/README.md"}');export{e as data};
