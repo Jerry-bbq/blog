@@ -284,3 +284,17 @@ WeakSet 与 Set 的区别：
 ## Class
 
 ## Module
+
+## fetch与axios的区别
+
+- 从浏览器中创建 XMLHttpRequest
+- 从 node.js 发出 http 请求
+- 支持 Promise API
+- 拦截请求和响应
+- 转换请求和响应数据
+- 取消请求
+- 自动转换JSON数据
+- 客户端支持防止CSRF/XSRF
+- axios既提供了并发的封装，也没有fetch的各种问题，而且体积也较小，当之无愧现在最应该选用的请求的方式。
+
+- fetch号称是AJAX的替代品，是在ES6出现的，使用了ES6中的promise对象。Fetch是基于promise设计的。Fetch的代码结构比起ajax简单多了，参数有点像jQuery ajax。但是，一定记住fetch不是ajax的进一步封装，而是原生js，没有使用XMLHttpRequest对象。

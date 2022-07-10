@@ -39,6 +39,7 @@ console.log(commonFn.prototype) // {constructor: ƒ}
 
 - 箭头函数没`this`，它里面的`this`**继承函数所处的上下文中的this**（通过查找作用域链来确定`this`的值）
 - 使用`call/apply/bind` 也**无法改变**箭头函数的`this`指向
+- 普通函数中的`this`指向的是调用它的对象，箭头函数体内的this对象，就是定义该函数时所在的作用域指向的对象，而不是使用时所在的作用域指向的对象
 
 ```js
 let obj = {

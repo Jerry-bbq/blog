@@ -5,7 +5,7 @@ heroText: 科技在进步呀~
 tagline: '个人前端博客'
 actions: 
   - text:  LET'S GO →
-    link: /base/
+    link: /primary/
     type: primary
 features:
   - title: 夯实基础

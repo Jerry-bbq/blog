@@ -2,7 +2,7 @@
 sidebar: auto
 ---
 
-# 初级
+# 基础
 
 ## JavaScript
 
@@ -25,7 +25,7 @@ sidebar: auto
 
 ## TypeScript
 
-- [TypeScript](./base/../typescript/README.md)
+- [TypeScript](./primary/../typescript/README.md)
 
 ## Coding
 

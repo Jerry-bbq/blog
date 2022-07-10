@@ -27,7 +27,7 @@ module.exports = {
     navbar: [
       {
         text: 'Primary',
-        link: '/base/',
+        link: '/primary/',
       },
       {
         text: 'Advanced',
@@ -118,7 +118,7 @@ module.exports = {
       level: [2, 3, 4],
     },
     importCode: {
-      handleImportPath: str => str.replace(/^@code-snippet/, path.resolve(__dirname, '../../docs/base/javascript/code-snippet')),
+      handleImportPath: str => str.replace(/^@code-snippet/, path.resolve(__dirname, '../../docs/primary/javascript/code-snippet')),
     },
   },
   // 插件api
