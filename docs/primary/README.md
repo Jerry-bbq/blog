@@ -42,3 +42,12 @@ sidebar: auto
 - [页面布局](./css/layout.md)
 - [CSS动画](./css/animation.md)
 - [其他](./css/other.md)
+
+## HTML
+
+- [浏览器](./html/rendering-engine.md)
+- [声明文档类型DOCTYPE](./html/doctype.md)
+- [浏览器的渲染过程](./html/painting.md)
+- [浏览器的回流与重绘](./html/reflow-repaint.md)
+- [Canvas与SVG的区别](./html/canvas-svg.md)
+- [其他](./html/other.md)

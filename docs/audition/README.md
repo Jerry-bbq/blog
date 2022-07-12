@@ -9,7 +9,7 @@ sidebar: auto
 - 技术栈： ts、vue、react、跨平台（react-native、nuiapp）、小程序开发（uniapp，taro）、打包工具（webpack、vite）
 - 端：2B，2C
 - 业务：
-  - 数据可视化：echart、g2、地图、webgl（threejs、cesium，thingjs、mapBox）
+  - 数据可视化：echart、g2、地图、webgl（threejs、cesium，thingjs、mapBox、D3.js）
   - 低代码平台
 - 大厂都要求算法题（阿里，网易...），微前端
 
@@ -17,57 +17,97 @@ sidebar: auto
 
 ## 吉利科技
 
-- [ ] 2022-07-12 15:00 
-  - 腾讯会议 https://meeting.tencent.com/dm/ZAPKLBybODzL #腾讯会议：141-610-563
+- 2022-07-12 15:00 
+- 腾讯会议 https://meeting.tencent.com/dm/ZAPKLBybODzL #腾讯会议：141-610-563
+- vue的双向式数据绑定的原理
+- vue2与vue3的区别
+- history模式需要配置什么
+- 父子组件的生命周期
+- call、apply、bind的区别
+- 防抖节流的原理
+- 如何判断是否是一个数组
+- 箭头函数与普通函数的区别
+- 前端刷新token的方式
+- uniapp的渲染方式
+- 微前端的了解
+- graphQL的使用
+
+## 苏泊尔-LOT业务智能炒菜锅
+
+- 2022-07-12 11:00
+- vue2与vue3实现响应式的区别
+- js的数据类型
+- js的数据类型检测
+- 浏览器的回流与重绘
+- 讲讲防抖节流
+- 讲讲闭包的应用场景，和你使用过的闭包
+- var、let、const的区别
+- 用过哪些es6语法
+- 普通函数与箭头函数的区别
+- cookie/localStorage/sessionStorage的区别
+- call、apply、bind的区别
+- 跨域的几种实现方式
+- HTTP的状态码
+- 垃圾回收机制
+- 讲讲盒模型
+- flex的属性
+- 水平垂直居中
+- 响应式，屏幕适配的方案
+- 做过哪些性能优化
+- 总结：薪资低，不重视前端
 
 ## 刀豆网络科技有限公司-光子玩具
-  - 2022-07-11 14:00
-  - vue2.0与3.0的区别
-  - 做过哪些vue项目的性能优化
-  - 防抖节流的理解
-  - v-for为什么加key
-  - nextTick使用场景
-  - bfc
-  - 闭包与应用场景
-  - 原型链
-  - object.defineProperty与proxy的区别
-  - webpack优化
-  - 用过哪些es6语法
-  - async/await的理解
-  - call、apply、bind的区别
-  - 事件循环
-  - http的请求和相应体
-  - 水平垂直居中的实现
-  - 上家公司为什么离职
-  - 最近了解哪些新技术
-  - 1-3年的职业规划
-  - vue和react的区别
-  - 写过nodejs嘛，用一句话介绍nodejs
+
+- 2022-07-11 14:00
+- vue2.0与3.0的区别
+- 做过哪些vue项目的性能优化
+- 防抖节流的理解
+- v-for为什么加key
+- nextTick使用场景
+- bfc
+- 闭包与应用场景
+- 原型链
+- object.defineProperty与proxy的区别
+- webpack优化
+- 用过哪些es6语法
+- async/await的理解
+- call、apply、bind的区别
+- 事件循环
+- http的请求和相应体
+- 水平垂直居中的实现
+- 上家公司为什么离职
+- 最近了解哪些新技术
+- 1-3年的职业规划
+- vue和react的区别
+- 写过nodejs嘛，用一句话介绍nodejs
+- 总结：小公司，能开的薪资有限
 
 ## 科大讯飞
-  - 2022-07-08 16:00
-  - 智慧城市BG
+
+- 2022-07-08 16:00
+- 智慧城市BG
 
 ## 上海鼎茂信息技术有限公司
-  - 2022-07-07 16:30
-  - 面的比较简单
-  - 数据，微前端，echart4.0、vue2.0，b端产品，可尝试新的技术手段
+
+- 2022-07-07 16:30
+- 面的比较简单
+- 数据，微前端，echart4.0、vue2.0，b端产品，可尝试新的技术手段
 
 ## 杭州巨峰科技杭州巨峰科技
 
 ### 一面
 
-  - 2022-07-07 15:00
-  - 最有成就感的事情是什么
-  - 上一家公司离职的原因
-  - 让你去实现一个vue，你怎么去实现
-  - 你觉得你的优势是什么
-  - 组件传参的方式有些
-  - vue权限
-  - vue动态路由
-  - cookie与localstorage的区别，cookie为什么存用户的信息
-  - 两个页面如何传参传参
-  - 业务方面LOT智能家居项目，uniapp混合开发，后台等
+- 2022-07-07 15:00
+- 最有成就感的事情是什么
+- 上一家公司离职的原因
+- 让你去实现一个vue，你怎么去实现
+- 你觉得你的优势是什么
+- 组件传参的方式有些
+- vue权限
+- vue动态路由
+- cookie与localstorage的区别，cookie为什么存用户的信息
+- 两个页面如何传参传参
+- 业务方面LOT智能家居项目，uniapp混合开发，后台等
 
 ### 二面
 
