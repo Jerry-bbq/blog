@@ -626,11 +626,11 @@ fn.bind(obj, 5, 6)(3,4)      // 5,6, obj
 
 ### call/apply/bind区别
 
-api | 函数是否执行 | this指向 | 参数
----|---|---|---
-call | 执行 | 指向第一个参数 | call(obj, param1,param1...)，参数列表
-apply | 执行 | 指向第一个参数 | apply(obj, [param1,param1...])，参数是数组
-bind | 返回绑定this之后的新的函数 <br>（新函数内部会调用原来的函数） | 指向第一个参数 | bind(obj, param1,param1...)，参数可以分为多次传入
+| api | 函数是否执行 | this指向 | 参数 |
+|---|---|---|---|
+| call | 执行 | 指向第一个参数 | call(obj, param1,param1...)，参数列表 |
+| apply | 执行 | 指向第一个参数 | apply(obj, [param1,param1...])，参数是数组 |
+| bind | 返回绑定this之后的新的函数 <br>（新函数内部会调用原来的函数） | 指向第一个参数 | bind(obj, param1,param1...)，参数可以分为多次传入 |
 
 ::: warning 提示
 

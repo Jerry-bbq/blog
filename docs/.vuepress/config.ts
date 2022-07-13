@@ -31,7 +31,7 @@ module.exports = {
       },
       {
         text: 'Advanced',
-        link: '/advanced/'
+        link: '/advanced/',
       },
       {
         text: 'Framework',
@@ -92,6 +92,10 @@ module.exports = {
                 link: '/bundler/babel.md',
               },
             ],
+          },
+          {
+            text: 'Vite',
+            link: '/bundler/vite.md',
           },
         ],
       },
