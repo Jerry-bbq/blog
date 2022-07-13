@@ -1,7 +1,7 @@
 ---
 home: true
 heroImage: /logo.png
-heroText: 科技在进步呀~
+heroText: 技术是第一生产力
 tagline: '个人前端博客'
 actions: 
   - text:  LET'S GO →
