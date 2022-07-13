@@ -24,4 +24,22 @@
 
 ## 分享
 
-- [share](./share)
+- [canvas自定义仪表盘](./share/gauge.md)
+- [从零实现一个工具函数库](./share/tool-library.md)
+- [swagger](./share/swagger)
+
+### 阅读
+
+- [vue-lazyload源码阅读](./share/vue-lazyload/README.md)
+- [flexible](./share/flexible/README.md)
+- [ts-axios](./share/ts-axios/README.md)
+
+### 服务器相关
+
+- [Docker](./share/server/docker.md)
+- [nginx](./share/server/nginx.md)
+- [禅道](./share/server/zentao.md)
+
+### hexo搭建个人博客
+
+- [使用hexo搭建个人博客](./share/hexo.md)

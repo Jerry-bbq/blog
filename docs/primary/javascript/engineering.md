@@ -8,34 +8,64 @@ sidebar: auto
 
 ## 模块化
 
+### AMD
+
+- AMD 是 RequireJS 在推广过程中对模块定义的规范化产出
+- AMD异步加载模块。它的模块支持对象 函数 构造器 字符串 JSON等各种类型的模块
+- 它要在声明模块的时候指定所有的依赖 dependencies ，并且还要当做形参传到factory 中，对于依赖的模块提前执行，依赖前置。
+
+```js
+define("module", ["dep1", "dep2"], function(d1, d2) {
+  return someExportedValue;
+});
+require(["module", "../file"], function(module, file) { /* ... */ });
+
+```
+### CommonJS
+
+- nodejs的模块化方案
+- 一个单独的文件就是一个模块
+- 加载模块使用require方法，该方法读取一个文件并执行，最后返回文件内部的exports对象
+- CommonJS 加载模块是同步的，所以只有加载完成才能执行后面的操作
+- 像Node.js主要用于服务器的编程，加载的模块文件一般都已经存在本地硬盘，所以加载起来比较快，不用考虑异步加载的方式，所以CommonJS规范比较适用。但如果是浏览器环境，要从服务器加载模块，这是就必须采用异步模式。所以就有了 AMD  CMD 解决方案
+- CommonJS 模块是运行时加载
+- CommonJS 模块输出的是一个值的拷贝
+
+```js
+require("module");
+require("../file.js");
+exports.doStuff = function() {};
+module.exports = someValue;
+```
+
+### CMD
+
+- CMD是SeaJS 在推广过程中对模块定义的规范化产出
+- 也是异步加载模块
+- Common Module Definition 规范和 AMD 很相似，尽量保持简单，并与 CommonJS 和 Node.js 的 Modules 规范保持了很大的兼容性。
+
+```js
+define(function(require, exports, module) {
+  var $ = require('jquery');
+  var Spinning = require('./spinning');
+  exports.doSomething = ...
+  module.exports = ...
+})
+```
+
+### ES6模块化
+
+- ES6 模块输出的是值的引用
+- ES6 模块是编译时输出接口
+- ES6 模块的运行机制与 CommonJS 不一样。ES6 模块是动态引用，并且不会缓存值，模块里面的变量绑定其所在的模块。
+
 将独立的功能代码封装成一个独立的文件，其他模块需要使用，在进行引用。模块化有利于代码的拆分和架构上的解耦
 
 - JS 模块化：CommonJS、AMD、CMD 以及 ES6 Module。
 - CSS 模块化：Sass、Less、Stylus、BEM、CSS Modules 等。其中预处理器和 BEM 都会有的一个问题就是样式覆盖。而 CSS Modules 则是通过 JS 来管理依赖，最大化的结合了 JS 模块化和 CSS 生态，比如 Vue 中的 style scoped。
 - 资源模块化：任何资源都能以模块的形式进行加载，目前大部分项目中的文件、CSS、图片等都能直接通过 JS 做统一的依赖关系处理。
 
-
-### commonjs规范
-
-commonjs 规范应用于 nodejs 应用中，在 nodejs 应用中每个文件就是一个模块，拥有自己的作用域，文件中的变量、函数都是私有的，与其他文件相隔离
-
-CommonJS规范规定，每个模块内部， module 变量代表当前模块。这个变量是一个对象，它的 exports 属性（即 module.exports ）是对外的接口。加载某个模块，其实是加载该模块的 module.exports 属性
-
-### module.exports
-
-### require
-
-### 隔离性
-
-commonjs 规范是在运行时加载的，在运行时导出对象，导出的对象与原本模块中的对象是隔离的，简单的说就是克隆了一份，commonjs 规范下模块的导出是深克隆的。
-
-### ES6 模块化
-
-ECMA推出了官方标准的模块化解决方案，使用 export 导出，import 导入，编码简洁，从语义上更加通俗易懂。
-
-ES6 支持异步加载模块 的模块不是对象，而是在编译的时候就完成模块的引用，所以是编译时才加载
-
-### ES6 模块规范和 commonjs 规范 运行机制的区别
+ES6 模块规范和 commonjs 规范 运行机制的区别：
 
 CommonJS 模块是运行时加载，ES6 模块是编译时输出接口
 
