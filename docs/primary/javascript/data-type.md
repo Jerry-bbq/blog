@@ -181,3 +181,15 @@ dataType(()=>{})              // "function"
 dataType(new Date)            // "date"
 dataType(/\d/)                // "regexp"
 ```
+
+## 如何判断是否是一个数组
+
+```js
+let arr = []
+// 第一种
+arr instanceof Array  // true
+// 第二种
+Array.isArray(arr)    // true
+// 第三种
+Object.prototype.toString.call(arr) === '[object Array]'    //true
+```

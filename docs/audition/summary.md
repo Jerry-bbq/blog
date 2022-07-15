@@ -51,14 +51,14 @@ const实际上保证的，并不是变量的值不得改动，而是变量指向
 - for...of 语句遍历可迭代对象定义要迭代的数据（Array，Map，Set，String，TypedArray，arguments 对象）
 - for in 一般用来遍历对象的key、for of 一般用来遍历数组的value
 
-### 说说你对promise的理解
+### 说说你Promise对象的理解
 
 - Promise 概括来说是对异步的执行结果的描述对象
-- promise 的状态只有3种：pending、fulfilled、rejected；Promise 的状态一旦改变则不会再改变
+- Promise 的状态只有3种：pending、fulfilled、rejected；Promise 的状态一旦改变则不会再改变
 
-### promise的三个状态，给了一道题判断状态
+### Promise的三个状态，给了一道题判断状态
 
-### promise.all的实现原理
+### Promise.all的实现原理
 
 - 接收一个 Promise 实例的数组或具有 Iterator 接口的对象作为参数
 - 这个方法返回一个新的 promise 对象，
@@ -66,7 +66,7 @@ const实际上保证的，并不是变量的值不得改动，而是变量指向
 - 参数所有回调成功才是成功，返回值数组与参数顺序一致
 - 参数数组其中一个失败，则触发失败状态，第一个触发失败的 Promise 错误信息作为 Promise.all 的错误信息。
 
-接受一组 promise（或者一个可迭代的对象），并返回一个promise
+接受一组 Promise（或者一个可迭代的对象），并返回一个Promise
 
 ```js
 Promise.all = function (promises) {
@@ -89,7 +89,7 @@ Promise.all = function (promises) {
 }
 ```
 
-### promise.race的实现原理
+### Promise.race的实现原理
 
 哪个promise先被处理完，就返回哪个的结果，可以是reject也可以是resolve
 
@@ -112,6 +112,8 @@ Promise.race = function (promises) {
 - async/await 就是 Generator 的语法糖，使得异步操作变得更加方便
 - async 函数就是将 Generator 函数的星号（*）替换成 async，将 yield 替换成await
 - 返回值是Promise，async函数的返回值是 Promise 对象，Generator的返回值是 Iterator，Promise 对象使用起来更加方便
+
+### async/await与promise的区别
 
 ### Set和Map的区别
 
@@ -209,7 +211,6 @@ function throttle(callback, delay = 200) {
 }
 ```
 
-
 ### call、apply、bind的区别
 
 | api | 函数是否执行 | this指向 | 参数 |
@@ -225,6 +226,19 @@ function throttle(callback, delay = 200) {
 bind()会返回一个新的函数，如果这个返回的新的函数作为构造函数创建一个新的对象，那么此时 this 不再指向传入给 bind 的第一个参数，而是指向用 new 创建的实例
 
 :::
+
+### 讲讲闭包
+
+[参考](https://juejin.cn/post/6937469222251560990#heading-5)
+
+闭包的定义是：指有权访问另一个函数作用域中变量的函数
+
+应用场景：
+
+- setTimeout/setInterval
+- 防抖节流的实现
+
+容易导致内存泄漏。闭包会携带包含其它的函数作用域，因此会比其他函数占用更多的内存。过度使用闭包会导致内存占用过多，所以要谨慎使用闭包。
 
 ### cookie与localstorage的区别，cookie为什么存用户的信息
 
@@ -441,12 +455,101 @@ Vue 则采用的是数据劫持与发布订阅相结合的方式实现双向绑�
 ### vue中数据量比较多大的话，怎么处理
 ### vue中如何监听vuex的数据
 ### vue权限设计
+
+- 接口权限
+- 按钮权限
+  - 通过自定义指令进行按钮权限的判断
+  ```js
+  import Vue from 'vue'
+  /**权限指令**/
+  const has = Vue.directive('has', {
+      bind: function (el, binding, vnode) {
+          // 获取页面按钮权限
+          let btnPermissionsArr = [];
+          if(binding.value){
+              // 如果指令传值，获取指令参数，根据指令参数和当前登录人按钮权限做比较。
+              btnPermissionsArr = Array.of(binding.value);
+          }else{
+              // 否则获取路由中的参数，根据路由的btnPermissionsArr和当前登录人按钮权限做比较。
+              btnPermissionsArr = vnode.context.$route.meta.btnPermissions;
+          }
+          if (!Vue.prototype.$_has(btnPermissionsArr)) {
+              el.parentNode.removeChild(el);
+          }
+      }
+  });
+  export { has }
+  ```
+- 菜单权限
+- 路由权限
+  - 白名单+动态路由
+
 ### vue router中路由几种形式，以及区别
   - hash: 使用变更hash不会刷新页面的特性, 来变更路由, 做到单页面无刷新
   - history: 使用html5的history方法, 不支持老旧浏览器, 但是如果要部署到服务器的化, 需要在ng上进行相应的正向代理跳转, 否则拷贝的链接会打不开
 ### vue router是如何工作的
 ### 让你去实现一个vue，你怎么去实现
 ### vue和react的区别
+
+### 如何取消一个请求
+
+```js
+xhr.abort();
+```
+
+- 方案一 借助Promise.reject
+- 方案二 借助Promise.race
+- axios.CancelToken;
+
+### 并发请求
+
+### 串行
+
+```js
+const Task = (url) => {
+    return () => new Promise((resolve, reject) => {
+        setTimeout(() => {
+            fetch(`https://jsonplaceholder.typicode.com/todos/${url}`).then(res => {
+                resolve(res)
+            }, rej => {
+                reject(rej)
+            })
+
+        }, 1000);
+    });
+}
+
+// reduce
+function execute(tasks) {
+    return tasks.reduce(
+        (previousPromise, currentPromise) => previousPromise.then((resultList) => {
+            return new Promise(resolve => {
+                currentPromise().then(result => {
+                    resolve(resultList.concat(result))
+                }).catch(() => {
+                    resolve(resultList.concat(null))
+                })
+            })
+        }),
+        Promise.resolve([])
+    )
+}
+
+// aysnc/await版本
+const execute = async (tasks = []) => {
+    const resultList = [];
+    for (task of tasks) {
+        try {
+            resultList.push(await task());
+        } catch (e) {
+            resultList.push(null);
+        }
+    }
+    return resultList;
+}
+
+execute([Task(111111), Task(2), Task(3)])
+```
 
 ## webpack
 
@@ -484,7 +587,7 @@ Vue 则采用的是数据劫持与发布订阅相结合的方式实现双向绑�
 
 ### 你做过最有挑战的事情是什么
 
-
+使用从来没有使用过的uniapp独立开发去开发app，遇到到了很多的问题，比如ios开发需要账号申请证书描述文件，找PM沟通去做相关的申请，也踩遇到了很多的坑
 
 ### 你的职业规划
 
@@ -504,3 +607,24 @@ Vue 则采用的是数据劫持与发布订阅相结合的方式实现双向绑�
 ### 让你设计一个自动保存表单，你会怎么设计
 
 - 定时调接口保存
+
+### 让你带团队，你会怎么做
+
+- 业务能力
+  - 明确业务的目标
+  - 梳理业务流程
+  - 有效的参与业务评审
+- 协作沟通能力
+  - 需求评审
+  - 后端联调
+  - 交付测试验收
+  - 任务分配
+  - 任务风险
+  - 任务进度把控
+- 团队沉淀
+  - 公共组件
+  - 搭建知识库
+  - 踩坑分享
+- 学习的能力
+  - 关注前沿技术
+  - 解决现有业务问题
