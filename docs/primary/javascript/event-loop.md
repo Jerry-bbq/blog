@@ -6,6 +6,9 @@ sidebar: auto
 
 因为js是单线程的，因此异步操作需要借助**事件循环**机制来实现，理解事件循环有助于我们深入理解异步事件
 
+- [动态演示](https://www.jsv9000.app/)
+- [Loupe](http://latentflip.com/loupe/?code=JC5vbignYnV0dG9uJywgJ2NsaWNrJywgZnVuY3Rpb24gb25DbGljaygpIHsKICAgIHNldFRpbWVvdXQoZnVuY3Rpb24gdGltZXIoKSB7CiAgICAgICAgY29uc29sZS5sb2coJ1lvdSBjbGlja2VkIHRoZSBidXR0b24hJyk7ICAgIAogICAgfSwgMjAwMCk7Cn0pOwoKY29uc29sZS5sb2coIkhpISIpOwoKc2V0VGltZW91dChmdW5jdGlvbiB0aW1lb3V0KCkgewogICAgY29uc29sZS5sb2coIkNsaWNrIHRoZSBidXR0b24hIik7Cn0sIDUwMDApOwoKY29uc29sZS5sb2coIldlbGNvbWUgdG8gbG91cGUuIik7!!!PGJ1dHRvbj5DbGljayBtZSE8L2J1dHRvbj4%3D)
+
 ## 浏览器中的事件循环
 
 因为浏览器的js是单线程的，也就是说同一时间只能做一件事（也就是执行一段js代码），可是浏览器又要执行DOM渲染、各种DOM操作事件、定时器、异步请求等操作，因此引入了事件循环机制。

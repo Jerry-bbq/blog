@@ -2,7 +2,7 @@
 
 [w3c](https://www.w3cschool.cn/escript6/escript6-pm6z37es.html)
 
-## le与const
+## let与const
 
 `let`声明的变量只在它所在的`代码块`有效
 

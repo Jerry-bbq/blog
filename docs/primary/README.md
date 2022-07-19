@@ -8,7 +8,8 @@ sidebar: auto
 
 - [数据类型](./javascript/data-types.md)
 - [原型和原型链](./javascript/prototype-chain.md)
-- [事件循环](./javascript/asyn-single-thread.md)
+- [改变this指向](./javascript/change-this.md)
+- [事件循环](./javascript/event-loop.md)
 - [通信](./javascript/communications.md)
 - [垃圾回收机制与内存泄漏](./javascript/gc.md)
 - [作用域和闭包](./javascript/scope-closure.md)

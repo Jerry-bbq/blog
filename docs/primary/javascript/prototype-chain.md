@@ -34,13 +34,9 @@ Object.create(null) 创建的对象是一个空对象，在该对象上没有继
 
 ## 构造函数constructor
 
-### 定义
+构造函数（constructor）也称之为构造器，功能类似对象模板，一个构造器可以生成任意多个实例，实例对象具有相同的属性和方法，但是不相等。在JavaScript中，构造器其实就是一个普通的函数。当使用**new操作符**来作用这个函数时，它就可以被称为构造函数
 
-构造函数（constructor）也称之为构造器，功能类似对象模板，一个构造器可以生成任意多个实例，实例对象具有相同的属性和方法，但是不相等
-
-在JavaScript中，构造器其实就是一个普通的函数。当使用**new操作符**来作用这个函数时，它就可以被称为构造函数
-
-### 特点
+特点：
 
 - 首字母大写
 - 函数体内部使用`this`关键字,代表所要生成的对象实例
@@ -48,9 +44,7 @@ Object.create(null) 创建的对象是一个空对象，在该对象上没有继
 
 ## 原型
 
-JavaScript中每个对象都拥有一个原型对象，对象以其原型为模板、从原型继承方法和属性。
-
-每个函数都有一个特殊的属性叫作原型（prototype）,案例如下：
+JavaScript中每个对象都拥有一个原型对象，对象以其原型为模板、从原型继承方法和属性。每个函数都有一个特殊的属性叫作原型（prototype）,案例如下：
 
 ```js
 function doSomething(){}
@@ -59,23 +53,11 @@ console.log( doSomething.prototype );
 
 可以看到`doSomething` 函数有一个默认的原型属性：
 
-```bash
+```js
 {
     constructor: ƒ doSomething(),
     __proto__: {
         constructor: ƒ Object()
-        hasOwnProperty: ƒ hasOwnProperty()
-        isPrototypeOf: ƒ isPrototypeOf()
-        propertyIsEnumerable: ƒ propertyIsEnumerable()
-        toLocaleString: ƒ toLocaleString()
-        toString: ƒ toString()
-        valueOf: ƒ valueOf()
-        __defineGetter__: ƒ __defineGetter__()
-        __defineSetter__: ƒ __defineSetter__()
-        __lookupGetter__: ƒ __lookupGetter__()
-        __lookupSetter__: ƒ __lookupSetter__()
-        get __proto__: ƒ __proto__()
-        set __proto__: ƒ __proto__()
     }
 }
 ```
@@ -90,24 +72,12 @@ console.log( doSomething.prototype );
 
 结果如下：
 
-```bash
+```js
 {
     foo: "bar",
     constructor: ƒ doSomething(),
     __proto__: {
         constructor: ƒ Object()
-        hasOwnProperty: ƒ hasOwnProperty()
-        isPrototypeOf: ƒ isPrototypeOf()
-        propertyIsEnumerable: ƒ propertyIsEnumerable()
-        toLocaleString: ƒ toLocaleString()
-        toString: ƒ toString()
-        valueOf: ƒ valueOf()
-        __defineGetter__: ƒ __defineGetter__()
-        __defineSetter__: ƒ __defineSetter__()
-        __lookupGetter__: ƒ __lookupGetter__()
-        __lookupSetter__: ƒ __lookupSetter__()
-        get __proto__: ƒ __proto__()
-        set __proto__: ƒ __proto__()
     }
 }
 ```
@@ -124,7 +94,7 @@ console.log( doSomeInstancing );
 
 结果如下：
 
-```bash
+```js
 {
     prop: "some value",
     __proto__: {
@@ -132,18 +102,6 @@ console.log( doSomeInstancing );
         constructor: ƒ doSomething(),
         __proto__: {
             constructor: ƒ Object()
-            hasOwnProperty: ƒ hasOwnProperty()
-            isPrototypeOf: ƒ isPrototypeOf()
-            propertyIsEnumerable: ƒ propertyIsEnumerable()
-            toLocaleString: ƒ toLocaleString()
-            toString: ƒ toString()
-            valueOf: ƒ valueOf()
-            __defineGetter__: ƒ __defineGetter__()
-            __defineSetter__: ƒ __defineSetter__()
-            __lookupGetter__: ƒ __lookupGetter__()
-            __lookupSetter__: ƒ __lookupSetter__()
-            get __proto__: ƒ __proto__()
-            set __proto__: ƒ __proto__()
         }
     }
 }
@@ -232,8 +190,6 @@ console.dir(Object)
 
 ## 原型链
 
-### 定义
-
 **在JavaScript中，每个对象都拥有一个原型对象，对象以其原型为模板、从原型继承方法和属性。原型对象也可能拥有原型，并从中继承方法和属性，一层一层、以此类推。这种关系常被称为原型链**。它解释了为何一个对象会拥有定义在其他对象中的属性和方法
 
 ### 原型链的查找过程
@@ -268,32 +224,11 @@ console.dir(Object)
 
 ## instanceof运算符
 
-### 原理
-
-检测构造函数的 `prototype` 属性是否出现在某个实例对象的原型链上，是则返回true，否则返回false
-
-### 案例
-
-```js
-function Car(make, model, year) {
-  this.make = make;
-  this.model = model;
-  this.year = year;
-}
-const auto = new Car('Honda', 'Accord', 1998);
-// auto.__proto__ === Car.prototype
-console.log(auto instanceof Car);
-// auto.__proto__.__proto__ === Object.prototype
-console.log(auto instanceof Object);
-```
-
-### 实现
-
 @[code](@code-snippet/instanceof.js)
 
 ## new运算符
 
-创建一个对象的实例：`new [constructor]`
+创建一个对象的实例：`new [Constructor]`
 
 1. 无 return
 
@@ -303,10 +238,8 @@ function Foo(age) {
 }
 
 var o = new Foo(111);
-console.log(o);
+console.log(o);         // { age: 111 }
 ```
-
-结果为：{ age: 111 }
 
 2. return 对象类型数据
 
@@ -318,9 +251,8 @@ function Foo(age) {
 }
 
 var o = new Foo(222);
-console.log(o);
+console.log(o);         // { type: "return 对象" }
 ```
-结果为：{ type: "return 对象" }
 
 3. return 基本类型数据
 
@@ -332,20 +264,16 @@ function Foo(age) {
 }
 
 var o = new Foo(333);
-console.log(o);
+console.log(o);         // { age: 333 }
 ```
-
-结果为：{ age: 333 }
 
 总结：
 
 - 如果构造函数显式返回对象类型，则直接返回这个对象
 - 如果构造函数没有显式返回对象类型（返回基本数据类型或者直接不返回），则返回最开始创建的对象
 
-::: warning 提示
-
-如果构造函数是箭头函数，因为箭头函数中没有`[[Constructor]]`方法，不能使用`new`调用，会报错。
-
+::: tip 提示
+如果构造函数是箭头函数，因为箭头函数中没有`[[Constructor]]`方法，所以不能使用`new`调用，会报错。
 :::
 
 ### 原理
@@ -585,75 +513,3 @@ let child = new Child(1)
 child.getValue() // 1
 child instanceof Parent // true
 ```
-
-## 改变this指向
-
-```js
-// demo
-function fn(a,b) {
-    this.xxx = 3
-    console.log(a, b, this)
-    return a + b
-}
-
-fn(1,2)                     // 1,2,Window
-console.log(xxx)  
-
-const obj = {m: 0}
-
-// 改变this指向
-// call参数平铺
-fn.call(obj, 1,2)            // 1,2, obj
-fn.call(undefined, 1,2)      // 1,2, Window
-fn.call(null,1,2)            // 1,2, Window
-// apply参数为数组
-fn.apply(obj, [1,2])         // 1,2, obj
-
-// bind返回一个新的函数，为了看到结果，我们去执行下函数
-fn.bind(obj)(3,4)            // 3,4, obj
-fn.bind(obj, 5)(3,4)         // 5,3, obj
-fn.bind(obj, 5, 6)(3,4)      // 5,6, obj
-
-```
-
-### call/apply/bind区别
-
-| api | 函数是否执行 | this指向 | 参数 |
-|---|---|---|---|
-| call | 执行 | 指向第一个参数 | call(obj, param1,param1...)，参数列表 |
-| apply | 执行 | 指向第一个参数 | apply(obj, [param1,param1...])，参数是数组 |
-| bind | 返回绑定this之后的新的函数 <br>（新函数内部会调用原来的函数） | 指向第一个参数 | bind(obj, param1,param1...)，参数可以分为多次传入 |
-
-::: warning 提示
-
-如果 obj 为 `undefined` 或 `null`，`this` 指向 `Window`对象
-
-bind()会返回一个新的函数，如果这个返回的新的函数作为构造函数创建一个新的对象，那么此时 this 不再指向传入给 bind 的第一个参数，而是指向用 new 创建的实例
-
-:::
-
-### 自定义call和apply
-
-实现思路：
-
-1. 给obj添加一个临时方法，方法名任意，值为当前函数
-2. 通过obj调用这个临时方法，并将接收的参数传入
-3. 删除obj上的这个临时方法属性
-4. 返回方法的执行结果
-
-call():
-
-@[code](@code-snippet/call.js)
-
-apply():
-
-@[code](@code-snippet/apply.js)
-
-### 自定义bind
-
-实现思路：
-
-1. 返回一个新函数
-2. 在新函数内部通过原函数对象的`call`方法来执行原函数，指定`this`为`obj`，指定参数为bind调用的参数和后面新函数调用的参数
-
-@[code](@code-snippet/bind.js)
