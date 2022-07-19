@@ -6,10 +6,10 @@ sidebar: auto
 
 ## 分类
 
-| 类型 | 数据类型 | 值存储 |
-|---|---|---|
-| 基本类型 | string、number、boolean、null、undefined、bigint、symbol (7种)| 栈(stack) |
-| 引用类型 | object，其中包含具体的引用类型Array、Function、Date、RegExp等 | 堆(heap) |
+| 类型 | 数据类型 | 值存储 | 变量访问方式 |
+|---|---|---|---|
+| 基本类型 | string、number、boolean、null、undefined、<br>bigint（ES10）、symbol（ES6）| 栈（stack） | 按值来访问 |
+| 引用类型 | Object、Array、Function、Date、RegExp等 | 堆（heap） | 按引用访问 |
 
 ## 值存储
 
@@ -20,7 +20,7 @@ JavaScript变量存储在内存的哪里？
 
 ![数据类型存储图解](./images/stack-heap.png)
 
-::: danger 提示
+::: tip 提示
 
 - 可以看出，数据类型指的是 **变量值** 的类型，不是变量的类型
 - 对于JS这种"弱类型"语言来说， 无法给变量限定类型，因为变量的类型是可变的
@@ -31,12 +31,12 @@ JavaScript变量存储在内存的哪里？
 let a1 = 1
 let a2 = a1
 a2++
-console.log(a1, a2)       // 1 2
+console.log(a1, a2)              // 1 2
 
 let obj1 = { name: 'john' }
 let obj2 = obj1
 obj2.name = 'marry'
-console.log(obj1, obj2) // {name: 'marry'} {name: 'marry'}
+console.log(obj1, obj2)         // {name: 'marry'} {name: 'marry'}
 ```
 
 ## 数据类型的检测
@@ -182,7 +182,7 @@ dataType(new Date)            // "date"
 dataType(/\d/)                // "regexp"
 ```
 
-## 如何判断是否是一个数组
+## 判断是否是数组的几种方式
 
 ```js
 let arr = []

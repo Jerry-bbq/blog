@@ -6,32 +6,24 @@ sidebar: auto
 
 JavaScript是面向对象编程（Object-oriented programming ，OOP）的语言，OOP的基本思想是在程序里，我们通过使用对象去构建现实世界的模型，把原本很难（或不可）能被使用的功能，简单化并提供出来，以供访问。
 
-## 创建对象的几种方法
-
-### 字面量方法
+## 创建对象的几种方式
 
 ```js
-// {}
-var o1 = { name: 'o1' }
-```
+/** 1. 字面量方法 */
+var o = { name: 'o' }
 
-### 构造函数
+/** 2. 构造函数 */
+// 2.1 自定义构造函数
+var M = function (name) { this.name = name }
+var o = new M('o')
+// 2.2 new Object()
+var o = new Object({ name: 'o' })
 
-```js
-var M = function(name){ this.name = name }
-var o3 = new M('o3')
-
-// new Object()
-var o2 = new Object({ name: 'o2' })
-```
-
-### Object.create()
-
-```js
+/** 3. Object.create() */
 // Object.create(),创建一个对象并继承原型对象
-var p = {name: 'p'}
-var o4 = Object.create(p)
-// o4.__proto__ === p
+var p = { name: 'p' }
+var o = Object.create(p)
+// o.__proto__ === p
 ```
 
 ::: tip 提示

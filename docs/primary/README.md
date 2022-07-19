@@ -6,7 +6,7 @@ sidebar: auto
 
 ## JavaScript
 
-- [数据类型](./javascript/data-type.md)
+- [数据类型](./javascript/data-types.md)
 - [原型和原型链](./javascript/prototype-chain.md)
 - [事件循环](./javascript/asyn-single-thread.md)
 - [通信](./javascript/communications.md)
