@@ -1,13 +1,15 @@
-const { path } = require('@vuepress/utils')
-const { defaultTheme } = require('@vuepress/theme-default')
-const { mediumZoomPlugin } = require('@vuepress/plugin-medium-zoom')
-const { backToTopPlugin } = require('@vuepress/plugin-back-to-top')
-const { nprogressPlugin } = require('@vuepress/plugin-nprogress')
-const { docsearchPlugin } = require('@vuepress/plugin-docsearch')
-const { clipboardPlugin } = require('vuepress-plugin-clipboard')
+import { defineUserConfig } from 'vuepress'
+import { path } from '@vuepress/utils'
+import { defaultTheme } from '@vuepress/theme-default'
+import { mediumZoomPlugin } from '@vuepress/plugin-medium-zoom'
+import { backToTopPlugin } from '@vuepress/plugin-back-to-top'
+import { nprogressPlugin } from '@vuepress/plugin-nprogress'
+import { docsearchPlugin } from '@vuepress/plugin-docsearch'
+import { clipboardPlugin } from 'vuepress-plugin-clipboard'
+// import { registerComponentsPlugin } from '@vuepress/plugin-register-components'
 const { registerComponentsPlugin } = require('@vuepress/plugin-register-components')
 
-module.exports = {
+export default defineUserConfig({
   // 站点配置
   title: 'Blog',
   description: '技术博客',
@@ -140,9 +142,12 @@ module.exports = {
       indexName: '',
       appId: '',
     }),
-    clipboardPlugin({}),
+    clipboardPlugin({
+      staticIcon: true,
+      successText: '复制成功！',
+    }),
     registerComponentsPlugin({
       componentsDir: path.resolve(__dirname, './components'),
     }),
   ],
-}
+})
