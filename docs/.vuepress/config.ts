@@ -1,10 +1,11 @@
-const path = require('path')
+const { path } = require('@vuepress/utils')
 const { defaultTheme } = require('@vuepress/theme-default')
 const { mediumZoomPlugin } = require('@vuepress/plugin-medium-zoom')
 const { backToTopPlugin } = require('@vuepress/plugin-back-to-top')
 const { nprogressPlugin } = require('@vuepress/plugin-nprogress')
 const { docsearchPlugin } = require('@vuepress/plugin-docsearch')
 const { clipboardPlugin } = require('vuepress-plugin-clipboard')
+const { registerComponentsPlugin } = require('@vuepress/plugin-register-components')
 
 module.exports = {
   // 站点配置
@@ -140,5 +141,8 @@ module.exports = {
       appId: '',
     }),
     clipboardPlugin({}),
+    registerComponentsPlugin({
+      componentsDir: path.resolve(__dirname, './components'),
+    }),
   ],
 }
