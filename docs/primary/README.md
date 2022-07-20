@@ -6,7 +6,7 @@ sidebar: auto
 
 ## JavaScript
 
-- [数据类型](./javascript/data-types.md)
+- [数据类型及检测](./javascript/data-types.md)
 - [原型和原型链](./javascript/prototype-chain.md)
 - [改变this指向](./javascript/change-this.md)
 - [事件循环](./javascript/event-loop.md)
