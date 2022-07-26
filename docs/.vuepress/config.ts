@@ -67,7 +67,7 @@ export default defineUserConfig({
           },
           {
             text: 'React',
-            link: '/framework/react/',
+            link: '/framework/react/react',
           },
         ],
       },

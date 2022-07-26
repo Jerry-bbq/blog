@@ -1,1 +1,0 @@
-import{_ as n,f as a,$ as c,o as e,c as o,F as l,l as i,t as p}from"./app.41542100.js";const u=a({setup(){const t=c([1,2,3,4,5]);return console.log(this),{list:t}}});function d(s,t,_,f,k,m){return e(),o("div",null,[(e(!0),o(l,null,i(s.list,r=>(e(),o("div",{key:r},p(r),1))),128))])}var $=n(u,[["render",d],["__file","read-books.vue"]]);export{$ as default};

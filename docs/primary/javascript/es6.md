@@ -2,7 +2,7 @@
 
 [w3c](https://www.w3cschool.cn/escript6/escript6-pm6z37es.html)
 
-## let与const
+## let与const与var的区别
 
 `let`声明的变量只在它所在的`代码块`有效
 
@@ -14,6 +14,20 @@
 a // ReferenceError: a is not defined.
 b // 1
 ```
+
+| 声明变量 | 是否存在变量提升 | 是否可以重复声明 | 是否可以更改 |
+|---|---|---|---|
+| let | 否 | 否 | 是 |
+| const | 否 | 否 | 原始类型不可以，但是引用类型可以 |
+| var | 是 | 是 | 是 |
+
+::: tip 说明
+
+const 声明的引用类型可以更改的原因：
+
+因为 const 声明的引用类型的指针指向的地址不可以改变，指向地址的内容是可以改变的
+
+:::
 
 ## 解构赋值
 
