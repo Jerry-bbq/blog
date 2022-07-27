@@ -9,23 +9,24 @@ function fn(a, b) {
     return a + b
 }
 
-fn(1, 2)                     // 1,2,Window
+fn(1, 2)                     // 1, 2, this -> Window
 console.log(xxx)
 
 const obj = { m: 0 }
 
 // 改变this指向
 // call参数平铺
-fn.call(obj, 1, 2)            // 1,2, obj
-fn.call(undefined, 1, 2)      // 1,2, Window
-fn.call(null, 1, 2)            // 1,2, Window
+fn.call(obj, 1, 2)            // 1, 2, this -> obj
+fn.call(undefined, 1, 2)      // 1, 2, this -> Window
+fn.call(null, 1, 2)            // 1, 2, this -> Window
+
 // apply参数为数组
-fn.apply(obj, [1, 2])         // 1,2, obj
+fn.apply(obj, [1, 2])         // 1, 2, this -> obj
 
 // bind返回一个新的函数，为了看到结果，我们去执行下函数
-fn.bind(obj)(3, 4)            // 3,4, obj
-fn.bind(obj, 5)(3, 4)         // 5,3, obj
-fn.bind(obj, 5, 6)(3, 4)      // 5,6, obj
+fn.bind(obj)(3, 4)            // 3, 4, this -> obj
+fn.bind(obj, 5)(3, 4)         // 5, 3, this -> obj
+fn.bind(obj, 5, 6)(3, 4)      // 5, 6, this -> obj
 ```
 
 ## call/apply/bind区别

@@ -8,20 +8,30 @@ JavaScript是面向对象编程（Object-oriented programming ，OOP）的语言
 
 ## 创建对象的几种方式
 
-```js
-/** 1. 字面量方法 */
-var o = { name: 'o' }
+1. 字面量方法
 
-/** 2. 构造函数 */
+```js
+var o = { name: 'o' }
+```
+
+2. 构造函数
+
+```js
 // 2.1 自定义构造函数
 var M = function (name) { this.name = name }
 var o = new M('o')
+
 // 2.2 new Object()
 var o = new Object({ name: 'o' })
+```
 
-/** 3. Object.create() */
-// Object.create(),创建一个对象并继承原型对象
+3. Object.create()
+
+用于创建一个新对象，使用现有的对象来作为新创建对象的原型（prototype）
+
+```js
 var p = { name: 'p' }
+// 创建一个对象并继承原型对象
 var o = Object.create(p)
 // o.__proto__ === p
 ```

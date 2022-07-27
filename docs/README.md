@@ -2,7 +2,7 @@
 home: true
 heroImage: /logo.png
 heroText: 技术是第一生产力
-tagline: '个人前端博客'
+tagline: '前端博客'
 actions: 
   - text:  LET'S GO →
     link: /primary/
