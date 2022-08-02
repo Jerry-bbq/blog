@@ -4,10 +4,90 @@ sidebar: auto
 
 # canvas自定义仪表盘
 
+## 功能
+
 - [x] 刻度线及刻度值
 - [x] 当前值显示
 - [x] 任意起始终止角度
-- [ ] 当前值动画
+- [x] 拖拽
+- [x] 当前值动画
+
+## 前置知识
+
+### canvas的基础使用
+
+```html
+<canvas id="canvas" width="400" height="400"></canvas>
+```
+
+```js
+let canvas = document.getElementById('canvas')
+let ctx = canvas.getContext('2d')
+```
+
+### 画布栅格以及坐标空间
+
+![canvas_default_grid](./images/canvas_default_grid.png)
+
+### 圆弧绘制
+
+画一个以（x,y）为圆心的以 radius 为半径的圆弧（圆），从 startAngle 开始到 endAngle 结束，按照 anticlockwise 给定的方向（默认为顺时针）来生成。
+
+```js
+arc(x, y, radius, startAngle, endAngle, anticlockwise)
+```
+
+坐标系及旋转：
+
+![coordinate](./images/coordinate.png)
+
+### 角度和弧度转换
+
+- 在CSS中，做旋转常用到的都是角度（deg）
+- 在Canvas中绘制圆或圆弧时用到的是弧度（rad）
+
+```js
+// 角度 => 弧度
+let rad = deg => (Math.PI * deg) / 180
+
+// 弧度 => 角度
+let deg = rad => (rad * 180) / Math.PI
+```
+
+- [参考大漠](https://www.open-open.com/lib/view/open1489798156717.html#articleHeader0)
+
+### 圆上某个点的坐标
+
+- 已知圆心(x0, y0)，半径radius，角度deg，求圆上某个点(x1, y1)的坐标
+
+```js
+let x1 = x0 + Math.cos(Math.PI/180*deg) * radius
+let y1 = y0 + Math.sin(Math.PI/180*deg) * radius
+```
+
+
+
+- [正弦余弦](https://www.shuxuele.com/sine-cosine-tangent.html)
+
+## 实现
+
+### 绘制内层圆
+
+### 绘制外层圆
+
+### 绘制进度条
+
+### 绘制刻度线
+
+### 绘制文案
+
+### 绘制当前值滑块圆点
+
+### 滑动
+
+### 动画
+
+## 实现
 
 ```js
 class Gauge {

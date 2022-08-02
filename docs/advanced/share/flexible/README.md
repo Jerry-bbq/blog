@@ -2,16 +2,13 @@
 sidebar: auto
 ---
 
-# vue移动端适配
+# amfe-flexible源码阅读
 
 移动端适配解决方案
 
 ## 安装
 
 ```bash
-yarn add amfe-flexible -S
-yarn add postcss-pxtorem -D
-# 或者
 npm install amfe-flexible -S
 npm install postcss-pxtorem -D
 ```
@@ -21,7 +18,12 @@ npm install postcss-pxtorem -D
 在 index.html 的 head标签 中添加如下代码：
 
 ```html
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no">
+<meta name="viewport" 
+      content="width=device-width, 
+          initial-scale=1, 
+          maximum-scale=1, 
+          minimum-scale=1, 
+          user-scalable=no">
 ```
 
 在 main.js中 引用
