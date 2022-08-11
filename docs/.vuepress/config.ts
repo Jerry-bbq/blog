@@ -102,14 +102,14 @@ export default defineUserConfig({
           },
         ],
       },
-      // {
-      //   text: 'JobSummary',
-      //   link: '/job-summary/',
-      // },
       {
-        text: 'HK-Office',
-        link: '/audition/',
+        text: 'JobSummary',
+        link: '/job-summary/',
       },
+      // {
+      //   text: 'HK-Office',
+      //   link: '/audition/',
+      // },
       {
         text: 'GitHub',
         link: 'https://github.com/Jerry-bbq?tab=repositories',
