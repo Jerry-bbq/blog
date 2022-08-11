@@ -16,6 +16,7 @@
 ## 工作流
 
 - [开发工作流](./work-flow/README.md)
+- [如何做好项目管理](./work-flow/project-manage.md)
 ## Vue2.0
 
 - [vue2.0兼容IE9及以上](./vue/vue-ie9.md)
