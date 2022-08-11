@@ -102,10 +102,10 @@ export default defineUserConfig({
           },
         ],
       },
-      {
-        text: 'JobSummary',
-        link: '/job-summary/',
-      },
+      // {
+      //   text: 'JobSummary',
+      //   link: '/job-summary/',
+      // },
       {
         text: 'HK-Office',
         link: '/audition/',
