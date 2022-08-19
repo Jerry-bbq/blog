@@ -16,6 +16,7 @@
 ## 工作流
 
 - [开发工作流](./work-flow/README.md)
+- [前端代码规范](./code-normalization/README.md)
 - [如何做好项目管理](./work-flow/project-manage.md)
 ## Vue2.0
 
