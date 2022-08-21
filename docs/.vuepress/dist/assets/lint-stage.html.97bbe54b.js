@@ -1,0 +1,1 @@
+import{_ as t,o as a,c as s,a as e,d as n}from"./app.2c1ad979.js";const r={},c=e("h1",{id:"lint-stage",tabindex:"-1"},[e("a",{class:"header-anchor",href:"#lint-stage","aria-hidden":"true"},"#"),n(" lint-stage")],-1),o=[c];function i(_,l){return a(),s("div",null,o)}var h=t(r,[["render",i],["__file","lint-stage.html.vue"]]);export{h as default};

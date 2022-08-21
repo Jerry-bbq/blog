@@ -1,0 +1,1 @@
+const t=JSON.parse('{"key":"v-2afaf624","path":"/job-summary/normalization/commitizen.html","title":"commitizen","lang":"en-US","frontmatter":{},"excerpt":"","headers":[],"git":{"updatedTime":1661092791000},"filePathRelative":"job-summary/normalization/commitizen.md"}');export{t as data};

@@ -1,0 +1,1 @@
+const t=JSON.parse('{"key":"v-31432abe","path":"/job-summary/normalization/lint-stage.html","title":"lint-stage","lang":"en-US","frontmatter":{},"excerpt":"","headers":[],"git":{"updatedTime":1661092791000},"filePathRelative":"job-summary/normalization/lint-stage.md"}');export{t as data};
