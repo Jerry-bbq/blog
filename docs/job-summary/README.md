@@ -1,5 +1,31 @@
 # 工作总结
 
+## 开发流程
+
+- [开发工作流](./work-flow/README.md)
+
+## 前端规范化
+
+- [约定式规范](./normalization/convention.md)
+- 工具化规范
+  - [代码风格检查-eslint](./normalization/eslint.md)
+  - [代码格式化-prettier](./normalization/prettier.md)
+  - [提交规范-commitzen](./normalization/commitizen.md)
+  - [检查提交规范-husky](./normalization/husky.md)
+  - [提交自动检查代码风格-lint-stage](./normalization/lint-stage.md)
+
+## 前端工程化
+
+从开发到部署
+- 前端脚手架
+- ui库
+- CICD配置
+- Nginx配置
+- 不同打包环境配置
+
+## 项目管理
+
+- [如何做好项目管理](./work-flow/project-manage.md)
 ## 开发工具
 
 - [vscode](./vscode/README.md)
@@ -15,11 +41,8 @@
 
 ## 工作流
 
-- [开发工作流](./work-flow/README.md)
 - 前端代码规范
-  - [约定式规范](./code-normalization/convention.md)
-  - [工具类规范](./code-normalization/tools.md)
-- [如何做好项目管理](./work-flow/project-manage.md)
+
 ## Vue2.0
 
 - [vue2.0兼容IE9及以上](./vue/vue-ie9.md)
