@@ -1,0 +1,1 @@
+import{_ as t,o as r,c as a,a as e,d as c}from"./app.d85d8bc0.js";const o={},s=e("h1",{id:"prettier",tabindex:"-1"},[e("a",{class:"header-anchor",href:"#prettier","aria-hidden":"true"},"#"),c(" prettier")],-1),i=[s];function _(n,d){return r(),a("div",null,i)}var l=t(o,[["render",_],["__file","prettier.html.vue"]]);export{l as default};

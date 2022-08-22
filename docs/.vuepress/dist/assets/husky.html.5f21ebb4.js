@@ -1,8 +1,0 @@
-import{_ as e,r as t,o,c,a as s,b as r,d as a,e as h}from"./app.2c1ad979.js";const i={},d=s("h1",{id:"husky",tabindex:"-1"},[s("a",{class:"header-anchor",href:"#husky","aria-hidden":"true"},"#"),a(" husky")],-1),l={href:"https://typicode.github.io/husky",target:"_blank",rel:"noopener noreferrer"},p=a("husky"),u=h(`<h2 id="husky-1" tabindex="-1"><a class="header-anchor" href="#husky-1" aria-hidden="true">#</a> husky</h2><h3 id="\u5B89\u88C5" tabindex="-1"><a class="header-anchor" href="#\u5B89\u88C5" aria-hidden="true">#</a> \u5B89\u88C5</h3><div class="language-bash ext-sh"><pre class="language-bash"><code><span class="token comment"># \u5B89\u88C5</span>
-<span class="token function">npm</span> <span class="token function">install</span> husky --save-dev
-<span class="token comment"># \u5F00\u542FGit hooks</span>
-<span class="token function">npm</span> set-script prepare <span class="token string">&quot;husky install&quot;</span>
-<span class="token function">npm</span> run prepare
-</code></pre></div><h3 id="\u6DFB\u52A0hook" tabindex="-1"><a class="header-anchor" href="#\u6DFB\u52A0hook" aria-hidden="true">#</a> \u6DFB\u52A0hook</h3><div class="language-bash ext-sh"><pre class="language-bash"><code>npx husky <span class="token function">add</span> .husky/pre-commit <span class="token string">&quot;npm test&quot;</span>
-<span class="token function">git</span> <span class="token function">add</span> .husky/pre-commit
-</code></pre></div>`,5);function k(_,f){const n=t("ExternalLinkIcon");return o(),c("div",null,[d,s("ul",null,[s("li",null,[s("a",l,[p,r(n)])])]),u])}var y=e(i,[["render",k],["__file","husky.html.vue"]]);export{y as default};
