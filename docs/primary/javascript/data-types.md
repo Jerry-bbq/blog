@@ -182,14 +182,15 @@ dataType(new Date)            // "date"
 dataType(/\d/)                // "regexp"
 ```
 
-## 判断是否是数组的几种方式
+## 判断一个变量否为数组的三种方式
 
 ```js
-let arr = []
+let arr = [1,2,3]
+
 // 第一种
-arr instanceof Array  // true
-// 第二种
 Array.isArray(arr)    // true
+// 第二种
+arr instanceof Array  // true
 // 第三种
 Object.prototype.toString.call(arr) === '[object Array]'    //true
 ```

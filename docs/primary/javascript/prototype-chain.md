@@ -6,26 +6,77 @@ sidebar: auto
 
 JavaScript是面向对象编程（Object-oriented programming ，OOP）的语言，OOP的基本思想是在程序里，我们通过使用对象去构建现实世界的模型，把原本很难（或不可）能被使用的功能，简单化并提供出来，以供访问。
 
-## 创建对象的几种方式
+## 创建对象的五种方式
 
-1. 字面量方法
+1. 对象字面量
+
+使用对象字面量的方式可以直接创建一个对象，该对象可以包含属性和方法。
 
 ```js
-var o = { name: 'o' }
+const person = {
+  name: 'Alice',
+  age: 30,
+  sayHello: function() {
+    console.log(`Hello, my name is ${this.name}.`);
+  }
+};
 ```
 
 2. 构造函数
 
-```js
-// 2.1 自定义构造函数
-var M = function (name) { this.name = name }
-var o = new M('o')
+使用构造函数可以创建一个对象实例。构造函数可以通过 this 关键字给新对象设置属性和方法。
 
-// 2.2 new Object()
-var o = new Object({ name: 'o' })
+```js
+function Person(name, age) {
+  this.name = name;
+  this.age = age;
+  this.sayHello = function() {
+    console.log(`Hello, my name is ${this.name}.`);
+  }
+}
+
+const person = new Person('Alice', 30);
 ```
 
-3. Object.create()
+3. 原型
+
+使用原型可以共享属性和方法。通过将属性和方法添加到原型对象中，所有使用该构造函数创建的对象都可以共享这些属性和方法。
+
+```js
+function Person(name, age) {
+  this.name = name;
+  this.age = age;
+}
+
+Person.prototype.sayHello = function() {
+  console.log(`Hello, my name is ${this.name}.`);
+};
+
+const person = new Person('Alice', 30);
+
+```
+
+4. class
+
+使用 class 关键字可以创建一个类，该类可以包含属性和方法。
+
+```js
+class Person {
+  constructor(name, age) {
+    this.name = name;
+    this.age = age;
+  }
+
+  sayHello() {
+    console.log(`Hello, my name is ${this.name}.`);
+  }
+}
+
+const person = new Person('Alice', 30);
+
+```
+
+5. Object.create()
 
 用于创建一个新对象，使用现有的对象来作为新创建对象的原型（prototype）
 
@@ -40,11 +91,105 @@ var o = Object.create(p)
 
 Object.create(null) 创建的对象是一个空对象，在该对象上没有继承原型链上的属性或者方法
 
+Object.create() 是 JavaScript 中的一个方法，用于创建一个新对象，并将新对象的原型设置为指定的对象。Object.create() 的语法如下：
+
+```js
+Object.create(proto[, propertiesObject])
+```
+其中，proto 是新对象的原型，可以为 null 或任何一个对象，propertiesObject 是一个可选的参数，用于定义新对象的属性。
+
+Object.create() 的特点包括：
+
+1. 继承指定对象的属性
+使用 Object.create() 创建的新对象，其原型链指向指定的对象，因此它可以继承指定对象的属性。例如：
+
+```js
+const person = {
+  name: 'Alice',
+  age: 30,
+  sayHello() {
+    console.log(`Hello, my name is ${this.name}.`);
+  }
+};
+
+const student = Object.create(person);
+student.name = 'Bob';
+student.sayHello(); // 输出 "Hello, my name is Bob."
+```
+在上面的例子中，使用 Object.create() 方法创建了一个新的对象 student，并将 person 对象作为 student 对象的原型。由于 student 对象继承了 person 对象的属性和方法，因此在 student 对象上调用 sayHello() 方法时，可以输出 Hello, my name is Bob.。
+
+2. 不会调用构造函数
+使用 Object.create() 创建的新对象，不会调用构造函数。因此，不需要使用 new 关键字来调用构造函数。例如：
+
+```js
+function Person(name, age) {
+  this.name = name;
+  this.age = age;
+}
+
+const student = Object.create(Person.prototype);
+student.name = 'Bob';
+console.log(student instanceof Person); // 输出 "true"
+```
+在上面的例子中，使用 Object.create() 方法创建了一个新的对象 student，并将 Person.prototype 对象作为 student 对象的原型。由于 student 对象的原型为 Person.prototype，因此可以通过 instanceof 运算符判断 student 对象是否为 Person 类型的实例。
+
+3. 可以设置新对象的属性
+使用 Object.create() 创建的新对象，可以通过第二个参数 propertiesObject 来设置新对象的属性。例如：
+
+```js
+const person = {
+  name: 'Alice',
+  age: 30,
+  sayHello() {
+    console.log(`Hello, my name is ${this.name}.`);
+  }
+};
+
+const student = Object.create(person, {
+  grade: { value: 1, writable: true, configurable: true }
+});
+
+console.log(student.grade); // 输出 "1"
+```
+在上面的例子中，使用 Object.create() 方法创建了一个新的对象 student，并将 person 对象作为 student 对象的原型。同时，通过第二个参数传入了一个对象，该对象定义了 grade 属性。
+
 :::
 
 ## 构造函数constructor
 
-构造函数（constructor）也称之为构造器，功能类似对象模板，一个构造器可以生成任意多个实例，实例对象具有相同的属性和方法，但是不相等。在JavaScript中，构造器其实就是一个普通的函数。当使用**new操作符**来作用这个函数时，它就可以被称为构造函数
+在 JavaScript 中，构造函数（constructor）是用来创建对象的函数。它通常用来创建一组相似的对象，这些对象共享相同的属性和方法。通过使用构造函数，可以方便地创建多个相似的对象。
+
+构造函数的定义方式如下：
+
+```js
+function Person(name, age) {
+  this.name = name;
+  this.age = age;
+}
+
+var person1 = new Person("Alice", 30);
+var person2 = new Person("Bob", 25);
+```
+在上面的代码中，Person 就是一个构造函数，它接受两个参数 name 和 age，并用它们初始化了对象的属性。通过使用 new 运算符来调用 Person 构造函数，可以创建多个 Person 对象。
+
+在构造函数中，使用 this 关键字来指代当前创建的对象。在 Person 构造函数中，通过 this.name = name 和 this.age = age 语句来为当前对象添加 name 和 age 属性。
+
+需要注意的是，在使用构造函数创建对象时，一般约定构造函数的名称以大写字母开头，以便与普通函数区分开来。
+
+除了上面的方式，ES6 中还提供了更简便的方式来定义构造函数，使用 class 关键字来定义类。例如：
+
+```js
+class Person {
+  constructor(name, age) {
+    this.name = name;
+    this.age = age;
+  }
+}
+
+let person1 = new Person("Alice", 30);
+let person2 = new Person("Bob", 25);
+```
+使用 class 关键字来定义类，可以更直观地表达出类的概念。在类中，通过 constructor 方法来定义类的构造函数。在 Person 类的构造函数中，使用 this 关键字来指代当前创建的对象，并设置对象的属性。
 
 特点：
 
@@ -52,151 +197,30 @@ Object.create(null) 创建的对象是一个空对象，在该对象上没有继
 - 函数体内部使用`this`关键字,代表所要生成的对象实例
 - 生成对象时，必须使用`new`操作符
 
-## 原型
-
-JavaScript中每个对象都拥有一个原型对象，对象以其原型为模板、从原型继承方法和属性。每个函数都有一个特殊的属性叫作原型（prototype）,案例如下：
-
-```js
-function doSomething(){}
-console.log( doSomething.prototype );
-```
-
-可以看到`doSomething` 函数有一个默认的原型属性：
-
-```js
-{
-    constructor: ƒ doSomething(),
-    __proto__: {
-        constructor: ƒ Object()
-    }
-}
-```
-
-现在，添加一些属性到 `doSomething` 的原型上面
-
-```js
-function doSomething(){}
-doSomething.prototype.foo = "bar";
-console.log( doSomething.prototype );
-```
-
-结果如下：
-
-```js
-{
-    foo: "bar",
-    constructor: ƒ doSomething(),
-    __proto__: {
-        constructor: ƒ Object()
-    }
-}
-```
-
-使用`new`关键字创建一个`doSomething`的实例：
-
-```js
-function doSomething(){}
-doSomething.prototype.foo = "bar"; // add a property onto the prototype
-var doSomeInstancing = new doSomething();
-doSomeInstancing.prop = "some value"; // add a property onto the object
-console.log( doSomeInstancing );
-```
-
-结果如下：
-
-```js
-{
-    prop: "some value",
-    __proto__: {
-        foo: "bar",
-        constructor: ƒ doSomething(),
-        __proto__: {
-            constructor: ƒ Object()
-        }
-    }
-}
-```
-
-可以看到，`doSomeInstancing`实例的 `__proto__` 属性就是`doSomething`函数的`prototype`,即`doSomeInstancing.__proto__ === doSomething.prototype`。
-
-- 当访问`doSomeInstancing`的一个属性的时候，浏览器首先查找`doSomeInstancing`是否有这个属性
-- 如果没有，浏览器就会在`doSomeInstancing`的`__proto__`中查找这个属性，也就是到原型对象`doSomething.prototype`上查找
-- 如果也没有找到，则继续在`doSomeInstancing`的`__proto__`的`__proto__`上查找，所有函数的原型属性的 `__proto__` 就是 `window.Object.prototype`
-- 最后，原型链上的所有的`__proto__`都找完了也没找到该属性，这个属性返回`undefined`
-
-原型对象 | 说明 | 值
----|---|---
-显式原型对象`prototype` | 所有**函数**都有一个`prototype`属性 | 对象
-隐式原型对象`__proto__` | 所有**实例**都有一个私有属性`__proto__` | 对象
-
-::: tip 提示
-
-- 所有**实例**的`__proto__`属性指向它**构造函数**的原型对象（`prototype`）
-- 根据定义，`null` 没有原型，并作为这个原型链中的最后一个环节
-- `__proto__`是一个内部属性，不建议对其进行直接操作
-:::
-
 ## 原型对象
 
-继承成员被定义的地方，被称作为原型对象`prototype`
+在 JavaScript 中，每个对象都有一个原型对象（prototype object）。原型对象是一种特殊的对象，它充当了对象与其他对象之间的桥梁。如果一个对象需要访问另一个对象的属性或方法，它可以在自己的原型对象中查找相应的属性或方法。
 
-比如，`Object`的`hasOwnProperty`、`toString`,`valueOf`都是可以继承的方法，但是`Object.create()`、`Object.keys()`、`Object.values()`,则不能被继承
+JavaScript 中的每个对象都有一个 `__proto__` 属性，这个属性指向了该对象的原型对象。原型对象也是一个对象，它也有自己的原型对象，这样就形成了一条原型链。在原型链的顶端是 `Object.prototype`，这是所有对象的原型对象。
 
-```js
-// 继承的属性和方法
-console.log(Object.prototype)
-
-{
-    constructor: ƒ Object()
-    hasOwnProperty: ƒ hasOwnProperty()
-    isPrototypeOf: ƒ isPrototypeOf()
-    propertyIsEnumerable: ƒ propertyIsEnumerable()
-    toLocaleString: ƒ toLocaleString()
-    toString: ƒ toString()
-    valueOf: ƒ valueOf()
-    __defineGetter__: ƒ __defineGetter__()
-    __defineSetter__: ƒ __defineSetter__()
-    __lookupGetter__: ƒ __lookupGetter__()
-    __lookupSetter__: ƒ __lookupSetter__()
-    get __proto__: ƒ __proto__()
-    set __proto__: ƒ __proto__()
-}
-```
+下面是一个示例，展示了原型对象的基本用法：
 
 ```js
-// 不能被继承的属性和方法
-console.dir(Object)
-
-{
-    arguments: (...)
-    assign: ƒ assign()
-    caller: (...)
-    create: ƒ create()
-    defineProperties: ƒ defineProperties()
-    defineProperty: ƒ defineProperty()
-    entries: ƒ entries()
-    freeze: ƒ freeze()
-    fromEntries: ƒ fromEntries()
-    getOwnPropertyDescriptor: ƒ getOwnPropertyDescriptor()
-    getOwnPropertyDescriptors: ƒ getOwnPropertyDescriptors()
-    getOwnPropertyNames: ƒ getOwnPropertyNames()
-    getOwnPropertySymbols: ƒ getOwnPropertySymbols()
-    getPrototypeOf: ƒ getPrototypeOf()
-    is: ƒ is()
-    isExtensible: ƒ isExtensible()
-    isFrozen: ƒ isFrozen()
-    isSealed: ƒ isSealed()
-    keys: ƒ keys()
-    length: 1
-    name: "Object"
-    preventExtensions: ƒ preventExtensions()
-    prototype: {constructor: ƒ, __defineGetter__: ƒ, __defineSetter__: ƒ, hasOwnProperty: ƒ, __lookupGetter__: ƒ, …}
-    seal: ƒ seal()
-    setPrototypeOf: ƒ setPrototypeOf()
-    values: ƒ values()
-    __proto__: ƒ ()
+function Person(name, age) {
+  this.name = name;
+  this.age = age;
 }
+
+Person.prototype.sayHello = function() {
+  console.log("Hello, my name is " + this.name);
+};
+
+var person = new Person("Alice", 30);
+person.sayHello();  // 输出 "Hello, my name is Alice"
 ```
+在上面的代码中，`Person` 是一个构造函数，通过 `Person.prototype` 可以为它的实例对象添加方法。在 `person` 对象中调用 `sayHello()` 方法时，实际上是在 `Person.prototype` 中查找该方法并调用。如果 `Person.prototype` 中不存在该方法，那么它会在 `Person.prototype` 的原型对象中继续查找，直到找到顶层的 `Object.prototype`，如果还没有找到就返回 `undefined。`
+
+原型对象的使用可以提高代码的复用性，也使得继承变得更加容易。例如，在子类中可以使用原型继承父类的属性和方法。在使用原型继承时，需要注意一些细节，例如要避免修改原型对象上的属性和方法。
 
 ## 原型链
 
