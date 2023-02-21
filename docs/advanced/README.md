@@ -9,8 +9,11 @@
 - [排序](./algorithm/sort.md)
 - [递归](./algorithm/recursion.md)
 - [深度优先搜索和广度优先搜索](./algorithm/dfs-bfs.md)
+- [树形操作](./algorithm/tree.md)
 - [leetcode](./leetcode)
 - [牛客网](./nowcoder)
+- [数据结构](./data-structures)
+
 
 ## Nodejs
 
