@@ -4,7 +4,7 @@ export default defineConfig({
   base: '/blog/',
   title: 'Blog',
   description: '技术博客',
-  head: [['link', { rel: 'icon', type: 'image/svg+xml', href: '/logo.png' }]],
+  head: [['link', { rel: 'icon', href: '/blog/favicon.ico' }]],
   ignoreDeadLinks: true,
   themeConfig: {
     logo: { src: '/logo.svg', width: 24, height: 24 },
@@ -72,8 +72,8 @@ export default defineConfig({
     search: {
       provider: 'algolia',
       options: {
-        appId: '',
-        apiKey: '',
+        appId: 'J24Y7NQMMO',
+        apiKey: '09177ca8ae528238bb95315e838cfc33',
         indexName: 'blog',
         locales: {
           ...getAlgoliaSearchOptions(),
