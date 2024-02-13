@@ -1,1 +1,0 @@
-const e=JSON.parse('{"key":"v-687a90f5","path":"/framework/react/redux/","title":"Redux","lang":"en-US","frontmatter":{"sidebar":"auto"},"excerpt":"","headers":[],"git":{"updatedTime":1623681346000},"filePathRelative":"framework/react/redux/README.md"}');export{e as data};

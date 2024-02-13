@@ -1,6 +1,3 @@
----
-sidebar: auto
----
 
 # html5相关
 

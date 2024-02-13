@@ -1,6 +1,3 @@
----
-sidebar: auto
----
 
 # ElementUI弹窗组件简单封装
 

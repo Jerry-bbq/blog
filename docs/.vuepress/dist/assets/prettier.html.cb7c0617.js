@@ -1,1 +1,0 @@
-const t=JSON.parse('{"key":"v-61c97222","path":"/job-summary/normalization/prettier.html","title":"prettier","lang":"en-US","frontmatter":{},"excerpt":"","headers":[],"git":{"updatedTime":1661092791000},"filePathRelative":"job-summary/normalization/prettier.md"}');export{t as data};

@@ -3,17 +3,19 @@
 ## run
 
 ```bash
-yarn serve
+yarn docs:dev
+# or
+npm run docs:dev
+# or
+pnpm run docs:dev
 ```
 
 ## build
 
 ```bash
-yarn build
-```
-
-## commit
-
-```bash
-yarn commit
+yarn docs:build
+# or
+npm run docs:build
+# or
+pnpm run docs:build
 ```

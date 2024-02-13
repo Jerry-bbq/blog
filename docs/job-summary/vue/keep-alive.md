@@ -1,6 +1,3 @@
----
-sidebar: auto
----
 
 # keep-alive的真实场景应用
 

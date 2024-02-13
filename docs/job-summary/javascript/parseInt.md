@@ -1,6 +1,3 @@
----
-sidebar: auto
----
 
 # parseInt的正确使用
 

@@ -1,10 +1,7 @@
----
-sidebar: auto
----
 
-# 声明文档类型DOCTYPE
+# 声明文档类型 DOCTYPE
 
-`DOCTYPE`（全称`Document Type`，又叫文档类型），告诉浏览器的解析器使用哪种**文档类型定义**（DTD规范）来解析页面（简单来说，就是声明文档类型）
+`DOCTYPE`（全称`Document Type`，又叫文档类型），告诉浏览器的解析器使用哪种**文档类型定义**（**DTD** 规范）来解析页面（简单来说，就是声明文档类型）
 
 ::: tip 说明
 
@@ -12,14 +9,14 @@ DTD（Document Type Defination，文档类型定义）是一系列的语法规�
 
 :::
 
-## 常用声明方式
+## 声明方式
 
-`<!DOCTYPE>`声明必须是html文档的第一行，位于html标签之前
+`<!DOCTYPE>`声明必须是 **HTML文档的第一行**，位于 **\<html>标签之前**
 
 ### HTML5
 
 ```html
-<!DOCTYPE html>
+<!DOCTYPE html> // [!code focus]
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -37,7 +34,7 @@ DTD（Document Type Defination，文档类型定义）是一系列的语法规�
 该DTD包含所有HTML元素和属性，但是**不包含展示类的和弃用类的元素**（比如`font`）
 
 ```html
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd"> // [!code focus]
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -55,7 +52,7 @@ DTD（Document Type Defination，文档类型定义）是一系列的语法规�
 该DTD包含所有HTML元素和属性，包含展示类的和弃用类的元素（比如font）
 
 ```html
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd"> // [!code focus]
 <html lang="en">
 <head>
     <meta charset="UTF-8">

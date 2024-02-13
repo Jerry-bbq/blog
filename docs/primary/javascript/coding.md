@@ -1,6 +1,3 @@
----
-sidebar: auto
----
 
 # Coding
 
@@ -8,34 +5,34 @@ sidebar: auto
 
 ## 实现new操作符
 
-@[code](@code-snippet/new.js)
+<<< ./code-snippet/new.js
 
 ## 实现instanceOf
-@[code](@code-snippet/instanceof.js)
+<<< ./code-snippet/instanceof.js
 
 ## 实现call/apply/bind
 
 ### call
 
-@[code](@code-snippet/call.js)
+<<< ./code-snippet/call.js
 
 ### apply
 
-@[code](@code-snippet/apply.js)
+<<< ./code-snippet/apply.js
 
 ### bind
 
-@[code](@code-snippet/bind.js)
+<<< ./code-snippet/bind.js
 
 ## 手写防抖和节流
 
 ### 防抖
 
-@[code](@code-snippet/debounce.js)
+<<< ./code-snippet/debounce.js
 
 ### 节流
 
-@[code](@code-snippet/throttle.js)
+<<< ./code-snippet/throttle.js
 
 ## 实现一个寄生组合继承
 
@@ -63,7 +60,7 @@ Promise的过程：
 
 ### 基础版
 
-@[code](@code-snippet/promise.js)
+<<< ./code-snippet/promise.js
 
 ## 拷贝
 

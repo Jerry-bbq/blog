@@ -1,6 +1,3 @@
----
-sidebar: auto
----
 
 # 浏览器
 
@@ -98,3 +95,4 @@ JavaScript引擎的作用就是用来运行JavaScript代码
 - [浏览器的工作原理：新式网络浏览器幕后揭秘](https://www.html5rocks.com/zh/tutorials/internals/howbrowserswork/#The_rendering_engine)
 - [StatCounter 浏览器统计数据](https://gs.statcounter.com/)
   - [中国桌面端浏览器市场份额](https://gs.statcounter.com/browser-market-share/desktop/china)
+- [浏览器是如何工作的：Chrome V8 让你更懂JavaScript](https://king-hcj.github.io/2020/10/05/google-v8/#%E4%B8%80%E7%AD%89%E5%85%AC%E6%B0%91%E4%B8%8E%E9%97%AD%E5%8C%85)

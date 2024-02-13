@@ -1,6 +1,3 @@
----
-sidebar: auto
----
 
 # vue2.0兼容IE9及以上
 

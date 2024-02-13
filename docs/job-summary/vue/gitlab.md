@@ -1,6 +1,3 @@
----
-sidebar: auto
----
 
 # 使用gitlab的上的url作为项目的依赖
 

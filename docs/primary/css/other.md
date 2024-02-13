@@ -1,7 +1,3 @@
----
-sidebar: auto
----
-
 # 其他
 
 ## display:none、visibile:hidden、opacity:0的区别
@@ -57,3 +53,27 @@ opacity:0 | 是 | 是 | 是
     border-left: 50px solid black;
 }
 ```
+
+## linear-gradient
+
+linear-gradient() CSS 函数创建一个由两种或多种颜色沿一条直线进行线性过渡的图像，其结果是 \<gradient> 数据类型的对象，此对象是一种特殊的 \<image> 数据类型
+
+在线调试工具：
+
+- [ColorSpace](https://mycolor.space/)
+- [渐变神器Gradient](https://gradient.shapefactory.co/)
+
+## box-show
+
+在线调试工具：
+
+- [Box Shadow](https://box-shadow.art/)
+- [lingdaima](https://lingdaima.com/shadow/)
+
+## CSS玻璃风格工具
+
+- [Glass Morphism](https://glassgenerator.netlify.app/)
+
+## 在线SVG 背景
+
+- [BGJar](https://bgjar.com/)

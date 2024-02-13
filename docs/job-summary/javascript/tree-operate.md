@@ -1,6 +1,3 @@
----
-sidebar: auto
----
 
 # 树形结构操作
 
@@ -65,3 +62,7 @@ export const arrayTreeSetLevel = (tree, levelName = 'level', childrenName = 'chi
   return recursive(tree)
 }
 ```
+
+## 参考
+
+- [JS树结构操作:查找、遍历、筛选、树和列表相互转换](https://wintc.top/article/20)

@@ -56,11 +56,11 @@ bind()会返回一个新的函数，如果这个返回的新的函数作为构�
 
 call():
 
-@[code](@code-snippet/call.js)
+<<< ./code-snippet/call.js
 
 apply():
 
-@[code](@code-snippet/apply.js)
+<<< ./code-snippet/apply.js
 
 ## 自定义bind
 
@@ -69,4 +69,4 @@ apply():
 1. 返回一个新函数
 2. 在新函数内部通过原函数对象的`call`方法来执行原函数，指定`this`为`obj`，指定参数为bind调用的参数和后面新函数调用的参数
 
-@[code](@code-snippet/bind.js)
+<<< ./code-snippet/bind.js

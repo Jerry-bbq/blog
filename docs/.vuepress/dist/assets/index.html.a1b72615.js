@@ -1,1 +1,0 @@
-const e=JSON.parse('{"key":"v-3ed4084c","path":"/framework/vue/axios/","title":"axios","lang":"en-US","frontmatter":{"sidebar":"auto"},"excerpt":"","headers":[],"git":{"updatedTime":1637760006000},"filePathRelative":"framework/vue/axios/README.md"}');export{e as data};

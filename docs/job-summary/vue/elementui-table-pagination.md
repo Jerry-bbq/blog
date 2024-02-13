@@ -1,6 +1,3 @@
----
-sidebar: auto
----
 
 # ElementUI表格和分页组件化
 

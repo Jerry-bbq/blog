@@ -1,6 +1,3 @@
----
-sidebar: auto
----
 
 # vue-router通过携带query和params携带参数路由跳转
 

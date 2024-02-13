@@ -1,8 +1,4 @@
----
-sidebar: auto
----
-
-# 水平垂直居中的方式
+# 元素水平垂直居中
 
 ```html
 <!DOCTYPE html>

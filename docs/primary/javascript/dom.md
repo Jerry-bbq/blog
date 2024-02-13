@@ -1,6 +1,3 @@
----
-sidebar: auto
----
 
 # DOM事件
 

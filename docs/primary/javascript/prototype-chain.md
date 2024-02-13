@@ -1,6 +1,3 @@
----
-sidebar: auto
----
 
 # 原型和原型链
 
@@ -258,7 +255,7 @@ person.sayHello();  // 输出 "Hello, my name is Alice"
 
 ## instanceof运算符
 
-@[code](@code-snippet/instanceof.js)
+<<< ./code-snippet/instanceof.js
 
 ## new运算符
 
@@ -319,7 +316,7 @@ console.log(o);         // { age: 333 }
 
 ### 实现
 
-@[code](@code-snippet/new.js)
+<<< ./code-snippet/new.js
 
 ## 继承
 
@@ -329,7 +326,7 @@ console.log(o);         // { age: 333 }
 
 子类构造函数中执行父类构造函数（` Parent.call(this) `）
 
-```js
+```js:line-numbers{10}
 // 父类
 function Parent() {
     this.name = 'Parent'
@@ -377,7 +374,7 @@ console.log(child)
 
 作用：弥补通过构造函数继承的缺点（继承不了父类构造函数原型对象`（Parent.prototype）`上的属性和方法）
 
-```js
+```js:line-numbers{12}
 // 父类
 function Parent() {
     this.name = 'Parent'
@@ -430,7 +427,7 @@ Child
 - 在子类构造函数中执行父类构造函数
 - 然后将父类的构造函数的实例 赋值给 子类的原型对象
 
-```js
+```js:line-numbers{8,12}
 // 父类
 function Parent() {
     this.name = 'Parent'
@@ -466,7 +463,7 @@ console.log(s1.play,s2.play)
 - 子类构造函数中执行父类构造函数
 - 然后将父类构造函数的原型对象赋值给子类构造函数的原型对象
 
-```js
+```js:line-numbers{8,12}
 // 父类
 function Parent() {
     this.name = 'Parent'
@@ -503,7 +500,7 @@ console.log(s1.constructor) // 子类实例的构造函数是`Parent`，而不�
 - 然后创建父类构造函数的实例继承赋值给子类构造函数的原型对象
 - 最后将子类构造函数赋值给子类构造函数的原型对象的constructor
 
-```js
+```js:line-numbers{8,11,12}
 // 父类
 function Parent() {
     this.name = 'Parent'
@@ -525,7 +522,7 @@ console.log(s.constructor) // 子类实例的构造函数是`Child`
 
 ### 6. 使用es6的extends
 
-```js
+```js:line-numbers{11}
 // 父类
 class Parent {
     constructor(value) {

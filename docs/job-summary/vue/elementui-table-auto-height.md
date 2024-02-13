@@ -1,6 +1,3 @@
----
-sidebar: auto
----
 
 # ElementUI表格高度自适应
 

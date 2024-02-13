@@ -1,1 +1,0 @@
-const a=JSON.parse('{"key":"v-6ef2d60b","path":"/job-summary/javascript/download-by-url.html","title":"\u6839\u636E\u56FE\u7247url\uFF0C\u4E0B\u8F7D\u56FE\u7247","lang":"en-US","frontmatter":{"sidebar":"auto"},"excerpt":"","headers":[],"git":{"updatedTime":1627457891000},"filePathRelative":"job-summary/javascript/download-by-url.md"}');export{a as data};
