@@ -74,7 +74,7 @@ export default defineConfig({
       options: {
         appId: 'J24Y7NQMMO',
         apiKey: '09177ca8ae528238bb95315e838cfc33',
-        indexName: 'blog',
+        indexName: 'Blog',
         locales: {
           ...getAlgoliaSearchOptions(),
         },
