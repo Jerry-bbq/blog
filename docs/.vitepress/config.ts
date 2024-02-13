@@ -1,4 +1,5 @@
 import { defineConfig, type DefaultTheme } from 'vitepress'
+import taskLists from 'markdown-it-task-list-plus'
 
 export default defineConfig({
   base: '/blog/',
@@ -81,6 +82,11 @@ export default defineConfig({
       },
     },
     socialLinks: [{ icon: 'github', link: 'https://gitee.com/Jerry-bro' }],
+  },
+  markdown: {
+    config: md => {
+      md.use(taskLists, { activeStyle: { background: '#a8b1ff', 'border-color': '#a8b1ff' } })
+    },
   },
 })
 
