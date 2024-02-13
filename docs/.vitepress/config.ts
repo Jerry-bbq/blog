@@ -1,6 +1,7 @@
 import { defineConfig, type DefaultTheme } from 'vitepress'
 
 export default defineConfig({
+  base: '/blog/',
   title: 'Blog',
   description: '技术博客',
   head: [['link', { rel: 'icon', type: 'image/svg+xml', href: '/logo.png' }]],
