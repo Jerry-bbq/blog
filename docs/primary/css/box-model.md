@@ -28,14 +28,12 @@
 ## css的三种设置样式的方式
 
 
-:::: code-group
-::: code-group-item 内联样式
-```html
+::: code-group
+```html [内联样式]
 <div style="width: 100px">text</div>
 ```
-:::
-::: code-group-item 内部样式
-```html
+
+```html [内部样式]
 <head>
     <style>
         .content {
@@ -44,15 +42,13 @@
     </style>
 </head>
 ```
-:::
-::: code-group-item 外部样式表
-```html
+
+```html [外部样式表]
 <head>
     <link href="./css/index.css"/>
 </head>
 ```
 :::
-::::
 
 ## js如何获取盒模型对应的宽和高
 

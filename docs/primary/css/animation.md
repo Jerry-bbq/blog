@@ -50,9 +50,9 @@
 
 ### fadeIn
 
-:::: code-group
-::: code-group-item css
-```css
+::: code-group
+
+```css [css]
 .box {
     width: 300px;
     height: 300px;
@@ -82,9 +82,7 @@
     animation-duration: 10s;
 }
 ```
-:::
-::: code-group-item html
-```html
+```html  [html]
 <!DOCTYPE html>
 <html lang="en">
 
@@ -103,7 +101,6 @@
 </html>
 ```
 :::
-::::
 
 ### fadeInLeft
 
@@ -172,9 +169,8 @@
 
 ## animate.css库分析
 
-:::: code-group
-::: code-group-item 入口文件_animations.css
-```css
+::: code-group
+```css [入口文件_animations.css]
 @import '_vars.css';
 @import '_base.css';
 
@@ -307,18 +303,14 @@
 @import 'sliding_exits/slideOutRight.css';
 @import 'sliding_exits/slideOutUp.css';
 ```
-:::
-::: code-group-item 变量文件_vars.css
-```css
+```css [变量文件_vars.css]
 :root {
   --animate-duration: 1s;
   --animate-delay: 1s;
   --animate-repeat: 1;
 }
 ```
-:::
-::: code-group-item 基础文件_base.css
-```css
+```css [基础文件_base.css]
 .animated {
   animation-duration: var(--animate-duration);
   animation-fill-mode: both;
@@ -389,4 +381,3 @@
 }
 ```
 :::
-::::
