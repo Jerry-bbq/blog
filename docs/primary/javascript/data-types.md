@@ -1,4 +1,3 @@
-
 # 数据类型及检测
 
 ## 分类
@@ -40,18 +39,20 @@ console.log(obj1, obj2)         // {name: 'marry'} {name: 'marry'}
 
 ### 第一种：typeof运算符
 
-`typeof`是通过检测变量值的 **类型标签（type tag）** 来检测数据类型，**返回数据类型字符串**
+`typeof` 是通过检测变量值的 **类型标签（type tag）** 来检测数据类型，**返回数据类型字符串**
 
 ```js
+// 基本类型
 typeof 'hello world'    // 'string'
 typeof 10               // 'number'
 typeof true             // 'boolean'
 typeof undefined        // 'undefined'
 typeof Symbol()         // 'symbol'
 typeof 123n             // 'bigint'
-
+// null特殊
 typeof null             // 'object' 无法判定是否为 null
 
+// 引用类型
 typeof {}               // 'object'
 typeof []               // 'object'
 typeof (()=>{})         // 'function'
@@ -61,10 +62,10 @@ typeof /\d/             // 'object'
 
 ::: tip 总结
 
-1. 可以看出，除了`null`以外，其他的基本类型都可以用`typeof`检测出来；
-2. 为什么`typeof null === 'object'`？
+1. 可以看出，除了 `null` 以外，其他的基本类型都可以用 `typeof` 检测出来；
+2. 为什么 `typeof null === 'object'`？
 
-因为 JavaScript 中的值是由一个 **类型标签（type tag）** 和 **实际数据值** 表示的，对象的类型标签是0，而`null`代表是空指针，它的类型标签也是0，因此返回`'object'`
+因为 JavaScript 中的值是由一个 **类型标签（type tag）** 和 **实际数据值** 表示的，对象的类型标签是0，而 `null` 代表是空指针，它的类型标签也是0，因此返回 `'object'`
 
 [参考文档](https://2ality.com/2013/10/typeof-null.html)
 
@@ -74,9 +75,9 @@ typeof /\d/             // 'object'
 
 ### 第二种：instanceof运算符
 
-`instanceof`检测构造函数的 `prototype` 属性是否出现在某个实例对象的原型链上，**返回Boolean值**。
+`instanceof` 检测构造函数的 `prototype` 属性是否出现在某个实例对象的原型链上，**返回Boolean值**。
 
-注意：`instanceof`只能用于引用类型，不适用基本类型
+注意：`instanceof` 只能用于引用类型，不适用基本类型
 
 ```js
 [] instanceof Array             // true
@@ -95,11 +96,11 @@ typeof /\d/             // 'object'
 ::: tip 总结
 
 1. instanceof 是通过原型链查找，可以参考另外一篇文章[原型和原型链](./prototype-chain.md)
-2. 可以看出，`instanceof`也无法精准的判断数据类型
+2. 可以看出，`instanceof` 也无法精准的判断数据类型
 
 :::
 
-### 第三种：内部属性[[Class]]
+### 第三种：内部属性 [[Class]]
 
 内部属性`[[Class]]`无法直接访问，一般通过 `Object.prototype.toString()` 来查看
 
@@ -119,8 +120,8 @@ Object.prototype.toString()             // "[object Object]"
 ```
 
 - 因此，只能通过`Object.prototype.toString()`来调用`Object`的`toString`方法
-- 但是上述的方案，`this`始终都是指向`Object`,因此需要改变`this`指向
-- 改变`this`指向可以通过`call()`,`apply()`
+- 但是上述的方案，`this`始终都是指向`Object`，因此需要改变`this`指向
+- 改变`this`指向可以通过`call()`，`apply()`
 
 测试`Object.prototype.toString.call()`：
 

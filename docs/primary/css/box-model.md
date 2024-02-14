@@ -8,12 +8,12 @@
 
 2. 说明：（四个部分）
 
-- 内容边界`content`（`width`、`min-width`、`max-width`、`height`、`min-height`、`max-height`）
-- 内边距边界`padding`（`padding-top`、`padding-right`、`padding-bottom`、`padding-left`、`padding`）
-- 边框边界`border`（`border-width`、`border`）
-- 外边框边界`margin`（`margin-top`、`margin-right`、`margin-bottom`、`margin-left`、`margin`）
+- 内容边界 `content`：`[min、max]-width`、`[min、max]-height`
+- 内边距边界 `padding`：`padding-[top、right、bottom、left]`
+- 边框边界 `border`：`border-width`、`border`
+- 外边框边界 `margin`：`margin-[top、right、bottom、left]`
 
-## 标准盒模型与IE模盒型
+## 标准盒模型 与 IE模盒型
 
 | 概念 | 设置模型 | 说明 |
 |---|---|---|

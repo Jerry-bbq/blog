@@ -1,11 +1,12 @@
+# 移动端适配
 
-# rem
+## rem
 
 rem是CSS3新增的一个相对单位（font size of the root element，根em），是指相对于**根元素的**字体大小的单位
 
 rem是**只相对于根元素html的font-size**，即只需要设置根元素的font-size，其它元素使用rem单位设置成相应的百分比即可
 
-## 使用
+### 使用
 
 使用`postcss-pxtorem`插件，自动将`px`转换为`rem`
 
@@ -35,17 +36,13 @@ module.exports = {
 
 ```
 
-
-## 作用
+### 作用
 
 主要用来做响应式布局
-
-
 
 ## em
 
 em（font size of the element）是指相对于**父元素**的字体大小的单位
-
 
 ## vh/vw
 

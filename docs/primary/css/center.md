@@ -19,7 +19,7 @@
 
 ## flex
 
-```css
+```css:line-numbers{6-8}
 .content {
     border: 1px solid black;
     width: 200px;
@@ -33,7 +33,7 @@
 
 ## position
 
-```css
+```css:line-numbers{5,12-17}
 .content {
     border: 1px solid black;
     width: 200px;
@@ -56,7 +56,7 @@
 
 ## position + transform
 
-```css
+```css:line-numbers{5,9-12}
 .content {
     border: 1px solid black;
     width: 200px;
@@ -84,7 +84,7 @@ transform的属性：
 
 ## table-cell
 
-```css
+```css:line-numbers{6-8}
 .content {
     border: 1px solid black;
     width: 200px;

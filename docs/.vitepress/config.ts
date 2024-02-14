@@ -142,7 +142,7 @@ function getSidebarPrimary(): DefaultTheme.SidebarItem[] {
         { text: '盒模型', link: 'box-model' },
         { text: 'BFC', link: 'bfc' },
         { text: 'flex', link: 'flex' },
-        { text: 'rem', link: 'rem' },
+        { text: '移动端适配', link: 'mobile-adaptation' },
         { text: '清除浮动', link: 'clear' },
         { text: '元素水平垂直居中', link: 'center' },
         { text: '页面布局', link: 'layout' },

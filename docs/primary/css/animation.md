@@ -23,7 +23,7 @@
 - `0%/from`
 - `100%/to`
 
-## 配置动画
+## animation属性
 
 | 属性 | 说明 | 默认值 |
 |---|---|---|
@@ -44,9 +44,7 @@
 }
 ```
 
-## 实现
-
-- 参考[animate.css](https://github.com/animate-css/animate.css)
+## 实现案例
 
 ### fadeIn
 
@@ -167,7 +165,9 @@
 }
 ```
 
-## animate.css库分析
+## Animate.css库分析
+
+- [Animate.css](https://github.com/animate-css/animate.css)
 
 ::: code-group
 ```css [入口文件_animations.css]
