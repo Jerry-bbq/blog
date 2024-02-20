@@ -4,7 +4,8 @@
   "scripts": {
     "docs:dev": "vitepress dev docs",
     "docs:build": "vitepress build docs",
-    "docs:preview": "vitepress preview docs"
+    "docs:preview": "vitepress preview docs",
+    "publish": "pnpm run docs:build && git add . && git commit -m 'chore: build' && git push"
   },
   "devDependencies": {
     "vitepress": "1.0.0-rc.41"
