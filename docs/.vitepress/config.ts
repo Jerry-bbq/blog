@@ -73,9 +73,9 @@ export default defineConfig({
     search: {
       provider: 'algolia',
       options: {
-        appId: 'J24Y7NQMMO',
-        apiKey: '09177ca8ae528238bb95315e838cfc33',
-        indexName: 'Blog',
+        appId: 'FQDTUDLCU9',
+        apiKey: '0d517e9e9669d6b443f058e49f08d196',
+        indexName: 'jerry-bro-gitee',
         locales: {
           ...getAlgoliaSearchOptions(),
         },
