@@ -8,7 +8,7 @@
     "publish": "pnpm run docs:build && git add . && git commit -m 'chore: build' && git push"
   },
   "devDependencies": {
-    "vitepress": "1.0.0-rc.41"
+    "vitepress": "1.0.0-rc.44"
   },
   "dependencies": {
     "markdown-it-task-list-plus": "^2.1.3"
