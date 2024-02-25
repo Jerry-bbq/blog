@@ -2,7 +2,7 @@ import { defineConfig, type DefaultTheme } from 'vitepress'
 import taskLists from 'markdown-it-task-list-plus'
 import { nav } from './nav'
 import { getAlgoliaSearchOptions } from './searchOptions'
-import { getSidebarPrimary, getSidebarAdvanced, getSidebarJobSummary, getSidebarShare } from './sidebar'
+import { getSidebarPrimary, getSidebarJobSummary, getSidebarShare, getDataStructuresAndAlgorithms } from './sidebar'
 
 export default defineConfig({
   base: '/blog/',
@@ -18,9 +18,13 @@ export default defineConfig({
         base: '/primary/',
         items: getSidebarPrimary(),
       },
-      '/advanced/': {
-        base: '/advanced/',
-        items: getSidebarAdvanced(),
+      // '/advanced/': {
+      //   base: '/advanced/',
+      //   items: getSidebarAdvanced(),
+      // },
+      '/data-structures-and-algorithms/': {
+        base: '/data-structures-and-algorithms/',
+        items: getDataStructuresAndAlgorithms(),
       },
       '/job-summary/': {
         base: '/job-summary/',

@@ -28,7 +28,7 @@ export function getSidebarPrimary(): DefaultTheme.SidebarItem[] {
         { text: '元素水平垂直居中', link: 'center' },
         { text: '页面布局', link: 'layout' },
         { text: 'CSS动画', link: 'animation' },
-        { text: 'other', link: 'other' },
+        { text: '其他', link: 'other' },
       ],
     },
     {
@@ -54,12 +54,6 @@ export function getSidebarPrimary(): DefaultTheme.SidebarItem[] {
       ],
     },
     {
-      text: '设计模式',
-      collapsed: false,
-      base: '/primary/design-patterns/',
-      items: [{ text: '设计模式', link: 'index' }],
-    },
-    {
       text: 'TypeScript',
       collapsed: false,
       base: '/primary/typescript/',
@@ -68,56 +62,19 @@ export function getSidebarPrimary(): DefaultTheme.SidebarItem[] {
   ]
 }
 
-export function getSidebarAdvanced(): DefaultTheme.SidebarItem[] {
+export function getDataStructuresAndAlgorithms(): DefaultTheme.SidebarItem[] {
   return [
     {
       text: '数据结构与算法',
-      // collapsed: false,
-      // base: '/advanced/',
+      collapsed: false,
+      base: '/data-structures-and-algorithms/',
       items: [
-        { text: '数据结构', link: 'data-structures/index' },
+        { text: '概要', link: 'index.md' },
         { text: '时间复杂度和空间复杂度', link: 'algorithm/complexity' },
-        { text: 'JavaScript数据结构与算法（第3版）', link: 'data-structures-and-algorithms/index' },
-        { text: '算法动态演示', link: 'https://algorithm-visualizer.org/brute-force/bubble-sort' },
         { text: '二分查找', link: 'algorithm/binary-search' },
         { text: '排序', link: 'algorithm/sort' },
         { text: '递归', link: 'algorithm/recursion' },
         { text: '深度优先搜索和广度优先搜索', link: 'algorithm/dfs-bfs' },
-      ],
-    },
-    {
-      text: '框架',
-      collapsed: false,
-      base: '/advanced/',
-      items: [
-        {
-          text: 'Vue',
-          items: [
-            { text: 'v3', link: '/framework/vue/v3/index' },
-            { text: 'v2', link: '/framework/vue/v2/index' },
-            { text: 'vue-router', link: '/framework/vue/vue-router/index' },
-            { text: 'vuex', link: '/framework/vue/vuex/index' },
-            { text: 'axios', link: '/framework/vue/axios/index' },
-          ],
-        },
-        { text: 'React', link: '/framework/react/react/index' },
-      ],
-    },
-    {
-      text: '打包工具',
-      collapsed: false,
-      base: '/advanced/',
-      items: [
-        {
-          text: 'Webpack',
-          items: [
-            { text: 'v5', link: '/bundler/webpack/v5' },
-            { text: 'v4', link: '/bundler/webpack/v4' },
-            { text: 'v2', link: '/bundler/webpack/v2' },
-            { text: 'babel', link: '/bundler/babel' },
-          ],
-        },
-        { text: 'Vite', link: '/bundler/vite' },
       ],
     },
   ]
@@ -126,11 +83,10 @@ export function getSidebarAdvanced(): DefaultTheme.SidebarItem[] {
 export function getSidebarJobSummary(): DefaultTheme.SidebarItem[] {
   return [
     {
-      text: '随笔与心得',
+      text: '心得',
       collapsed: false,
       base: '/job-summary/',
       items: [
-        { text: 'cli', link: 'cli/index' },
         { text: '开发流程', link: 'work-flow/index' },
         {
           text: '前端规范化',
@@ -146,6 +102,7 @@ export function getSidebarJobSummary(): DefaultTheme.SidebarItem[] {
             { text: '规范工具', link: 'tools' },
           ],
         },
+        { text: 'cli', link: 'cli/index' },
         { text: 'mock数据', link: 'mock/index' },
         { text: '项目管理', link: 'work-flow/project-manage' },
         { text: 'uniapp', link: 'uni-app/app' },

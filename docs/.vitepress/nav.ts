@@ -3,17 +3,27 @@ import { type DefaultTheme } from 'vitepress'
 export function nav(): DefaultTheme.NavItem[] {
     return [
       {
-        text: '技术点',
+        text: '基础',
         link: '/primary/html/doctype',
         activeMatch: '/primary/',
       },
       {
-        text: '技术栈',
-        link: '/advanced/data-structures/index',
+        text: '进阶',
+        link: '/advanced/index',
         activeMatch: '/advanced/',
       },
       {
-        text: '心得',
+        text: '设计模式',
+        link: '/design-patterns/index',
+        activeMatch: '/design-patterns/',
+      },
+      {
+        text: '数据结构与算法',
+        link: '/data-structures-and-algorithms/index',
+        activeMatch: '/data-structures-and-algorithms/',
+      },
+      {
+        text: '总结',
         link: '/job-summary/work-flow/index',
         activeMatch: '/job-summary/',
       },

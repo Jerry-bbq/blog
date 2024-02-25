@@ -1,3 +1,6 @@
+# 开发流程
+
+![work-flow](./images/work-flow.png)
 
 ## 需求评审-初评
 

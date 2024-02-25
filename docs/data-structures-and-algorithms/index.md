@@ -1,5 +1,7 @@
 # JavaScript数据结构与算法
 
+学习《JavaScript数据结构与算法（第3版）》
+
 ## 数据结构
 
 ### 线性表
@@ -39,7 +41,9 @@
 
 [数据结构与算法源码](https://github.com/loiane/javascript-datastructures-algorithms)
 
+## 参考
 
 - [参考](https://github.com/biaochenxuying/blog/issues/34)
+- [算法动态演示](https://algorithm-visualizer.org/brute-force/bubble-sort)
 
 
