@@ -1,6 +1,17 @@
 # vite
 
-前端项目构建工具，显著的提升开发体验
+下一代的前端工具链，为开发提供极速响应
+
+Vite 将会使用 esbuild 预构建依赖。esbuild 使用 Go 编写，并且比以 JavaScript 编写的打包器预构建依赖快 10-100 倍。
+
+## 特点
+
+- 极速的服务启动
+- 轻量快速的热重载
+- 丰富的功能
+- 优化的构建
+- 通用的插件
+- 完全类型化的API
 
 有两部分组成：
 
@@ -12,10 +23,15 @@
 - 缓慢的服务启动
 - 缓慢的更新
 
+以`v5.1.3`为例：
+
 ## 创建vite项目
 
 ```bash
+npm create vite@latest
 yarn create vite
+pnpm create vite
+bun create vite
 ```
 
 可以创建vue、react等框架的项目，也可以创建纯纯的纯JS项目。会生成`vite.config.js`配置文件
