@@ -90,7 +90,7 @@ export function getSidebarJobSummary(): DefaultTheme.SidebarItem[] {
         { text: '开发流程', link: 'work-flow/index' },
         {
           text: '前端规范化',
-          base: '/job-summary/normalization/',
+          base: '/job-summary/specification/',
           items: [
             { text: '编码规范', link: 'convention' },
             { text: '目录文件命名规范', link: 'naming' },
