@@ -75,6 +75,7 @@ export function getDataStructuresAndAlgorithms(): DefaultTheme.SidebarItem[] {
         { text: '排序', link: 'algorithm/sort' },
         { text: '递归', link: 'algorithm/recursion' },
         { text: '深度优先搜索和广度优先搜索', link: 'algorithm/dfs-bfs' },
+        { text: '算法题', link: 'problem/index.md' },
       ],
     },
   ]
