@@ -57,7 +57,7 @@ export function getSidebarPrimary(): DefaultTheme.SidebarItem[] {
       text: 'TypeScript',
       collapsed: false,
       base: '/primary/typescript/',
-      items: [{ text: 'TypeScript', link: 'index' }],
+      items: [{ text: 'TypeScript', link: 'index.md' }],
     },
   ]
 }
@@ -88,28 +88,28 @@ export function getSidebarJobSummary(): DefaultTheme.SidebarItem[] {
       collapsed: false,
       base: '/job-summary/',
       items: [
-        { text: '开发流程', link: 'work-flow/index' },
+        { text: '开发流程', link: 'work-flow/index.md' },
         {
           text: '前端规范化',
           base: '/job-summary/specification/',
           items: [
             { text: '编码规范', link: 'convention' },
-            { text: '目录文件命名规范', link: 'naming' },
+            { text: '命名规范', link: 'naming' },
             { text: 'Git提交规范', link: 'git-commit' },
             { text: 'Git分支管理规范', link: 'git-branch' },
-            { text: '版本规范', link: 'version' },
+            { text: '版本号管理规范', link: 'version' },
             { text: '发布规范', link: 'publish' },
             { text: 'Code Review规范', link: 'cr' },
             { text: '规范工具', link: 'tools' },
           ],
         },
-        { text: 'cli', link: 'cli/index' },
-        { text: 'mock数据', link: 'mock/index' },
+        { text: 'cli', link: 'cli/index.md' },
+        { text: 'mock数据', link: 'mock/index.md' },
         { text: '项目管理', link: 'work-flow/project-manage' },
         { text: 'uniapp', link: 'uni-app/app' },
-        { text: 'Vue2.0', link: 'vue/index' },
-        { text: 'JavaScript', link: 'javascript/index' },
-        { text: 'CSS相关问题', link: 'css/index' },
+        { text: 'Vue2.0', link: 'vue/index.md' },
+        { text: 'JavaScript', link: 'javascript/index.md' },
+        { text: 'CSS相关问题', link: 'css/index.md' },
       ],
     },
   ]
@@ -124,11 +124,11 @@ export function getSidebarShare(): DefaultTheme.SidebarItem[] {
       items: [
         {
           text: '埋点SDK',
-          link: 'tracker/index',
+          link: 'tracker/index.md',
         },
         {
           text: '单点登录',
-          link: 'sso/index',
+          link: 'sso/index.md',
         },
         {
           text: '新手引导',
@@ -136,11 +136,11 @@ export function getSidebarShare(): DefaultTheme.SidebarItem[] {
         },
         {
           text: 'npm',
-          link: 'npm/index',
+          link: 'npm/index.md',
         },
         {
           text: 'vscode',
-          link: 'vscode/index',
+          link: 'vscode/index.md',
         },
         // {
         //   text: 'vscode',
@@ -151,10 +151,10 @@ export function getSidebarShare(): DefaultTheme.SidebarItem[] {
         { text: 'nvm', link: 'node-version-manager' },
         { text: 'charles', link: 'charles' },
         { text: 'git', link: 'git' },
-        { text: '自定义仪表盘', link: 'gauge/index' },
+        { text: '自定义仪表盘', link: 'gauge/index.md' },
         { text: '从零实现一个工具函数库', link: 'tool-library' },
-        { text: 'flexible源码解析', link: 'flexible/index' },
-        { text: 'vue-lazyload源码阅读', link: 'vue-lazyload/index' },
+        { text: 'flexible源码解析', link: 'flexible/index.md' },
+        { text: 'vue-lazyload源码阅读', link: 'vue-lazyload/index.md' },
         { text: 'Docker', link: 'server/docker' },
         { text: 'nginx', link: 'server/nginx' },
         { text: '禅道', link: 'server/zentao' },
