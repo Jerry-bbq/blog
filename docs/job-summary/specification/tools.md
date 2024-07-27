@@ -67,8 +67,38 @@ module.exports = {
 
 ## prettier
 
-## commitizen
+- [prettier](https://prettier.io/)
+
+## commitlint
+
+[commitlint](https://commitlint.js.org) 校验 git提交消息 的规范
+
+```bash
+npm install --save-dev @commitlint/{cli,config-conventional}
+```
+
+## ls-lint
+
+- [ls-lint](https://www.npmjs.com/package/ls-lint)，校验 目录文件命名 的规范
+
+## CSpell
+
+- [CSpell](https://cspell.org/docs/installation/)
 
 ## husky
 
+[husky](https://typicode.github.io/husky/)在提交或推送时，`自动化` 检查提交信息、检查代码 和 运行测试。与 `lint-stage` 配合
+
+```bash
+npm install --save-dev husky
+
+npx husky init
+```
+
 ## lint-stage
+
+[lint-staged](https://github.com/lint-staged/lint-staged)对暂存的 git 文件运行 linters，不要让💩进入你的代码库！在提交代码之前运行 Linting 更有意义。通过这样做，您可以确保没有错误进入存储库并强制执行代码样式。但是在整个项目上运行 Lint 过程很慢，并且 Linting 结果可能无关紧要。最终，您只想对将要提交的文件进行 Lint。
+
+```bash
+npm install --save-dev lint-staged
+```

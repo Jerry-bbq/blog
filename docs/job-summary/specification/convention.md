@@ -882,11 +882,14 @@ path除了采用kebab-case命名规范以外，必须以 / 开头，即使是chi
 ```
 
 ### (二) Vue 项目目录规范
+
 #### 2.2.1 基础
 
 vue 项目中的所有命名一定要与后端命名统一。
 
 比如权限：后端 privilege, 前端无论 router , store, api 等都必须使用 privielege 单词！
+
+- 可参考 [基于DDD的前端项目架构设计与实战](https://www.tangshuang.net/8663.html)
 
 
 #### 2.2.2 使用 Vue-cli 脚手架
