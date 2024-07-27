@@ -2,7 +2,7 @@ import { defineConfig, type DefaultTheme } from 'vitepress'
 import taskLists from 'markdown-it-task-list-plus'
 import { nav } from './nav'
 import { getAlgoliaSearchOptions } from './searchOptions'
-import { getSidebarPrimary, getSidebarJobSummary, getSidebarShare, getDataStructuresAndAlgorithms } from './sidebar'
+import { getSidebarPrimary, getSidebarAdvanced, getSidebarShare, getSidebarSpecification } from './sidebar'
 
 export default defineConfig({
   base: '/blog/',
@@ -18,17 +18,13 @@ export default defineConfig({
         base: '/primary/',
         items: getSidebarPrimary(),
       },
-      // '/advanced/': {
-      //   base: '/advanced/',
-      //   items: getSidebarAdvanced(),
-      // },
-      '/data-structures-and-algorithms/': {
-        base: '/data-structures-and-algorithms/',
-        items: getDataStructuresAndAlgorithms(),
+      '/advanced/': {
+        base: '/advanced/',
+        items: getSidebarAdvanced(),
       },
-      '/job-summary/': {
-        base: '/job-summary/',
-        items: getSidebarJobSummary(),
+      '/specification/': {
+        base: '/specification/',
+        items: getSidebarSpecification(),
       },
       '/share/': {
         base: '/share/',
@@ -51,7 +47,7 @@ export default defineConfig({
       copyright: `版权所有 © 2021-${new Date().getFullYear()} Jerry`,
     },
     outline: {
-      label: '页面导航',
+      label: '目录',
       level: [2, 3], // 'deep' // 默认值为 2
     },
 

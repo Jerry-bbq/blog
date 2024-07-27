@@ -1,4 +1,4 @@
-# vscode常用插件
+# VS Code
 
 ## 常用插件
 

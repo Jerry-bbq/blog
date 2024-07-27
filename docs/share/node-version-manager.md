@@ -1,5 +1,5 @@
 
-# Node版本管理
+# NVM版本管理
 
 `nvm`(**Node Version Manager**)：`Node`版本管理工具
 

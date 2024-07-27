@@ -1,5 +1,5 @@
 
-# NGINX
+# Nginx
 
 ## centos安装
 

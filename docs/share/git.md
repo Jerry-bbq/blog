@@ -1,7 +1,7 @@
 
-# git
+# Git使用记录
 
-git是一个分布式版本控制系统（distributed version control system）
+Git是一个分布式版本控制系统（distributed version control system）
 
 术语：
 

@@ -1,5 +1,5 @@
 
-# NPM的镜像管理
+# NRM镜像管理
 
 `nrm`(**Node Registry Manage**): npm的镜像管理
 

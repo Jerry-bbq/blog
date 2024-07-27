@@ -1,5 +1,6 @@
 import { type DefaultTheme } from 'vitepress'
 
+// 基础
 export function getSidebarPrimary(): DefaultTheme.SidebarItem[] {
   return [
     {
@@ -62,12 +63,23 @@ export function getSidebarPrimary(): DefaultTheme.SidebarItem[] {
   ]
 }
 
-export function getDataStructuresAndAlgorithms(): DefaultTheme.SidebarItem[] {
+// 进阶
+export function getSidebarAdvanced(): DefaultTheme.SidebarItem[] {
   return [
+    {
+      text: '技术栈',
+      collapsed: false,
+      base: '/advanced/',
+      items: [
+        { text: '框架', link: 'framework/index.md' },
+        { text: '打包工具', link: 'bundler/index.md' },
+        { text: 'node', link: 'node/index.md' },
+      ],
+    },
     {
       text: '数据结构与算法',
       collapsed: false,
-      base: '/data-structures-and-algorithms/',
+      base: '/advanced/dsa/',
       items: [
         { text: '概要', link: 'index.md' },
         { text: '时间复杂度和空间复杂度', link: 'algorithm/complexity' },
@@ -78,87 +90,57 @@ export function getDataStructuresAndAlgorithms(): DefaultTheme.SidebarItem[] {
         { text: '算法题', link: 'problem/index.md' },
       ],
     },
+    { text: '设计模式', link: '/design-patterns/index.md' },
   ]
 }
 
-export function getSidebarJobSummary(): DefaultTheme.SidebarItem[] {
+// 前端开发规范
+export function getSidebarSpecification(): DefaultTheme.SidebarItem[] {
   return [
-    {
-      text: '心得',
-      collapsed: false,
-      base: '/job-summary/',
-      items: [
-        { text: '开发流程', link: 'work-flow/index.md' },
-        {
-          text: '前端规范化',
-          base: '/job-summary/specification/',
-          items: [
-            { text: '编码规范', link: 'convention' },
-            { text: '命名规范', link: 'naming' },
-            { text: 'Git提交规范', link: 'git-commit' },
-            { text: 'Git分支管理规范', link: 'git-flow' },
-            { text: '版本号管理规范', link: 'version' },
-            { text: 'Code Review规范', link: 'cr' },
-            { text: '规范工具', link: 'tools' },
-          ],
-        },
-        { text: 'cli', link: 'cli/index.md' },
-        { text: 'mock数据', link: 'mock/index.md' },
-        { text: '项目管理', link: 'work-flow/project-manage' },
-        { text: 'uniapp', link: 'uni-app/app' },
-        { text: 'Vue2.0', link: 'vue/index.md' },
-        { text: 'JavaScript', link: 'javascript/index.md' },
-        { text: 'CSS相关问题', link: 'css/index.md' },
-      ],
-    },
+    { text: '开发流程', link: 'work-flow/index.md' },
+    { text: '编码规范', link: 'convention' },
+    { text: '命名规范', link: 'naming' },
+    { text: 'Git提交规范', link: 'git-commit' },
+    { text: 'Git分支管理规范', link: 'git-flow' },
+    { text: '版本号管理规范', link: 'version' },
+    { text: 'Code Review规范', link: 'cr' },
+    { text: '规范工具', link: 'tools' },
+    { text: '项目管理', link: 'work-flow/project-manage' },
   ]
 }
 
+// 分享
 export function getSidebarShare(): DefaultTheme.SidebarItem[] {
   return [
+    { text: 'CLI脚手架', link: 'cli/index.md' },
+    { text: 'Mock数据', link: 'mock/index.md' },
+    { text: 'uni-app Q&A', link: 'uni-app/app' },
+    { text: 'Vue2.0', link: 'vue/index.md' },
+    { text: 'JavaScript', link: 'javascript/index.md' },
+    { text: 'CSS相关问题', link: 'css/index.md' },
+    { text: '埋点SDK', link: 'tracker/index.md' },
+    { text: '单点登录', link: 'sso/index.md' },
+    { text: '新手引导', link: 'intro' },
+    { text: 'npm', link: 'npm/index.md' },
+    { text: 'VS Code', link: 'vscode/index.md' },
+    { text: 'NRM镜像管理', link: 'node-registry-manage' },
+    { text: 'NVM版本管理', link: 'node-version-manager' },
+    { text: 'Charles', link: 'charles' },
+    { text: 'Git使用记录', link: 'git' },
+    { text: '自定义仪表盘', link: 'gauge/index.md' },
+    { text: '从零实现一个工具函数库', link: 'tool-library' },
+    { text: 'flexible源码解析', link: 'flexible/index.md' },
+    { text: 'vue-lazyload源码阅读', link: 'vue-lazyload/index.md' },
+    { text: '使用hexo搭建个人博客', link: 'hexo' },
+    { text: '其他', link: 'other' },
     {
-      text: '分享',
+      text: '服务器',
       collapsed: false,
-      base: '/share/',
+      base: '/share/server/',
       items: [
-        {
-          text: '埋点SDK',
-          link: 'tracker/index.md',
-        },
-        {
-          text: '单点登录',
-          link: 'sso/index.md',
-        },
-        {
-          text: '新手引导',
-          link: 'intro',
-        },
-        {
-          text: 'npm',
-          link: 'npm/index.md',
-        },
-        {
-          text: 'vscode',
-          link: 'vscode/index.md',
-        },
-        // {
-        //   text: 'vscode',
-        //   base: '/share/vscode/',
-        //   items: [{ text: '插件', link: 'plugins' }],
-        // },
-        { text: 'nrm', link: 'node-registry-manage' },
-        { text: 'nvm', link: 'node-version-manager' },
-        { text: 'charles', link: 'charles' },
-        { text: 'git', link: 'git' },
-        { text: '自定义仪表盘', link: 'gauge/index.md' },
-        { text: '从零实现一个工具函数库', link: 'tool-library' },
-        { text: 'flexible源码解析', link: 'flexible/index.md' },
-        { text: 'vue-lazyload源码阅读', link: 'vue-lazyload/index.md' },
-        { text: 'Docker', link: 'server/docker' },
-        { text: 'nginx', link: 'server/nginx' },
-        { text: '禅道', link: 'server/zentao' },
-        { text: '使用hexo搭建个人博客', link: 'hexo' },
-        { text: '其他', link: 'other' },
+        { text: 'Docker使用记录', link: 'docker' },
+        { text: 'Nginx使用记录', link: 'nginx' },
+        { text: '禅道安装记录', link: 'zentao' },
       ],
     },
   ]
