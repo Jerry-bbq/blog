@@ -44,7 +44,7 @@ export default defineConfig({
     },
     footer: {
       message: '',
-      copyright: `版权所有 © 2021-${new Date().getFullYear()} Jerry`,
+      copyright: `Copyright © 2021-${new Date().getFullYear()} <a href="https://github.com/Jerry-bbq">Jerry-bbq</a>`,
     },
     outline: {
       label: '目录',
