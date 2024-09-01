@@ -4,7 +4,7 @@ export function nav(): DefaultTheme.NavItem[] {
     return [
       {
         text: '基础',
-        link: '/primary/html/doctype',
+        link: '/primary/javascript/data-types',
         activeMatch: '/primary/',
       },
       {

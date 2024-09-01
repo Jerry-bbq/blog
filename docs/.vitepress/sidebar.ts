@@ -4,35 +4,6 @@ import { type DefaultTheme } from 'vitepress'
 export function getSidebarPrimary(): DefaultTheme.SidebarItem[] {
   return [
     {
-      text: 'HTML',
-      collapsed: false,
-      base: '/primary/html/',
-      items: [
-        { text: '声明文档类型DOCTYPE', link: 'doctype' },
-        { text: '浏览器', link: 'rendering-engine' },
-        { text: '浏览器的渲染过程', link: 'painting' },
-        { text: '浏览器的回流与重绘', link: 'reflow-repaint' },
-        { text: 'Canvas与SVG的区别', link: 'canvas-svg' },
-        { text: '其他', link: 'other' },
-      ],
-    },
-    {
-      text: 'CSS',
-      collapsed: false,
-      base: '/primary/css/',
-      items: [
-        { text: '盒模型', link: 'box-model' },
-        { text: 'BFC', link: 'bfc' },
-        { text: 'flex', link: 'flex' },
-        { text: '移动端适配', link: 'mobile-adaptation' },
-        { text: '清除浮动', link: 'clear' },
-        { text: '元素水平垂直居中', link: 'center' },
-        { text: '页面布局', link: 'layout' },
-        { text: 'CSS动画', link: 'animation' },
-        { text: '其他', link: 'other' },
-      ],
-    },
-    {
       text: 'JavaScript',
       collapsed: false,
       base: '/primary/javascript/',
@@ -60,6 +31,35 @@ export function getSidebarPrimary(): DefaultTheme.SidebarItem[] {
       base: '/primary/typescript/',
       items: [{ text: 'TypeScript', link: 'index.md' }],
     },
+    {
+      text: 'HTML',
+      collapsed: false,
+      base: '/primary/html/',
+      items: [
+        { text: '声明文档类型DOCTYPE', link: 'doctype' },
+        { text: '浏览器', link: 'rendering-engine' },
+        { text: '浏览器的渲染过程', link: 'painting' },
+        { text: '浏览器的回流与重绘', link: 'reflow-repaint' },
+        { text: 'Canvas与SVG的区别', link: 'canvas-svg' },
+        { text: '其他', link: 'other' },
+      ],
+    },
+    {
+      text: 'CSS',
+      collapsed: false,
+      base: '/primary/css/',
+      items: [
+        { text: '盒模型', link: 'box-model' },
+        { text: 'BFC', link: 'bfc' },
+        { text: 'flex', link: 'flex' },
+        { text: '移动端适配', link: 'mobile-adaptation' },
+        { text: '清除浮动', link: 'clear' },
+        { text: '元素水平垂直居中', link: 'center' },
+        { text: '页面布局', link: 'layout' },
+        { text: 'CSS动画', link: 'animation' },
+        { text: '其他', link: 'other' },
+      ],
+    }
   ]
 }
 
