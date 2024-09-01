@@ -18,6 +18,7 @@
 - [在线AES加密解密](https://tool.lmeee.com/jiami/aes)
 - [在线制作简历：Reactive-Resume](https://github.com/AmruthPillai/Reactive-Resume)
 - [JavaScript 生态的趋势](https://risingstars.js.org/2023/en)
+- [随机生成图片](https://picsum.photos/)
 
 ## AI工具
 
