@@ -136,3 +136,14 @@
   --docsearch-primary-color: var(--vp-c-brand-1) !important;
 }
 
+/* medium-zoom style */
+
+.medium-zoom-overlay {
+  z-index: 999;
+}
+
+.medium-zoom-image {
+  z-index: 1000;
+}
+
+
