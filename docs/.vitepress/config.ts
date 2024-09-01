@@ -64,9 +64,9 @@ export default defineConfig({
     search: {
       provider: 'algolia',
       options: {
-        appId: 'FQDTUDLCU9',
-        apiKey: '0d517e9e9669d6b443f058e49f08d196',
-        indexName: 'jerry-bro-gitee',
+        appId: '1R0EJFK88U',
+        apiKey: 'a383d8461ec103768215273256762606',
+        indexName: 'jerry-bbq.github.io',
         locales: {
           ...getAlgoliaSearchOptions(),
         },
