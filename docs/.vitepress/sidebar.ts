@@ -112,7 +112,11 @@ export function getSidebarSpecification(): DefaultTheme.SidebarItem[] {
 // 分享
 export function getSidebarShare(): DefaultTheme.SidebarItem[] {
   return [
+
     { text: 'CLI脚手架', link: 'cli/index.md' },
+    { text: '国际化', link: 'i18n/index.md' },
+    { text: '换肤', link: 'theme/index.md' },
+    { text: 'H5屏幕适配解决方案', link: 'screen-adaptation/index.md' },
     { text: 'Mock数据', link: 'mock/index.md' },
     { text: 'uni-app Q&A', link: 'uni-app/app' },
     { text: 'Vue2.0', link: 'vue/index.md' },
