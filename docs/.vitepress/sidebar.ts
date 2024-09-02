@@ -112,8 +112,8 @@ export function getSidebarSpecification(): DefaultTheme.SidebarItem[] {
 // 分享
 export function getSidebarShare(): DefaultTheme.SidebarItem[] {
   return [
-
     { text: 'CLI脚手架', link: 'cli/index.md' },
+    { text: '项目常用开发依赖', link: 'dependencies/index.md' },
     { text: '国际化', link: 'i18n/index.md' },
     { text: '换肤', link: 'theme/index.md' },
     { text: 'H5屏幕适配解决方案', link: 'screen-adaptation/index.md' },
