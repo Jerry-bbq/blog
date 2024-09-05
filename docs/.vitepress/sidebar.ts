@@ -57,6 +57,7 @@ export function getSidebarPrimary(): DefaultTheme.SidebarItem[] {
         { text: '元素水平垂直居中', link: 'center' },
         { text: '页面布局', link: 'layout' },
         { text: 'CSS动画', link: 'animation' },
+        { text: '线性渐变linear-gradient', link: 'linear-gradient' },
         { text: '其他', link: 'other' },
       ],
     }

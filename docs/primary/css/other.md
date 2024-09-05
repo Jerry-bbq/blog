@@ -54,15 +54,6 @@ opacity:0 | 是 | 是 | 是
 }
 ```
 
-## linear-gradient
-
-linear-gradient() CSS 函数创建一个由两种或多种颜色沿一条直线进行线性过渡的图像，其结果是 \<gradient> 数据类型的对象，此对象是一种特殊的 \<image> 数据类型
-
-在线调试工具：
-
-- [ColorSpace](https://mycolor.space/)
-- [渐变神器Gradient](https://gradient.shapefactory.co/)
-
 ## box-show
 
 在线调试工具：
