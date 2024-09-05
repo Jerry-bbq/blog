@@ -20,7 +20,7 @@
 - [JavaScript 生态的趋势](https://risingstars.js.org/2023/en)
 - [随机生成图片](https://picsum.photos/)
 - [正则在线工具](https://regex-vis.com/?r=%2F%5C.%28jpg%7Cjpeg%7Cpng%7Cgif%29%24%2Fi)
-- [炫酷开源免费的 UI 组件库uiverse](https://uiverse.io/loaders)
+- [炫酷开源免费的UI组件库 uiverse](https://uiverse.io/loaders)
 
 ## AI工具
 
@@ -28,16 +28,6 @@
 - [文心一言](https://yiyan.baidu.com/)
 - [通义千问](https://tongyi.aliyun.com/)
 - [AI LOGO标小智](https://www.logosc.cn/biaozhi/)
-
-## 在线绘图工具
-
-- [excalidraw](https://excalidraw.com/)
-- [draw.io](https://app.diagrams.net/)
-- [在线PS](https://www.tuyitu.com/ps/sources/)
-
-## PPT素材
-
-- [hrxz](https://www.hrxz.com/pptls/221-0-0-0-0.html)
 
 ## 优化
 

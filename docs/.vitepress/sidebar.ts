@@ -137,6 +137,7 @@ export function getSidebarShare(): DefaultTheme.SidebarItem[] {
     { text: 'flexible源码解析', link: 'flexible/index.md' },
     { text: 'vue-lazyload源码阅读', link: 'vue-lazyload/index.md' },
     { text: '使用hexo搭建个人博客', link: 'hexo' },
+    { text: '办公必备工具推荐', link: 'work/index.md' },
     { text: '其他', link: 'other' },
     {
       text: '服务器',
