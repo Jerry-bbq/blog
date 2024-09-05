@@ -19,7 +19,7 @@
 - [在线制作简历：Reactive-Resume](https://github.com/AmruthPillai/Reactive-Resume)
 - [JavaScript 生态的趋势](https://risingstars.js.org/2023/en)
 - [随机生成图片](https://picsum.photos/)
-- [正则在线工具]([regex-vis](https://regex-vis.com/?r=%2F%5C.%28jpg%7Cjpeg%7Cpng%7Cgif%29%24%2Fi))
+- [正则在线工具](https://regex-vis.com/?r=%2F%5C.%28jpg%7Cjpeg%7Cpng%7Cgif%29%24%2Fi)
 - [炫酷开源免费的 UI 组件库uiverse](https://uiverse.io/loaders)
 
 ## AI工具
