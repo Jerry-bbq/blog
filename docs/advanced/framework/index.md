@@ -13,3 +13,7 @@
 - [react](./react/react/index.md)
 - [react-router](./react/react-router/index.md)
 - [redux](./react/redux/index.md)
+
+## 其他
+
+- [各大技术站语法使用对比](https://component-party.dev/)
