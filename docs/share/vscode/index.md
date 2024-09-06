@@ -1,32 +1,27 @@
 # VS Code
 
-## 常用插件
+## 插件推荐
 
-- `Svg Preview` svg预览
-- prettier 代码格式化
-- GitLens — Git supercharged
-- Chinese (Simplified) (简体中文) Language Pack for Visual Studio Code
-- JS JSX Snippets
-- React-Native/React/Redux snippets for es6/es7
-- `vscode-pigments`：实时预览设置的颜色
-- `Template String Converte`： 在字符串中输入$触发，将字符串转换为模板字符串
-- `View In Browser`： 右键在浏览器中打开文件
-- `Vetur`：开发vue必备
-- `Vue 3 Snippets`
-- `别名路径跳转`：别名路径跳转插件，支持任何项目，
+- [GitLens](https://marketplace.visualstudio.com/items?itemName=eamodio.gitlens)： Git 插件
+- [Prettier](https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode)： 代码格式化
+- [ESLint](https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint)：ESLint插件
+- [Vue - Official](https://marketplace.visualstudio.com/items?itemName=Vue.volar)：VS Code支持vue语言
+- [Code Spell Checker](https://marketplace.visualstudio.com/items?itemName=streetsidesoftware.code-spell-checker)：单词检查
+- [Chinese (Simplified) (简体中文) Language Pack for Visual Studio Code](https://marketplace.visualstudio.com/items?itemName=MS-CEINTL.vscode-language-pack-zh-hans)：VS Code中文
+- [Svg Preview](https://marketplace.visualstudio.com/items?itemName=SimonSiefke.svg-preview)：SVG预览
+- [JS JSX Snippets](https://marketplace.visualstudio.com/items?itemName=skyran.js-jsx-snippets)：代码片段
+- [vscode-pigments](https://marketplace.visualstudio.com/items?itemName=jaspernorth.vscode-pigments)：VS Code中实时预览设置的颜色
+- [Template String Converte](https://marketplace.visualstudio.com/search?term=Template%20String%20Converte&target=VSCode&category=All%20categories&sortBy=Relevancehttps://marketplace.visualstudio.com/search?term=Template%20String%20Converte&target=VSCode&category=All%20categories&sortBy=Relevance)： 在字符串中输入$触发，将字符串转换为模板字符串
+- [View In Browser](https://marketplace.visualstudio.com/items?itemName=qinjia.view-in-browser)： 右键在浏览器中打开文件
+- [CodeSnap](https://marketplace.visualstudio.com/items?itemName=adpyke.codesnap)： 代码截屏，不能做标注
+- [Draw.io Integration](https://marketplace.visualstudio.com/items?itemName=hediet.vscode-drawio)：在VS Code中绘图
+- [i18n Ally](https://marketplace.visualstudio.com/items?itemName=Lokalise.i18n-ally)：国际化
+- [Markdown All in One](https://marketplace.visualstudio.com/items?itemName=yzhang.markdown-all-in-one)：Markdown预览
+- [carbon-now-sh](https://marketplace.visualstudio.com/items?itemName=ericadamski.carbon-now-sh)：代码截屏
+- [JSON Crack](https://marketplace.visualstudio.com/items?itemName=AykutSarac.jsoncrack-vscode)：JSON文件预览
 
-### carbon-now-sh
+::: tip
 
-用于生产代码片段
+插件市场入口：https://marketplace.visualstudio.com/vscode
 
-![carbon](./images/carbon.png)
-
-- [carbon-now-sh](https://marketplace.visualstudio.com/items?itemName=ericadamski.carbon-now-sh)
-- [web版本](https://carbon.now.sh/)
-
-### JSON Crack
-
-![jsoncrack](./images/jsoncrack.png)
-
-- [官网](https://jsoncrack.com/)
-- [vscode插件](https://marketplace.visualstudio.com/items?itemName=AykutSarac.jsoncrack-vscode)
+:::
