@@ -2,9 +2,9 @@
   "name": "blog",
   "type": "module",
   "scripts": {
-    "docs:dev": "vitepress dev docs",
-    "docs:build": "vitepress build docs",
-    "docs:preview": "vitepress preview docs",
+    "dev": "vitepress dev docs",
+    "build": "vitepress build docs",
+    "preview": "vitepress preview docs",
     "publish": "pnpm run docs:build && git add . && git commit -m 'chore: build' && git push"
   },
   "dependencies": {
