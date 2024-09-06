@@ -12,7 +12,7 @@
 
 - [Git](https://git-scm.com/)
 
-## 代码开发工具：
+## 代码开发工具
 
 - [Visual Studio Code](https://code.visualstudio.com/Download)
   - [必备插件下载](../vscode/index.md)
@@ -31,7 +31,12 @@
 
 ## 接口调试工具
 
-- 接口调试工具：[Postman](https://www.postman.com/)
+- [Postman](https://www.postman.com/)
+
+## 数据库可视化工具
+
+- [Navicat Premium Lite](https://navicat.com/en/download/navicat-premium-lite)
+- [DBeaver](https://dbeaver.io/download/)
 
 ## 浏览器
 
