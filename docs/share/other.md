@@ -21,6 +21,7 @@
 - [随机生成图片](https://picsum.photos/)
 - [正则在线工具](https://regex-vis.com/?r=%2F%5C.%28jpg%7Cjpeg%7Cpng%7Cgif%29%24%2Fi)
 - [炫酷开源免费的UI组件库 uiverse](https://uiverse.io/loaders)
+- [What the f*ck JavaScript?](https://github.com/denysdovhan/wtfjs/blob/master/README-zh-cn.md#%E5%86%8D-new-%E4%B8%80%E6%AC%A1)
 
 ## AI工具
 
@@ -32,3 +33,11 @@
 ## 优化
 
 - [if语句优化](https://mp.weixin.qq.com/s/rItV0xeAnqT3yOQQqwXCUg)
+
+## 免费静态网站托管平台
+
+- Gitee Pages（不稳定）
+- GitHub Pages
+- Cloudflare Pages
+- Vercel
+- Netlify

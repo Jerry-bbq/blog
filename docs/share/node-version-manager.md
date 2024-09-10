@@ -76,3 +76,7 @@ nvm uninstall <version>
 ## 更多使用方法
 
 更多使用方法可通过`nvm -v`来查看
+
+## 其他
+
+- 也推荐使用[Volta](https://volta.sh/)
