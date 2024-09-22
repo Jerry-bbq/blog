@@ -65,7 +65,7 @@ export default defineConfig({
       provider: 'algolia',
       options: {
         appId: '1R0EJFK88U',
-        apiKey: 'f4054501733a4436a1e16470a226387c',
+        apiKey: '93eb907e4b0fca5015ef1a694107e65d',
         indexName: 'jerry-bbq.github.io',
         locales: {
           ...getAlgoliaSearchOptions(),
