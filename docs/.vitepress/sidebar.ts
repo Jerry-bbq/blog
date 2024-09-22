@@ -58,9 +58,10 @@ export function getSidebarPrimary(): DefaultTheme.SidebarItem[] {
         { text: '页面布局', link: 'layout' },
         { text: 'CSS动画', link: 'animation' },
         { text: '线性渐变linear-gradient', link: 'linear-gradient' },
+        { text: 'CSS框架', link: 'css-framework' },
         { text: '其他', link: 'other' },
       ],
-    }
+    },
   ]
 }
 
@@ -148,6 +149,6 @@ export function getSidebarShare(): DefaultTheme.SidebarItem[] {
         { text: '禅道安装记录', link: 'zentao' },
       ],
     },
-    { text: '使用hexo搭建个人博客', link: 'hexo' },    { text: '使用hexo搭建个人博客', link: 'hexo' },
+    { text: '使用hexo搭建个人博客', link: 'hexo' },
   ]
 }
