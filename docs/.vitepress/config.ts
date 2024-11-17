@@ -72,7 +72,7 @@ export default defineConfig({
         },
       },
     },
-    socialLinks: [{ icon: 'github', link: 'https://gitee.com/Jerry-bro' }],
+    socialLinks: [{ icon: 'github', link: 'https://github.com/Jerry-bbq/blog' }],
   },
   markdown: {
     config: md => {
