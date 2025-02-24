@@ -2,11 +2,12 @@
 
 ## 插件推荐
 
-- [GitLens](https://marketplace.visualstudio.com/items?itemName=eamodio.gitlens)： Git 插件
-- [Prettier](https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode)： 代码格式化
-- [ESLint](https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint)：ESLint插件
+- :fire: [MarsCode AI: Coding Assistant](https://marketplace.visualstudio.com/items?itemName=MarsCode.marscode-extension)：智能编程助手
+- :fire: [GitLens](https://marketplace.visualstudio.com/items?itemName=eamodio.gitlens)： Git 插件
+- :fire: [Prettier](https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode)： 代码格式化
+- :fire: [ESLint](https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint)：ESLint插件
 - [Vue - Official](https://marketplace.visualstudio.com/items?itemName=Vue.volar)：VS Code支持vue语言
-- [Code Spell Checker](https://marketplace.visualstudio.com/items?itemName=streetsidesoftware.code-spell-checker)：单词检查
+- :fire: [Code Spell Checker](https://marketplace.visualstudio.com/items?itemName=streetsidesoftware.code-spell-checker)：单词检查
 - [Chinese (Simplified) (简体中文) Language Pack for Visual Studio Code](https://marketplace.visualstudio.com/items?itemName=MS-CEINTL.vscode-language-pack-zh-hans)：VS Code中文
 - [Svg Preview](https://marketplace.visualstudio.com/items?itemName=SimonSiefke.svg-preview)：SVG预览
 - [JS JSX Snippets](https://marketplace.visualstudio.com/items?itemName=skyran.js-jsx-snippets)：代码片段

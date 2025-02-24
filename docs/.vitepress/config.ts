@@ -2,7 +2,7 @@ import { defineConfig, type DefaultTheme } from 'vitepress'
 import taskLists from 'markdown-it-task-list-plus'
 import { nav } from './nav'
 import { getAlgoliaSearchOptions } from './searchOptions'
-import { getSidebarPrimary, getSidebarAdvanced, getSidebarShare, getSidebarSpecification } from './sidebar'
+import { getSidebarPrimary, getSidebarAdvanced, getSidebarShare, getSidebarCodingStandards, getSidebarCommon,getSidebarServer} from './sidebar'
 
 export default defineConfig({
   base: '/blog/',
@@ -22,14 +22,22 @@ export default defineConfig({
         base: '/advanced/',
         items: getSidebarAdvanced(),
       },
-      '/specification/': {
-        base: '/specification/',
-        items: getSidebarSpecification(),
+      '/coding-standards/': {
+        base: '/coding-standards/',
+        items: getSidebarCodingStandards(),
+      },
+      '/common/': {
+        base: '/common/',
+        items: getSidebarCommon(),
       },
       '/share/': {
         base: '/share/',
         items: getSidebarShare(),
       },
+      'server':  {
+        base: '/server/',
+        items: getSidebarServer(),
+      }
     },
     lastUpdated: {
       text: '最后更新于',

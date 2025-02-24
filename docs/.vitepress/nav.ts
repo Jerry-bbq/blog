@@ -13,14 +13,24 @@ export function nav(): DefaultTheme.NavItem[] {
         activeMatch: '/advanced/',
       },
       {
-        text: '前端开发规范',
-        link: '/specification/work-flow',
-        activeMatch: '/specification/',
+        text: '常用',
+        link: '/common/vscode/index.md',
+        activeMatch: '/common/',
+      },
+      {
+        text: '开发规范',
+        link: '/coding-standards/work-flow',
+        activeMatch: '/coding-standards/',
       },
       {
         text: '分享',
         link: '/share/cli',
         activeMatch: '/share/',
+      },
+      {
+        text: '服务器',
+        link: '/server/docker/index.md',
+        activeMatch: '/server/',
       },
       {
         text: '开源',
@@ -31,9 +41,9 @@ export function nav(): DefaultTheme.NavItem[] {
           { text: '图形验证码插件：vue-img-verify', link: 'https://github.com/Jerry-bbq/vue-img-verify' }
         ],
       },
-      // {
-      //   text: 'HK-Office',
-      //   link: '/audition/index',
-      // },
+      {
+        text: 'HK-Office',
+        link: '/audition/index',
+      },
     ]
   }

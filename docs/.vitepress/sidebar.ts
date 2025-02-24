@@ -97,7 +97,7 @@ export function getSidebarAdvanced(): DefaultTheme.SidebarItem[] {
 }
 
 // 前端开发规范
-export function getSidebarSpecification(): DefaultTheme.SidebarItem[] {
+export function getSidebarCodingStandards(): DefaultTheme.SidebarItem[] {
   return [
     { text: '开发流程', link: 'work-flow/index.md' },
     { text: '编码规范', link: 'convention' },
@@ -133,22 +133,27 @@ export function getSidebarShare(): DefaultTheme.SidebarItem[] {
     { text: 'Vue2.0', link: 'vue/index.md' },
     { text: 'JavaScript', link: 'javascript/index.md' },
     { text: 'CSS相关问题', link: 'css/index.md' },
-    { text: '办公必备工具推荐', link: 'work/index.md' },
+    { text: '其他', link: 'other' },
+    { text: '使用hexo搭建个人博客', link: 'hexo' },
+  ]
+}
+
+// 常用工具
+export function getSidebarCommon(): DefaultTheme.SidebarItem[] {
+  return [
     { text: 'VS Code', link: 'vscode/index.md' },
+    { text: '办公必备工具推荐', link: 'work/index.md' },
     { text: 'NRM镜像管理', link: 'node-registry-manage' },
     { text: 'NVM版本管理', link: 'node-version-manager' },
     { text: 'Charles', link: 'charles' },
-    { text: '其他', link: 'other' },
-    {
-      text: '服务器',
-      collapsed: false,
-      base: '/share/server/',
-      items: [
-        { text: 'Docker使用记录', link: 'docker' },
-        { text: 'Nginx使用记录', link: 'nginx' },
-        { text: '禅道安装记录', link: 'zentao' },
-      ],
-    },
-    { text: '使用hexo搭建个人博客', link: 'hexo' },
+  ]
+}
+
+// 服务器 
+export function getSidebarServer(): DefaultTheme.SidebarItem[] {
+  return [
+    { text: 'Docker使用记录', link: 'docker' },
+    { text: 'Nginx使用记录', link: 'nginx' },
+    { text: '禅道安装记录', link: 'zentao' },
   ]
 }
