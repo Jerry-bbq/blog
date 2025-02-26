@@ -2,9 +2,14 @@
 import { h, onMounted, watch, nextTick } from 'vue'
 import type { Theme } from 'vitepress'
 import DefaultTheme from 'vitepress/theme'
+
 import './custom.css'
+import './style/index.css' //自定义样式
+
 import mediumZoom from 'medium-zoom'
 import { useRoute } from 'vitepress'
+
+import CanvasConfetti from "./components/CanvasConfetti.vue" // 五彩纸屑
 
 export default {
   extends: DefaultTheme,
@@ -15,6 +20,7 @@ export default {
   },
   enhanceApp({ app, router, siteData }) {
     // ...
+    app.component('CanvasConfetti' , CanvasConfetti) // 五彩纸屑
   },
   setup() {
     const route = useRoute()

@@ -8,6 +8,7 @@
     "publish": "pnpm run docs:build && git add . && git commit -m 'chore: build' && git push"
   },
   "dependencies": {
+    "canvas-confetti": "^1.9.3",
     "markdown-it-task-list-plus": "^2.1.3",
     "medium-zoom": "^1.1.0"
   },
