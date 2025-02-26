@@ -9,7 +9,7 @@ hero:
   actions:
     - theme: brand
       text: LET'S GO →
-      link: /primary/html/doctype
+      link: /primary/typescript/
     # - theme: alt
     #   text: API Examples
     #   link: /api-examples

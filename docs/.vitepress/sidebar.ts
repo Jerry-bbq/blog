@@ -4,6 +4,12 @@ import { type DefaultTheme } from 'vitepress'
 export function getSidebarPrimary(): DefaultTheme.SidebarItem[] {
   return [
     {
+      text: 'TypeScript',
+      collapsed: false,
+      base: '/primary/typescript/',
+      items: [{ text: '基础', link: 'index.md' }],
+    },
+    {
       text: 'JavaScript',
       collapsed: false,
       base: '/primary/javascript/',
@@ -24,12 +30,6 @@ export function getSidebarPrimary(): DefaultTheme.SidebarItem[] {
         { text: 'Coding', link: 'coding' },
         { text: '前端工程化', link: 'engineering' },
       ],
-    },
-    {
-      text: 'TypeScript',
-      collapsed: false,
-      base: '/primary/typescript/',
-      items: [{ text: 'TypeScript', link: 'index.md' }],
     },
     {
       text: 'HTML',

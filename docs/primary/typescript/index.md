@@ -1,4 +1,3 @@
-
 # TypeScript
 
 TypeScript是JavaScript的超集
