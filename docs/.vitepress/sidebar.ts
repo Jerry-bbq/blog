@@ -144,7 +144,7 @@ export function getSidebarCommon(): DefaultTheme.SidebarItem[] {
     { text: 'VS Code', link: 'vscode/index.md' },
     { text: '办公必备工具推荐', link: 'work/index.md' },
     { text: 'NRM镜像管理', link: 'node-registry-manage' },
-    { text: 'NVM版本管理', link: 'node-version-manager' },
+    { text: 'NODE版本管理', link: 'node-version-manager' },
     { text: 'Charles', link: 'charles' },
   ]
 }
