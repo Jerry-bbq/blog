@@ -1,0 +1,562 @@
+[
+    {
+        "id": "2",
+        "title": "UBD",
+        "icon": "https://ubd.supcon.com/resource/App_1af1a690b81b7cabc2f5fde0b00d15ad/logo_ubd.png",
+        "link": "http://supportal.supcon.com/main/#/runtime-fullscreen/runtime-fullscreen/Page_33a4714248464efb9073eebfcf6d610a",
+        "description": "中控门户类网站",
+        "group": "SUPCON"
+    },
+    {
+        "id": "3",
+        "title": "中控网盘",
+        "icon": "https://pan.supcon.com/favicon.ico",
+        "link": "https://pan.supcon.com/view/login/login_auto.html",
+        "description": "内部网盘",
+        "group": "SUPCON"
+    },
+    {
+        "id": "4",
+        "title": "中控云服务",
+        "icon": "http://cloud.supcon.com/web-public/fit2cloud/img/fit2cloud/favicon.bmp?_t=1706943892276",
+        "link": "http://cloud.supcon.com/auth/realms/cmp/protocol/openid-connect/auth?response_type=code&client_id=cmp-client&redirect_uri=http%3A%2F%2Fcloud.supcon.com%2Fvm-service%2F&state=cf536b86-05fe-4ca3-9d95-32cdb010d94c&login=true&scope=openid",
+        "description": "云服务",
+        "group": "SUPCON"
+    },
+    {
+        "id": "5",
+        "title": "Confluence",
+        "icon": "https://icon.horse/icon/www.atlassian.com",
+        "link": "http://bdtool-t-01:8090/pages/viewpage.action?pageId=327683",
+        "description": "",
+        "group": "内部文档"
+    },
+    {
+        "id": "6",
+        "title": "web项目开发模版",
+        "icon": "https://essendata.supcon.com/big-data-platform/favicon.ico",
+        "link": "http://10.48.0.108:8888/admin-template/dashboard/analysis",
+        "description": "前端项目开发模版",
+        "group": "内部文档"
+    },
+    {
+        "id": "7",
+        "title": "模版使用文档",
+        "icon": "https://essendata.supcon.com/big-data-platform/favicon.ico",
+        "link": "http://10.48.0.108:8888/admin-template-doc/guide/introduction.html",
+        "description": "前端项目开发模版使用文档",
+        "group": "内部文档"
+    },
+    {
+        "id": "8",
+        "title": "既留",
+        "icon": "https://icon.horse/icon/essendata.supcon.com",
+        "link": "http://10.48.0.108:9999/",
+        "description": "数据采集工具的介绍以及使用文档",
+        "group": "内部文档"
+    },
+    {
+        "id": "9",
+        "title": "Essendata-prod",
+        "icon": "https://essendata.supcon.com/big-data-platform/favicon.ico",
+        "link": "https://essendata.supcon.com",
+        "description": "生产环境",
+        "group": "ESSENDATA"
+    },
+    {
+        "id": "10",
+        "title": "Essendata-protest",
+        "icon": "https://essendata.supcon.com/big-data-platform/favicon.ico",
+        "link": "http://essendata-pro.supcon.com/big-data-platform/home",
+        "description": "生产环境测试",
+        "group": "ESSENDATA"
+    },
+    {
+        "id": "11",
+        "title": "Essendata-uat",
+        "icon": "https://essendata.supcon.com/big-data-platform/favicon.ico",
+        "link": "http://essendata-uat.supcon.com/big-data-platform/home",
+        "description": "预发环境",
+        "group": "ESSENDATA"
+    },
+    {
+        "id": "12",
+        "title": "Essendata-fat",
+        "icon": "https://essendata.supcon.com/big-data-platform/favicon.ico",
+        "link": "http://essendata-fat.supcon.com/big-data-platform/home",
+        "description": "测试环境",
+        "group": "ESSENDATA"
+    },
+    {
+        "id": "13",
+        "title": "Essendata-dev",
+        "icon": "https://essendata.supcon.com/big-data-platform/favicon.ico",
+        "link": "http://essendata-dev.supcon.com/big-data-platform/home",
+        "description": "开发环境",
+        "group": "ESSENDATA"
+    },
+    {
+        "id": "14",
+        "title": "Essendata演示环境-ip",
+        "icon": "https://essendata.supcon.com/big-data-platform/favicon.ico",
+        "link": "http://10.30.3.174/",
+        "description": "演示环境3.0",
+        "group": "ESSENDATA"
+    },
+    {
+        "id": "15",
+        "title": "SupOS演示环境",
+        "icon": "data:image/vnd.microsoft.icon;base64,AAABAAEAICAAAAEAIACoEAAAFgAAACgAAAAgAAAAQAAAAAEAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIAAAADDkhGByMRzaClUo415hLOvqZTDr/mUw6/5lMOv+ZTDr/mUw6/5lMOv+ZTDr/mUw6/5lMOv+ZTDr/mUw6/5lMOv+ZTDr/mUw6/5lMOv+ZTDr/mUw6/5lMOv+ZTDr/mUw6/5hLOvqVSjjXjEc2gjsaEBsAAAAMAAAACAAAAAxpNisynFA+3p5SQP+eUkD/nlJA/55SQP+eUkD/nlJA/55SQP+eUkD/nlJA/55SQP+eUkD/nlJA/55SQP+eUkD/nlJA/55SQP+eUkD/nlJA/55SQP+eUkD/nlJA/55SQP+eUkD/nlJA/55SQP+eUkD/lEY121MdEi4AAAAMQSEcHKJWRN+kV0X/pFdG/6RXRf+kV0b/pFdF/6RXRv+kV0X/pFdG/6RXRf+kV0b/pFdF/6RXRv+kV0X/pFdG/6RXRf+kV0b/pFdF/6RXRv+kV0X/pFdG/6RXRf+kV0b/pFdF/6RXRv+kV0X/pFdG/6RXRf+hU0H/gSod2zQSDBqZUkKEqVxK/6lcSv+pXEr/qVxK/6lcSv+pXEr/qVxK/6lcSv+pXEr/qVxK/6lcSv+pXEr/qVxK/6lcSv+pXEr/qVxK/6lcSv+pXEr/qVxK/6lcSv+pXEr/qVxK/6lcSv+pXEr/qVxK/6lcSv+pXEr/qVxK/6hbSf+GLB//eSkdfapeTNmuYk//rmFP/65iT/+uYU//rmJP/65hT/+uYk//rmFP/65iT/+uYU//rmJP/65hT/+uYk//rmFP/65iT/+uYU//rmJP/65hT/+uYk//rmFP/65iT/+uYU//rmJP/65hT/+uYk//rmFP/65iT/+uYU//qVtJ/4kvIf+HLiHRs2ZT+rNmVP+zZlT/s2ZU/7NmVP+zZlT/s2ZU/7NmVP+zZlT/s2ZU/7NmVP+zZlT/s2ZU/7NmVP+zZlT/s2ZU/7NmVP+zZlT/s2ZU/7NmVP+zZlT/s2ZU/7NmVP+zZlT/s2ZU/7NmVP+zZlT/s2ZU/7NmVP+jTz7/jTEj/40xI/i4a1j/uGtY/7hrWP+4a1j/uGtY/7hrWP+4a1j/uGtY/7hrWP+4a1j/uGtY/7hrWP+4a1j/uGtY/7hrWP+4a1j/uGtY/7hrWP+4a1j/uGtY/7hrWP+4a1j/uGtY/7hrWP+4a1j/uGtY/7hrWP+4a1j/tGZU/5Q5Kv+QMyb/kDMm/7xuXP+8blz/vG5c/7xuXP+8blz/vG5c/7xuXP+8blz/vG5c/7xuXP+8blz/vG5c/7xuXP+8blz/vG5c/7xuXP+8blz/vG5c/7xuXP+8blz/vG5c/7xuXP+8blz/vG5c/7xuXP+8blz/vG5c/7xuXP+fRzf/kzYo/5M2KP+TNij/wnJg/8JyYP/CcmD/wnJg/8JyYP/CcmD/wnJg/8JyX//AcV//wHFe/8FyX//Bcl//wHFe/8FxX//Ccl//wnJg/8JyYP/CcmD/wnJg/8FxX//AcF//wXJf/8FyX//AcV7/wHBf/8FxX/+6aFb/oUY3/5Y5Kv+WOSr/ljkq/5Y5Kv/GdWP/xnVj/8Z1Y//GdWP/xnVj/8Z1Y//FdGL/w3Ng/8BxXv+9blr/u21Z/7ttWf+9blr/wHFe/8NzYP/FdGL/xXVj/8V0Yv/DcmD/wHFe/71vW/+7bVn/u21Z/7xuWv++cFz/sl1M/5g6LP+ZOyz/mTss/5k7LP+ZOyz/mTss/8t4Zv/LeWf/y3hm/8t5Z//KeGb/yndl/8Z1Yv/FfWn/48K4//r18////v7///7+//r18//jwrj/xX1p/8Z1Yv/IdWT/x3Zj/8R2Yv/bsKT/9+/t//79/f///////vz7/+3Z0/+9e2z/mT4u/5s9Lv+cPS//nD0v/5w9L/+cPS//zntq/898av/Oe2r/z3xq/817af/LeWb/yIFu//fv7f/////////////////////////////////37+3/yYJv/8l2ZP/FdWH/79vV//////////////////////////////////7+/v+1cWL/nUAw/58/Mf+fQDH/n0Ax/59AMf/Sfmz/035s/9J+bP/Sfmz/0Xxr/8p4ZP/w3dj////////+/v/ivbL/x35q/8h+av/gu7D///7+///////w3tj/xXVg/9qnmv///////////+TFvP/FemX/wnNe/8uJd//v3df///////Ts6v+fQzL/o0Ez/6NDNP+jQzT/o0M0/9eAb//XgG//14Bv/9aAbv/TfWv/05GB////////////6MvD/8p3Y//Re2n/0Xtp/8p3Y//oy8P////////////Qj3//37Cj//fs6v/15+P/yXdi/856Z//NeWb/x3Vg/9GlmP///////////6FDM/+lRTX/pkU2/6ZFNf+mRTb/2oNx/9qDcf/ag3H/2oFx/9V+bP/hsqb////////////Xmov/1H5r/9mAb//ZgHD/1H5r/9eai////////////+Gxpf/Oemb/0Hpm/815Zf/MeWX/zHlk/9WVhf/bsKX/+/j3///////79/b/pEY2/6lGN/+pRzj/qkc4/6pHOP/ehHP/3oRz/96Ec//cg3L/139s/+W5rv///////////815ZP/agG7/3YNy/92Dcv/WfGv/x3Nf////////////5Lmt/9J8aP/Qemb/4a6h//Hc1v/9+/r//////////////////////82ajv+qSTn/rEk6/61KO/+tSjv/rUo7/+CFdP/hhXT/4IV0/9+Ec//ZgG7/5rmv////////////z3pm/92Bcf/fhHT/1nlp/7RSQv+pTTr////////////kuK3/z3ll//Lc1///////////////////////+/f2/+HCu/+/emr/q0s6/69LPP+wTD3/sE09/7BMPf+wTT3/zm5d/+KFdP/khnb/4oV1/96BcP/mtKn////////////cnY7/2Htq/8ZjVP+0UED/sE49/8F8bf///////////9CckP/DgG/////////////u3tr/z5uP/7tvX/+qTTv/qkw6/6xOO/+vTj3/sk4//7NPP/+zTz//s08//7NPP/+3UUL/u1ZH/8ZiU//PbV7/0nFg/9SLe////////////+PBuf+wUD//s1BA/7NQQP+vTz7/4L21////////////vHFh/8qNgP///////////6tTP/+vTz3/sE8+/65PPf/q0cv/9Ofl/9yupf+1UUD/t1FC/7dRQv+3UUL/t1FC/7pTRP+6U0T/ulNE/7pTRP+5UkP/tFJB/+zW0P////////7+/9mto/+1Xkz/tV5M/9iroP///v7//////+zW0P+wUT//wnZm////////////1KWZ/7BVQv+zWkf/1aWa///+/v//////1J+U/7dSQv+6U0T/ulNE/7pTRP+6U0T/vVZH/71WR/+9Vkf/vVZH/7xWR/+6VUX/vGVU//bs6v/////////////////////////////////27Or/vGZU/7lVRP+3VEP/6c3H//////////////////////////////////Lh3f+4WUf/u1VF/71WR/+9Vkf/vVZH/71WR//BWUn/wVlJ/8FZSf/BWUn/wFlJ/8BYSP+9V0f/vWRS/+C3r//69PL///7+///+/v/69PL/4Lev/71kUv+8V0b/wFdI/75YSP+7XEr/2qmf//ft6////v7///////r08v/es6r/vGBO/75YR//AWEn/wVlJ/8FZSf/BWUn/wVlJ/8RcTP/EXEz/xFxM/8RcTP/EXEz/xFxM/8NbS//BW0v/vlpJ/7xZR/+6WEb/ulhG/7xZR/++Wkn/wVpK/8NbS//DXEz/w1tM/8JaSv+/Wkn/vFlH/7tYRv+6WEb/vFlH/75aSf/CW0v/w1tL/8RcTP/EXEz/xFxM/8RcTP/EXEz/x15O/8deTv/HXk7/x15O/8deTv/HXk7/x15O/8deTv/GXU7/xl1N/8VeTf/FXk3/xl1N/8ZdTv/HXk7/x15O/8deTv/HXk7/x15O/8ZeTv/GXU3/xV5N/8VeTf/GXU3/xl1O/8deTv/HXk7/x15O/8deTv/HXk7/x15O/8deTv/LYVH/y2FR/8thUf/LYVH/y2FR/8thUf/LYVH/y2FR/8thUf/LYVH/y2FR/8thUf/LYVH/y2FR/8thUf/LYVH/y2FR/8thUf/LYVH/y2FR/8thUf/LYVH/y2FR/8thUf/LYVH/y2FR/8thUf/LYVH/y2FR/8thUf/LYVH/y2FR/85jU//OY1P/zmNT/85jU//OY1P/zmNT/85jU//OY1P/zmNT/85jU//OY1P/zmNT/85jU//OY1P/zmNT/85jU//OY1P/zmNT/85jU//OY1P/zmNT/85jU//OY1P/zmNT/85jU//OY1P/zmNT/85jU//OY1P/zmNT/85jU//OY1P/0WZW+NFmVv/RZlb/0WZW/9FmVv/RZlb/0WZW/9FmVv/RZlb/0WZW/9FmVv/RZlb/0WZW/9FmVv/RZlb/0WZW/9FmVv/RZlb/0WZW/9FmVv/RZlb/0WZW/9FmVv/RZlb/0WZW/9FmVv/RZlb/0WZW/9FmVv/RZlb/0WZW/9JmVvjQZVfR1WhZ/9VoWf/VaFn/1GhZ/9VoWf/VaFn/1WhZ/9RoWf/VaFn/1WhZ/9VoWf/UaFn/1WhZ/9VoWf/VaFn/1GhZ/9VoWf/VaFn/1WhZ/9RoWf/VaFn/1WhZ/9VoWf/UaFn/1WhZ/9VoWf/VaFn/1GhZ/9VoWf/VaFn/z2VX0cZiVH3Ya1v/2Gtb/9hrW//Ya1v/2Gtb/9hrW//Ya1v/2Gtb/9hrW//Ya1v/2Gtb/9hrW//Ya1v/2Gtb/9hrW//Ya1v/2Gtb/9hrW//Ya1v/2Gtb/9hrW//Ya1v/2Gtb/9hrW//Ya1v/2Gtb/9hrW//Ya1v/2Gtb/9hrW//GYlR9TismGthsXdvbbl7/225e/9tuXv/bbl7/225e/9tuXv/bbl7/225e/9tuXv/bbl7/225e/9tuXv/bbl7/225e/9tuXv/bbl7/225e/9tuXv/bbl7/225e/9tuXv/bbl7/225e/9tuXv/bbl7/225e/9tuXv/bbl7/2Gxd21ItKBkAAAAMk0pALtpvX9vfcWD/3nBg/99wYP/ecGD/33Fg/95wYP/fcGD/3nBg/99xYP/ecGD/33Bg/95wYP/fcWD/3nBg/99wYP/ecGD/33Fg/95wYP/fcGD/3nBg/99xYP/ecGD/33Bg/95wYP/fcWD/3nBg/9xvX9uTSkAuAAAADAAAAAgAAAAMTismGs5oWn3ccGHR4XNj+OJzY//ic2P/4nNj/+JzY//ic2P/4nNj/+JzY//ic2P/4nNj/+JzY//ic2P/4nNj/+JzY//ic2P/4nNj/+JzY//ic2P/4nNj/+JzY//ic2P/4XNj+N5wYdHOaFp9Ui0oGQAAAAwAAAAI4AAAB8AAAAOAAAABAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIAAAAGAAAABwAAAA/AAAA8=",
+        "link": "http://10.30.43.105:8080/",
+        "description": "演示环境3.0",
+        "group": "ESSENDATA"
+    },
+    {
+        "id": "16",
+        "title": "Essendata演示环境-域名",
+        "icon": "https://essendata.supcon.com/big-data-platform/favicon.ico",
+        "link": "http://essendata-demo.supcon.com/",
+        "description": "演示环境3.0",
+        "group": "ESSENDATA"
+    },
+    {
+        "id": "17",
+        "title": "SupOS演示环境-正式",
+        "icon": "data:image/vnd.microsoft.icon;base64,AAABAAEAICAAAAEAIACoEAAAFgAAACgAAAAgAAAAQAAAAAEAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIAAAADDkhGByMRzaClUo415hLOvqZTDr/mUw6/5lMOv+ZTDr/mUw6/5lMOv+ZTDr/mUw6/5lMOv+ZTDr/mUw6/5lMOv+ZTDr/mUw6/5lMOv+ZTDr/mUw6/5lMOv+ZTDr/mUw6/5hLOvqVSjjXjEc2gjsaEBsAAAAMAAAACAAAAAxpNisynFA+3p5SQP+eUkD/nlJA/55SQP+eUkD/nlJA/55SQP+eUkD/nlJA/55SQP+eUkD/nlJA/55SQP+eUkD/nlJA/55SQP+eUkD/nlJA/55SQP+eUkD/nlJA/55SQP+eUkD/nlJA/55SQP+eUkD/lEY121MdEi4AAAAMQSEcHKJWRN+kV0X/pFdG/6RXRf+kV0b/pFdF/6RXRv+kV0X/pFdG/6RXRf+kV0b/pFdF/6RXRv+kV0X/pFdG/6RXRf+kV0b/pFdF/6RXRv+kV0X/pFdG/6RXRf+kV0b/pFdF/6RXRv+kV0X/pFdG/6RXRf+hU0H/gSod2zQSDBqZUkKEqVxK/6lcSv+pXEr/qVxK/6lcSv+pXEr/qVxK/6lcSv+pXEr/qVxK/6lcSv+pXEr/qVxK/6lcSv+pXEr/qVxK/6lcSv+pXEr/qVxK/6lcSv+pXEr/qVxK/6lcSv+pXEr/qVxK/6lcSv+pXEr/qVxK/6hbSf+GLB//eSkdfapeTNmuYk//rmFP/65iT/+uYU//rmJP/65hT/+uYk//rmFP/65iT/+uYU//rmJP/65hT/+uYk//rmFP/65iT/+uYU//rmJP/65hT/+uYk//rmFP/65iT/+uYU//rmJP/65hT/+uYk//rmFP/65iT/+uYU//qVtJ/4kvIf+HLiHRs2ZT+rNmVP+zZlT/s2ZU/7NmVP+zZlT/s2ZU/7NmVP+zZlT/s2ZU/7NmVP+zZlT/s2ZU/7NmVP+zZlT/s2ZU/7NmVP+zZlT/s2ZU/7NmVP+zZlT/s2ZU/7NmVP+zZlT/s2ZU/7NmVP+zZlT/s2ZU/7NmVP+jTz7/jTEj/40xI/i4a1j/uGtY/7hrWP+4a1j/uGtY/7hrWP+4a1j/uGtY/7hrWP+4a1j/uGtY/7hrWP+4a1j/uGtY/7hrWP+4a1j/uGtY/7hrWP+4a1j/uGtY/7hrWP+4a1j/uGtY/7hrWP+4a1j/uGtY/7hrWP+4a1j/tGZU/5Q5Kv+QMyb/kDMm/7xuXP+8blz/vG5c/7xuXP+8blz/vG5c/7xuXP+8blz/vG5c/7xuXP+8blz/vG5c/7xuXP+8blz/vG5c/7xuXP+8blz/vG5c/7xuXP+8blz/vG5c/7xuXP+8blz/vG5c/7xuXP+8blz/vG5c/7xuXP+fRzf/kzYo/5M2KP+TNij/wnJg/8JyYP/CcmD/wnJg/8JyYP/CcmD/wnJg/8JyX//AcV//wHFe/8FyX//Bcl//wHFe/8FxX//Ccl//wnJg/8JyYP/CcmD/wnJg/8FxX//AcF//wXJf/8FyX//AcV7/wHBf/8FxX/+6aFb/oUY3/5Y5Kv+WOSr/ljkq/5Y5Kv/GdWP/xnVj/8Z1Y//GdWP/xnVj/8Z1Y//FdGL/w3Ng/8BxXv+9blr/u21Z/7ttWf+9blr/wHFe/8NzYP/FdGL/xXVj/8V0Yv/DcmD/wHFe/71vW/+7bVn/u21Z/7xuWv++cFz/sl1M/5g6LP+ZOyz/mTss/5k7LP+ZOyz/mTss/8t4Zv/LeWf/y3hm/8t5Z//KeGb/yndl/8Z1Yv/FfWn/48K4//r18////v7///7+//r18//jwrj/xX1p/8Z1Yv/IdWT/x3Zj/8R2Yv/bsKT/9+/t//79/f///////vz7/+3Z0/+9e2z/mT4u/5s9Lv+cPS//nD0v/5w9L/+cPS//zntq/898av/Oe2r/z3xq/817af/LeWb/yIFu//fv7f/////////////////////////////////37+3/yYJv/8l2ZP/FdWH/79vV//////////////////////////////////7+/v+1cWL/nUAw/58/Mf+fQDH/n0Ax/59AMf/Sfmz/035s/9J+bP/Sfmz/0Xxr/8p4ZP/w3dj////////+/v/ivbL/x35q/8h+av/gu7D///7+///////w3tj/xXVg/9qnmv///////////+TFvP/FemX/wnNe/8uJd//v3df///////Ts6v+fQzL/o0Ez/6NDNP+jQzT/o0M0/9eAb//XgG//14Bv/9aAbv/TfWv/05GB////////////6MvD/8p3Y//Re2n/0Xtp/8p3Y//oy8P////////////Qj3//37Cj//fs6v/15+P/yXdi/856Z//NeWb/x3Vg/9GlmP///////////6FDM/+lRTX/pkU2/6ZFNf+mRTb/2oNx/9qDcf/ag3H/2oFx/9V+bP/hsqb////////////Xmov/1H5r/9mAb//ZgHD/1H5r/9eai////////////+Gxpf/Oemb/0Hpm/815Zf/MeWX/zHlk/9WVhf/bsKX/+/j3///////79/b/pEY2/6lGN/+pRzj/qkc4/6pHOP/ehHP/3oRz/96Ec//cg3L/139s/+W5rv///////////815ZP/agG7/3YNy/92Dcv/WfGv/x3Nf////////////5Lmt/9J8aP/Qemb/4a6h//Hc1v/9+/r//////////////////////82ajv+qSTn/rEk6/61KO/+tSjv/rUo7/+CFdP/hhXT/4IV0/9+Ec//ZgG7/5rmv////////////z3pm/92Bcf/fhHT/1nlp/7RSQv+pTTr////////////kuK3/z3ll//Lc1///////////////////////+/f2/+HCu/+/emr/q0s6/69LPP+wTD3/sE09/7BMPf+wTT3/zm5d/+KFdP/khnb/4oV1/96BcP/mtKn////////////cnY7/2Htq/8ZjVP+0UED/sE49/8F8bf///////////9CckP/DgG/////////////u3tr/z5uP/7tvX/+qTTv/qkw6/6xOO/+vTj3/sk4//7NPP/+zTz//s08//7NPP/+3UUL/u1ZH/8ZiU//PbV7/0nFg/9SLe////////////+PBuf+wUD//s1BA/7NQQP+vTz7/4L21////////////vHFh/8qNgP///////////6tTP/+vTz3/sE8+/65PPf/q0cv/9Ofl/9yupf+1UUD/t1FC/7dRQv+3UUL/t1FC/7pTRP+6U0T/ulNE/7pTRP+5UkP/tFJB/+zW0P////////7+/9mto/+1Xkz/tV5M/9iroP///v7//////+zW0P+wUT//wnZm////////////1KWZ/7BVQv+zWkf/1aWa///+/v//////1J+U/7dSQv+6U0T/ulNE/7pTRP+6U0T/vVZH/71WR/+9Vkf/vVZH/7xWR/+6VUX/vGVU//bs6v/////////////////////////////////27Or/vGZU/7lVRP+3VEP/6c3H//////////////////////////////////Lh3f+4WUf/u1VF/71WR/+9Vkf/vVZH/71WR//BWUn/wVlJ/8FZSf/BWUn/wFlJ/8BYSP+9V0f/vWRS/+C3r//69PL///7+///+/v/69PL/4Lev/71kUv+8V0b/wFdI/75YSP+7XEr/2qmf//ft6////v7///////r08v/es6r/vGBO/75YR//AWEn/wVlJ/8FZSf/BWUn/wVlJ/8RcTP/EXEz/xFxM/8RcTP/EXEz/xFxM/8NbS//BW0v/vlpJ/7xZR/+6WEb/ulhG/7xZR/++Wkn/wVpK/8NbS//DXEz/w1tM/8JaSv+/Wkn/vFlH/7tYRv+6WEb/vFlH/75aSf/CW0v/w1tL/8RcTP/EXEz/xFxM/8RcTP/EXEz/x15O/8deTv/HXk7/x15O/8deTv/HXk7/x15O/8deTv/GXU7/xl1N/8VeTf/FXk3/xl1N/8ZdTv/HXk7/x15O/8deTv/HXk7/x15O/8ZeTv/GXU3/xV5N/8VeTf/GXU3/xl1O/8deTv/HXk7/x15O/8deTv/HXk7/x15O/8deTv/LYVH/y2FR/8thUf/LYVH/y2FR/8thUf/LYVH/y2FR/8thUf/LYVH/y2FR/8thUf/LYVH/y2FR/8thUf/LYVH/y2FR/8thUf/LYVH/y2FR/8thUf/LYVH/y2FR/8thUf/LYVH/y2FR/8thUf/LYVH/y2FR/8thUf/LYVH/y2FR/85jU//OY1P/zmNT/85jU//OY1P/zmNT/85jU//OY1P/zmNT/85jU//OY1P/zmNT/85jU//OY1P/zmNT/85jU//OY1P/zmNT/85jU//OY1P/zmNT/85jU//OY1P/zmNT/85jU//OY1P/zmNT/85jU//OY1P/zmNT/85jU//OY1P/0WZW+NFmVv/RZlb/0WZW/9FmVv/RZlb/0WZW/9FmVv/RZlb/0WZW/9FmVv/RZlb/0WZW/9FmVv/RZlb/0WZW/9FmVv/RZlb/0WZW/9FmVv/RZlb/0WZW/9FmVv/RZlb/0WZW/9FmVv/RZlb/0WZW/9FmVv/RZlb/0WZW/9JmVvjQZVfR1WhZ/9VoWf/VaFn/1GhZ/9VoWf/VaFn/1WhZ/9RoWf/VaFn/1WhZ/9VoWf/UaFn/1WhZ/9VoWf/VaFn/1GhZ/9VoWf/VaFn/1WhZ/9RoWf/VaFn/1WhZ/9VoWf/UaFn/1WhZ/9VoWf/VaFn/1GhZ/9VoWf/VaFn/z2VX0cZiVH3Ya1v/2Gtb/9hrW//Ya1v/2Gtb/9hrW//Ya1v/2Gtb/9hrW//Ya1v/2Gtb/9hrW//Ya1v/2Gtb/9hrW//Ya1v/2Gtb/9hrW//Ya1v/2Gtb/9hrW//Ya1v/2Gtb/9hrW//Ya1v/2Gtb/9hrW//Ya1v/2Gtb/9hrW//GYlR9TismGthsXdvbbl7/225e/9tuXv/bbl7/225e/9tuXv/bbl7/225e/9tuXv/bbl7/225e/9tuXv/bbl7/225e/9tuXv/bbl7/225e/9tuXv/bbl7/225e/9tuXv/bbl7/225e/9tuXv/bbl7/225e/9tuXv/bbl7/2Gxd21ItKBkAAAAMk0pALtpvX9vfcWD/3nBg/99wYP/ecGD/33Fg/95wYP/fcGD/3nBg/99xYP/ecGD/33Bg/95wYP/fcWD/3nBg/99wYP/ecGD/33Fg/95wYP/fcGD/3nBg/99xYP/ecGD/33Bg/95wYP/fcWD/3nBg/9xvX9uTSkAuAAAADAAAAAgAAAAMTismGs5oWn3ccGHR4XNj+OJzY//ic2P/4nNj/+JzY//ic2P/4nNj/+JzY//ic2P/4nNj/+JzY//ic2P/4nNj/+JzY//ic2P/4nNj/+JzY//ic2P/4nNj/+JzY//ic2P/4XNj+N5wYdHOaFp9Ui0oGQAAAAwAAAAI4AAAB8AAAAOAAAABAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIAAAAGAAAABwAAAA/AAAA8=",
+        "link": "http://inplantdemo.supcon.com:8080/ubdp/",
+        "description": "演示环境3.0",
+        "group": "ESSENDATA"
+    },
+    {
+        "id": "18",
+        "title": "禅道",
+        "icon": "https://icon.horse/icon/zentao.net",
+        "link": "http://project.rd.supcon.com/biz/my/",
+        "description": "项目管理工具",
+        "group": "WORK_FLOW"
+    },
+    {
+        "id": "19",
+        "title": "Jenkins",
+        "icon": "https://icon.horse/icon/jenkins.io",
+        "link": "http://10.48.0.143:30008/",
+        "description": "dev，fat",
+        "group": "WORK_FLOW"
+    },
+    {
+        "id": "20",
+        "title": "Jenkins",
+        "icon": "https://icon.horse/icon/jenkins.io",
+        "link": "http://xops.supcon.com/",
+        "description": "uat，pro",
+        "group": "WORK_FLOW"
+    },
+    {
+        "id": "21",
+        "title": "蓝湖",
+        "icon": "https://lhcdn.lanhuapp.com/dashboard/production/favicon.ico",
+        "link": "https://lanhuapp.com/dashboard/#/item?fid=all&tid=9afebeff-adf1-4e6a-a539-f01334a7eb2e",
+        "description": "需求设计文档",
+        "group": "WORK_FLOW"
+    },
+    {
+        "id": "22",
+        "title": "MasterGo",
+        "icon": "https://static.mastergo.com/static/favicon/favicon-32x32-new.png",
+        "link": "https://mastergo.com/files/shared",
+        "description": "UI设计稿",
+        "group": "WORK_FLOW"
+    },
+    {
+        "id": "23",
+        "title": "Gitlab（new）",
+        "icon": "https://icon.horse/icon/about.gitlab.com/",
+        "link": "http://gitlab.ops.supcon.com/ai_bigdata/front-end",
+        "description": "gitlab",
+        "group": "WORK_FLOW"
+    },
+    {
+        "id": "24",
+        "title": "Gitlab（old）",
+        "icon": "https://icon.horse/icon/about.gitlab.com/",
+        "link": "http://10.30.250.16:11001/front-end",
+        "description": "gitlab",
+        "group": "WORK_FLOW"
+    },
+    {
+        "id": "25",
+        "title": "Swagger",
+        "icon": "https://icon.horse/icon/swagger.io",
+        "link": "http://10.48.0.150:31900/doc.html#/home",
+        "description": "api接口文档",
+        "group": "WORK_FLOW"
+    },
+    {
+        "id": "26",
+        "title": "MeterSphere",
+        "icon": "https://metersphere.io/images/logo/favicon.ico",
+        "link": "http://bap.supcon.com:8081/#/track/home",
+        "description": "测试跟踪、接口测试和性能测试平台",
+        "group": "WORK_FLOW"
+    },
+    {
+        "id": "27",
+        "title": "Node.js",
+        "icon": "https://nodejs.org/static/images/favicons/favicon.png",
+        "link": "https://nodejs.org/en",
+        "description": "开源、跨平台的 JavaScript 运行时环境",
+        "group": "Vue"
+    },
+    {
+        "id": "28",
+        "title": "TypeScript",
+        "icon": "https://www.typescriptlang.org/icons/icon-48x48.png?v=8944a05a8b601855de116c8a56d3b3ae",
+        "link": "https://www.typescriptlang.org/",
+        "description": "TypeScript是JavaScript类型的超集，它可以编译成纯JavaScript。",
+        "group": "Vue"
+    },
+    {
+        "id": "29",
+        "title": "Vue3",
+        "icon": "https://vuejs.org/logo.svg",
+        "link": "https://vuejs.org/",
+        "description": "一款用于构建用户界面的 JavaScript 框架。它基于标准 HTML、CSS 和 JavaScript 构建，并提供了一套声明式的、组件化的编程模型，帮助你高效地开发用户界面",
+        "group": "Vue"
+    },
+    {
+        "id": "30",
+        "title": "Vite",
+        "icon": "https://cn.vitejs.dev/logo.svg",
+        "link": "https://cn.vitejs.dev/",
+        "description": "下一代的前端工具链",
+        "group": "Vue"
+    },
+    {
+        "id": "31",
+        "title": "Axios",
+        "icon": "https://www.axios-http.cn/img/favicon.ico",
+        "link": "https://www.axios-http.cn/",
+        "description": "一个基于 promise 的网络请求库，可以用于浏览器和 node.js",
+        "group": "Vue"
+    },
+    {
+        "id": "32",
+        "title": "Pinia",
+        "icon": "https://pinia.vuejs.org/logo.svg",
+        "link": "https://pinia.vuejs.org/zh/",
+        "description": "Pinia 是 Vue 的存储库，它允许您跨组件/页面共享状态",
+        "group": "Vue"
+    },
+    {
+        "id": "33",
+        "title": "Vue Router",
+        "icon": "https://vuejs.org/logo.svg",
+        "link": "https://router.vuejs.org/",
+        "description": "为 Vue.js 提供富有表现力、可配置的、方便的路由",
+        "group": "Vue"
+    },
+    {
+        "id": "34",
+        "title": "Less",
+        "icon": "https://less.bootcss.com/public/ico/favicon.ico",
+        "link": "https://less.bootcss.com/",
+        "description": "是一门向后兼容的 CSS 扩展语言",
+        "group": "Vue"
+    },
+    {
+        "id": "35",
+        "title": "Ant Design Vue3.0",
+        "icon": "https://icon.horse/icon/3x.antdv.com",
+        "link": "https://3x.antdv.com/docs/vue/introduce-cn",
+        "description": "为 Web 应用提供了丰富的基础 UI 组件",
+        "group": "Vue"
+    },
+    {
+        "id": "36",
+        "title": "VueUse",
+        "icon": "https://vueuse.org/favicon.svg",
+        "link": "https://vueuse.org/",
+        "description": "",
+        "group": "Vue"
+    },
+    {
+        "id": "37",
+        "title": "Vant4",
+        "icon": "https://fastly.jsdelivr.net/npm/@vant/assets/logo.png",
+        "link": "https://vant-ui.github.io/vant/#/zh-CN/home",
+        "description": "轻量、可定制的移动端 Vue 组件库",
+        "group": "Vue"
+    },
+    {
+        "id": "38",
+        "title": "Naive UI",
+        "icon": "https://www.naiveui.com/assets/naivelogo-BdDVTUmz.svg",
+        "link": "https://www.naiveui.com/",
+        "description": "比较完整，主题可调，使用 TypeScript，快",
+        "group": "Vue"
+    },
+    {
+        "id": "39",
+        "title": "React",
+        "icon": "https://react.dev/favicon.ico",
+        "link": "https://react.dev/",
+        "description": "用于构建 Web 和原生用户界面的库",
+        "group": "React"
+    },
+    {
+        "id": "40",
+        "title": "UmiJS",
+        "icon": "https://img.alicdn.com/tfs/TB1YHEpwUT1gK0jSZFhXXaAtVXa-28-27.svg",
+        "link": "https://umijs.org/",
+        "description": "Umi，中文发音为「乌米」，是可扩展的企业级前端应用框架。",
+        "group": "React"
+    },
+    {
+        "id": "41",
+        "title": "React Router",
+        "icon": "https://reactrouter.com/favicon-dark.png",
+        "link": "https://reactrouter.com/en/main",
+        "description": "",
+        "group": "React"
+    },
+    {
+        "id": "42",
+        "title": "DvaJS",
+        "icon": "https://icon.horse/icon/dvajs.com",
+        "link": "https://dvajs.com/",
+        "description": "一个基于 redux 和 redux-saga 的数据流方案",
+        "group": "React"
+    },
+    {
+        "id": "43",
+        "title": "Ant Design 5.0",
+        "icon": "https://gw.alipayobjects.com/zos/antfincdn/UmVnt3t4T0/antd.png",
+        "link": "https://ant-design.antgroup.com/index-cn",
+        "description": "基础 UI 组件",
+        "group": "React"
+    },
+    {
+        "id": "44",
+        "title": "ahooks",
+        "icon": "https://icon.horse/icon/ahooks.gitee.io",
+        "link": "https://ahooks.gitee.io/zh-CN",
+        "description": "一套高质量可靠的 React Hooks 库",
+        "group": "React"
+    },
+    {
+        "id": "45",
+        "title": "ali-react-table",
+        "icon": "https://icon.horse/icon/ali-react-table.js.org",
+        "link": "https://ali-react-table.js.org/",
+        "description": "现代化的高性能 React 表格组件",
+        "group": "React"
+    },
+    {
+        "id": "46",
+        "title": "Lodash",
+        "icon": "https://www.lodashjs.com/img/favicon.ico",
+        "link": "https://www.lodashjs.com/",
+        "description": "一个一致性、模块化、高性能的 JavaScript 实用工具库",
+        "group": "工具"
+    },
+    {
+        "id": "47",
+        "title": "Day.js",
+        "icon": "https://icon.horse/icon/day.js.org",
+        "link": "https://day.js.org/docs/zh-CN/installation/installation",
+        "description": "一个轻量的处理时间和日期的 JavaScript 库",
+        "group": "工具"
+    },
+    {
+        "id": "48",
+        "title": "icones",
+        "icon": "https://icon.horse/icon/icones.netlify.app",
+        "link": "https://icones.netlify.app/",
+        "description": "icon图标集",
+        "group": "工具"
+    },
+    {
+        "id": "49",
+        "title": "Mock.js",
+        "icon": "https://icon.horse/icon/mockjs.com",
+        "link": "http://mockjs.com/",
+        "description": "生成随机数据，拦截 Ajax 请求",
+        "group": "工具"
+    },
+    {
+        "id": "50",
+        "title": "ECharts",
+        "icon": "https://icon.horse/icon/echarts.apache.org",
+        "link": "https://echarts.apache.org/handbook/zh/get-started/",
+        "description": "一个基于 JavaScript 的开源可视化图表库",
+        "group": "工具"
+    },
+    {
+        "id": "51",
+        "title": "PDF.js",
+        "icon": "https://mozilla.github.io/pdf.js/images/favicon.ico",
+        "link": "https://mozilla.github.io/pdf.js/",
+        "description": "创建一个通用的、基于Web标准的平台来解析和呈现PDF",
+        "group": "工具"
+    },
+    {
+        "id": "52",
+        "title": "@antv/x6",
+        "icon": "https://x6.antv.vision/favicon-32x32.png?v=9772447a8d07a8fe19894b5176c6cb0d",
+        "link": "https://x6.antv.vision/zh",
+        "description": "X6 图编辑引擎",
+        "group": "工具"
+    },
+    {
+        "id": "53",
+        "title": "CryptoJS",
+        "icon": "https://cryptojs.gitbook.io/~gitbook/image?url=https%3A%2F%2F452600744-files.gitbook.io%2F%7E%2Ffiles%2Fv0%2Fb%2Fgitbook-legacy-files%2Fo%2Fspaces%252F-LVOh1OI8lhWfR_994H2%252Favatar.png%3Fgeneration%3D1546620224707409%26alt%3Dmedia&width=32&dpr=1&quality=100&sign=6dc38190&sv=1",
+        "link": "https://cryptojs.gitbook.io/docs",
+        "description": "JavaScript 实现的标准安全加密算法",
+        "group": "工具"
+    },
+    {
+        "id": "54",
+        "title": "tinify",
+        "icon": "https://tinify.cn/images/favicon.ico",
+        "link": "https://tinify.cn/",
+        "description": "使用智能有损压缩技术将您的WebP, PNG and JPEG图片的文件大小降低",
+        "group": "工具"
+    },
+    {
+        "id": "55",
+        "title": "ico51",
+        "icon": "https://icon.horse/icon/www.ico51.cn",
+        "link": "https://www.ico51.cn/",
+        "description": "生成透明ICO图标",
+        "group": "工具"
+    },
+    {
+        "id": "56",
+        "title": "UnoCSS",
+        "icon": "https://unocss.dev/favicon.ico",
+        "link": "https://unocss.dev/",
+        "description": "原子CSS引擎",
+        "group": "工具"
+    },
+    {
+        "id": "57",
+        "title": "Tailwind CSS",
+        "icon": "https://tailwindcss.com/favicons/favicon.ico?v=3",
+        "link": "https://tailwindcss.com/",
+        "description": "无需离开 HTML 即可快速构建现代网站",
+        "group": "工具"
+    },
+    {
+        "id": "58",
+        "title": "splitpanes",
+        "icon": "https://antoniandre.github.io/splitpanes/favicon.png",
+        "link": "https://antoniandre.github.io/splitpanes/",
+        "description": "分割面板",
+        "group": "Vue"
+    },
+    {
+        "id": "59",
+        "title": "Rancher-test",
+        "icon": "https://caas-test.supcon.com/favicon.png",
+        "link": "https://caas-test.supcon.com/",
+        "description": "Kubernetes管理平台",
+        "group": "ESSENDATA"
+    },
+    {
+        "id": "60",
+        "title": "Online Photoshop",
+        "icon": "https://cdn.tuyitu.com/Static/css/img/thumb128.png",
+        "link": "https://www.tuyitu.com/ps/sources/",
+        "description": "在线PS",
+        "group": "工具"
+    },
+    {
+        "id": "61",
+        "title": "iloveimg",
+        "icon": "https://www.iloveimg.com/img/favicons-img/favicon-16x16.png",
+        "link": "https://www.iloveimg.com/zh-cn/compress-image",
+        "description": "在线图片压缩工具",
+        "group": "工具"
+    },
+    {
+        "id": "62",
+        "title": "Convertio",
+        "icon": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAA2ZpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMy1jMDExIDY2LjE0NTY2MSwgMjAxMi8wMi8wNi0xNDo1NjoyNyAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wTU09Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9tbS8iIHhtbG5zOnN0UmVmPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvc1R5cGUvUmVzb3VyY2VSZWYjIiB4bWxuczp4bXA9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC8iIHhtcE1NOk9yaWdpbmFsRG9jdW1lbnRJRD0ieG1wLmRpZDpFNDY1NDg3RDc3N0JFODExODNENjlCOEE4NDIwQ0ZCMyIgeG1wTU06RG9jdW1lbnRJRD0ieG1wLmRpZDpBNzIyRUYxOUU2OEMxMUU5OENDMkRGRDY2MUEyMUNEMCIgeG1wTU06SW5zdGFuY2VJRD0ieG1wLmlpZDpBNzIyRUYxOEU2OEMxMUU5OENDMkRGRDY2MUEyMUNEMCIgeG1wOkNyZWF0b3JUb29sPSJBZG9iZSBQaG90b3Nob3AgQ1M2IChXaW5kb3dzKSI+IDx4bXBNTTpEZXJpdmVkRnJvbSBzdFJlZjppbnN0YW5jZUlEPSJ4bXAuaWlkOjBBQzRBRDc4OEJFNkU5MTE5RDNFOEE4MDBCRkY0NDZDIiBzdFJlZjpkb2N1bWVudElEPSJ4bXAuZGlkOkU0NjU0ODdENzc3QkU4MTE4M0Q2OUI4QTg0MjBDRkIzIi8+IDwvcmRmOkRlc2NyaXB0aW9uPiA8L3JkZjpSREY+IDwveDp4bXBtZXRhPiA8P3hwYWNrZXQgZW5kPSJyIj8+6G+jpQAAA/9JREFUeNq0V1lIlFEU/kZbjPYkEysospJGbBW1KAgX2qCHFIpepOVBBFHBpiQiIjIXFIveUiIhCcqXVoPqoZ0CM1qgtB5EsEItNR2TtHO8d3Lm/8//z6/pgY9h/nvvOd+992zXNbR+PRzKDMJOwlbCGsJSwmw99pPwhfCa8JBwi9DjRKnLAYFogoewjzDdIdlfhFpCMaHJbmKIzVgY4SzhHeHQKIxDzz2k1xZrXaMisIzwTO98CsYuvPaI1hVtT+DVKwVgHeGJvufxEtb1eFj3iB3hBDZsYJZ3CQsw/rJgWLeyITrhNH1Uq23VREQACQnA8uVAeDjw5w/Q0QG8eaN21tUVjAhNRCKhj/9M8hs4aWvc5QJSU4H0dMDtBqZONc/p7QWuXQOqqykILaMwTtvy+J8AO90HwmRnGYFSQloacOAAEBlpHm9tBXJzKTN8sdIwQFjFIerzgaOWxtlYUlLgN95dXR2QkQHU15vXLFwIXLigrkuWydrmsBPO1ElGmEbzSkuB8nIgPt483kfXePw4cOWK7CsVFUBoqBWJvWybCewQkwzf+YkTyrCPSEyMWc3QkDJ05455bOVK2to+u2S1gwkki8PZ2cD27YFXcf48sHixTKKoCPj2zTx2+DDtc6YVieQQ7ZWBwp6emWmePncucO6c+pUioLZW2CdtNCXFMiJCdASMCO/a47GOAD4BPvIwIb03NMhrOG9YpHwmMOvfX75vvne+fzuJjQXOnCEXNpSSzk55flSUlaZZnAf6xYJz+TJF6irzkt27VZz/S+ZEoqwM2LIleP4YoPDPyQFevvR9+c1bkHOnvxF/mTcv8P/gIFBYCLx9a2+c55065W+cpYsJNIsLHj2SFa1da/7m9QJ5eUBLizWBkhIpVJtDdHEwy4MHQHe3+fv+/cqzjcL3z8cr+cGlS6pGCIWJCdwXCfCuamrM37kCHjsmOyqfQFZWYCHiXXNaluU+E7itezizMIGPH83ft20D8vNlEk3UAhYUKIfj++Z750QlZA627auGFwkHRRKLFgFVVWrnRrl3Dzh9WiUho3ABa2yUx5RUcd/oI8BdynvLirhkCVBZqaqcUdraVP1nMj2OOnFfOaamAp9CT6ok0aH7/k3i9B8/gBs3VMyvWKGKk3+N2LxZFZ1EanT6Ka18/hyMAJVXXJVasudibTDmdk6tcXEqJzCp9nZ19y9eyAXJ3JIlaR/wI8D9nGoYnxLmY2LkO2Ej2WoiW0JXzAPk44SvE2D867BuZSPo04xP4nrQ63AufOx7pGea1cuIJ3INLdEeO1YZ0DoSrN6Idm9Dr26d3TpP9I7CcJ+Oc7fW4f2f17H/83yX4Xk+xxeohuf5TafP878CDADrJR+o7JYu7QAAAABJRU5ErkJggg==",
+        "link": "https://convertio.co/zh/",
+        "description": "图片转换webp:",
+        "group": "工具"
+    },
+    {
+        "id": "63",
+        "title": "csv-to-json",
+        "icon": "",
+        "link": "https://www.aconvert.com/cn/document/csv-to-json/",
+        "description": "csv转json工具",
+        "group": "工具"
+    },
+    {
+        "id": "64",
+        "title": "锤子在线工具网 ",
+        "icon": "https://www.toolhelper.cn/favicon.ico",
+        "link": "https://www.toolhelper.cn/",
+        "description": "146 个在线小工具",
+        "group": "工具"
+    },
+    {
+        "id": "65",
+        "title": "数科测试",
+        "icon": "",
+        "link": "http://10.48.0.80/",
+        "description": "",
+        "group": "SUPCON"
+    },
+    {
+        "id": "66",
+        "title": "月度个人能效报表",
+        "icon": "",
+        "link": "http://report.supcon.com/decision/view/report?viewlet=BPM%252F%25E6%259C%2588%25E5%25BA%25A6%25E4%25B8%25AA%25E4%25BA%25BA%25E8%2583%25BD%25E6%2595%2588%25E6%258A%25A5%25E5%2591%258A.cpt&ref_t=design&ref_c=a20c36c9-66b2-472f-86c1-b11f2145166e",
+        "description": "",
+        "group": "SUPCON"
+    },
+    {
+        "id": "67",
+        "title": "文心一言",
+        "icon": "https://nlp-eb.cdn.bcebos.com/logo/favicon.ico",
+        "link": "https://yiyan.baidu.com/",
+        "description": "",
+        "group": "AI"
+    },
+    {
+        "id": "68",
+        "title": "通义千问",
+        "icon": "https://img.alicdn.com/imgextra/i4/O1CN01EfJVFQ1uZPd7W4W6i_!!6000000006051-2-tps-112-112.png",
+        "link": "https://tongyi.aliyun.com/",
+        "description": "",
+        "group": "AI"
+    },
+    {
+        "id": "69",
+        "title": "DeepSeek",
+        "icon": "https://chat.deepseek.com/favicon.svg",
+        "link": "https://chat.deepseek.com/",
+        "description": "",
+        "group": "AI"
+    },
+    {
+        "id": "70",
+        "title": "2024年 JavaScript 明星项目",
+        "icon": "https://risingstars.js.org/favicon.ico",
+        "link": "https://risingstars.js.org/2024/zh",
+        "description": "",
+        "group": "工具"
+    },
+    {
+        "id": "71",
+        "title": "一元机场",
+        "icon": "",
+        "link": "https://xn--4gq62f52gdss.ink/#/dashboard",
+        "description": "",
+        "group": "工具"
+    }
+]

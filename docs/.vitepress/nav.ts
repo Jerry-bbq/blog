@@ -8,6 +8,11 @@ export function nav(): DefaultTheme.NavItem[] {
         activeMatch: '/primary/',
       },
       {
+        text: '门户',
+        link: '/portal/index.md',
+        activeMatch: '/portal/',
+      },
+      {
         text: '进阶',
         link: '/advanced/framework/index.md',
         activeMatch: '/advanced/',
