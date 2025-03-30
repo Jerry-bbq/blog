@@ -1,5 +1,7 @@
 # vite
 
+[学习](https://www.bilibili.com/video/BV1LgRaYZEHs/?spm_id_from=333.337.search-card.all.click&vd_source=0b90cfdf307f36e1d1a38a074ea16861)
+
 下一代的前端工具链，为开发提供极速响应
 
 Vite 将会使用 esbuild 预构建依赖。esbuild 使用 Go 编写，并且比以 JavaScript 编写的打包器预构建依赖快 10-100 倍。

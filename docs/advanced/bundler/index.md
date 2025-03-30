@@ -1,5 +1,7 @@
 # 打包工具
 
+[学习](https://www.bilibili.com/video/BV1ZUcUetESk/?spm_id_from=333.337.search-card.all.click&vd_source=0b90cfdf307f36e1d1a38a074ea16861)
+
 - [Rollup](./rollup/index.md)
 - [Vite](./vite/index.md)
 - [Parcel](./parcel/index.md)
