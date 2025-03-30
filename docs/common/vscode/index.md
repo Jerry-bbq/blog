@@ -20,6 +20,7 @@
 - [Markdown All in One](https://marketplace.visualstudio.com/items?itemName=yzhang.markdown-all-in-one)：Markdown预览
 - [carbon-now-sh](https://marketplace.visualstudio.com/items?itemName=ericadamski.carbon-now-sh)：代码截屏
 - [JSON Crack](https://marketplace.visualstudio.com/items?itemName=AykutSarac.jsoncrack-vscode)：JSON文件预览
+- [Notes](https://marketplace.visualstudio.com/items?itemName=dionmunk.vscode-notes)：Markdown笔记
 
 ::: tip
 
