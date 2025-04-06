@@ -7,7 +7,20 @@ export function getSidebarPrimary(): DefaultTheme.SidebarItem[] {
       text: 'TypeScript',
       collapsed: false,
       base: '/primary/typescript/',
-      items: [{ text: '基础', link: 'index.md' }],
+      items: [
+        { text: '基础', link: 'index.md' },
+        { text: '基础类型', link: 'base-type.md' },
+        { text: '接口', link: 'interface.md' },
+        { text: '类', link: 'class.md' },
+        { text: '函数', link: 'function.md' },
+        { text: '泛型', link: 'generic.md' },
+        { text: '枚举', link: 'enum.md' },
+        { text: '工具类型', link: 'utility-types.md' },
+        // { text: '模块', link: 'module.md' },
+        // { text: '命名空间', link: 'namespace.md' },
+        
+        // { text: '其他', link: 'other.md' },
+      ],
     },
     {
       text: 'JavaScript',

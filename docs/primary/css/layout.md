@@ -300,3 +300,7 @@ div {
 - 使用float可以使元素脱离文档流，形成BFC，在重新渲染时不会影响其他的元素。需要注意使用float的元素其父元素会塌陷，需要清除浮动。
 - 使用inline-block来实现九宫格布局时，定义了inline-block的元素之间会出现间隙，需要清除；
 table布局现在感觉用的比较少了，几乎很少在项目中使用table布局。
+
+## 页面布局
+
+- [CSS-Inspiration](https://github.com/chokcoco/CSS-Inspiration)

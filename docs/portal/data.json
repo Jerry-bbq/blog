@@ -28,7 +28,7 @@
         "title": "Confluence",
         "icon": "https://icon.horse/icon/www.atlassian.com",
         "link": "http://bdtool-t-01:8090/pages/viewpage.action?pageId=327683",
-        "description": "",
+        "description": "内部文档",
         "group": "内部文档"
     },
     {
@@ -69,14 +69,6 @@
         "icon": "https://essendata.supcon.com/big-data-platform/favicon.ico",
         "link": "http://essendata-pro.supcon.com/big-data-platform/home",
         "description": "生产环境测试",
-        "group": "ESSENDATA"
-    },
-    {
-        "id": "11",
-        "title": "Essendata-uat",
-        "icon": "https://essendata.supcon.com/big-data-platform/favicon.ico",
-        "link": "http://essendata-uat.supcon.com/big-data-platform/home",
-        "description": "预发环境",
         "group": "ESSENDATA"
     },
     {
@@ -130,7 +122,7 @@
     {
         "id": "18",
         "title": "禅道",
-        "icon": "https://icon.horse/icon/zentao.net",
+        "icon": "https://www.chandao.net/file.php?f=zentaopm/202202/f_2bd76d751ce1d79b9c302275fb473ccc.ico&t=ico&o=&s=&v=1742820291",
         "link": "http://project.rd.supcon.com/biz/my/",
         "description": "项目管理工具",
         "group": "WORK_FLOW"
@@ -138,7 +130,7 @@
     {
         "id": "19",
         "title": "Jenkins",
-        "icon": "https://icon.horse/icon/jenkins.io",
+        "icon": "https://www.jenkins.io/favicon.ico",
         "link": "http://10.48.0.143:30008/",
         "description": "dev，fat",
         "group": "WORK_FLOW"
@@ -146,7 +138,7 @@
     {
         "id": "20",
         "title": "Jenkins",
-        "icon": "https://icon.horse/icon/jenkins.io",
+        "icon": "https://www.jenkins.io/favicon.ico",
         "link": "http://xops.supcon.com/",
         "description": "uat，pro",
         "group": "WORK_FLOW"
@@ -162,7 +154,7 @@
     {
         "id": "22",
         "title": "MasterGo",
-        "icon": "https://static.mastergo.com/static/favicon/favicon-32x32-new.png",
+        "icon": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAALQAAAC0CAYAAAA9zQYyAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAu/SURBVHgB7d1PbxvHGQbwd3ZZS+lJvRQyEBfLnHSrgMKN3B66ubmXxp+g9jlAagb9AGL6AWIWLYqeWvsTWL75ZuZQWKkvPOom+Q8QHZqWMYpAUsSdzMvlUv9lamd2953h8wMYJbZiWNTLR8t5dmeJAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgpB2tpcIgqUoYDy8B9S6r82/mv9cNY/pMJsvfGD+OdD0/ZPnvfYGeWits50QtcxDJzrTyyqixelvKtpVWu1qGg02e+0dmhNBDjQP8h7FPUXq7oz/y06kVPdfD95/RB5YNV/fIsV3eJBn+Xzzgh4qyjbmYbCDG2iTWqmi1mM6lsazMi+Ah9fo+8/6vfaQhPrw0+01UlF6Io1nFvU3ezf6FLCgBvrXn725m2n9kCzwocg1OvxI4lDzi9UMZUoWzIt28Lz3My8PsWYRUSBudt6s2g4zMz+eV/ep9U8SZpzMFKVkSZNevfWH17cpUEEMNB8zt0g/Jnfu3Oq87JAQfMzMhxnkiI6ytfwNZXiCGGheyTAfEnIqWpeyxPcexSWPmS+mKbpDAfJ+oDlpzGHCPXLPrJREjac0pzMfJpBj5r3CUn4YExbvB1pRXEE6F392tL7W+TqhBnE6U1XMYUzS3Xaa/E3zeqDz40BVaYoqOmzsDWJV6Vzgw5jlYSuolPY8oeMuVS9d67xOqQGVpvOEzrK11YBOB/B2oDmdr9AEWjHHm+tUs5ufbC9Xmc4FTuk6Xjh18Tiha0nnQnqr86rWVYH4WlzbWjG/cEJZxvNyoOtM5yPqQV3LePlwzXaehjthpLSnCV1rOheS+pbxmhgunYSQ0t4NdDPpnDPLePerTumbne3V+tM5F0LZ4mFCN5LOhcrLloiilBoSQtni1UA3mc6FKssWTmdV4rRXpzwvWzxL6EbTeaqqsqXJdC74XrZ4M9AS0vkY52WLiHSe8Lls8WagFbUekCCuyxYJ6VzglF5QsZfnTHsx0PmVGiTtHXjKV8iQA5LSuaC0XvFxGc+LgTbpXHv1PItM666LZTxJ6XySf2WL+IGepHNKMjkpW+R+E/wrW8QPtBJ4fd9xLsqWQ8r6JJRvZYvogV7rvLpHFZ2879DSPsVWh0Qvem3e9GaHBOJj+6ZOny1D9ECbZTqRx85nqY592TLqk1C8jOdL2SJ2oD1J5ynbsiXf1UhoSntUtogdaH/SecpB2SI7pX0oW0QOtG/pXLAtWzilM1IDEsiXskXkQHuYzgXrsuXApLTOaI8E8qFsETfQvqZzwbZsGfTaQxVlmySW7LJF3EB7nM4F67JlcUibUlOay5Zf/HF7hYQSNdC+p3PBtmzpP2zvSU7p1ii6LXUZT9RAB5DOBeuyhVPavMkUuU81ly1Sl/HEDHQo6XzErmzhlBZdiQstW0QM9OTk/VDSecq2bBFdiQstW0QMdEQtXupKKDxBly1mTSeVVrY0PtAVbocrgouyRWpKs/zmRXI0PtABp3PBwZUtklNa1jnTjQ506OlcsC1bJFfiOTllS8MJPd6WIKHwWZctkitxSWVLYwMtbFuCytmWLdIrcSllS4MJLWPTmBo5KVvEnrgkpGxpZKDnLZ2PqA7fT5FKkl6JSyhbGkrouUvnqRZpqw1zRFfipmy5/t9WSg2qfaDnN52nrMoW8ZV41OyVLQ0k9Pymc8G2bJFcibMmy5ZaBxrpPIWypSI1JzTSuWDKlp5t2SI5pZsqW2obaKTzGQ7uBiA7pfPba9SrxoRGOp9mW7ZwSkeZ2iKheBPKupfxahlopPOFrMuW76LRUxKqibKlloGWvuFis/jKlvLLeFyJE65smap8oIVvhyuC7TKe6Eq85rKl8oGWulm5MNZli+hKvMaypdKBnlz4mhK8k/lGWFfick8vra9sqXSgQ7zwtSqaaPVW52XpZTxOaWrJPZauq2ypbKDD25agDtG6zTLeV1+0xZ64lKu+bKlsoJHOpViXLZqyDRKr+rKlkoFGOpfnomyRXIlXXbZUMtBIZytLB/Qjy5uMyq3Eqy5bnA800tmeJn3PZhlPekpXWbY4H2iksxu2ZcsejcQeS1dZtjgdaKSzU6ltJa6y+StbnA400tktk9JW58AsvCXBe3lUU7Y4G2ikcyUS27JF9u0t3JctzgYa6VwVu7JlXIlruSntumxxMtC/6rzmYU4IqmBVtowr8Vh2Je6ybLEe6HnZcLFJXLbY3A1AeiUeZe62EbMe6DnYDleCpYhGVod0kitxl3cDsBpopHN9ULbMxmqgkc71si1bRFfijsqW0gM9SecuQZ3SoFPalC03P9leJgsWCY1tCZpgW7ZIrsRZfC2+TRZKDTS2JWiUVdkivRK3LVtKJjTSuVl2ZcvCWyW6EjcH1KVT+soDjXQWYVy2pF1NZfQfJrIrcU3LH366XWoZr0RCI50l4LJlb7ibUEmLQyX6KnGT0qWubLnSQCOdRRmXLel6+ZSWfJV42bLligmNdJaEy5a9b9+kVJL0SrxM2TLzQCOdZeKypWxKjx1mcjd75LJleLVlvCskNNJZqNSk9EdU0vO/trdEly2kV6+yjDfTQCOdZTMp/Y/frn9D5UneOJ3Nfs70jAmNdBYuGX77/0635DKe/NtbzF62vHOgeTtcpLMPovX+cKd02TI6kLtx+tiMZcs7Bxrb4XrDqmx58bf2bkZqQFLNWLZcOtDYrNwvk7KlTSX9eDh66nvZEl3+my3LLamgZkuKDr8oX7bIvkp8lrLlwoHmbQl4z2IC39yxKVukb5zOZctlG9RcONDYlsBfNmWLDyn93iXLeOcONDaN8Z5V2cIpLboSv6RsOXegkc7+47Il7fyPyuCUPhR8q7jc+Sl9ZqCRzsFI9uhtt2zZ8qLXHvhYtpwZaKRzOHgZz6ZskV6Ja4rObPZ4YqCRzsGxKlukV+J8N4DTZUt08hOQzqGxLVvEn7h0qmyZDjTSOVhWZQuntORK/HTZMh1opHPQrMqWA5PSvpQt44FGOofPpmwZ7+XhQdmitc4HGuk8F1K7Slz2VeJctnzw+cvFCOk8PxRlpe9pIn4vD+On3+hVTuiUYE5EH5ctWhintORKXMXxShSR+jnBvEhsihZOacmVuDnsWIrm5BRRTpUN8xLuaGq1n/duqOKxQIc/Mc8Bn8jzZ/OQe8WGI3u0aHVvQMmVOBctLQoXD+eXZlg3Nns3+hd9Ut+8g+cPkwfl5wfEfB3lx5Qfjjm/OaT/uGyJ7pFA6lbnNZ+SFcI3LR9MFfcX9P6jyaBa4w3GzSuf30z9hgL4acY/kVw8N/ligk5IEL59Xct8s3Y8PuyYKYVtTP5cfoSQ3gNXL3SJKa2U2m1pyr40fzFfBrqSFJ5VfrIOPZw8ivTm4T6e3oqEUg4rbH4uftl5NYjM+i8JoUejLTPQ0Yb5DtwnuSpP4bIuSO/f0VF6ixrujPQjcogr8YUsWuGmjgTYj2lr/ISb4+hnJGc9utEUdkVgem+bVZ0PyLF8q4sopYZllA3+3WtvjJ/gyZP/jJojNoVdOJbev6ej4Kh1uHm5crN3fYcqwHeuimJKVEwrZrgTqhm/GdxX2d/H55wUv2hSukf1HXoEkcJl5bdm03fNgHN6J5NfrmzATVB8boKiSzVIujuL1/+jk1ErXonNKoiu4Y2zHmVPv/pLe1zLT59EvgnNAbWeVbjiEXQKl1V1etc5zOepPr2j/vF5OvHE8VDvU+sxuTmenusULsthepufxPSnJof5NJfpzYcZlGX9IpkL5z5R5kntlrwNL1LYoZLpzYPcp3yY+yRY+fTOdvbMjA3OCckLn5zJk9k9lRSnIYVrdCy9+YSy04eGO+bxxAzzEx/D5Hh6R2q0TDo6cYtk83UNMxVtxfpwa9IHnGumH2X5Kohe0tNFdLUzomjwovd+8CfzSLbW+Trhj4u0NwwxTIqbiyIoAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIDA/AKVNIVsXEVVbAAAAAElFTkSuQmCC",
         "link": "https://mastergo.com/files/shared",
         "description": "UI设计稿",
         "group": "WORK_FLOW"
@@ -170,7 +162,7 @@
     {
         "id": "23",
         "title": "Gitlab（new）",
-        "icon": "https://icon.horse/icon/about.gitlab.com/",
+        "icon": "https://about.gitlab.com/nuxt-images/ico/favicon-96x96.png?cache=2022041",
         "link": "http://gitlab.ops.supcon.com/ai_bigdata/front-end",
         "description": "gitlab",
         "group": "WORK_FLOW"
@@ -178,7 +170,7 @@
     {
         "id": "24",
         "title": "Gitlab（old）",
-        "icon": "https://icon.horse/icon/about.gitlab.com/",
+        "icon": "https://about.gitlab.com/nuxt-images/ico/favicon-96x96.png?cache=2022041",
         "link": "http://10.30.250.16:11001/front-end",
         "description": "gitlab",
         "group": "WORK_FLOW"
@@ -186,7 +178,7 @@
     {
         "id": "25",
         "title": "Swagger",
-        "icon": "https://icon.horse/icon/swagger.io",
+        "icon": "https://static1.smartbear.co/swagger/media/assets/swagger_fav.png",
         "link": "http://10.48.0.150:31900/doc.html#/home",
         "description": "api接口文档",
         "group": "WORK_FLOW"
@@ -198,14 +190,6 @@
         "link": "http://bap.supcon.com:8081/#/track/home",
         "description": "测试跟踪、接口测试和性能测试平台",
         "group": "WORK_FLOW"
-    },
-    {
-        "id": "27",
-        "title": "Node.js",
-        "icon": "https://nodejs.org/static/images/favicons/favicon.png",
-        "link": "https://nodejs.org/en",
-        "description": "开源、跨平台的 JavaScript 运行时环境",
-        "group": "Vue"
     },
     {
         "id": "28",
@@ -237,7 +221,7 @@
         "icon": "https://www.axios-http.cn/img/favicon.ico",
         "link": "https://www.axios-http.cn/",
         "description": "一个基于 promise 的网络请求库，可以用于浏览器和 node.js",
-        "group": "Vue"
+        "group": "工具"
     },
     {
         "id": "32",
@@ -261,12 +245,12 @@
         "icon": "https://less.bootcss.com/public/ico/favicon.ico",
         "link": "https://less.bootcss.com/",
         "description": "是一门向后兼容的 CSS 扩展语言",
-        "group": "Vue"
+        "group": "CSS"
     },
     {
         "id": "35",
         "title": "Ant Design Vue3.0",
-        "icon": "https://icon.horse/icon/3x.antdv.com",
+        "icon": "https://aliyuncdn.antdv.com/favicon.ico",
         "link": "https://3x.antdv.com/docs/vue/introduce-cn",
         "description": "为 Web 应用提供了丰富的基础 UI 组件",
         "group": "Vue"
@@ -362,7 +346,7 @@
     {
         "id": "47",
         "title": "Day.js",
-        "icon": "https://icon.horse/icon/day.js.org",
+        "icon": "https://day.js.org/img/logo.png",
         "link": "https://day.js.org/docs/zh-CN/installation/installation",
         "description": "一个轻量的处理时间和日期的 JavaScript 库",
         "group": "工具"
@@ -370,7 +354,7 @@
     {
         "id": "48",
         "title": "icones",
-        "icon": "https://icon.horse/icon/icones.netlify.app",
+        "icon": "https://icones.netlify.app/favicon.svg",
         "link": "https://icones.netlify.app/",
         "description": "icon图标集",
         "group": "工具"
@@ -378,7 +362,7 @@
     {
         "id": "49",
         "title": "Mock.js",
-        "icon": "https://icon.horse/icon/mockjs.com",
+        "icon": "http://mockjs.com/assets/img/logo-2.svg",
         "link": "http://mockjs.com/",
         "description": "生成随机数据，拦截 Ajax 请求",
         "group": "工具"
@@ -386,7 +370,7 @@
     {
         "id": "50",
         "title": "ECharts",
-        "icon": "https://icon.horse/icon/echarts.apache.org",
+        "icon": "https://echarts.apache.org/zh/images/favicon.png",
         "link": "https://echarts.apache.org/handbook/zh/get-started/",
         "description": "一个基于 JavaScript 的开源可视化图表库",
         "group": "工具"
@@ -426,7 +410,7 @@
     {
         "id": "55",
         "title": "ico51",
-        "icon": "https://icon.horse/icon/www.ico51.cn",
+        "icon": "https://www.ico51.cn/favicon.ico",
         "link": "https://www.ico51.cn/",
         "description": "生成透明ICO图标",
         "group": "工具"
@@ -437,7 +421,7 @@
         "icon": "https://unocss.dev/favicon.ico",
         "link": "https://unocss.dev/",
         "description": "原子CSS引擎",
-        "group": "工具"
+        "group": "CSS"
     },
     {
         "id": "57",
@@ -445,7 +429,7 @@
         "icon": "https://tailwindcss.com/favicons/favicon.ico?v=3",
         "link": "https://tailwindcss.com/",
         "description": "无需离开 HTML 即可快速构建现代网站",
-        "group": "工具"
+        "group": "CSS"
     },
     {
         "id": "58",
@@ -552,11 +536,43 @@
         "group": "工具"
     },
     {
-        "id": "71",
-        "title": "一元机场",
-        "icon": "",
-        "link": "https://xn--4gq62f52gdss.ink/#/dashboard",
-        "description": "",
+        "id": "72",
+        "title": "LogicFlow",
+        "icon": "https://cdn.jsdelivr.net/gh/Logic-Flow/static@latest/docs/favicon.png",
+        "link": "https://site.logic-flow.cn/",
+        "description": "流程图编辑框架",
         "group": "工具"
+    },
+    {
+        "id": "73",
+        "title": "Essendata-release-外网",
+        "icon": "https://essendata.supcon.com/big-data-platform/favicon.ico",
+        "link": "http://essendata-release.supcon.com:10443/",
+        "description": "演示环境-外网",
+        "group": "ESSENDATA"
+    },
+    {
+        "id": "74",
+        "title": "Essendata-release-内网",
+        "icon": "https://essendata.supcon.com/big-data-platform/favicon.ico",
+        "link": "http://essendata-release.supcon.com/",
+        "description": "演示环境-内网",
+        "group": "ESSENDATA"
+    },
+    {
+        "id": "75",
+        "title": "演示环境账号",
+        "icon": "",
+        "link": "https://doc.weixin.qq.com/doc/w3_AdwA6QaIAEICNuHCLZfO6Sf0WOrkI?scode=AFMArAcOAF4Y07AFMRAdwA6QaIAEI",
+        "description": "演示环境账号",
+        "group": "内部文档"
+    },
+    {
+        "id": "76",
+        "title": "使用指南",
+        "icon": "",
+        "link": "https://ownf6s06dks.feishu.cn/wiki/space/7488141957974409220?ccm_open_type=lark_wiki_spaceLink&open_tab_from=wiki_home ",
+        "description": "使用指南",
+        "group": "内部文档"
     }
 ]

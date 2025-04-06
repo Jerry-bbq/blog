@@ -116,3 +116,8 @@ flex-grow, flex-shrink 和 flex-basis的简写，默认值为0 1 auto。后两�
 align-self属性允许单个项目有与其他项目不一样的对齐方式，可覆盖align-items属性。默认值为auto，表示继承父元素的align-items属性，如果没有父元素，则等同于stretch
 
 [参考](https://www.ruanyifeng.com/blog/2015/07/flex-grammar.html)
+
+
+## 其他
+
+- [layout](https://layout.bradwoods.io/customize)：在线体验，包含 `grid` 布局
