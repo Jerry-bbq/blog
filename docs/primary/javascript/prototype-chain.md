@@ -5,9 +5,9 @@ JavaScript是面向对象编程（Object-oriented programming ，OOP）的语言
 
 ## 创建对象的五种方式
 
-1. 对象字面量
+### 1. 对象字面量（Object Literal）
 
-使用对象字面量的方式可以直接创建一个对象，该对象可以包含属性和方法。
+最简单直接的方式，适用于单例对象。
 
 ```js
 const person = {
@@ -19,9 +19,9 @@ const person = {
 };
 ```
 
-2. 构造函数
+### 2. 构造函数（Constructor Function）
 
-使用构造函数可以创建一个对象实例。构造函数可以通过 this 关键字给新对象设置属性和方法。
+通过 `new` 调用函数创建多个相似对象。
 
 ```js
 function Person(name, age) {
@@ -35,9 +35,15 @@ function Person(name, age) {
 const person = new Person('Alice', 30);
 ```
 
-3. 原型
+::: warning ⚠️ 缺点
 
-使用原型可以共享属性和方法。通过将属性和方法添加到原型对象中，所有使用该构造函数创建的对象都可以共享这些属性和方法。
+每个实例都会重复创建方法，浪费内存。
+
+:::
+
+### 3. 原型模式（Prototype）
+
+将方法定义在构造函数的 `prototype` 上，实现方法共享。
 
 ```js
 function Person(name, age) {
@@ -53,9 +59,9 @@ const person = new Person('Alice', 30);
 
 ```
 
-4. class
+### 4. ES6 Class（语法糖）
 
-使用 class 关键字可以创建一个类，该类可以包含属性和方法。
+`class` 是对原型模式的语法封装，底层仍是原型机制。
 
 ```js
 class Person {
@@ -73,88 +79,45 @@ const person = new Person('Alice', 30);
 
 ```
 
-5. Object.create()
+::: tip 💡 注意
 
-用于创建一个新对象，使用现有的对象来作为新创建对象的原型（prototype）
-
-```js
-var p = { name: 'p' }
-// 创建一个对象并继承原型对象
-var o = Object.create(p)
-// o.__proto__ === p
-```
-
-::: tip 提示
-
-Object.create(null) 创建的对象是一个空对象，在该对象上没有继承原型链上的属性或者方法
-
-Object.create() 是 JavaScript 中的一个方法，用于创建一个新对象，并将新对象的原型设置为指定的对象。Object.create() 的语法如下：
-
-```js
-Object.create(proto[, propertiesObject])
-```
-其中，proto 是新对象的原型，可以为 null 或任何一个对象，propertiesObject 是一个可选的参数，用于定义新对象的属性。
-
-Object.create() 的特点包括：
-
-1. 继承指定对象的属性
-使用 Object.create() 创建的新对象，其原型链指向指定的对象，因此它可以继承指定对象的属性。例如：
-
-```js
-const person = {
-  name: 'Alice',
-  age: 30,
-  sayHello() {
-    console.log(`Hello, my name is ${this.name}.`);
-  }
-};
-
-const student = Object.create(person);
-student.name = 'Bob';
-student.sayHello(); // 输出 "Hello, my name is Bob."
-```
-在上面的例子中，使用 Object.create() 方法创建了一个新的对象 student，并将 person 对象作为 student 对象的原型。由于 student 对象继承了 person 对象的属性和方法，因此在 student 对象上调用 sayHello() 方法时，可以输出 Hello, my name is Bob.。
-
-2. 不会调用构造函数
-使用 Object.create() 创建的新对象，不会调用构造函数。因此，不需要使用 new 关键字来调用构造函数。例如：
-
-```js
-function Person(name, age) {
-  this.name = name;
-  this.age = age;
-}
-
-const student = Object.create(Person.prototype);
-student.name = 'Bob';
-console.log(student instanceof Person); // 输出 "true"
-```
-在上面的例子中，使用 Object.create() 方法创建了一个新的对象 student，并将 Person.prototype 对象作为 student 对象的原型。由于 student 对象的原型为 Person.prototype，因此可以通过 instanceof 运算符判断 student 对象是否为 Person 类型的实例。
-
-3. 可以设置新对象的属性
-使用 Object.create() 创建的新对象，可以通过第二个参数 propertiesObject 来设置新对象的属性。例如：
-
-```js
-const person = {
-  name: 'Alice',
-  age: 30,
-  sayHello() {
-    console.log(`Hello, my name is ${this.name}.`);
-  }
-};
-
-const student = Object.create(person, {
-  grade: { value: 1, writable: true, configurable: true }
-});
-
-console.log(student.grade); // 输出 "1"
-```
-在上面的例子中，使用 Object.create() 方法创建了一个新的对象 student，并将 person 对象作为 student 对象的原型。同时，通过第二个参数传入了一个对象，该对象定义了 grade 属性。
+`typeof Person` 仍是 `"function"`，`Person.prototype.constructor === Person`。
 
 :::
 
-## 构造函数constructor
+### 5. Object.create()
 
-在 JavaScript 中，构造函数（constructor）是用来创建对象的函数。它通常用来创建一组相似的对象，这些对象共享相同的属性和方法。通过使用构造函数，可以方便地创建多个相似的对象。
+显式指定新对象的原型，适合实现 **无构造函数的继承**。
+
+```js
+const personProto = {
+  sayHello() {
+    console.log(`Hello, my name is ${this.name}.`);
+  }
+};
+const person = Object.create(personProto);
+person.name = 'Alice';
+
+// 创建无原型对象（常用于哈希表）
+const empty = Object.create(null); // 没有 toString、hasOwnProperty 等方法
+```
+
+Object.create() 的特点：
+
+- 继承指定对象的属性/方法
+- 不会调用构造函数
+- 可通过第二参数定义属性描述符
+
+```js
+const student = Object.create(personProto, {
+  grade: { value: 1, writable: true, enumerable: true }
+});
+```
+
+
+## 构造函数（Constructor）
+
+构造函数是用于创建对象的普通函数，约定首字母大写，并配合 `new` 使用。
 
 构造函数的定义方式如下：
 
@@ -167,13 +130,8 @@ function Person(name, age) {
 var person1 = new Person("Alice", 30);
 var person2 = new Person("Bob", 25);
 ```
-在上面的代码中，Person 就是一个构造函数，它接受两个参数 name 和 age，并用它们初始化了对象的属性。通过使用 new 运算符来调用 Person 构造函数，可以创建多个 Person 对象。
 
-在构造函数中，使用 this 关键字来指代当前创建的对象。在 Person 构造函数中，通过 this.name = name 和 this.age = age 语句来为当前对象添加 name 和 age 属性。
-
-需要注意的是，在使用构造函数创建对象时，一般约定构造函数的名称以大写字母开头，以便与普通函数区分开来。
-
-除了上面的方式，ES6 中还提供了更简便的方式来定义构造函数，使用 class 关键字来定义类。例如：
+ES6 中等价写法：
 
 ```js
 class Person {
@@ -186,44 +144,50 @@ class Person {
 let person1 = new Person("Alice", 30);
 let person2 = new Person("Bob", 25);
 ```
-使用 class 关键字来定义类，可以更直观地表达出类的概念。在类中，通过 constructor 方法来定义类的构造函数。在 Person 类的构造函数中，使用 this 关键字来指代当前创建的对象，并设置对象的属性。
 
-特点：
+### 构造函数的特点
 
-- 首字母大写
-- 函数体内部使用`this`关键字,代表所要生成的对象实例
-- 生成对象时，必须使用`new`操作符
+- 首字母大写（约定）
+- 内部使用 `this` 绑定新对象
+- 必须用 `new` 调用（否则 `this` 指向全局对象或 `undefined` ）
 
-## 原型对象
+::: danger 
+❗箭头函数不能作为构造函数，因其没有 `[[Construct]]` 内部方法。
+:::
 
-在 JavaScript 中，每个对象都有一个原型对象（prototype object）。原型对象是一种特殊的对象，它充当了对象与其他对象之间的桥梁。如果一个对象需要访问另一个对象的属性或方法，它可以在自己的原型对象中查找相应的属性或方法。
+## 原型对象（Prototype）
 
-JavaScript 中的每个对象都有一个 `__proto__` 属性，这个属性指向了该对象的原型对象。原型对象也是一个对象，它也有自己的原型对象，这样就形成了一条原型链。在原型链的顶端是 `Object.prototype`，这是所有对象的原型对象。
+每个函数（除箭头函数）都有一个 `prototype` 属性，指向一个对象。该对象的用途是：**为所有实例共享属性和方法**。
+
+每个对象内部都有一个隐藏的 `[[Prototype]]` 链接（在浏览器中可通过非标准属性` __proto__` 访问），指向其构造函数的 `prototype`。
 
 下面是一个示例，展示了原型对象的基本用法：
 
 ```js
-function Person(name, age) {
-  this.name = name;
-  this.age = age;
-}
+function Foo() {}
+const f1 = new Foo();
 
-Person.prototype.sayHello = function() {
-  console.log("Hello, my name is " + this.name);
-};
-
-var person = new Person("Alice", 30);
-person.sayHello();  // 输出 "Hello, my name is Alice"
+console.log(f1.__proto__ === Foo.prototype); // true
+console.log(Object.getPrototypeOf(f1) === Foo.prototype); // 推荐写法
 ```
-在上面的代码中，`Person` 是一个构造函数，通过 `Person.prototype` 可以为它的实例对象添加方法。在 `person` 对象中调用 `sayHello()` 方法时，实际上是在 `Person.prototype` 中查找该方法并调用。如果 `Person.prototype` 中不存在该方法，那么它会在 `Person.prototype` 的原型对象中继续查找，直到找到顶层的 `Object.prototype`，如果还没有找到就返回 `undefined。`
 
-原型对象的使用可以提高代码的复用性，也使得继承变得更加容易。例如，在子类中可以使用原型继承父类的属性和方法。在使用原型继承时，需要注意一些细节，例如要避免修改原型对象上的属性和方法。
+### 原型查找机制
 
-## 原型链
+当访问对象属性时，JS 引擎按以下顺序查找：
+
+- 自身属性
+- `[[Prototype]]`（即 `__proto__`）
+- `[[Prototype]]` 的 `[[Prototype]]`
+- … 直到 `Object.prototype`
+- 若仍未找到，返回 `undefined`
+
+## 原型链（Prototype Chain）
+
+原型链是多个对象通过 `[[Prototype]]` 链接形成的层级结构。
 
 **在JavaScript中，每个对象都拥有一个原型对象，对象以其原型为模板、从原型继承方法和属性。原型对象也可能拥有原型，并从中继承方法和属性，一层一层、以此类推。这种关系常被称为原型链**。它解释了为何一个对象会拥有定义在其他对象中的属性和方法
 
-### 原型链的查找过程
+### 原型链的查找过程（机制）
 
 - 当访问一个对象的某个属性时，会先在这个对象本身属性上查找
 - 如果没有找到，则会去该对象的`__proto__`上查找
@@ -234,26 +198,34 @@ person.sayHello();  // 输出 "Hello, my name is Alice"
 
 ![constructor](./images/constructor.png)
 
-构造函数：
-- function Foo()
-- function Object()
-- function Function()
+这张图是 JavaScript 原型链（Prototype Chain） 的经典示意图，展示了函数、对象、原型和 `__proto__` 之间的关系
 
-总结：
 
-1. 所有的实例化对象的`__proto__`指向 其构造函数的`prototype`
-2. 所有普通的对象和构造函数的`prototype`的`__proto__`都指向`Object.prototype`
-3. 所有函数（包括构造函数）都是`Function`的实例，所以`__proto__`都指向`Function.prototype`
+| 左边 | 右边 |
+| -- | -- |
+| **函数（Functions）**：构造函数（如 `Foo`, `Object`, `Function`）|	**原型（Prototypes）**：每个函数都有一个 `.prototype`，每个对象都有一个 `__proto__`
 
-过程：
-- 定义一个构造函数Foo，并实例化为f1，从实例f1上查找某个属性或方法，会该实例本身上查找属性或方法，
-- 如果没有找到，则从实例的__proto__上查找，也就是实例f1的构造函数Foo的原型对象上（即Foo.prototype）查找
-- 如果没有找到，则继续从实例f1的__proto__的__proto__上查找，也就是实例f1的构造函数的原型的原型上查找，即Foo.prototype.__proro__上查找，
-- 如果没有找到，则继续从实例f1的__proto__的__proto__的__proto__上查找，即实例f1的构造函数的原型的原型的原型上查找，即Foo.prototype.__proro__.__proro__上，最后找到Object.prototype上，
-- 如果还是没有，则找到null
-- 对象以此类推
+✅ 函数（Functions）
+- Foo()：自定义构造函数
+- Object()：所有对象的祖宗构造函数
+- Function()：所有函数的祖宗构造函数
+> 所有函数都是 Function 的实例！
+
+✅ 原型（Prototypes）
+- 每个函数都有一个 `.prototype` 属性（指向一个对象）
+- 每个对象都有一个 `__proto__`（内部属性，指向它的原型）
+> `__proto__` 是对象的“父类”，用来查找方法和属性。
+
+✅ 最终结论：这张图告诉我们什么？
+- 所有函数都继承自 `Function.prototype`
+- 所有对象都继承自 `Object.prototype`
+- `__proto__` 是对象的“父亲”
+- `.prototype` 是函数的“家族手册”
+- 原型链是 JS 实现继承的核心机制
 
 ## instanceof运算符
+
+用于检测构造函数的 `prototype` 是否出现在对象的原型链上。
 
 <<< ./code-snippet/instanceof.js
 
@@ -318,229 +290,496 @@ console.log(o);         // { age: 333 }
 
 <<< ./code-snippet/new.js
 
-## 继承
+## 继承的六种实现方式（演进过程）
 
-复制父类的方法和属性来重写子类的原型对象
+原型链是 JS 实现继承的核心机制
 
-### 1. 构造函数：子类构造函数中执行父类构造函数
+### 1. 原型链继承（Prototype Chain Inheritance）
 
-子类构造函数中执行父类构造函数（` Parent.call(this) `）
+#### 实现思路：
 
-```js:line-numbers{10}
-// 父类
+**子类的原型** 指向 **父类的实例**，从而继承父类的属性和方法。
+
+#### 示例代码：
+
+```js:line-numbers{13}
 function Parent() {
-    this.name = 'Parent'
-}
-Parent.prototype.say = function() {}
-
-// 子类
-function Child() {
-    // 调用父类，父类函数执行，绑定this
-    Parent.call(this) // 或者使用apply，this 指向 Child
-    this.type = 'Child'
+  this.name = 'parent';
+  this.colors = ['red', 'blue'];
 }
 
-var child = new Child()
+Parent.prototype.getName = function () {
+  return this.name;
+};
 
-// 测试
-console.log(child)
+function Child() {}
+
+// 继承
+Child.prototype = new Parent();
+
+const child1 = new Child();
+console.log(child1.getName()); // 'parent'
+child1.colors.push('green');
+console.log(child1.colors); // ['red', 'blue', 'green']
+
+const child2 = new Child();
+console.log(child2.colors); // ['red', 'blue', 'green'] ← 共享引用！
 ```
 
-结果：
+缺点：
 
-```json
-{
-    name: "Parent"
-    type: "Child"
-    [[Prototype]]: {
-        constructor: ƒ Child()
-        [[Prototype]]: Object
-    }
-}
-```
+- 所有子实例共享父类实例的引用属性（如数组、对象），容易造成数据污染。
+- 无法向父类构造函数传参。
 
-::: danger 缺点
+❌ 问题暴露：引用属性共享 + 无法传参
 
-1. 只能继承父类构造函数通过`this`声明的属性/方法。不能继承父类构造函数原型`prototype`上的属性/方法
-2. 父类方法无法复用。每次实例化子类，都要执行父类函数。重新声明父类所定义的方法，无法复用
+### 2. 构造函数继承（Constructor Stealing / Classical Inheritance）
 
-:::
+#### 实现思路：
 
-### 2. 原型链：将父类构造函数的实例赋值给子类构造函数的原型
+- 在 **子类构造函数** 中使用 `call` 或 `apply` 调用 **父类构造函数**，实现属性继承。
+- 解决了属性共享和无法传参的问题！
 
-方法：将父类构造函数的实例赋值给子类构造函数的原型对象（`Child.prototype = new Parent()`）
-
-原因：子类Child.prototype赋值父类的实例new Parent()，当子类实例化时，`子类实例的__proto__`就等于`子类构造函数的prototype`，`子类实例的__proto__`等于`父类的实例`，因此实现了继承
-
-作用：弥补通过构造函数继承的缺点（继承不了父类构造函数原型对象`（Parent.prototype）`上的属性和方法）
-
-```js:line-numbers{12}
-// 父类
-function Parent() {
-    this.name = 'Parent'
-    this.play = [1,2,3]
-}
-
-// 子类
-function Child() {
-    this.type = 'Child'
-}
-// 子类函数原型指向构造函数的实例
-Child.prototype = new Parent()
-
-// 测试
-console.log(new Child())
-// 缺点：改变s1原型对象上的属性和方法会影响到s2对象，
-// 原因是s1和s2的__proto__的指向相同（s1.__proto__ === s2.__proto__）
-var s1 = new Child()
-var s2 = new Child()
-console.log(s1.play,s2.play)
-s1.play.push(4)
-console.log(s1.play,s2.play)
-```
-
-结果：
-
-```json
-Child
-    type: "Child"
-    [[Prototype]]: Parent
-        name: "Parent"
-        play: (3) [1, 2, 3]
-        [[Prototype]]: Object
-            constructor: ƒ Parent()
-```
-
-::: danger 缺点
-
-1. 如果实例化两个子类构造函数，其中一个子类构造函数的原型上的方法和属性改变，另一个实例也会相应改变
-2. 创建子类实例时，无法向父类构造函数传参
-
-:::
-
-### 3. 组合方式：构造函数+原型链
-
-通过原型链继承来将this、prototype上的属性和方法继承到子类的原型对象上。借用构造函数来继承父类通过this声明的属性和方法在之子类的实例属性上
-
-方法：
-
-- 在子类构造函数中执行父类构造函数
-- 然后将父类的构造函数的实例 赋值给 子类的原型对象
-
-```js:line-numbers{8,12}
-// 父类
-function Parent() {
-    this.name = 'Parent'
-    this.play = [1,2,3]
-}
-// 子类
-function Child() {
-    Parent.call(this)
-    this.type = 'Child'
-}
-
-Child.prototype = new Parent()
-
-// 测试
-var s1 = new Child()
-var s2 = new Child()
-s1.play.push(4)
-console.log(s1.play,s2.play)
-```
-
-::: danger 缺点
-
-1. 父类构造函数执行了两次,造成一定的性能问题
-2. 因调用两次父类，导致父类通过`this`声明的属性和方法被生成两份的问题
-3. 原型链上下文丢失，子类和父类通过`prototype`声明的属性和方法都存在与子类`prototype`上
-
-:::
-
-### 4. 优化组合方式1: 将父类构造函数的原型赋值给子类构造函数的原型
-
-方法：
-
-- 子类构造函数中执行父类构造函数
-- 然后将父类构造函数的原型对象赋值给子类构造函数的原型对象
-
-```js:line-numbers{8,12}
-// 父类
-function Parent() {
-    this.name = 'Parent'
-    this.play = [1,2,3]
-}
-// 子类
-function Child() {
-    Parent.call(this)
-    this.type = 'Child'
-}
-
-Child.prototype = Parent.prototype
-
-// 测试
-var s1 = new Child()
-var s2 = new Child()
-console.log(s1, s2)
-console.log(s1 instanceof Child) // true
-console.log(s2 instanceof Parent) // true
-console.log(s1.constructor) // 子类实例的构造函数是`Parent`，而不是`Child`
-```
-
-::: danger 缺点
-
-区分不了一个对象是子类的实例化还是父类的实例化
-
-:::
-
-### 5. 优化组合方式2：通过Object.create()
-
-方法：
-
-- 在子类构造函数中执行父类构造函数
-- 然后创建父类构造函数的实例继承赋值给子类构造函数的原型对象
-- 最后将子类构造函数赋值给子类构造函数的原型对象的constructor
-
-```js:line-numbers{8,11,12}
-// 父类
-function Parent() {
-    this.name = 'Parent'
-    this.play = [1,2,3]
-}
-// 子类
-function Child() {
-    Parent.call(this)
-    this.type = 'Child'
-}
-Child.prototype = Object.create(Parent.prototype)
-Child.prototype.constructor = Child
-
-// 测试
-var s = new Child()
-console.log(s instanceof Child, s instanceof Parent)
-console.log(s.constructor) // 子类实例的构造函数是`Child`
-```
-
-### 6. 使用es6的extends
+#### 示例代码：
 
 ```js:line-numbers{11}
-// 父类
-class Parent {
-    constructor(value) {
-        this.val = value
-    }
-    getValue() {
-        console.log(this.val)
-    }
-}
-// 子类
-class Child extends Parent {
-    constructor(value) {
-        super(value) // Parent.call(this, value)
-        this.val = value
-    }
+function Parent(name) {
+  this.name = name;
+  this.colors = ['red', 'blue'];
 }
 
-let child = new Child(1)
-child.getValue() // 1
-child instanceof Parent // true
+Parent.prototype.getName = function () {
+  return this.name;
+};
+
+function Child(name, age) {
+  Parent.call(this, name); // 继承属性
+  this.age = age;
+}
+
+const child1 = new Child('Tom', 10);
+child1.colors.push('green');
+console.log(child1.colors); // ['red', 'blue', 'green']
+
+const child2 = new Child('Jerry', 8);
+console.log(child2.colors); // ['red', 'blue'] ← 不共享
+
+console.log(child1.getName()); // ❌ TypeError: child1.getName is not a function
 ```
+缺点：
+
+- 无法继承父类原型上的方法（如 `getName`）。方法无法复用，去了原型方法的复用能力，违背 OOP 复用原则。
+- 每个子实例都会创建一份父类方法的副本（如果方法定义在构造函数内）。
+
+📌 适用场景：只需继承实例属性，不需要复用父类方法。
+
+### 3. 组合继承（Combination Inheritance）
+
+#### 实现思路：
+
+结合原型链继承和构造函数继承：
+
+用原型链继承父类原型上的方法；
+用构造函数继承实例属性。
+
+#### 示例代码：
+
+```js:line-numbers{11,15,16}
+function Parent(name) {
+  this.name = name;
+  this.colors = ['red', 'blue'];
+}
+
+Parent.prototype.getName = function () {
+  return this.name;
+};
+
+function Child(name, age) {
+  Parent.call(this, name); // 第一次调用 Parent
+  this.age = age;
+}
+
+Child.prototype = new Parent(); // 第二次调用 Parent
+Child.prototype.constructor = Child;
+
+Child.prototype.getAge = function () {
+  return this.age;
+};
+
+const child1 = new Child('Tom', 10);
+child1.colors.push('green');
+console.log(child1.getName(), child1.getAge()); // 'Tom', 10
+
+const child2 = new Child('Jerry', 8);
+console.log(child2.colors); // ['red', 'blue'] ← 独立
+
+```
+
+缺点：
+
+- 父类构造函数被调用了两次（一次在 `new Parent()`，一次在` Parent.call`），效率不高。
+  
+### 4. 原型式继承（Prototypal Inheritance）
+
+#### 实现思路：
+
+借助 Object.create()（或手动模拟）直接基于一个对象创建新对象。
+
+#### 示例代码：
+
+```js:line-numbers{9,13}
+const parent = {
+  name: 'parent',
+  colors: ['red', 'blue'],
+  getName() {
+    return this.name;
+  }
+};
+
+const child1 = Object.create(parent);
+child1.name = 'child1';
+child1.colors.push('green');
+
+const child2 = Object.create(parent);
+child2.name = 'child2';
+
+console.log(child1.getName()); // 'child1'
+console.log(child2.colors); // ['red', 'blue', 'green'] ← 共享引用！
+
+```
+这是道格拉斯·克罗克福德（Douglas Crockford）提出的模式。
+
+缺点：
+
+- 同样存在引用类型共享问题。
+- 不适合创建多个具有相同结构但独立状态的对象。
+
+### 5. 寄生式继承（Parasitic Inheritance）
+
+#### 实现思路：
+
+创建一个仅用于封装继承过程的函数，在该函数内部增强对象，然后返回。
+
+#### 示例代码：
+```js:line-numbers{2}
+function createAnother(original) {
+  const clone = Object.create(original); // 通过原型式继承创建对象
+  clone.sayHi = function () {
+    console.log('Hi');
+  };
+  return clone;
+}
+
+const parent = {
+  name: 'parent',
+  colors: ['red', 'blue']
+};
+
+const child = createAnother(parent);
+child.sayHi(); // 'Hi'
+```
+
+缺点：
+- 无法复用方法（每次都要重新定义）。
+- 仍存在引用共享问题。
+
+### 6. ✅ 寄生组合式继承（Parasitic Combination Inheritance）
+
+#### 实现思路：
+
+解决组合继承中父类构造函数被调用两次的问题。
+
+只调用一次父类构造函数，并通过 `Object.create(Parent.prototype)` 设置子类原型。
+
+#### 示例代码：
+
+```js:line-numbers{2,3,4}
+function inheritPrototype(Child, Parent) {
+  const prototype = Object.create(Parent.prototype); // 创建父类原型的副本
+  prototype.constructor = Child;
+  Child.prototype = prototype;
+}
+
+function Parent(name) {
+  this.name = name;
+  this.colors = ['red', 'blue'];
+}
+
+Parent.prototype.getName = function () {
+  return this.name;
+};
+
+function Child(name, age) {
+  Parent.call(this, name); // 只调用一次
+  this.age = age;
+}
+
+inheritPrototype(Child, Parent);
+
+Child.prototype.getAge = function () {
+  return this.age;
+};
+
+const child1 = new Child('Tom', 10);
+const child2 = new Child('Jerry', 8);
+
+child1.colors.push('green');
+console.log(child1.colors); // ['red', 'blue', 'green']
+console.log(child2.colors); // ['red', 'blue'] ← 独立
+
+console.log(child1.getName(), child1.getAge()); // 'Tom', 10
+
+```
+
+优点：
+- 只调用一次父类构造函数。
+- 避免了引用属性共享。
+ 是引用类型继承的最佳模式（ES5 时代推荐）。
+
+### 7. ✅ ES6 Class 继承（语法糖）
+
+#### 实现思路：
+
+使用 `class` 和 `extends` 关键字，底层仍是寄生组合式继承，但语法更清晰。
+
+#### 示例代码：
+
+```js:line-numbers{12,14}
+class Parent {
+  constructor(name) {
+    this.name = name;
+    this.colors = ['red', 'blue'];
+  }
+
+  getName() {
+    return this.name;
+  }
+}
+
+class Child extends Parent {
+  constructor(name, age) {
+    super(name); // 调用父类构造函数
+    this.age = age;
+  }
+
+  getAge() {
+    return this.age;
+  }
+}
+
+const child1 = new Child('Tom', 10);
+const child2 = new Child('Jerry', 8);
+
+child1.colors.push('green');
+console.log(child1.colors); // ['red', 'blue', 'green']
+console.log(child2.colors); // ['red', 'blue'] ← 独立
+
+console.log(child1.getName(), child1.getAge()); // 'Tom', 10
+```
+
+优点：
+
+- 语法简洁、清晰，接近传统面向对象语言。
+- 自动处理原型链和构造函数调用。
+- 支持静态方法、getter/setter 等高级特性。
+
+注意：
+
+- 本质仍是基于原型的继承，只是语法糖。
+- 必须在子类 constructor 中调用 super() 才能使用 this。
+
+## 对比总结
+
+
+| 继承方式 | 是否支持传参	| 是否共享引用属性	| 是否继承原型方法	| 调用父构造次数	| 推荐度 |
+| -- | -- | -- | -- | -- | -- |
+| 原型链继承	| ❌	| ✅（问题）| 	✅	| 1	| ⭐ | 
+| 构造函数继承 | ✅	| ❌	| ❌	| 1	| ⭐⭐ |
+| 组合继承	| ✅	| ❌	| ✅	| 2（冗余）	| ⭐⭐⭐ |
+| 原型式继承	| ❌	| ✅（问题）	| ✅（来自对象）	| 0	| ⭐ |
+| 寄生式继承	| ❌	| ✅（问题）	| ✅（增强）	| 0	| ⭐ |
+| 寄生组合式继承	| ✅	| ❌	| ✅	| 1	| ⭐⭐⭐⭐⭐ |
+| ES6 Class 继承	| ✅	| ❌	| ✅	| 1	| ⭐⭐⭐⭐⭐ |
+
+> ✅ 表示“是”或“无问题”，❌ 表示“否”或“有问题”。
+
+## 请说说 JavaScript 中实现继承的几种方式？你推荐哪一种？为什么？
+
+JavaScript 的继承本质是基于原型的委托机制。常见的实现方式有：
+
+- 原型链继承：子类原型指向父类实例。
+  
+  → 缺点：引用属性共享、无法传参。
+  
+- 借用构造函数：在子类中用 `Parent.call(this)`。
+  
+  → 缺点：无法复用父类原型方法。
+
+- 组合继承：结合上述两者。
+
+  → 缺点：父类构造函数被调用两次，原型上有冗余属性。
+
+- 寄生组合继承：用 `Object.create(Parent.prototype)` 设置子类原型。
+
+  → ✅ 推荐：只调用一次父类构造函数，原型干净，支持所有 `OOP` 特性。
+
+- ES6 `class`` extends`：语法糖，底层就是寄生组合继承。
+
+  → 现代开发首选，简洁安全。
+
+> 所以我推荐：现代项目用 `class` `extends`，兼容环境用寄生组合继承。
+
+## 组合继承和寄生组合继承有什么区别？为什么寄生组合更好？
+
+两者都结合了“借用构造函数”和“原型链”的优点，但关键区别在于如何设置子类的原型：
+
+| 对比项	| 组合继承	| 寄生组合继承 |
+| -- | -- | -- |
+| 原型设置方式	| Child.prototype = new Parent()	| Child.prototype = Object.create(Parent.prototype) |
+| 父类构造函数调用次数	| 2 次（设原型时 + 实例化时）	| 1 次（仅实例化时） |
+| 子类原型上是否有父类实例属性？	| ✅ 有（如 name, friends）	| ❌ 无（只有方法） |
+| 内存效率	| 较低（冗余属性）	| 更高 |
+
+举例说明问题：
+
+```js
+function Parent(name) {
+  this.name = name;
+  this.friends = [];
+}
+function Child(name, age) {
+  Parent.call(this, name);
+}
+// 组合继承
+Child.prototype = new Parent(); // ← 这里会创建一个无意义的 { name: undefined, friends: [] }
+
+// 寄生组合继承
+Child.prototype = Object.create(Parent.prototype); // ← 只继承方法，不创建实例属性
+```
+
+> 因此，寄生组合继承避免了不必要的属性初始化，是 ES5 中最高效的继承方式。
+
+## ES6 的 class 是不是真正的“类”？它和构造函数有什么关系？
+
+不是。ES6 的 class 只是语法糖，底层仍然是基于构造函数 + 原型链的机制。
+
+验证：
+
+```js
+class A {}
+console.log(typeof A); // "function"
+console.log(A === A.prototype.constructor); // true
+
+// class 中的方法都定义在 prototype 上
+A.prototype.say = function() {};
+// 等价于
+class A {
+  say() {}
+}
+```
+
+extends 的本质就是寄生组合继承：
+
+- super() → 相当于 `Parent.call(this, ...)`
+- 自动设置 `Child.prototype = Object.create(Parent.prototype)`
+- 自动修复 `constructor`
+
+> 所以，class 让代码更清晰，但没有改变 JavaScript 基于原型的本质。
+
+## instanceof 的原理是什么？它是如何判断对象类型的？
+
+`obj instanceof Constructor` 的原理是：
+
+检查 `Constructor.prototype` 是否出现在 `obj` 的原型链上。
+
+```js
+function myInstanceof(obj, Ctor) {
+  if (typeof obj !== 'object' || obj === null) return false;
+  let proto = Object.getPrototypeOf(obj);
+  while (proto) {
+    if (proto === Ctor.prototype) return true;
+    proto = Object.getPrototypeOf(proto);
+  }
+  return false;
+}
+```
+
+注意：
+
+- `instanceof` 不可靠，因为原型链可以被修改（如 `Object.setPrototypeOf`）
+- 跨 `iframe` 或不同全局环境时可能失效
+- 判断基本类型应使用 `typeof`，判断数组用` Array.isArray`
+
+## Object.create(null) 创建的对象有什么特点？用在什么场景？
+
+`Object.create(null)` 创建的是一个没有任何原型的对象：
+
+- 没有 `__proto__`
+- 没有 `toString、hasOwnProperty` 等继承自 `Object.prototype` 的方法
+- `Object.getPrototypeOf(obj)` 返回 `null`
+
+适用场景：
+
+- 实现纯净的哈希表/字典，避免原型方法干扰
+
+```js
+const dict = Object.create(null);
+dict.toString = 'user data'; // 不会覆盖原生 toString
+console.log(dict.toString); // 'user data'（安全！）
+```
+
+- 需要完全控制属性枚举（如 `for...i`n 不会遍历到原型属性）
+
+> 相比之下，`{}` 或 `new Object()` 都会继承 `Object.prototype`。
+
+
+## 为什么箭头函数不能作为构造函数？new 一个箭头函数会怎样？
+
+因为箭头函数：
+
+- 没有 `[[Construct]]` 内部方法（ECMAScript 规范规定）
+- 没有自己的 `this、arguments、super、new.target`
+- 没有 `prototype` 属性
+
+所以：
+
+```js
+const Arrow = () => {};
+new Arrow(); // ❌ TypeError: Arrow is not a constructor
+```
+
+> 构造函数必须是普通函数或 `class`（class 本质也是函数）。
+
+## 如何手动实现 new 操作符？
+
+```js
+function myNew(Constructor, ...args) {
+  // 1. 创建空对象，链接到构造函数原型
+  const obj = Object.create(Constructor.prototype);
+  
+  // 2. 绑定 this 并执行构造函数
+  const result = Constructor.apply(obj, args);
+  
+  // 3. 判断构造函数返回值
+  if (result !== null && typeof result === 'object') {
+    return result; // 返回对象
+  }
+  return obj; // 否则返回新对象
+}
+
+// 测试
+function Person(name) { this.name = name; }
+const p = myNew(Person, 'Alice');
+console.log(p.name); // 'Alice'
+```
+
+总结：继承相关面试核心要点
+
+| 概念 | 关键点 |
+| -- | -- |
+| 继承本质 | 原型链委托，非类复制 |
+| 最优继承 | 寄生组合继承（ES5）、class extends（ES6+） |
+| class | 本质	语法糖，底层仍是原型 |
+| instanceof | 检查原型链是否包含 `Constructor.prototype` |
+| Object | `create(null)`	无原型对象，适合做哈希表 |
+| new | 原理	创建对象 → 链接原型 → 绑定 this → 处理返回值 |
