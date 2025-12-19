@@ -5,7 +5,7 @@ JavaScript是面向对象编程（Object-oriented programming ，OOP）的语言
 
 ## 创建对象的五种方式
 
-### 1. 对象字面量（Object Literal）
+### 1. 对象字面量（Object Literal）（最常用）
 
 最简单直接的方式，适用于单例对象。
 
@@ -25,6 +25,7 @@ const person = {
 
 ```js
 function Person(name, age) {
+  // 每个实例都会创建独立的属性和方法
   this.name = name;
   this.age = age;
   this.sayHello = function() {
@@ -41,7 +42,7 @@ const person = new Person('Alice', 30);
 
 :::
 
-### 3. 原型模式（Prototype）
+### 3. 原型模式（Prototype）（推荐）
 
 将方法定义在构造函数的 `prototype` 上，实现方法共享。
 
@@ -51,11 +52,19 @@ function Person(name, age) {
   this.age = age;
 }
 
+// 方法定义在原型上，所有实例共享
 Person.prototype.sayHello = function() {
   console.log(`Hello, my name is ${this.name}.`);
 };
 
-const person = new Person('Alice', 30);
+Person.prototype.grow = function() {
+  this.age++;
+};
+
+const person1 = new Person('Alice', 30);
+const person2 = new Person('Bob', 25);
+
+console.log(person1.sayHello === person2.sayHello); // true，共享方法
 
 ```
 
@@ -69,13 +78,21 @@ class Person {
     this.name = name;
     this.age = age;
   }
-
+  
+  // 自动添加到原型上
   sayHello() {
-    console.log(`Hello, my name is ${this.name}.`);
+    console.log(`Hello, I'm ${this.name}`);
+  }
+  
+  // 静态方法
+  static createDefault() {
+    return new Person('Default', 0);
   }
 }
 
 const person = new Person('Alice', 30);
+console.log(person.sayHello()); // Hello, I'm Alice
+console.log(Person.createDefault()); // Person { name: 'Default', age: 0 }
 
 ```
 
@@ -92,14 +109,26 @@ const person = new Person('Alice', 30);
 ```js
 const personProto = {
   sayHello() {
-    console.log(`Hello, my name is ${this.name}.`);
+    console.log(`Hello, I'm ${this.name}`);
   }
 };
-const person = Object.create(personProto);
-person.name = 'Alice';
 
-// 创建无原型对象（常用于哈希表）
-const empty = Object.create(null); // 没有 toString、hasOwnProperty 等方法
+// 创建以personProto为原型的对象
+const person = Object.create(personProto, {
+  name: { 
+    value: 'Alice', 
+    writable: true, 
+    enumerable: true 
+  },
+  age: { 
+    value: 30, 
+    writable: true, 
+    enumerable: true 
+  }
+});
+
+// 创建纯净对象（无原型）
+const pureObject = Object.create(null); // 没有toString、hasOwnProperty等方法
 ```
 
 Object.create() 的特点：
@@ -145,11 +174,56 @@ let person1 = new Person("Alice", 30);
 let person2 = new Person("Bob", 25);
 ```
 
+### 构造函数的本质
+
+```js
+function Person(name) {
+  this.name = name;
+}
+
+// 当使用new调用时
+const p = new Person('Alice');
+
+// 等价于
+const p = {};
+p.__proto__ = Person.prototype;  // 设置原型
+Person.call(p, 'Alice');         // 绑定this并执行
+```
+
 ### 构造函数的特点
+
+```js
+function Animal(type) {
+  this.type = type;
+  this.created = Date.now();
+  
+  // 🚨 不要返回对象类型！
+  // 如果返回对象，会覆盖new创建的实例
+  // return { custom: 'object' }; // ❌ 不要这样做
+}
+
+const cat = new Animal('cat');
+console.log(cat instanceof Animal); // true
+console.log(cat.created); // 时间戳
+```
 
 - 首字母大写（约定）
 - 内部使用 `this` 绑定新对象
 - 必须用 `new` 调用（否则 `this` 指向全局对象或 `undefined` ）
+
+### 箭头函数不能作为构造函数
+
+```js
+const ArrowFunc = () => {
+  this.name = 'test'; // ❌ 箭头函数没有this绑定
+};
+
+// TypeError: ArrowFunc is not a constructor
+// const instance = new ArrowFunc();
+
+// 验证
+console.log(ArrowFunc.prototype); // undefined
+```
 
 ::: danger 
 ❗箭头函数不能作为构造函数，因其没有 `[[Construct]]` 内部方法。
@@ -171,6 +245,8 @@ console.log(f1.__proto__ === Foo.prototype); // true
 console.log(Object.getPrototypeOf(f1) === Foo.prototype); // 推荐写法
 ```
 
+> 💡 学习建议：用 `Object.getPrototypeOf(obj)` 替代 `obj.__proto__`，用 `Reflect.construct()` 替代 `new`，这些现代 API 更安全可靠。
+
 ### 原型查找机制
 
 当访问对象属性时，JS 引擎按以下顺序查找：
@@ -189,10 +265,9 @@ console.log(Object.getPrototypeOf(f1) === Foo.prototype); // 推荐写法
 
 ### 原型链的查找过程（机制）
 
-- 当访问一个对象的某个属性时，会先在这个对象本身属性上查找
-- 如果没有找到，则会去该对象的`__proto__`上查找
-- 如果还没有找到就会再在`__proto__`的`__proto__`中查找,最终会查到`Object.prototype`上
-- 如果没有找到会返回`undefined`
+当访问一个对象的某个属性时，会先在这个对象本身属性上查找，如果没有找到，才会去 `__proto__`（即`[[Prototype]]`）上查找，依此类推，直到 `Object.prototype`，如果仍未找到，返回 `undefined`。
+
+> 🚨 重要：原型链查找是 **深度优先** 的，一旦找到同名属性就会停止查找！
 
 ### 图解
 
@@ -285,6 +360,8 @@ console.log(o);         // { age: 333 }
 2. 将实例的`__proto__`指向构造函数的原型`constructor.prototype`（继承构造函数的原型对象）
 3. 执行构造函数，绑定`this`指向实例，实例作为`this`的上下文）
 4. 如果构造函数的执行结果是一个对象，则返回这个对象，否则，返回实例对象
+
+> 注意：如果构造函数返回一个基本类型（如字符串、数字），new操作符会忽略返回值，返回新创建的对象。
 
 ### 实现
 
@@ -540,7 +617,7 @@ console.log(child1.getName(), child1.getAge()); // 'Tom', 10
 
 #### 实现思路：
 
-使用 `class` 和 `extends` 关键字，底层仍是寄生组合式继承，但语法更清晰。
+`class` 和 `extends` 本质上就是寄生组合继承的语法糖，Babel转译后就是寄生组合式继承代码。
 
 #### 示例代码：
 
@@ -590,16 +667,15 @@ console.log(child1.getName(), child1.getAge()); // 'Tom', 10
 
 ## 对比总结
 
-
-| 继承方式 | 是否支持传参	| 是否共享引用属性	| 是否继承原型方法	| 调用父构造次数	| 推荐度 |
-| -- | -- | -- | -- | -- | -- |
-| 原型链继承	| ❌	| ✅（问题）| 	✅	| 1	| ⭐ | 
-| 构造函数继承 | ✅	| ❌	| ❌	| 1	| ⭐⭐ |
-| 组合继承	| ✅	| ❌	| ✅	| 2（冗余）	| ⭐⭐⭐ |
-| 原型式继承	| ❌	| ✅（问题）	| ✅（来自对象）	| 0	| ⭐ |
-| 寄生式继承	| ❌	| ✅（问题）	| ✅（增强）	| 0	| ⭐ |
-| 寄生组合式继承	| ✅	| ❌	| ✅	| 1	| ⭐⭐⭐⭐⭐ |
-| ES6 Class 继承	| ✅	| ❌	| ✅	| 1	| ⭐⭐⭐⭐⭐ |
+| 继承方式 | 是否支持传参	| 是否共享引用属性	| 是否继承原型方法	| 调用父构造次数| 是否支持静态方法 | 推荐度 |
+| -- | -- | -- | -- | -- | -- | -- |
+| 原型链继承	| ❌	| ✅（问题）| 	✅	| 1（通过`new Parent()`）	| ❌ | ⭐ | 
+| 构造函数继承 | ✅	| ❌	| ❌	| 1	| ✅	|  ⭐⭐ |
+| 组合继承	| ✅	| ❌	| ✅	| 2（一次`Parent.call`，一次`new Parent()`）	| ✅	| ⭐⭐⭐ |
+| 原型式继承	| ❌	| ✅（问题）	| ✅（来自对象）	| 0	| ❌ | ⭐ |
+| 寄生式继承	| ❌	| ✅（问题）	| ✅（增强）	| 0	| ✅	| ⭐ |
+| 寄生组合式继承	| ✅	| ❌	| ✅	| 1（仅`Parent.call`）	| ✅	| ⭐⭐⭐⭐⭐ |
+| ES6 Class 继承	| ✅	| ❌	| ✅	| 1	| ✅	| ⭐⭐⭐⭐⭐ |
 
 > ✅ 表示“是”或“无问题”，❌ 表示“否”或“有问题”。
 
@@ -657,7 +733,7 @@ Child.prototype = new Parent(); // ← 这里会创建一个无意义的 { name:
 Child.prototype = Object.create(Parent.prototype); // ← 只继承方法，不创建实例属性
 ```
 
-> 因此，寄生组合继承避免了不必要的属性初始化，是 ES5 中最高效的继承方式。
+> 因此，寄生组合继承避免了不必要的属性初始化，是 ES5 中最高效的继承方式。使用Child.prototype = new Parent()时，如果Parent构造函数有副作用（如初始化DOM、发送网络请求），会导致每次继承时都执行这些副作用。
 
 ## ES6 的 class 是不是真正的“类”？它和构造函数有什么关系？
 
