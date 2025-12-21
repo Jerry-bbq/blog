@@ -1,13 +1,13 @@
 
 # JavaScript中的this
 
-this 是执行上下文中的一个属性，它指向最后一次调用这个方法的对象。在实际开发中，this 的指向可以通过四种调用模式来判断。
+`this` 是执行上下文中的一个属性，它指向最后一次调用这个方法的对象。在实际开发中， `this` 的指向可以通过四种调用模式来判断。
 
 ## 四种调用模式
 
 ### 1. 函数调用模式（Function Invocation）
 
-当函数不是作为对象的方法被调用时，this指向全局对象（浏览器中是window，Node.js中是global）。
+当函数不是作为对象的方法被调用时， `this` 指向全局对象（浏览器中是 `window` ，Node.js中是 `global` ）。
 
 ```js
 function greet() {
@@ -17,11 +17,11 @@ function greet() {
 greet(); // 函数调用模式
 ```
 
-> ⚠️ 注意：在严格模式下（`"use strict"`），this为 `undefined`。
+> ⚠️ 注意：在严格模式下（`"use strict"`）， `this` 为 `undefined`。
 
 ### 2. 方法调用模式（Method Invocation）
 
-当函数作为对象的属性被调用时，this指向调用该方法的对象。
+当函数作为对象的属性被调用时， `this` 指向调用该方法的对象。
 
 ```js
 const person = {
@@ -36,7 +36,7 @@ person.greet(); // this -> person
 
 ### 3. 构造器调用模式（Constructor Invocation）
 
-当函数使用 `new` 操作符调用时，this指向新创建的实例对象。
+当函数使用 `new` 操作符调用时， `this` 指向新创建的实例对象。
 
 ```js
 function Person(name) {
@@ -49,7 +49,7 @@ const alice = new Person('Alice');
 
 ### 4. apply/call/bind调用模式
 
-这三个方法可以显式指定函数执行时的this指向。
+这三个方法可以显式指定函数执行时的 `this` 指向。
 
 ```js
 const person = { name: 'Alice' };
@@ -107,7 +107,7 @@ fn.bind(obj, 5, 6)(3, 4)      // 5, 6, this -> obj
 
 如果 obj 为 `undefined` 或 `null`，`this` 指向 `Window`对象
 
-bind()会返回一个新的函数，如果这个返回的新的函数作为构造函数创建一个新的对象，那么此时 this 不再指向传入给 bind 的第一个参数，而是指向用 new 创建的实例
+`bind()` 会返回一个新的函数，如果这个返回的新的函数作为构造函数创建一个新的对象，那么此时 `this` 不再指向传入给 `bind` 的第一个参数，而是指向用 `new` 创建的实例
 
 :::
 
