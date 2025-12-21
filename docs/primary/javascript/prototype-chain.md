@@ -679,7 +679,9 @@ console.log(child1.getName(), child1.getAge()); // 'Tom', 10
 
 > ✅ 表示“是”或“无问题”，❌ 表示“否”或“有问题”。
 
-## 请说说 JavaScript 中实现继承的几种方式？你推荐哪一种？为什么？
+## 面试
+
+### 请说说 JavaScript 中实现继承的几种方式？你推荐哪一种？为什么？
 
 JavaScript 的继承本质是基于原型的委托机制。常见的实现方式有：
 
@@ -705,7 +707,7 @@ JavaScript 的继承本质是基于原型的委托机制。常见的实现方式
 
 > 所以我推荐：现代项目用 `class` `extends`，兼容环境用寄生组合继承。
 
-## 组合继承和寄生组合继承有什么区别？为什么寄生组合更好？
+### 组合继承和寄生组合继承有什么区别？为什么寄生组合更好？
 
 两者都结合了“借用构造函数”和“原型链”的优点，但关键区别在于如何设置子类的原型：
 
@@ -735,7 +737,7 @@ Child.prototype = Object.create(Parent.prototype); // ← 只继承方法，不�
 
 > 因此，寄生组合继承避免了不必要的属性初始化，是 ES5 中最高效的继承方式。使用Child.prototype = new Parent()时，如果Parent构造函数有副作用（如初始化DOM、发送网络请求），会导致每次继承时都执行这些副作用。
 
-## ES6 的 class 是不是真正的“类”？它和构造函数有什么关系？
+### ES6 的 class 是不是真正的“类”？它和构造函数有什么关系？
 
 不是。ES6 的 class 只是语法糖，底层仍然是基于构造函数 + 原型链的机制。
 
@@ -762,7 +764,7 @@ extends 的本质就是寄生组合继承：
 
 > 所以，class 让代码更清晰，但没有改变 JavaScript 基于原型的本质。
 
-## instanceof 的原理是什么？它是如何判断对象类型的？
+### instanceof 的原理是什么？它是如何判断对象类型的？
 
 `obj instanceof Constructor` 的原理是：
 
@@ -786,7 +788,7 @@ function myInstanceof(obj, Ctor) {
 - 跨 `iframe` 或不同全局环境时可能失效
 - 判断基本类型应使用 `typeof`，判断数组用` Array.isArray`
 
-## Object.create(null) 创建的对象有什么特点？用在什么场景？
+### Object.create(null) 创建的对象有什么特点？用在什么场景？
 
 `Object.create(null)` 创建的是一个没有任何原型的对象：
 
@@ -809,7 +811,7 @@ console.log(dict.toString); // 'user data'（安全！）
 > 相比之下，`{}` 或 `new Object()` 都会继承 `Object.prototype`。
 
 
-## 为什么箭头函数不能作为构造函数？new 一个箭头函数会怎样？
+### 为什么箭头函数不能作为构造函数？new 一个箭头函数会怎样？
 
 因为箭头函数：
 
@@ -826,7 +828,7 @@ new Arrow(); // ❌ TypeError: Arrow is not a constructor
 
 > 构造函数必须是普通函数或 `class`（class 本质也是函数）。
 
-## 如何手动实现 new 操作符？
+### 如何手动实现 new 操作符？
 
 ```js
 function myNew(Constructor, ...args) {

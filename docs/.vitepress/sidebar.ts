@@ -27,9 +27,9 @@ export function getSidebarPrimary(): DefaultTheme.SidebarItem[] {
       collapsed: false,
       base: '/primary/javascript/',
       items: [
-        { text: '数据类型及检测', link: 'data-types' },
+        { text: 'JavaScript数据类型及检测', link: 'data-types' },
         { text: '原型和原型链', link: 'prototype-chain' },
-        { text: '改变this指向', link: 'change-this' },
+        { text: 'JavaScript中的this', link: 'change-this' },
         { text: '事件循环', link: 'event-loop' },
         { text: '通信', link: 'communications' },
         { text: '垃圾回收机制与内存泄漏', link: 'gc' },

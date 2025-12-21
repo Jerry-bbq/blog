@@ -248,7 +248,7 @@ arr instanceof Array  // true
 Object.prototype.toString.call(arr) === '[object Array]'    //true
 ```
 
-### null和undefined区别
+### null 和 undefined 区别
 
 - null 和 undefined 都表示空值，但语义不同：
 - undefined 是系统默认的“未赋值”状态，比如声明了变量但没初始化；而 null 是开发者主动设置的
