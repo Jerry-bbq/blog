@@ -1,27 +1,57 @@
 /**
  * 模拟new操作符
- * 1. 创建一个新对象obj
- * 2. 继承构造函数的原型对象fn.prototype
- * 3. 执行构造函数，并将this指向新创建的对象obj
- * 4. 判断执行构造函数返回的结果res，如果res是一个对象，则返回这个res，否则返回创建的对象obj
+ * 依据：https://tc39.es/ecma262/#sec-new-operator
  */
-const _new = function(fn, ...arg) {
-    const obj = Object.create(fn.prototype)
-    const res = fn.call(obj, arg)
-    if (typeof res === 'object'){
-        return res
-    } else {
-        return obj
-    }
+function _new(fn, ...args) {
+  // 1. 创建新对象，继承 fn.prototype
+  const obj = Object.create(fn.prototype);
+  
+  // 2. 执行构造函数，this 指向 obj，并传入参数
+  const res = fn.apply(obj, args); // ✅ 正确传参
+  
+  // 3. 判断返回值：
+  //    - 如果 res 是对象（且非 null）或函数，则返回 res
+  //    - 否则返回新创建的对象 obj
+  if (
+    (typeof res === 'object' && res !== null) ||
+    typeof res === 'function'
+  ) {
+    return res;
+  }
+  return obj;
 }
 
-// 验证
+/**
+ * 验证
+ */
 function C(age) {
-    this.age = age
+  this.age = age;
 }
-var o = _new(C)
-o instanceof C // 判断实例o是不是M构造函数的实例,返回true
-o instanceof Object 
-o.__proto__.constructor === C // 实例o的原型对象是否等于构造函数C
-C.prototype.walk = function() { console.log('walk') } // 在构造函数C的原型上增加一个方法walk
-o.walk()
+
+// 测试1：正常构造
+var o = _new(C, 25);
+console.log(o.age); // 25
+console.log(o instanceof C); // true
+console.log(o instanceof Object); // true
+console.log(o.__proto__.constructor === C); // true
+
+// 测试2：构造函数返回对象
+function D() {
+  this.name = 'D';
+  return { override: true }; // 显式返回对象
+}
+var d = _new(D);
+console.log(d.override); // true（返回的是 {override: true}，不是 D 实例）
+
+// 测试3：构造函数返回原始值（应忽略）
+function E() {
+  this.val = 100;
+  return 42; // 返回 number，应被忽略
+}
+var e = _new(E);
+console.log(e.val); // 100（正确返回新对象）
+console.log(e instanceof E); // true
+
+// 测试4：原型方法
+C.prototype.walk = function() { console.log('walk'); };
+o.walk(); // "walk"

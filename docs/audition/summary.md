@@ -146,14 +146,23 @@ Promise.race = function (promises) {
 4. 如果构造函数的执行结果是一个对象，则返回这个对象，否则，返回实例对象
 
 ```js
-const _new = function(fn, ...arg) {
-    const obj = Object.create(fn.prototype)
-    const res = fn.call(obj, arg)
-    if (typeof res === 'object'){
-        return res
-    } else {
-        return obj
-    }
+function _new(fn, ...args) {
+  // 1. 创建新对象，继承 fn.prototype
+  const obj = Object.create(fn.prototype);
+  
+  // 2. 执行构造函数，this 指向 obj，并传入参数
+  const res = fn.apply(obj, args); // ✅ 正确传参
+  
+  // 3. 判断返回值：
+  //    - 如果 res 是对象（且非 null）或函数，则返回 res
+  //    - 否则返回新创建的对象 obj
+  if (
+    (typeof res === 'object' && res !== null) ||
+    typeof res === 'function'
+  ) {
+    return res;
+  }
+  return obj;
 }
 ```
 

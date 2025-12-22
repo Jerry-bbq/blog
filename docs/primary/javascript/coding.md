@@ -37,16 +37,28 @@
 ## 实现一个寄生组合继承
 
 ```js
-function Parent()
-    this.name = 'Parent'
-    this.play = [1,2,3]
+function Parent(name) {
+  this.name = name;
+  this.play = [1, 2, 3];
 }
-function Child() {
-    Parent.call(this)
-    this.type = 'Child'
+
+Parent.prototype.say = function() {
+  console.log(this.name);
+};
+
+function Child(name, type) {
+  Parent.call(this, name); // 借用构造函数
+  this.type = type;
 }
-Child.prototype = Object.create(Parent.prototype)
-Child.prototype.constructor = Child
+
+// 继承原型
+Child.prototype = Object.create(Parent.prototype);
+Child.prototype.constructor = Child;
+
+// 新增方法
+Child.prototype.getType = function() {
+  return this.type;
+};
 ```
 
 ## 手写Promise
@@ -106,6 +118,30 @@ const copy_arr = JSON.parse(JSON.stringify(arr))
 ```
 
 ```js
+function deepClone(obj, hash = new WeakMap()) {
+  if (obj === null || typeof obj !== 'object') return obj;
+  if (obj instanceof Date) return new Date(obj);
+  if (obj instanceof RegExp) return new RegExp(obj);
+  if (hash.has(obj)) return hash.get(obj); // 处理循环引用
+
+  const cloned = new obj.constructor(); // 支持 Array、Set、Map 等
+  hash.set(obj, cloned);
+
+  // 处理普通对象和数组
+  if (obj instanceof Map) {
+    obj.forEach((val, key) => cloned.set(deepClone(key, hash), deepClone(val, hash)));
+  } else if (obj instanceof Set) {
+    obj.forEach(val => cloned.add(deepClone(val, hash)));
+  } else {
+    for (let key in obj) {
+      if (obj.hasOwnProperty(key)) {
+        cloned[key] = deepClone(obj[key], hash);
+      }
+    }
+  }
+
+  return cloned;
+}
 
 ```
 
